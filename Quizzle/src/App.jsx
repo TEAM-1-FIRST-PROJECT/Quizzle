@@ -1,10 +1,11 @@
+import AppRouter from "./components/AppRouter/AppRouter"
 
-function App() {
+const App = () => {
 
 
   return (
     <>
-  <h1>HI</h1>
+      <AppRouter></AppRouter>
     </>
   )
 }
