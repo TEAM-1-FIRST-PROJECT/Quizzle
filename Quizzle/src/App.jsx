@@ -1,12 +1,12 @@
-
-function App() {
-
-
+import SideBar from "./Components/SideBar/SideBar";
+import NavBar from "./Components/NavBar/NavBar";
+const App = () => {
   return (
     <>
-  <h1>HI</h1>
+      <NavBar />
+      <SideBar />
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
