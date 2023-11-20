@@ -1,138 +1,188 @@
+//import { Link } from "react-router-dom";
+import { useState, useContext } from "react";
+import { AuthContext } from "../../context/authContext";
+// import { useNavigate } from "react-router";
+import {
+  getUserByHandle,
+  createUserHandle,
+} from "../../services/users.services";
+import { registerUser } from "../../services/auth.services";
+import {
+  MAX_NAME_LENGTH,
+  MIN_NAME_LENGTH,
+
+} from "../../common/constants";
 
 
 const RegisterForm = () => {
+  const [form, setForm] = useState({
+    firstName: "",
+    lastName: "",
+    username: "",
+    email: "",
+    password: "",
+    profileImgUrl: "",
+  });
 
-  const registerForm = () => { }
-  const handleRegisterUser = () => { }
+  const { setUser } = useContext(AuthContext);
 
+  // const navigate = useNavigate();
+
+  const updateForm = (field) => (e) => {
+    setForm({
+      ...form,
+      [field]: e.target.value,
+    });
+  };
+
+  const handleRegisterUser = (e) => {
+    e.preventDefault();
+
+    if (!form.firstName) {
+      alert("First Name is required");
+      return;
+    }
+
+    if (
+      form.firstName.length < MIN_NAME_LENGTH ||
+      form.firstName.length > MAX_NAME_LENGTH
+    ) {
+      alert(
+        `First Name must be between ${MIN_NAME_LENGTH} and ${MAX_NAME_LENGTH} characters long`
+      );
+      return;
+    }
+
+    if (!form.lastName) {
+      alert("Last Name is required");
+      return;
+    }
+    console.log(form.lastName)
+    if (
+      form.lastName.length < MIN_NAME_LENGTH ||
+      form.lastName.length > MAX_NAME_LENGTH
+    ) {
+      alert(
+        `Last Name must be between ${MIN_NAME_LENGTH} and ${MAX_NAME_LENGTH} characters long`
+      );
+      return;
+    }
+    console.log(form.username, 'l')
+    if (!form.username) {
+      alert("Username is required");
+      return;
+    }
+
+    if (!form.email) {
+      alert("Email is required");
+      return;
+    }
+
+    getUserByHandle(form.username)
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          alert("Username already exists");
+        }
+        return registerUser(form.email, form.password);
+      })
+      .then((credential) => {
+        createUserHandle(
+          form.username,
+          credential.user.uid,
+          credential.user.email,
+          form.firstName,
+          form.lastName,
+          form.profileImgUrl
+        );
+
+        credential.user.value = form.username;
+        setUser({
+          user: credential.user,
+        });
+      })
+      .then(() => {
+        alert("User created successfully, redirecting...");
+
+        // navigate("/home");
+
+      })
+      .catch((e) => console.error(e.message));
+  };
   return (
     <>
-      <form className="p-20">
-        <div className="space-y-12">
-          <div className="border-b border-gray-900/10 pb-12">
-            <h2 className="text-base font-semibold leading-7 text-gray-900">
-              Create Your Account
+      <div className="grid grid-cols-1 sm:grid-cols-2 h-screen w-full">
+        <div className="hidden sm:block">
+        </div>
+        <div className="bg-gray-300 flex flex-col justify-center">
+          <form className="max-w-[550px] w-full mx-auto shadow-xl hover:shadow-violet-400 bg-gray-400 p-8 px-8 rounded-lg">
+            <h2 className="text-4x1 text-3xl text-black font-bold text-center">
+              SIGN UP
             </h2>
-            
-            <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-            <div className="sm:col-span-3">
-                <label
-                  htmlFor="first-name"
-                  className="block text-sm font-medium leading-6 text-gray-900"
-                >
-                  First name
-                </label>
-                <div className="mt-2">
-                  <input
-                    onChange={registerForm("firstName")}
-                    type="text"
-                    name="first-name"
-                    id="first-name"
-                    autoComplete="given-name"
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  />
-                </div>
-              </div>
-              <div className="sm:col-span-3">
-                <label
-                  htmlFor="first-name"
-                  className="block text-sm font-medium leading-6 text-gray-900"
-                >
-                  First name
-                </label>
-                <div className="mt-2">
-                  <input
-                    onChange={registerForm("firstName")}
-                    type="text"
-                    name="first-name"
-                    id="first-name"
-                    autoComplete="given-name"
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  />
-                </div>
-              </div>
-
-              <div className="sm:col-span-3">
-                <label
-                  htmlFor="last-name"
-                  className="block text-sm font-medium leading-6 text-gray-900"
-                >
-                  Last name
-                </label>
-                <div className="mt-2">
-                  <input
-                    type="text"
-                    onChange={registerForm("lastName")}
-                    name="last-name"
-                    id="last-name"
-                    autoComplete="family-name"
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  />
-                </div>
-              </div>
-
-              <div className="sm:col-span-4">
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium leading-6 text-gray-900"
-                >
-                  Email address
-                </label>
-                <div className="mt-2">
-                  <input
-                    id="email"
-                    onChange={registerForm("email")}
-                    name="email"
-                    type="email"
-                    autoComplete="email"
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  />
-                </div>
-              </div>
-
-              <div className="sm:col-span-3">
-                <label
-                  htmlFor="country"
-                  className="block text-sm font-medium leading-6 text-gray-900"
-                >
-                  Country
-                </label>
-                <div className="mt-2">
-                  <select
-                    id="country"
-                    name="country"
-                    autoComplete="country-name"
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
-                  >
-                    <option>United States</option>
-                    <option>Canada</option>
-                    <option>Mexico</option>
-                    <option>Bulgaria</option>
-                  </select>
-                </div>
-              </div>
+            <div className="flex flex-col text-black py-2">
+              <label>First Name</label>
+              <input
+                className="rounded-lg  mt-2 p-2 focus-within:border-blue-500 focus:outline-none"
+                type="text"
+                value={form.firstName}
+                onChange={updateForm("firstName")}
+              />
             </div>
-          </div>
-        </div>
+            <div className="flex flex-col text-black py-2">
+              <label>Last Name</label>
+              <input
+                className="rounded-lg  mt-2 p-2 focus-within:border-blue-500 focus:outline-none"
+                type="text"
+                value={form.lastName}
+                onChange={updateForm("lastName")}
+              />
+            </div>
+            <div className="flex flex-col text-black py-2">
+              <label>Username</label>
+              <input
+                className="rounded-lg mt-2 p-2 focus-within:border-blue-500 focus:outline-none"
+                type="text"
+                value={form.username}
+                onChange={updateForm("username")}
+              />
+            </div>
+            <div className="flex flex-col text-black py-2">
+              <label>Email</label>
+              <input
+                className="rounded-lg mt-2 p-2 placeholder-slate-400
+      focus:outline-none 
+      disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
+      invalid:border-pink-500 invalid:text-pink-600
+      focus:invalid:border-pink-500 focus:invalid:ring-pink-500"
+                type="email"
+                value={form.email}
+                onChange={updateForm("email")}
+              />
+            </div>
+            <div className="flex flex-col text-black py-2">
+              <label>Password</label>
+              <input
+                className="rounded-lg bg-white mt-2 p-2 focus-within:border-blue-500 focus:outline-none"
+                type="password"
+                value={form.password}
+                onChange={updateForm("password")}
+              />
+            </div>
+            <button
+              className="w-full my-5 py-2 bg-violet-400 shadow-xl hover:shadow-violet-600 text-black font-semibold rounded-lg"
+              onClick={handleRegisterUser}
+              type="button"
+            >
+              SIGN UP
+            </button>
+            <p className="text-indigo-500 py-2 flex justify-center">
+              Already have an account?{" "}
 
-        <div className="mt-6 flex items-center justify-end gap-x-6">
-          <button
-            type="button"
-            className="text-sm font-semibold leading-6 text-gray-900"
-          >
-            Cancel
-          </button>
-          <button
-            type="submit"
-            onClick={handleRegisterUser}
-            className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-          >
-            Register
-          </button>
+            </p>
+          </form>
         </div>
-      </form>
+      </div>
     </>
-  )
-}
+  );
+};
 
 export default RegisterForm
