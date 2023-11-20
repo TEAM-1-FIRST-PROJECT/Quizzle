@@ -1,10 +1,11 @@
-import SideBar from "./Components/SideBar/SideBar";
-import NavBar from "./Components/NavBar/NavBar";
+import AppRouter from "./components/AppRouter/AppRouter"
+
 const App = () => {
+
+
   return (
     <>
-      <NavBar />
-      <SideBar />
+      <AppRouter></AppRouter>
     </>
   );
 };
