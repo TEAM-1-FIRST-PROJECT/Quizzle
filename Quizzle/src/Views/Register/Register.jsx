@@ -1,7 +1,7 @@
 //import { Link } from "react-router-dom";
 import { useState, useContext } from "react";
 import { AuthContext } from "../../context/authContext";
-// import { useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import {
   getUserByHandle,
   createUserHandle,
@@ -26,7 +26,7 @@ const RegisterForm = () => {
 
   const { setUser } = useContext(AuthContext);
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const updateForm = (field) => (e) => {
     setForm({
@@ -103,7 +103,7 @@ const RegisterForm = () => {
       .then(() => {
         alert("User created successfully, redirecting...");
 
-        // navigate("/home");
+        navigate("/");
 
       })
       .catch((e) => console.error(e.message));
