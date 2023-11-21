@@ -17,7 +17,6 @@ const LogIn = () => {
   const navigate = useNavigate();
 
   const updateForm = (field) => (e) => {
-    // console.log(e.target.value)
     setForm({
       ...form,
       [field]: e.target.value,
