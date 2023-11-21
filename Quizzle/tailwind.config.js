@@ -21,6 +21,9 @@ export default {
       montserrat: ['Montserrat', 'sans-serif'],
     },
     extend: {
+      backgroundImage: {
+        'hero-pattern': "url('./src/assets/backgroung.jpeg')",
+      },
       spacing: {
         '128': '32rem',
         '144': '36rem',
