@@ -108,12 +108,12 @@ const RegisterForm = () => {
   };
   return (
     <>
-      <div className="inset-0 bg-hero-pattern bg-cover">
+      <div className="h-screen bg-hero-pattern bg-cover flex items-center justify-center">
         <div className="hidden sm:block mt-20 justify-center">
           <div className="">
-            <form className="w-[450px] mx-auto shadow-xl hover:shadow-violet-400 bg-gray-400 p-8 rounded-lg">
+            <form className="w-[450px] mx-auto shadow-xl hover:shadow-violet-400 bg-indigo-300 p-8 rounded-lg opacity-95">
               <h2 className="text-4x1 text-3xl text-black font-bold text-center">
-                SIGN UP
+                Register
               </h2>
               <div className="flex flex-col text-black py-2">
                 <label>First Name</label>
@@ -164,17 +164,8 @@ const RegisterForm = () => {
                   onChange={updateForm("password")}
                 />
               </div>
-              <div className="mt-1">
-                <label>Educator</label>
-                <input
-                  className="ml-2"
-                  type="checkbox"
-                  checked={form.isOrganizer}
-                  onChange={updateForm("isOrganizer")}
-                />
-              </div>
-              <div className="mt-2">
-                <label>Student</label>
+              <div className=" flex justify-center mt-1">
+                <label>I am an educator</label>
                 <input
                   className="ml-2"
                   type="checkbox"
@@ -189,7 +180,7 @@ const RegisterForm = () => {
               >
                 SIGN UP
               </button>
-              <p className="text-indigo-500 py-2 flex justify-center">
+              <p className="text-black-500 hover:text-violet-500 py-2 flex justify-center">
                 Already have an account?{" "}
               </p>
             </form>
