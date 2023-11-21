@@ -179,6 +179,12 @@ const Sidebar = () => {
               <img className="h-7 w-7 mix-blend-multiply" src={enter} alt="logIn" />
               <span className="">LogIn</span>
             </Link>}
+            {!user && <Link
+              to="/register"
+              className="flex items-center space-x-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-4 py-3 text-white"
+            >
+              <span className="">Register</span>
+            </Link>}
             {user && <Link
               to="/"
               onClick={onLogout}
