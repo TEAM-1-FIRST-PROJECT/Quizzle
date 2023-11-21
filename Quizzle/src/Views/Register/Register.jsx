@@ -173,15 +173,6 @@ const RegisterForm = () => {
                   onChange={updateForm("isOrganizer")}
                 />
               </div>
-              <div className="mt-2">
-                <label>Student</label>
-                <input
-                  className="ml-2"
-                  type="checkbox"
-                  value={form.password}
-                  onChange={updateForm("password")}
-                />
-              </div>
               <button
                 className="w-full my-5 py-2 bg-violet-400 shadow-xl hover:shadow-violet-600 text-black font-semibold rounded-lg"
                 onClick={handleRegisterUser}
