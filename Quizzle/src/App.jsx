@@ -1,4 +1,4 @@
-import Navbar from "./components/NavBar/NavBar";
+import Navbar from "./Components/NavBar/NavBar";
 import Sidebar from "./components/SideBar/SideBar";
 import { useState, useEffect } from "react";
 import AppRouter from "./components/AppRouter/AppRouter";
