@@ -1,9 +1,24 @@
 import { Link } from "react-router-dom";
 import logout from "../../assets/logout.gif";
+import enter from "../../assets/enter.png"
 import profile from "../../assets/profile.gif";
 import settings from "../../assets/settings.gif";
+import { logoutUser } from "../../services/auth.services";
+import { useContext } from "react";
+import { AuthContext } from "../../context/authContext";
 
 const Sidebar = () => {
+
+  const { user, setUser } = useContext(AuthContext);
+
+  const onLogout = () => {
+    logoutUser().then(() => {
+      setUser({
+        user: null,
+      });
+    });
+  };
+
   return (
       <div className="absolute" >
       <div className="border-r-2 border-spacing-x-2.5 w-[3.35rem] bg overflow-hidden hover:w-56 hover:bg-white bg-gradient-to-br from-violet-400 to-indigo-400 overflow-y-auto transition-all duration-1000 ease-in-out">
@@ -147,23 +162,37 @@ const Sidebar = () => {
               to="/profile"
               className="flex items-center space-x-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-4 py-3 text-white"
             >
-             <img className="h-7 w-7 mix-blend-multiply" src={profile} alt="profile" />
+              <img className="h-7 w-7 mix-blend-multiply" src={profile} alt="profile" />
               <span className="">Profile</span>
             </Link>
             <Link
               to="/settings"
               className="flex items-center space-x-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-4 py-3 text-white"
             >
-             <img className="h-7 w-7 mix-blend-multiply" src={settings} alt="settings" />
+              <img className="h-7 w-7 mix-blend-multiply" src={settings} alt="settings" />
               <span className="">Settings</span>
             </Link>
-            <Link
-              to="#"
+            {!user && <Link
+              to="/logIn"
+              className="flex items-center space-x-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-4 py-3 text-white"
+            >
+              <img className="h-7 w-7 mix-blend-multiply" src={enter} alt="logIn" />
+              <span className="">LogIn</span>
+            </Link>}
+            {!user && <Link
+              to="/register"
+              className="flex items-center space-x-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-4 py-3 text-white"
+            >
+              <span className="">Register</span>
+            </Link>}
+            {user && <Link
+              to="/"
+              onClick={onLogout}
               className="flex items-center space-x-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-4 py-3 text-white"
             >
               <img className="h-7 w-7 mix-blend-multiply" src={logout} alt="logout" />
               <span className="">Logout</span>
-            </Link>
+            </Link>}
           </div>
         </div>
       </div>
