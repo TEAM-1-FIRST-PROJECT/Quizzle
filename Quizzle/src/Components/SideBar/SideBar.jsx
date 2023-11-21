@@ -2,10 +2,11 @@ import { Link } from "react-router-dom";
 import logout from "../../assets/logout.gif";
 import profile from "../../assets/profile.gif";
 import settings from "../../assets/settings.gif";
+
 const Sidebar = () => {
   return (
-    <div className="bg-gradient-to-br from-white to-indigo-600">
-      <div className="sidebar border-r-2 border-spacing-x-2.5 min-h-screen w-[3.35rem] bg overflow-hidden hover:w-56 hover:bg-white bg-gradient-to-br from-violet-400 to-indigo-400 opacity-90">
+      <div className="absolute flex" >
+      <div className="sidebar border-r-2 border-spacing-x-2.5 min-h-screen w-[3.35rem] bg overflow-hidden hover:w-56 hover:bg-white bg-gradient-to-br from-violet-400 to-indigo-400 overflow-y-auto">
         <div className="flex h-screen flex-col justify-between pt-2 pb-6">
           <div>
             <div className="w-max p-2.5">
