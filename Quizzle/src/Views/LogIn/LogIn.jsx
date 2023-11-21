@@ -49,11 +49,9 @@ const LogIn = () => {
 
   return (
     <>
-    <div className="grid grid-cols-1 sm:grid-cols-2 h-screen w-full">
-      <div className="hidden sm:block">
-              </div>
-      <div className="bg-gray-300 flex flex-col justify-center">
-        <form className="max-w-[550px] w-full mx-auto shadow-xl hover:shadow-violet-400 bg-gray-400 p-8 px-8 rounded-lg">
+    <div className="h-screen bg-hero-pattern bg-cover flex items-center justify-center">
+      <div className=" flex flex-col justify-center">
+        <form className="w-[450px] mx-auto shadow-xl hover:shadow-violet-400 bg-indigo-300 p-8 rounded-lg">
           <h2 className="text-4x1 text-3xl dark:text-white font-bold text-center">
           Login
           </h2>
