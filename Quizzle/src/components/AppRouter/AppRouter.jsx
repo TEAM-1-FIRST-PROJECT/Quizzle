@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import RegisterForm from "../../Views/Register/Register"
+import RegisterForm from "../../views/Register/Register"
 import Dashboard from '../Dashboard/Dashboard';
 
 const AppRouter = () => {

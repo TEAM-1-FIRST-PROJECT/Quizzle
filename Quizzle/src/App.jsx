@@ -1,5 +1,5 @@
-import Navbar from "./Components/NavBar/NavBar";
-import Sidebar from "./Components/SideBar/SideBar";
+import Navbar from "./components/NavBar/NavBar";
+import Sidebar from "./components/SideBar/SideBar";
 import { useState, useEffect } from "react";
 import AppRouter from "./components/AppRouter/AppRouter"
 import { auth } from './config/firebase-config';
