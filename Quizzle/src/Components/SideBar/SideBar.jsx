@@ -5,8 +5,8 @@ import settings from "../../assets/settings.gif";
 
 const Sidebar = () => {
   return (
-      <div className="absolute flex" >
-      <div className="sidebar border-r-2 border-spacing-x-2.5 min-h-screen w-[3.35rem] bg overflow-hidden hover:w-56 hover:bg-white bg-gradient-to-br from-violet-400 to-indigo-400 overflow-y-auto">
+      <div className="absolute" >
+      <div className="border-r-2 border-spacing-x-2.5 w-[3.35rem] bg overflow-hidden hover:w-56 hover:bg-white bg-gradient-to-br from-violet-400 to-indigo-400 overflow-y-auto transition-all duration-1000 ease-in-out">
         <div className="flex h-screen flex-col justify-between pt-2 pb-6">
           <div>
             <div className="w-max p-2.5">
@@ -144,14 +144,14 @@ const Sidebar = () => {
           </div>
           <div className="p-5">
             <Link
-              to="#"
+              to="/profile"
               className="flex items-center space-x-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-4 py-3 text-white"
             >
              <img className="h-7 w-7 mix-blend-multiply" src={profile} alt="profile" />
               <span className="">Profile</span>
             </Link>
             <Link
-              to="#"
+              to="/settings"
               className="flex items-center space-x-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-4 py-3 text-white"
             >
              <img className="h-7 w-7 mix-blend-multiply" src={settings} alt="settings" />
