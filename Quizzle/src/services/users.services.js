@@ -11,6 +11,7 @@ export const createUserHandle = (
     email,
     firstName,
     lastName,
+    isOrganizer,
     profileImgUrl
   ) => {
     return set(ref(database, `users/${username}`), {
@@ -21,7 +22,7 @@ export const createUserHandle = (
       lastName,
       profileImgUrl,
       isAdmin: false,
-      isOrganizer: false,
+      isOrganizer,
       createdOn: new Date(),
       likedPosts: {},
       isBlocked: false,
