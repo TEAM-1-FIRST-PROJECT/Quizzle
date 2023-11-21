@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import logout from "../../assets/logout.gif";
-import enter from "../../assets/enter.png"
 import profile from "../../assets/profile.gif";
 import settings from "../../assets/settings.gif";
 import { logoutUser } from "../../services/auth.services";
@@ -172,19 +171,7 @@ const Sidebar = () => {
               <img className="h-7 w-7 mix-blend-multiply" src={settings} alt="settings" />
               <span className="">Settings</span>
             </Link>
-            {!user && <Link
-              to="/logIn"
-              className="flex items-center space-x-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-4 py-3 text-white"
-            >
-              <img className="h-7 w-7 mix-blend-multiply" src={enter} alt="logIn" />
-              <span className="">LogIn</span>
-            </Link>}
-            {!user && <Link
-              to="/register"
-              className="flex items-center space-x-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-4 py-3 text-white"
-            >
-              <span className="">Register</span>
-            </Link>}
+            
             {user && <Link
               to="/"
               onClick={onLogout}

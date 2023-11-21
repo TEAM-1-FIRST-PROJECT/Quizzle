@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { AuthContext } from "../../context/authContext";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/logo.webp";
 
+
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const { user } = useContext(AuthContext);
 
   return (
     <nav className="bg-gradient-to-r from-violet-400 to-indigo-400">
@@ -50,6 +53,18 @@ function Navbar() {
               type="text"
               placeholder="Search..."
             />
+            {!user && <Link
+              to="/login"
+              className=" hover:bg-gradient-to-br hover:from-violet-500 hover:to-fuchsia-400 text-white px-3 py-2 rounded-md"
+            >
+              Login
+            </Link>}
+            {!user && <Link
+              to="/register"
+              className=" hover:bg-gradient-to-br hover:from-violet-500 hover:to-fuchsia-400 text-white px-3 py-2 rounded-md"
+            >
+              Register
+            </Link>}
             <img
               className="ml-4 rounded-full bg-black w-10 h-10"
               src=""
