@@ -98,7 +98,7 @@ const LogIn = () => {
               Don&#39;t have an account?{" "}
               <Link
                 className="ml-1 dark:text-white hover:animate-pulse mix-blend-color-dodge"
-                to="/Signup"
+                to="/register"
               >
                 Sign up
               </Link>
