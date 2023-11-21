@@ -7,7 +7,7 @@ import { loginUser } from "../../services/auth.services";
 
 
 
-const LogIn = () => {
+const Login = () => {
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -110,4 +110,4 @@ const LogIn = () => {
 
   );
 };
-export default LogIn
+export default Login
