@@ -28,10 +28,10 @@ const App = () => {
       if (!snapshot.exists()) {
         throw new Error("User data not found");
       }
-
+      const username = Object.keys(snapshot.val())[0];
       setAppState({
         ...appState,
-        userData: Object.keys(snapshot.val())[0],
+        userData: snapshot.val()[username],
         // Object.keys(snapshot.val())[0] returns the first key of the object
         // Object.keys(snapshot.val()) returns an array of the keys of the object
         // snapshot.val() returns the value of the object
@@ -39,7 +39,7 @@ const App = () => {
       });
     });
   });
-  // console.log(user)
+
 
   return (
     <AuthContext.Provider value={{ ...appState, setUser: setAppState }}>

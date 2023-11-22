@@ -23,7 +23,7 @@ const RegisterForm = () => {
     username: "",
     email: "",
     password: "",
-    isEducator: false,
+    role: "student",
     phone: "",
     profileImgUrl: "",
   });
@@ -33,14 +33,14 @@ const RegisterForm = () => {
   const navigate = useNavigate();
 
   const updateForm = (field) => (e) => {
-    const value = e.target.type === "checkbox" ? e.target.checked : e.target.value;
+    const value = e.target.type === "checkbox" ? (e.target.checked ? "teacher" : "student") : e.target.value;
     setForm({
       ...form,
-      [field]: e.target.value,
-      [field]: field === "isisEducator" ? e.target.checked : value,
+      [field]: value,
+
     });
   };
-
+  console.log(form.role, form.phone)
   const handleRegisterUser = (e) => {
     e.preventDefault();
 
@@ -112,7 +112,7 @@ const RegisterForm = () => {
                 credential.user.email,
                 form.firstName,
                 form.lastName,
-                form.isEducator,
+                form.role,
                 form.phone,
                 form.profileImgUrl
               );
@@ -204,8 +204,8 @@ const RegisterForm = () => {
                 <input
                   className="ml-2"
                   type="checkbox"
-                  value={form.isEducator}
-                  onChange={updateForm("isEducator")}
+                  checked={form.role === "teacher"}
+                  onChange={updateForm("role")}
                 />
               </div>
               <button
