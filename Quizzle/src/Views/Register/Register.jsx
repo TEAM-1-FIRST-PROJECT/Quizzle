@@ -7,7 +7,7 @@ import {
   createUserHandle,
 } from "../../services/users.services";
 import { registerUser } from "../../services/auth.services";
-import { MAX_NAME_LENGTH, MIN_NAME_LENGTH } from "../../common/constants";
+import { MAX_NAME_LENGTH, MIN_NAME_LENGTH, PHONE_NUMBER_CHECK } from "../../common/constants";
 
 const RegisterForm = () => {
   const [form, setForm] = useState({
@@ -17,6 +17,7 @@ const RegisterForm = () => {
     email: "",
     password: "",
     isEducator: false,
+    phone:"",
     profileImgUrl: "",
   });
 
@@ -65,9 +66,13 @@ const RegisterForm = () => {
       );
       return;
     }
-    console.log(form.username, "l");
+    
     if (!form.username) {
       alert("Username is required");
+      return;
+    }
+    if (!PHONE_NUMBER_CHECK.test(form.phone)){
+      alert("correct phone number is required");
       return;
     }
 
@@ -91,6 +96,7 @@ const RegisterForm = () => {
           form.firstName,
           form.lastName,
           form.isEducator,
+          form.phone,
           form.profileImgUrl
         );
 
@@ -140,6 +146,15 @@ const RegisterForm = () => {
                   type="text"
                   value={form.username}
                   onChange={updateForm("username")}
+                />
+              </div>
+              <div className="flex flex-col text-black py-2">
+                <label>phone</label>
+                <input
+                  className="rounded-lg mt-2 p-2 focus-within:border-blue-500 focus:outline-none"
+                  type="text"
+                  value={form.phone}
+                  onChange={updateForm("phone")}
                 />
               </div>
               <div className="flex flex-col text-black py-2">
