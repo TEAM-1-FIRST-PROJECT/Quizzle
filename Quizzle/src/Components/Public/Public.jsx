@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import SingleQuizCard from "../SingleQuizCard/SingleQuizCard";
+import PublicQuizzesTable from "../PublicQuizzesTable/PublicQuizzesTable";
 
 const Public = () => {
 
@@ -66,6 +67,8 @@ const Public = () => {
                 </div>
               </div>
             </section>
+            {/* Section with public quizzes */}
+            <PublicQuizzesTable></PublicQuizzesTable>
           </div>
         </>
       );
