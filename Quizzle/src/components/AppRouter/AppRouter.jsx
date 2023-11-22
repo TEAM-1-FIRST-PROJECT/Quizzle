@@ -11,11 +11,11 @@ const AppRouter = () => {
   return (
     <Routes>
       <Route path="/register" element={<RegisterForm />} />
-      <Route path="/" element={<Dashboard />} />
+      <Route path="/home" element={<Dashboard />} />
       <Route path="/profile" element={<UserProfile />} />
       <Route path="/settings" element={<Settings />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/public" element={<PublicView />} />
+      <Route path="/" element={<PublicView />} />
       <Route path="/create" element={<CreateQuiz />} />
     </Routes>
   )
