@@ -131,7 +131,7 @@ const Sidebar = () => {
               </li>
               <li className="min-w-max">
                 <Link
-                  to="#"
+                  to="/createNewQuiz"
                   className="flex items-center space-x-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-4 py-3 text-white"
                 >
                   <svg
@@ -151,7 +151,7 @@ const Sidebar = () => {
                       clipRule="evenodd"
                     />
                   </svg>
-                  <span className="group-hover:text-gray-700">Finance</span>
+                  <span className="group-hover:text-gray-700">Create New Quiz</span>
                 </Link>
               </li>
             </ul>
