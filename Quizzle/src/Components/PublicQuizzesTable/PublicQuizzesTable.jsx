@@ -1,4 +1,4 @@
-const PublixQuizzesTable = () => {
+const PublicQuizzesTable = () => {
 return (
     <section className="bg-white dark:bg-white py-3 sm:py-5">
   <div className="px-4 mx-auto max-w-screen-2xl lg:px-12">
@@ -605,4 +605,4 @@ return (
 )
 }
 
-export default PublixQuizzesTable;
+export default PublicQuizzesTable;
