@@ -7,7 +7,13 @@ import {
   createUserHandle,
 } from "../../services/users.services";
 import { registerUser } from "../../services/auth.services";
-import { MAX_NAME_LENGTH, MIN_NAME_LENGTH, PHONE_NUMBER_CHECK } from "../../common/constants";
+// import {
+//   MAX_NAME_LENGTH,
+//   MIN_NAME_LENGTH,
+//   MIN_USER_NAME_LENGTH,
+//   PHONE_NUMBER_CHECK,
+//   NAME_CHECK
+// } from "../../common/constants";
 
 const RegisterForm = () => {
   const [form, setForm] = useState({
@@ -17,7 +23,7 @@ const RegisterForm = () => {
     email: "",
     password: "",
     isEducator: false,
-    phone:"",
+    phone: "",
     profileImgUrl: "",
   });
 
@@ -37,44 +43,48 @@ const RegisterForm = () => {
   const handleRegisterUser = (e) => {
     e.preventDefault();
 
-    if (!form.firstName) {
-      alert("First Name is required");
-      return;
-    }
+    // if (
+    //   form.firstName.length < MIN_NAME_LENGTH ||
+    //   form.firstName.length > MAX_NAME_LENGTH
+    // ) {
+    //   alert(
+    //     `First name must be between ${MIN_NAME_LENGTH} and ${MAX_NAME_LENGTH} characters long`
+    //   );
+    //   return;
+    // }
+    // if (!NAME_CHECK.test(form.firstName)) {
+    //   alert("first name is required");
+    //   return;
+    // }
 
-    if (
-      form.firstName.length < MIN_NAME_LENGTH ||
-      form.firstName.length > MAX_NAME_LENGTH
-    ) {
-      alert(
-        `First Name must be between ${MIN_NAME_LENGTH} and ${MAX_NAME_LENGTH} characters long`
-      );
-      return;
-    }
+    // if (
+    //   form.lastName.length < MIN_NAME_LENGTH ||
+    //   form.lastName.length > MAX_NAME_LENGTH
+    // ) {
+    //   alert(
+    //     `Last name must be between ${MIN_NAME_LENGTH} and ${MAX_NAME_LENGTH} characters long`
+    //   );
+    //   return;
+    // }
+    // if (!NAME_CHECK.test(form.lastName)) {
+    //   alert("Last name is required");
+    //   return;
+    // }
 
-    if (!form.lastName) {
-      alert("Last Name is required");
-      return;
-    }
-    console.log(form.lastName);
-    if (
-      form.lastName.length < MIN_NAME_LENGTH ||
-      form.lastName.length > MAX_NAME_LENGTH
-    ) {
-      alert(
-        `Last Name must be between ${MIN_NAME_LENGTH} and ${MAX_NAME_LENGTH} characters long`
-      );
-      return;
-    }
-    
-    if (!form.username) {
-      alert("Username is required");
-      return;
-    }
-    if (!PHONE_NUMBER_CHECK.test(form.phone)){
-      alert("correct phone number is required");
-      return;
-    }
+    // if (
+    //   form.username.length < MIN_USER_NAME_LENGTH ||
+    //   form.username.length > MAX_NAME_LENGTH
+    // ) {
+    //   alert(
+    //     `User name must be between ${MIN_USER_NAME_LENGTH} and ${MAX_NAME_LENGTH} characters long`
+    //   );
+    //   return;
+    // }
+
+    // if (!PHONE_NUMBER_CHECK.test(form.phone)) {
+    //   alert("correct phone number is required");
+    //   return;
+    // }
 
     if (!form.email) {
       alert("Email is required");
@@ -82,7 +92,7 @@ const RegisterForm = () => {
     }
 
     getUserByHandle(form.username)
-      .then((snapshot) => {
+      .then((snapshot) => {  
         if (snapshot.exists()) {
           alert("Username already exists");
         }
@@ -198,11 +208,11 @@ const RegisterForm = () => {
               <p className="text-black-500 hover:text-violet-500 py-2 flex justify-center">
                 Already have an account?{" "}
                 <Link
-                className="ml-1 dark:text-white hover:animate-pulse mix-blend-color-dodge"
-                to="/Login"
-              >
-                Log in
-              </Link>
+                  className="ml-1 dark:text-white hover:animate-pulse mix-blend-color-dodge"
+                  to="/Login"
+                >
+                  Log in
+                </Link>
               </p>
             </form>
           </div>
