@@ -23,6 +23,7 @@ export default {
     extend: {
       backgroundImage: {
         'hero-pattern': "url('./src/assets/backgroung.jpeg')",
+        'hero-pattern-2': "url('./src/assets/Home.jpg')",
       },
       spacing: {
         '128': '32rem',

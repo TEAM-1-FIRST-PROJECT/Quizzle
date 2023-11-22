@@ -1,4 +1,4 @@
-//import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState, useContext } from "react";
 import { AuthContext } from "../../context/authContext";
 import { useNavigate } from "react-router";
@@ -114,10 +114,10 @@ const RegisterForm = () => {
   };
   return (
     <>
-      <div className="h-screen bg-hero-pattern bg-cover flex items-center justify-center">
+      <div className="h-screen bg-hero-pattern-2 bg-cover flex items-center justify-center">
         <div className="hidden sm:block mt-20 justify-center">
           <div className="">
-            <form className="w-[450px] mx-auto shadow-xl hover:shadow-violet-400 bg-indigo-300 p-8 rounded-lg opacity-95">
+            <form className="w-[450px] mx-auto shadow-xl hover:shadow-violet-400 bg-indigo-300 p-8 rounded-lg opacity-80">
               <h2 className="text-4x1 text-3xl text-black font-bold text-center">
                 Register
               </h2>
@@ -197,6 +197,12 @@ const RegisterForm = () => {
               </button>
               <p className="text-black-500 hover:text-violet-500 py-2 flex justify-center">
                 Already have an account?{" "}
+                <Link
+                className="ml-1 dark:text-white hover:animate-pulse mix-blend-color-dodge"
+                to="/Login"
+              >
+                Log in
+              </Link>
               </p>
             </form>
           </div>
