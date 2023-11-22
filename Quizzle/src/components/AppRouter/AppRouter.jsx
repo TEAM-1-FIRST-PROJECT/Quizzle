@@ -7,6 +7,8 @@ import Login from '../../views/Login/Login'
 import PublicView from '../../views/PublicView/PublicView';
 
 import CreateQuiz from '../../views/CreateQuiz/CreateQuiz';
+import About from '../../views/About/About';
+import Contact from '../../views/Contact/Contact';
 const AppRouter = () => {
   return (
     <Routes>
@@ -17,6 +19,8 @@ const AppRouter = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/" element={<PublicView />} />
       <Route path="/create" element={<CreateQuiz />} />
+      <Route path="/About" element={<About />} />
+      <Route path="/Contact" element={<Contact />} />
     </Routes>
   )
 }

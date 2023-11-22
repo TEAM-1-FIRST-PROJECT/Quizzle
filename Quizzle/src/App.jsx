@@ -6,6 +6,7 @@ import { auth } from "./config/firebase-config";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { getUserData } from "./services/users.services";
 import { AuthContext } from "./context/authContext";
+import Footer from "./components/Footer/Footer";
 
 const App = () => {
   const [user] = useAuthState(auth);
@@ -45,6 +46,7 @@ const App = () => {
       <Navbar />
       <Sidebar />
       <AppRouter />
+      <Footer />
     </AuthContext.Provider>
   );
 };
