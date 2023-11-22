@@ -5,6 +5,7 @@ import UserProfile from '../../views/UserProfile/UserProfile';
 import Settings from '../../views/Settings/Settings';
 import Login from '../../views/Login/Login'
 import CreateNewQuiz from '../../views/CreateNewQuiz/CreateNewQuiz';
+import PublicView from '../../views/PublicView/PublicView';
 
 const AppRouter = () => {
   return (
@@ -15,6 +16,7 @@ const AppRouter = () => {
       <Route path="/settings" element={<Settings />} />
       <Route path="/login" element={<Login />} />
       <Route path="/createNewQuiz" element={<CreateNewQuiz />} />
+      <Route path="/public" element={<PublicView />} />
     </Routes>
   )
 }
