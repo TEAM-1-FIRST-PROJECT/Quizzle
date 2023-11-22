@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import logout from "../../assets/logout.gif";
 import profile from "../../assets/profile.gif";
 import settings from "../../assets/settings.gif";
+import quiz from "../../assets/quiz.gif";
 import { logoutUser } from "../../services/auth.services";
 import { useContext } from "react";
 import { AuthContext } from "../../context/authContext";
@@ -20,8 +21,8 @@ const Sidebar = () => {
 
   return (
       <div className="absolute" >
-      <div className="border-r-2 border-spacing-x-2.5 w-[3.35rem] bg overflow-hidden hover:w-56 hover:bg-white bg-gradient-to-br from-violet-400 to-indigo-400 overflow-y-auto transition-all duration-1000 ease-in-out">
-        <div className="flex h-screen flex-col justify-between pt-2 pb-6">
+      <div className="z-20  border-r-2 border-spacing-x-2.5 w-[3.35rem] bg overflow-hidden hover:w-56 hover:bg-white bg-gradient-to-br from-violet-400 to-indigo-400 overflow-y-auto transition-all duration-1000 ease-in-out">
+        <div className="flex flex-1 h-screen flex-col justify-between pt-2 pb-6">
           <div>
             <div className="w-max p-2.5">
               <img src="" className="w-32" alt="" />
@@ -131,27 +132,11 @@ const Sidebar = () => {
               </li>
               <li className="min-w-max">
                 <Link
-                  to="/createNewQuiz"
+                  to="/create"
                   className="flex items-center space-x-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-4 py-3 text-white"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      className="fill-current"
-                      d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"
-                    />
-                    <path
-                      className="fill-current"
-                      fillRule="evenodd"
-                      d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  <span className="group-hover:text-gray-700">Create New Quiz</span>
+                <img className="h-7 w-7 mix-blend-multiply" src={quiz} alt="quiz" />
+                  <span className="group-hover:text-gray-700">Create Quiz</span>
                 </Link>
               </li>
             </ul>

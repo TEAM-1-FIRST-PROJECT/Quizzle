@@ -16,7 +16,7 @@ const RegisterForm = () => {
     username: "",
     email: "",
     password: "",
-    isOrganizer: false,
+    isEducator: false,
     profileImgUrl: "",
   });
 
@@ -29,7 +29,7 @@ const RegisterForm = () => {
     setForm({
       ...form,
       [field]: e.target.value,
-      [field]: field === "isOrganizer" ? e.target.checked : value,
+      [field]: field === "isisEducator" ? e.target.checked : value,
     });
   };
 
@@ -90,7 +90,7 @@ const RegisterForm = () => {
           credential.user.email,
           form.firstName,
           form.lastName,
-          form.isOrganizer,
+          form.isEducator,
           form.profileImgUrl
         );
 
@@ -169,8 +169,8 @@ const RegisterForm = () => {
                 <input
                   className="ml-2"
                   type="checkbox"
-                  value={form.password}
-                  onChange={updateForm("password")}
+                  value={form.isEducator}
+                  onChange={updateForm("isEducator")}
                 />
               </div>
               <button
