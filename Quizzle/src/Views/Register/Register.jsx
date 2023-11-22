@@ -7,7 +7,13 @@ import {
   createUserHandle,
 } from "../../services/users.services";
 import { registerUser } from "../../services/auth.services";
-import { MAX_NAME_LENGTH, MIN_NAME_LENGTH } from "../../common/constants";
+// import {
+//   MAX_NAME_LENGTH,
+//   MIN_NAME_LENGTH,
+//   MIN_USER_NAME_LENGTH,
+//   PHONE_NUMBER_CHECK,
+//   NAME_CHECK
+// } from "../../common/constants";
 
 const RegisterForm = () => {
   const [form, setForm] = useState({
@@ -17,6 +23,7 @@ const RegisterForm = () => {
     email: "",
     password: "",
     isEducator: false,
+    phone: "",
     profileImgUrl: "",
   });
 
@@ -36,40 +43,48 @@ const RegisterForm = () => {
   const handleRegisterUser = (e) => {
     e.preventDefault();
 
-    if (!form.firstName) {
-      alert("First Name is required");
-      return;
-    }
+    // if (
+    //   form.firstName.length < MIN_NAME_LENGTH ||
+    //   form.firstName.length > MAX_NAME_LENGTH
+    // ) {
+    //   alert(
+    //     `First name must be between ${MIN_NAME_LENGTH} and ${MAX_NAME_LENGTH} characters long`
+    //   );
+    //   return;
+    // }
+    // if (!NAME_CHECK.test(form.firstName)) {
+    //   alert("first name is required");
+    //   return;
+    // }
 
-    if (
-      form.firstName.length < MIN_NAME_LENGTH ||
-      form.firstName.length > MAX_NAME_LENGTH
-    ) {
-      alert(
-        `First Name must be between ${MIN_NAME_LENGTH} and ${MAX_NAME_LENGTH} characters long`
-      );
-      return;
-    }
+    // if (
+    //   form.lastName.length < MIN_NAME_LENGTH ||
+    //   form.lastName.length > MAX_NAME_LENGTH
+    // ) {
+    //   alert(
+    //     `Last name must be between ${MIN_NAME_LENGTH} and ${MAX_NAME_LENGTH} characters long`
+    //   );
+    //   return;
+    // }
+    // if (!NAME_CHECK.test(form.lastName)) {
+    //   alert("Last name is required");
+    //   return;
+    // }
 
-    if (!form.lastName) {
-      alert("Last Name is required");
-      return;
-    }
-    console.log(form.lastName);
-    if (
-      form.lastName.length < MIN_NAME_LENGTH ||
-      form.lastName.length > MAX_NAME_LENGTH
-    ) {
-      alert(
-        `Last Name must be between ${MIN_NAME_LENGTH} and ${MAX_NAME_LENGTH} characters long`
-      );
-      return;
-    }
-    console.log(form.username, "l");
-    if (!form.username) {
-      alert("Username is required");
-      return;
-    }
+    // if (
+    //   form.username.length < MIN_USER_NAME_LENGTH ||
+    //   form.username.length > MAX_NAME_LENGTH
+    // ) {
+    //   alert(
+    //     `User name must be between ${MIN_USER_NAME_LENGTH} and ${MAX_NAME_LENGTH} characters long`
+    //   );
+    //   return;
+    // }
+
+    // if (!PHONE_NUMBER_CHECK.test(form.phone)) {
+    //   alert("correct phone number is required");
+    //   return;
+    // }
 
     if (!form.email) {
       alert("Email is required");
@@ -77,7 +92,7 @@ const RegisterForm = () => {
     }
 
     getUserByHandle(form.username)
-      .then((snapshot) => {
+      .then((snapshot) => {  
         if (snapshot.exists()) {
           alert("Username already exists");
         }
@@ -91,6 +106,7 @@ const RegisterForm = () => {
           form.firstName,
           form.lastName,
           form.isEducator,
+          form.phone,
           form.profileImgUrl
         );
 
@@ -111,11 +127,11 @@ const RegisterForm = () => {
       <div className="h-screen bg-hero-pattern-2 bg-cover flex items-center justify-center">
         <div className="hidden sm:block mt-20 justify-center">
           <div className="">
-            <form className="w-[450px] mx-auto shadow-xl hover:shadow-violet-400 bg-indigo-300 p-8 rounded-lg opacity-80">
+            <form className="w-[450px] mx-auto shadow-xl hover:shadow-violet-400 bg-indigo-300 p-6 rounded-lg opacity-80">
               <h2 className="text-4x1 text-3xl text-black font-bold text-center">
                 Register
               </h2>
-              <div className="flex flex-col text-black py-2">
+              <div className="flex flex-col text-black py-1">
                 <label>First Name</label>
                 <input
                   className="rounded-lg  mt-2 p-2 focus-within:border-blue-500 focus:outline-none"
@@ -124,7 +140,7 @@ const RegisterForm = () => {
                   onChange={updateForm("firstName")}
                 />
               </div>
-              <div className="flex flex-col text-black py-2">
+              <div className="flex flex-col text-black py-1">
                 <label>Last Name</label>
                 <input
                   className="rounded-lg  mt-2 p-2 focus-within:border-blue-500 focus:outline-none"
@@ -133,7 +149,7 @@ const RegisterForm = () => {
                   onChange={updateForm("lastName")}
                 />
               </div>
-              <div className="flex flex-col text-black py-2">
+              <div className="flex flex-col text-black py-1">
                 <label>Username</label>
                 <input
                   className="rounded-lg mt-2 p-2 focus-within:border-blue-500 focus:outline-none"
@@ -142,7 +158,16 @@ const RegisterForm = () => {
                   onChange={updateForm("username")}
                 />
               </div>
-              <div className="flex flex-col text-black py-2">
+              <div className="flex flex-col text-black py-1">
+                <label>phone</label>
+                <input
+                  className="rounded-lg mt-2 p-2 focus-within:border-blue-500 focus:outline-none"
+                  type="text"
+                  value={form.phone}
+                  onChange={updateForm("phone")}
+                />
+              </div>
+              <div className="flex flex-col text-black py-1">
                 <label>Email</label>
                 <input
                   className="rounded-lg mt-2 p-2 placeholder-slate-400
@@ -155,7 +180,7 @@ const RegisterForm = () => {
                   onChange={updateForm("email")}
                 />
               </div>
-              <div className="flex flex-col text-black py-2">
+              <div className="flex flex-col text-black py-1">
                 <label>Password</label>
                 <input
                   className="rounded-lg bg-white mt-2 p-2 focus-within:border-blue-500 focus:outline-none"
@@ -183,11 +208,11 @@ const RegisterForm = () => {
               <p className="text-black-500 hover:text-violet-500 py-2 flex justify-center">
                 Already have an account?{" "}
                 <Link
-                className="ml-1 dark:text-white hover:animate-pulse mix-blend-color-dodge"
-                to="/Login"
-              >
-                Log in
-              </Link>
+                  className="ml-1 dark:text-white hover:animate-pulse mix-blend-color-dodge"
+                  to="/Login"
+                >
+                  Log in
+                </Link>
               </p>
             </form>
           </div>
