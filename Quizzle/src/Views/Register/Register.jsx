@@ -40,7 +40,7 @@ const RegisterForm = () => {
 
     });
   };
-  console.log(form.role, form.phone)
+  
   const handleRegisterUser = (e) => {
     e.preventDefault();
 
