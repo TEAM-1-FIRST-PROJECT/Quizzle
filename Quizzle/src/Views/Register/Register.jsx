@@ -5,6 +5,7 @@ import { useNavigate } from "react-router";
 import {
   getUserByHandle,
   createUserHandle,
+  checkUserPhone
 } from "../../services/users.services";
 import { registerUser } from "../../services/auth.services";
 // import {
@@ -91,36 +92,45 @@ const RegisterForm = () => {
       return;
     }
 
-    getUserByHandle(form.username)
-      .then((snapshot) => {  
-        if (snapshot.exists()) {
-          alert("Username already exists");
+    checkUserPhone(form.phone)
+      .then(result => {
+        if (result) {
+          alert(`user with phone ${form.phone} exist`);
+          navigate("/register")
+        } else {
+          getUserByHandle(form.username)
+            .then((snapshot) => {
+              if (snapshot.exists()) {
+                alert("Username already exists");
+              }
+              return registerUser(form.email, form.password);
+            })
+            .then((credential) => {
+              createUserHandle(
+                form.username,
+                credential.user.uid,
+                credential.user.email,
+                form.firstName,
+                form.lastName,
+                form.isEducator,
+                form.phone,
+                form.profileImgUrl
+              );
+
+              credential.user.value = form.username;
+              setUser({
+                user: credential.user,
+              });
+            })
+            .then(() => {
+              alert("User created successfully, redirecting...");
+
+              navigate("/");
+            })
+            .catch((e) => console.error(e.message));
         }
-        return registerUser(form.email, form.password);
       })
-      .then((credential) => {
-        createUserHandle(
-          form.username,
-          credential.user.uid,
-          credential.user.email,
-          form.firstName,
-          form.lastName,
-          form.isEducator,
-          form.phone,
-          form.profileImgUrl
-        );
-
-        credential.user.value = form.username;
-        setUser({
-          user: credential.user,
-        });
-      })
-      .then(() => {
-        alert("User created successfully, redirecting...");
-
-        navigate("/");
-      })
-      .catch((e) => console.error(e.message));
+      .catch(e => console.log(e))
   };
   return (
     <>
