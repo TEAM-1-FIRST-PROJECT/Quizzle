@@ -20,6 +20,8 @@ const Sidebar = () => {
   };
 
   return (
+    <>
+    {user && (
       <div className="absolute" >
       <div className="z-20  border-r-2 border-spacing-x-2.5 w-[3.35rem] bg overflow-hidden hover:w-56 hover:bg-white bg-gradient-to-br from-violet-400 to-indigo-400 overflow-y-auto transition-all duration-1000 ease-in-out">
         <div className="flex flex-1 h-screen flex-col justify-between pt-2 pb-6">
@@ -169,6 +171,8 @@ const Sidebar = () => {
         </div>
       </div>
     </div>
+    )}
+    </>
   );
 };
 export default Sidebar;
