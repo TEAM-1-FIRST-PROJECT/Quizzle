@@ -1,4 +1,4 @@
-import { get, set, ref, query, orderByChild, equalTo } from "firebase/database";
+import { get, set, ref, query, update, orderByChild, equalTo } from "firebase/database";
 import { database } from "../config/firebase-config";
 
 export const getUserByHandle = (handle) => {
@@ -40,3 +40,16 @@ export const checkUserPhone = (phone) => {
       return Object.values(snapshot.val()).map(el => el.phone).includes(phone)
     });
 }
+
+export const updateUserData = (username, firstName, lastName, email, imgURL) => {
+  const pathFirstName = `users/${username}/firstName`;
+  const pathLastName = `users/${username}/lastName`;
+  const pathEmail = `users/${username}/email`;
+  const pathPhoto = `users/${username}/profileImgUrl`
+  return update(ref(database), {
+    [pathFirstName]: firstName,
+    [pathLastName]: lastName,
+    [pathEmail]: email,
+    [pathPhoto]: imgURL,
+  });
+};
