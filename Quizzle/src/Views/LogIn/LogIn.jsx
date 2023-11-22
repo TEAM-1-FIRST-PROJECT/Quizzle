@@ -49,11 +49,11 @@ const Login = () => {
 
   return (
     <>
-      <div className="h-screen bg-hero-pattern bg-cover flex items-center justify-center">
+      <div className="h-screen bg-hero-pattern-2 bg-cover flex items-center justify-center">
         <div className=" flex flex-col justify-center">
-          <form className="w-[450px] mx-auto shadow-xl hover:shadow-violet-400 bg-indigo-300 p-8 rounded-lg opacity-95">
+          <form className="w-[450px] mx-auto shadow-xl hover:shadow-violet-400 bg-indigo-300 p-8 rounded-lg opacity-80">
             <h2 className="text-4x1 text-3xl dark:text-white font-bold text-center">
-              Login
+              Log in
             </h2>
             <div className="flex flex-col text-black py-2">
               <label>Email</label>
@@ -100,7 +100,7 @@ const Login = () => {
                 className="ml-1 dark:text-white hover:animate-pulse mix-blend-color-dodge"
                 to="/register"
               >
-                Sign up
+                Register
               </Link>
             </p>
           </form>
