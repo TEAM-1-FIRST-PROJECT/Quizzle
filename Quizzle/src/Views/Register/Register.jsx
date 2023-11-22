@@ -117,11 +117,11 @@ const RegisterForm = () => {
       <div className="h-screen bg-hero-pattern-2 bg-cover flex items-center justify-center">
         <div className="hidden sm:block mt-20 justify-center">
           <div className="">
-            <form className="w-[450px] mx-auto shadow-xl hover:shadow-violet-400 bg-indigo-300 p-8 rounded-lg opacity-80">
+            <form className="w-[450px] mx-auto shadow-xl hover:shadow-violet-400 bg-indigo-300 p-6 rounded-lg opacity-80">
               <h2 className="text-4x1 text-3xl text-black font-bold text-center">
                 Register
               </h2>
-              <div className="flex flex-col text-black py-2">
+              <div className="flex flex-col text-black py-1">
                 <label>First Name</label>
                 <input
                   className="rounded-lg  mt-2 p-2 focus-within:border-blue-500 focus:outline-none"
@@ -130,7 +130,7 @@ const RegisterForm = () => {
                   onChange={updateForm("firstName")}
                 />
               </div>
-              <div className="flex flex-col text-black py-2">
+              <div className="flex flex-col text-black py-1">
                 <label>Last Name</label>
                 <input
                   className="rounded-lg  mt-2 p-2 focus-within:border-blue-500 focus:outline-none"
@@ -139,7 +139,7 @@ const RegisterForm = () => {
                   onChange={updateForm("lastName")}
                 />
               </div>
-              <div className="flex flex-col text-black py-2">
+              <div className="flex flex-col text-black py-1">
                 <label>Username</label>
                 <input
                   className="rounded-lg mt-2 p-2 focus-within:border-blue-500 focus:outline-none"
@@ -148,7 +148,7 @@ const RegisterForm = () => {
                   onChange={updateForm("username")}
                 />
               </div>
-              <div className="flex flex-col text-black py-2">
+              <div className="flex flex-col text-black py-1">
                 <label>phone</label>
                 <input
                   className="rounded-lg mt-2 p-2 focus-within:border-blue-500 focus:outline-none"
@@ -157,7 +157,7 @@ const RegisterForm = () => {
                   onChange={updateForm("phone")}
                 />
               </div>
-              <div className="flex flex-col text-black py-2">
+              <div className="flex flex-col text-black py-1">
                 <label>Email</label>
                 <input
                   className="rounded-lg mt-2 p-2 placeholder-slate-400
@@ -170,7 +170,7 @@ const RegisterForm = () => {
                   onChange={updateForm("email")}
                 />
               </div>
-              <div className="flex flex-col text-black py-2">
+              <div className="flex flex-col text-black py-1">
                 <label>Password</label>
                 <input
                   className="rounded-lg bg-white mt-2 p-2 focus-within:border-blue-500 focus:outline-none"
