@@ -37,7 +37,6 @@ const App = () => {
         // snapshot.val() returns the value of the object
         // Google this part when you have lot's of user data Object.keys(snapshot.val())[0]
       });
-      console.log(appState)
     });
   });
 
