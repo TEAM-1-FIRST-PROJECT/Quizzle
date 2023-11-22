@@ -11,7 +11,7 @@ export const createUserHandle = (
   email,
   firstName,
   lastName,
-  isEducator,
+  role,
   phone,
   profileImgUrl
 ) => {
@@ -22,8 +22,7 @@ export const createUserHandle = (
     firstName,
     lastName,
     profileImgUrl,
-    isAdmin: false,
-    isEducator,
+    role,
     phone,
     createdOn: new Date(),
     likedPosts: {},
