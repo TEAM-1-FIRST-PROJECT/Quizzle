@@ -1,4 +1,4 @@
-//import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState, useContext } from "react";
 import { AuthContext } from "../../context/authContext";
 import { useNavigate } from "react-router";
@@ -182,6 +182,12 @@ const RegisterForm = () => {
               </button>
               <p className="text-black-500 hover:text-violet-500 py-2 flex justify-center">
                 Already have an account?{" "}
+                <Link
+                className="ml-1 dark:text-white hover:animate-pulse mix-blend-color-dodge"
+                to="/Login"
+              >
+                Log in
+              </Link>
               </p>
             </form>
           </div>
