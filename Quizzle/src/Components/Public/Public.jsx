@@ -13,7 +13,7 @@ const Public = () => {
                 {/* Section header */}
                 <div className="pt-20 text-center pb-12 md:pb-16">
                   <h1 className="text-5xl md:text-6xl font-extrabold leading-tighter tracking-tighter mb-4" data-aos="zoom-y-out">
-                    Welcome to <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-violet-400">Quizzle</span>
+                    Welcome to <span className="bg-clip-text p-1 text-transparent bg-gradient-to-r from-blue-600 to-violet-400">Quizzle</span>
                   </h1>
                   <div className="max-w-3xl mx-auto">
                     <p className="text-xl text-gray-600 mb-8" data-aos="zoom-y-out" data-aos-delay="150">
