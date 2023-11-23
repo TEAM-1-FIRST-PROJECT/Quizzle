@@ -21,7 +21,7 @@ function Navbar() {
             <div className="hidden md:block">
               <div className="flex lg:block m-2 items-baseline space-x-4 text-lg font-medium font-montserrat   ">
                 <Link
-                  to="#"
+                  to="/home"
                   className="hover:bg-gradient-to-br hover:from-violet-500 hover:to-fuchsia-400 text-white px-3 py-2 rounded-md"
                 >
                   Dashboard

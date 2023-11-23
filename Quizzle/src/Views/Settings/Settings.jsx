@@ -97,7 +97,7 @@ const Settings = () => {
   return (
     <>
      <div className="h-screen bg-hero-pattern-2 bg-cover flex flex-col">
-      <form className="p-20">
+      <form className="p-20 ml-36">
         <div className="space-y-12 bg-white opacity-80 rounded-lg">
           <div className="border-b border-gray-900/10 pb-12">
             <h2 className="text-base font-semibold leading-7 text-gray-900">
