@@ -1,18 +1,23 @@
-import { equalTo, get, orderByChild, push, query, ref } from "firebase/database";
+import { equalTo, get, orderByChild, push, query, ref, set } from "firebase/database";
 import { database } from "../config/firebase-config";
 
-export const addQuiz = (title, contestType, invitedUsers, timeLimit) => {
+export const addQuiz = (title, contestType, invitedUsers, timeLimit, category, question) => {
+   
+    let newQuizRef = push(ref(database, 'quizzes'));
+    let quizData = {
+        id: newQuizRef.key,
+        category,
+        title,
+        contestType,
+        invitedUsers,
+        timeLimit,
+        questions: { ...question }
+    };
 
-    return push(
-      ref(database, 'quizzes'),
-      {
-        title, contestType, invitedUsers, timeLimit
-      },
-     )
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-  
+    return set(newQuizRef, quizData)
+        .catch((error) => {
+            console.log(error);
+        });
+};
+
 export const quizzesRef = ref(database, "quizzes");
-

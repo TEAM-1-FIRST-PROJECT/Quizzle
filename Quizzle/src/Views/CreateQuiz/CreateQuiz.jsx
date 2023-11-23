@@ -34,61 +34,36 @@ const CreateQuiz = () => {
     event.preventDefault();
 
     if (categories.includes(category)) {
-      alert("Category already exists!");
-      return;
+        alert("Category already exists!");
+        return;
     }
 
-    const quizData = {
-      title,
-      category,
-      contestType,
-      invitedUsers,
-      timeLimit,
-      questions: questions.map((question) => ({
-        ...question,
-        answers: question.answers.map((answer) => {
-          if (answer) {
-            return {
-              text: answer.text,
-              isCorrect: answer.isCorrect || false,
-            };
-          } else {
-            return {
-              text: "",
-              isCorrect: false,
-            };
-          }
-        }),
-      })),
-    };
-
     addQuiz(
-      quizData.title,
-      quizData.contestType,
-      quizData.invitedUsers,
-      quizData.timeLimit,
-      quizData.category,
-      quizData.questions
+        title,
+        contestType,
+        invitedUsers,
+        timeLimit,
+        category,
+        questions
     )
+        .then(() => {
+            setTitle("");
+            setCategory("");
+            setContestType("open");
+            setInvitedUsers([]);
+            setTimeLimit(30);
+            setQuestions([
+                { question: "", answers: [{ text: "", isCorrect: false }] },
+            ]);
+        })
+        .then(() => {
+            alert("Successfully created quiz!");
+        })
+        .catch((error) => {
+            console.error("Error adding document: ", error);
+        });
+};
 
-      .then(() => {
-        setTitle("");
-        setCategory("");
-        setContestType("open");
-        setInvitedUsers([]);
-        setTimeLimit(30);
-        setQuestions([
-          { question: "", answers: [{ text: "", isCorrect: false }] },
-        ]);
-      })
-      .then(() => {
-        alert("Successfully created quiz!");
-      })
-
-      .catch((error) => {
-        console.error("Error adding document: ", error);
-      });
-  };
 
   return (
     <form
