@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
-import {
-  addQuiz,
-  quizzesRef,
-} from "../../services/quiz.services";
+import { addQuiz, quizzesRef } from "../../services/quiz.services";
 
-import { onValue } from "firebase/database";
+import { get, onValue } from "firebase/database";
+
 const CreateQuiz = () => {
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
@@ -33,37 +31,55 @@ const CreateQuiz = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (categories.includes(category)) {
-        alert("Category already exists!");
-        return;
+    if (
+      !/^[A-Z][a-z]*$/.test(title.split(" ")[0]) ||
+      !/^[A-Z][a-z]*$/.test(category.split(" ")[0])
+    ) {
+      alert(
+        "The first word of Title and Category must start with a capital letter followed by lowercase letters!"
+      );
+      return;
     }
 
-    addQuiz(
-        title,
-        contestType,
-        invitedUsers,
-        timeLimit,
-        category,
-        questions
-    )
-        .then(() => {
+    get(quizzesRef)
+      .then((snapshot) => {
+        let quizzes = snapshot.val();
+        for (let key in quizzes) {
+          if (quizzes[key].title === title) {
+            alert("Quiz with the same title already exists!");
+            return;
+          }
+        }
+
+        addQuiz(
+          title,
+          contestType,
+          invitedUsers,
+          timeLimit,
+          category,
+          questions
+        )
+          .then(() => {
             setTitle("");
             setCategory("");
             setContestType("open");
             setInvitedUsers([]);
             setTimeLimit(30);
             setQuestions([
-                { question: "", answers: [{ text: "", isCorrect: false }] },
+              { question: "", answers: [{ text: "", isCorrect: false }] },
             ]);
-        })
-        .then(() => {
+          })
+          .then(() => {
             alert("Successfully created quiz!");
-        })
-        .catch((error) => {
+          })
+          .catch((error) => {
             console.error("Error adding document: ", error);
-        });
-};
-
+          });
+      })
+      .catch((error) => {
+        console.error("Error checking title: ", error);
+      });
+  };
 
   return (
     <form
