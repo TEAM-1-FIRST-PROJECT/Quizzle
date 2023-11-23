@@ -16,17 +16,3 @@ export const addQuiz = (title, contestType, invitedUsers, timeLimit) => {
   
 export const quizzesRef = ref(database, "quizzes");
 
-
-export const createCategory = (category) => {
-    return push(ref(database, "categories"), {category})
-        .catch((error) => {
-            console.log(error);
-        });
-};
-
-export const createQuestion = (question) => { 
-    return push(ref(database, "questions"), {question})
-        .catch((error) => {
-            console.log(error);
-        });
-}

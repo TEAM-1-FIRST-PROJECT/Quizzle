@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import {
   addQuiz,
-  createCategory,
-  createQuestion,
   quizzesRef,
 } from "../../services/quiz.services";
 
@@ -68,12 +66,11 @@ const CreateQuiz = () => {
       quizData.title,
       quizData.contestType,
       quizData.invitedUsers,
-      quizData.timeLimit
-    );
+      quizData.timeLimit,
+      quizData.category,
+      quizData.questions
+    )
 
-    createCategory(quizData.category);
-
-    createQuestion(quizData.questions)
       .then(() => {
         setTitle("");
         setCategory("");
@@ -96,35 +93,35 @@ const CreateQuiz = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="ml-14 mt-[2px] p-10 rounded-lg border-8 bg-gradient-to-r from-gray-400 via-zinc-300 to-indigo-400 space-y-4"
+      className="ml-14 mt-[2px] p-10 border-y-orange-400 border-8 bg-indigo-300 space-y-4"
     >
       <label className="block">
-        <span className="text-white text-lg font-extralight">Title:</span>
+        <span className="text-gray-700 text-lg font-extralight">Title:</span>
         <input
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           required
-          className="mt-1 block w-full p-2 rounded-md bg-white border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
+          className="mt-1 block w-full p-2 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
         />
       </label>
       <label className="block">
-        <span className="text-white text-lg font-extralight">Category:</span>
+        <span className="text-gray-700 text-lg font-extralight">Category:</span>
         <input
           type="text"
           value={category}
           onChange={(e) => setCategory(e.target.value)}
           required
-          className="mt-1 block w-full p-2 rounded-md bg-white border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
+          className="mt-1 block w-full p-2 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
         />
       </label>
       <label className="block">
-        <span className="text-white text-lg font-extralight">
+        <span className="text-gray-700 text-lg font-extralight">
           Contest Type:
         </span>
         <select
           onChange={(e) => setContestType(e.target.value)}
-          className="w-full px-3 py-2 mb-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 bg-white"
+          className="w-full px-3 py-2 mb-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
         >
           <option value="open">Open Contest</option>
           <option value="invitational">Invitational Contest</option>
@@ -135,11 +132,11 @@ const CreateQuiz = () => {
           type="text"
           placeholder="Invited Users"
           onChange={(e) => setInvitedUsers(e.target.value.split(","))}
-          className="w-full px-3 py-2 mb-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 bg-white"
+          className="w-full px-3 py-2 mb-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
         />
       )}
       <label className="block">
-        <span className="text-white text-lg font-extralight">
+        <span className="text-gray-700 text-lg font-extralight">
           Time Limit:
         </span>
         <input
@@ -147,13 +144,13 @@ const CreateQuiz = () => {
           value={timeLimit}
           onChange={(e) => setTimeLimit(e.target.value)}
           required
-          className="mt-1 block w-full p-2 rounded-md bg-white border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
+          className="mt-1 block w-full p-2 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
         />
       </label>
       {questions.map((question, index) => (
         <div key={index} className="space-y-4">
           <label className="block">
-            <span className="text-white text-lg font-extralight">
+            <span className="text-gray-700 text-lg font-extralight">
               Question:
             </span>
             <input
@@ -165,13 +162,13 @@ const CreateQuiz = () => {
                 setQuestions(newQuestions);
               }}
               required
-              className="mt-1 block w-full p-2 rounded-md bg-white border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
+              className="mt-1 block w-full p-2 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
             />
           </label>
           {question.answers.map((answer, answerIndex) => (
             <div key={answerIndex}>
               <label className="block">
-                <span className="text-white text-lg font-extralight">
+                <span className="text-gray-700 text-lg font-extralight">
                   Answer:
                 </span>
                 <input
@@ -184,8 +181,24 @@ const CreateQuiz = () => {
                     setQuestions(newQuestions);
                   }}
                   required
-                  className="mt-1 block w-full p-2 rounded-md bg-white border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
+                  className="mt-1 block w-full p-2 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
                 />
+              </label>
+              <label className="block">
+                <input
+                  className="w-4 h-4 mr-2 mt-2 rounded transition duration-500 ease-in-out text-blue-500 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                  type="checkbox"
+                  checked={answer.isCorrect}
+                  onChange={(e) => {
+                    const newQuestions = [...questions];
+                    newQuestions[index].answers[answerIndex].isCorrect =
+                      e.target.checked;
+                    setQuestions(newQuestions);
+                  }}
+                />
+                <span className="text-gray-700 font-bold">
+                  Is this the correct answer?
+                </span>
               </label>
             </div>
           ))}
@@ -221,7 +234,7 @@ const CreateQuiz = () => {
       </button>
       <button
         type="submit"
-        className="mt-2 px-4 py-2 text-sm font-medium text-white bg-green-600 rounded-md hover:bg-green-500 float-right transform transition duration-500 ease-in-out hover:scale-105 backdrop-filter backdrop-blur-lg bg-opacity-80"
+        className="mt-2 px-4 py-2 text-sm font-medium text-white bg-green-600 rounded-md hover:bg-green-500 float-right transform transition duration-500 ease-in-out hover:scale-105"
       >
         Create Quiz
       </button>
