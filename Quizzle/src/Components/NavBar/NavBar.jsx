@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { AuthContext } from "../../context/authContext";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/logo.webp";
+import SearchBar from '../../components/SearchBar/SearchBar';
 
 
 function Navbar() {
@@ -48,11 +49,7 @@ function Navbar() {
             </div>
           </div>
           <div className="flex items-center">
-            <input
-              className="rounded p-1.5 border-2 border-b-4 border-t-4 focus:outline-none hover:shadow-inner hover:shoadow-sm"
-              type="text"
-              placeholder="Search..."
-            />
+          {user && <SearchBar />}
             {!user && <Link
               to="/login"
               className=" hover:bg-gradient-to-br hover:from-violet-500 hover:to-fuchsia-400 text-white px-3 py-2 rounded-md"
