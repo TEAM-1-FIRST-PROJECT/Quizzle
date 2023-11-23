@@ -7,7 +7,6 @@ import Logo from "../../assets/logo.webp";
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const { user, userData } = useContext(AuthContext);
-  console.log(userData)
 
   return (
     <nav className="bg-gradient-to-r from-violet-400 to-indigo-400">
