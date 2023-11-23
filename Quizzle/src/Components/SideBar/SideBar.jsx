@@ -32,7 +32,7 @@ const Sidebar = () => {
             <ul className="mt-6 space-y-2 tracking-wide">
               <li className="min-w-max">
                 <Link
-                  to="#"
+                  to="/home"
                   aria-label="dashboard"
                   className="flex items-center space-x-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-4 py-3 text-white"
                 >

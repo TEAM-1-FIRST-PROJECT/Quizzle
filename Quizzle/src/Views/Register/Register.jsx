@@ -40,7 +40,7 @@ const RegisterForm = () => {
 
     });
   };
-  
+
   const handleRegisterUser = (e) => {
     e.preventDefault();
 
@@ -92,13 +92,12 @@ const RegisterForm = () => {
       return;
     }
 
-    // checkUserPhone(form.phone)
-    //   .then(result => {
-    //     if (result) {
-    //       alert(`user with phone ${form.phone} exist`);
-    //       navigate("/register")
-    //     } else
-     //{
+    checkUserPhone(form.phone)
+      .then(result => {
+        if (result) {
+          alert(`user with phone ${form.phone} exist`);
+          navigate("/register")
+        } else {
           getUserByHandle(form.username)
             .then((snapshot) => {
               if (snapshot.exists()) {
@@ -129,9 +128,9 @@ const RegisterForm = () => {
               navigate("/");
             })
             .catch((e) => console.error(e.message));
-      //   }
-      // })
-      // .catch(e => console.log(e))
+        }
+      })
+      .catch(e => console.log(e))
   };
   return (
     <>

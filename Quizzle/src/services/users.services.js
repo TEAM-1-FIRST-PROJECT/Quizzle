@@ -37,6 +37,9 @@ export const getUserData = (uid) => {
 export const checkUserPhone = (phone) => {
   return get(ref(database, `users`))
     .then(snapshot => {
+      if(!snapshot.exists()){
+        return false
+      }
       return Object.values(snapshot.val()).map(el => el.phone).includes(phone)
     });
 }

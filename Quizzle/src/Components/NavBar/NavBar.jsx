@@ -6,7 +6,8 @@ import Logo from "../../assets/logo.webp";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const { user } = useContext(AuthContext);
+  const { user, userData } = useContext(AuthContext);
+  console.log(userData)
 
   return (
     <nav className="bg-gradient-to-r from-violet-400 to-indigo-400">
@@ -21,7 +22,7 @@ function Navbar() {
             <div className="hidden md:block">
               <div className="flex lg:block m-2 items-baseline space-x-4 text-lg font-medium font-montserrat   ">
                 <Link
-                  to="#"
+                  to="/home"
                   className="hover:bg-gradient-to-br hover:from-violet-500 hover:to-fuchsia-400 text-white px-3 py-2 rounded-md"
                 >
                   Dashboard
@@ -67,8 +68,8 @@ function Navbar() {
             </Link>}
             <img
               className="ml-4 rounded-full bg-black w-10 h-10"
-              src=""
-              alt="User Avatar"
+              src={userData?.profileImgUrl || Logo}
+              alt={Logo}
             />
           </div>
 
