@@ -8,7 +8,6 @@ import SearchBar from '../../components/SearchBar/SearchBar';
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const { user, userData } = useContext(AuthContext);
-  const [searchResults, setSearchResults] = useState([]);
 
   return (
     <nav className="bg-gradient-to-r from-violet-400 to-indigo-400">
