@@ -40,7 +40,7 @@ const SearchBar = () => {
             required
           />
           {results.length > 0 && (
-            <div className="absolute top-full mt-2 w-full bg-white rounded-md shadow-lg overflow-hidden z-50">
+            <div className="absolute top-full mt-2 w-full bg-white rounded-md shadow-lg overflow-hidden z-max">
               {results.map((quiz, index) => (
                 <div 
                   key={index} 
