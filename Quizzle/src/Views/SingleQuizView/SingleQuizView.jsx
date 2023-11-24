@@ -8,7 +8,9 @@ const SingleQuizView = () => {
   const { id } = useParams();
   const [quiz, setQuiz] = useState(null);
   const [userAnswers, setUserAnswers] = useState([]);
+  const [score, setScore] = useState(0)
   const activeQuestionIndex = userAnswers.length;
+
   useEffect(() => {
     getQuizById(id)
       .then((fechedQuiz) => {
@@ -26,15 +28,22 @@ const SingleQuizView = () => {
       return [...prevUserAnswers, selectedAnswer];
     });
   }
-  
+  useEffect(() => {
+    if (userAnswers[activeQuestionIndex - 1]?.isCorrect) {
+      setScore((score) => score + 1);
+    }
+  }, [userAnswers, activeQuestionIndex]);
+
   if (quizIsComplete) {
+    //console.log(score)
     return (
       <div id="summary">
 
-        <h2>Quiz Completed!</h2>
+        <h2>Quiz Completed!{score}</h2>
       </div>
     );
   }
+
   return (
     <>
       <div id="quiz">
