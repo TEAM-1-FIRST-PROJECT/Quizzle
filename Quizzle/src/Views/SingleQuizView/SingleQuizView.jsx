@@ -19,14 +19,22 @@ const SingleQuizView = () => {
         setQuiz(null);
       });
   }, [id]);
+  const quizIsComplete = activeQuestionIndex === quiz?.questions.length;
 
-
-  const handleSelectAnswer=(selectedAnswer)=>{
+  const handleSelectAnswer = (selectedAnswer) => {
     setUserAnswers((prevUserAnswers) => {
       return [...prevUserAnswers, selectedAnswer];
     });
   }
-  //console.log(quiz)
+  
+  if (quizIsComplete) {
+    return (
+      <div id="summary">
+
+        <h2>Quiz Completed!</h2>
+      </div>
+    );
+  }
   return (
     <>
       <div id="quiz">
