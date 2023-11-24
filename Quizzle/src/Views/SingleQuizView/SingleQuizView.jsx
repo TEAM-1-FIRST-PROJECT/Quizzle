@@ -26,7 +26,7 @@ const SingleQuizView = () => {
       return [...prevUserAnswers, selectedAnswer];
     });
   }
-  console.log(activeQuestionIndex)
+  //console.log(quiz)
   return (
     <>
       {/* <div id="quiz">

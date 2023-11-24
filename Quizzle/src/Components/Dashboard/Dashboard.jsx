@@ -27,7 +27,7 @@ const Dashboard = () => {
               </div>
             </div>
             {/* Section with Cards */}
-            <section className="bg-gray-2 pb-10 pt-5 dark:bg-dark lg:pb-10 lg:pt-10">
+            {/* <section className="bg-gray-2 pb-10 pt-5 dark:bg-dark lg:pb-10 lg:pt-10">
               <div className="container">
                 <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
                   <SingleQuizCard
@@ -52,7 +52,7 @@ const Dashboard = () => {
                   />
                 </div>
               </div>
-            </section>
+            </section> */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6  rounded-lg">
         <div className="pt-32 md:pt-10 ">
           <div className=" text-center pb-12 md:pb-16">
