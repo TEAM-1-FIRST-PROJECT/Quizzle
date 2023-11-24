@@ -8,7 +8,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../context/authContext";
 
 const Sidebar = () => {
-
+//add to HELPER>FUNCS
   const { user, setUser } = useContext(AuthContext);
 
   const onLogout = () => {
@@ -32,8 +32,8 @@ const Sidebar = () => {
             <ul className="mt-6 space-y-2 tracking-wide">
               <li className="min-w-max">
                 <Link
-                  to="/home"
-                  aria-label="dashboard"
+                  to="/admin"
+                  aria-label="admin dashboard"
                   className="flex items-center space-x-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-4 py-3 text-white"
                 >
                   <svg
@@ -55,7 +55,7 @@ const Sidebar = () => {
                     ></path>
                   </svg>
                   <span className="-mr-1 font-medium font-montserrat">
-                    Dashboard
+                    Admin Dashboard
                   </span>
                 </Link>
               </li>
