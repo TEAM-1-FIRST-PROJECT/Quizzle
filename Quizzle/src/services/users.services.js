@@ -13,7 +13,8 @@ export const createUserHandle = (
   lastName,
   role,
   phone,
-  profileImgUrl
+  profileImgUrl,
+  address
 ) => {
   return set(ref(database, `users/${username}`), {
     username,
@@ -24,6 +25,7 @@ export const createUserHandle = (
     profileImgUrl,
     role,
     phone,
+    address,
     createdOn: new Date(),
     likedPosts: {},
     isBlocked: false,
@@ -44,15 +46,17 @@ export const checkUserPhone = (phone) => {
     });
 }
 
-export const updateUserData = (username, firstName, lastName, email, imgURL) => {
+export const updateUserData = (username, firstName, lastName, email, imgURL, address) => {
   const pathFirstName = `users/${username}/firstName`;
   const pathLastName = `users/${username}/lastName`;
   const pathEmail = `users/${username}/email`;
   const pathPhoto = `users/${username}/profileImgUrl`
+  const pathAddress = `users/${username}/address`;
   return update(ref(database), {
     [pathFirstName]: firstName,
     [pathLastName]: lastName,
     [pathEmail]: email,
     [pathPhoto]: imgURL,
+    [pathAddress]: address,
   });
 };
