@@ -21,7 +21,7 @@ const AppRouter = () => {
       <Route path="/create" element={<CreateQuiz />} />
       <Route path="/About" element={<About />} />
       <Route path="/Contact" element={<Contact />} />
-      <Route path="/singleQuizCard/:id" element={<SingleQuizView />} />
+      <Route path="/singleQuizView/:id" element={<SingleQuizView />} />
     </Routes>
   )
 }

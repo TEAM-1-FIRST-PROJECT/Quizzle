@@ -1,4 +1,6 @@
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+
 
 const SingleCard = ({
   image,
@@ -37,6 +39,8 @@ const SingleCard = ({
               {Button}
             </a>
           )}
+          <Link to={`/singleQuizView/${quiz?.id}`}>Attempt Quiz</Link>
+
         </div>
       </div>
       {/*  */}
