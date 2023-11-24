@@ -10,7 +10,8 @@ function Navbar() {
   const { user, userData } = useContext(AuthContext);
 
   return (
-    <nav className="bg-gradient-to-r from-violet-400 to-indigo-400">
+    
+    <nav className="bg-gradient-to-r from-violet-400 to-indigo-400 fixed top-0 w-full">
       <div className="mx-auto px-1 sm:px-2 lg:px-8 border-b-2">
         <div className="flex items-center justify-between h-14">
           <div className="flex items-center">

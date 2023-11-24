@@ -5,7 +5,7 @@ const Dashboard = () => {
     <div className="h-screen bg-hero-pattern-2 bg-cover flex flex-col items-center">
                   <div className="max-w-6xl mx-auto px-4 sm:px-6  rounded-lg">
               <div className="pt-32 md:pt-10 ">
-                <div className=" text-center pb-12 md:pb-16">
+                <div className=" text-center pb-12 md:pb-16 mt-20">
                   <h1 className="text-5xl md:text-6xl font-extrabold leading-tighter tracking-tighter mb-4" data-aos="zoom-y-out">
                     Welcome to <span className="bg-clip-text p-1 text-transparent bg-gradient-to-r from-blue-600 to-violet-400">Quizzle</span>
                   </h1>
