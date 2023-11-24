@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { addQuiz, quizzesRef } from "../../services/quiz.services";
 
 import { get, onValue } from "firebase/database";
+import { AuthContext } from "../../context/authContext";
 
 const CreateQuiz = () => {
   const [title, setTitle] = useState("");
@@ -14,6 +15,9 @@ const CreateQuiz = () => {
   ]);
   const [categories, setCategories] = useState([]);
 
+
+  const { userData } = useContext(AuthContext);
+  const username = userData.username;
   useEffect(() => {
     onValue(quizzesRef, (snapshot) => {
       const categories = [];
@@ -41,6 +45,8 @@ const CreateQuiz = () => {
       return;
     }
 
+
+    //add to HELPER>FUNCS
     get(quizzesRef)
       .then((snapshot) => {
         let quizzes = snapshot.val();
@@ -52,6 +58,7 @@ const CreateQuiz = () => {
         }
 
         addQuiz(
+          username,
           title,
           contestType,
           invitedUsers,
