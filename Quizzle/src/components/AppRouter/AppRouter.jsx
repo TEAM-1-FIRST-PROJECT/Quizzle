@@ -5,7 +5,7 @@ import UserProfile from '../../views/UserProfile/UserProfile';
 import Settings from '../../views/Settings/Settings';
 import Login from '../../views/Login/Login'
 import PublicView from '../../views/PublicView/PublicView';
-
+import SingleQuizView from '../../views/SingleQuizView/SingleQuizView';
 import CreateQuiz from '../../views/CreateQuiz/CreateQuiz';
 import About from '../../views/About/About';
 import Contact from '../../views/Contact/Contact';
@@ -21,6 +21,7 @@ const AppRouter = () => {
       <Route path="/create" element={<CreateQuiz />} />
       <Route path="/About" element={<About />} />
       <Route path="/Contact" element={<Contact />} />
+      <Route path="/singleQuizCard/:id" element={<SingleQuizView />} />
     </Routes>
   )
 }
