@@ -26,6 +26,7 @@ const RegisterForm = () => {
     role: "student",
     phone: "",
     profileImgUrl: "",
+    address: "",
   });
 
   const { setUser } = useContext(AuthContext);
@@ -114,7 +115,8 @@ const RegisterForm = () => {
                 form.lastName,
                 form.role,
                 form.phone,
-                form.profileImgUrl
+                form.profileImgUrl,
+                form.address
               );
 
               credential.user.value = form.username;
@@ -177,6 +179,15 @@ const RegisterForm = () => {
                   onChange={updateForm("phone")}
                 />
               </div>
+              <div className="flex flex-col text-black py-1">
+        <label>Address</label>
+        <input
+          className="rounded-lg  mt-2 p-2 focus-within:border-blue-500 focus:outline-none"
+          type="text"
+          value={form.address}
+          onChange={updateForm("address")}
+        />
+      </div>
               <div className="flex flex-col text-black py-1">
                 <label>Email</label>
                 <input
