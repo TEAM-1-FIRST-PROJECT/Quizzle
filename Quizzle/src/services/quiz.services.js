@@ -5,11 +5,13 @@ import {
   push,
   query,
   ref,
+  remove,
   set,
 } from "firebase/database";
 import { database } from "../config/firebase-config";
 
 export const addQuiz = (
+  username,
   title,
   contestType,
   invitedUsers,
@@ -22,6 +24,7 @@ export const addQuiz = (
     id: newQuizRef.key,
     category,
     title,
+    createdBy: username,
     contestType,
     invitedUsers,
     timeLimit,

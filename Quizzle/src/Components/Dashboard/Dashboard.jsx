@@ -17,6 +17,42 @@ const Dashboard = () => {
 
   return (
     <div className="h-screen bg-hero-pattern-2 bg-cover flex flex-col items-center">
+                  <div className="max-w-6xl mx-auto px-4 sm:px-6  rounded-lg">
+              <div className="pt-32 md:pt-10 ">
+                <div className=" text-center pb-12 md:pb-16 mt-20">
+                  <h1 className="text-5xl md:text-6xl font-extrabold leading-tighter tracking-tighter mb-4" data-aos="zoom-y-out">
+                    Welcome to <span className="bg-clip-text p-1 text-transparent bg-gradient-to-r from-blue-600 to-violet-400">Quizzle</span>
+                  </h1>
+                </div>
+              </div>
+            </div>
+            {/* Section with Cards */}
+            <section className="bg-gray-2 pb-10 pt-5 dark:bg-dark lg:pb-10 lg:pt-10">
+              <div className="container">
+                <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                  <SingleQuizCard
+                    image="https://i.ibb.co/r2zns1m/image-01.jpg"
+                    CardTitle="50+ Best creative website themes & templates"
+                    titleHref="/#"
+                    btnHref="/#"
+                    CardDescription="Lorem ipsum dolor sit amet pretium consectetur adipiscing elit. Lorem consectetur adipiscing elit."
+                    Button="View Details"
+                  />
+                  <SingleQuizCard
+                    image="https://i.ibb.co/0nbbWM9/image-02-1.jpg"
+                    CardTitle="Creative Card Component designs graphic elements"
+                    CardDescription="Lorem ipsum dolor sit amet pretium consectetur adipiscing elit. Lorem consectetur adipiscing elit."
+                    Button="View Details"
+                  />
+                  <SingleQuizCard
+                    image="https://i.ibb.co/dL9fH7N/image-03-1.jpg"
+                    CardTitle="The ultimate UX and UI guide to card design"
+                    CardDescription="Lorem ipsum dolor sit amet pretium consectetur adipiscing elit. Lorem consectetur adipiscing elit."
+                    Button="View Details"
+                  />
+                </div>
+              </div>
+            </section>
       <div className="max-w-6xl mx-auto px-4 sm:px-6  rounded-lg">
         <div className="pt-32 md:pt-10 ">
           <div className=" text-center pb-12 md:pb-16">
