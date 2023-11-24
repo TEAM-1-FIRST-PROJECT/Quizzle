@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
-import {
-  addQuiz,
-  quizzesRef,
-} from "../../services/quiz.services";
+import { addQuiz, quizzesRef } from "../../services/quiz.services";
 
-import { onValue } from "firebase/database";
+import { get, onValue } from "firebase/database";
+
 const CreateQuiz = () => {
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
@@ -33,42 +31,71 @@ const CreateQuiz = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (categories.includes(category)) {
-        alert("Category already exists!");
-        return;
+    if (
+      !/^[A-Z][a-z]*$/.test(title.split(" ")[0]) ||
+      !/^[A-Z][a-z]*$/.test(category.split(" ")[0])
+    ) {
+      alert(
+        "The first word of Title and Category must start with a capital letter followed by lowercase letters!"
+      );
+      return;
     }
 
-    addQuiz(
-        title,
-        contestType,
-        invitedUsers,
-        timeLimit,
-        category,
-        questions
-    )
-        .then(() => {
+    get(quizzesRef)
+      .then((snapshot) => {
+        let quizzes = snapshot.val();
+        for (let key in quizzes) {
+          if (quizzes[key].title === title) {
+            alert("Quiz with the same title already exists!");
+            return;
+          }
+        }
+
+        addQuiz(
+          title,
+          contestType,
+          invitedUsers,
+          timeLimit,
+          category,
+          questions
+        )
+          .then(() => {
             setTitle("");
             setCategory("");
             setContestType("open");
             setInvitedUsers([]);
             setTimeLimit(30);
             setQuestions([
-                { question: "", answers: [{ text: "", isCorrect: false }] },
+              { question: "", answers: [{ text: "", isCorrect: false }] },
             ]);
-        })
-        .then(() => {
+          })
+          .then(() => {
             alert("Successfully created quiz!");
-        })
-        .catch((error) => {
+          })
+          .catch((error) => {
             console.error("Error adding document: ", error);
-        });
-};
-
+          });
+      })
+      .catch((error) => {
+        console.error("Error checking title: ", error);
+      });
+  };
 
   return (
+    <div className="h-screen bg-hero-pattern-2 bg-cover items-center">
+    <div className=" text-center pb-12 md:pb-8 mt-20">
+    <h1 className="text-5xl md:text-6xl font-extrabold leading-tighter tracking-tighter mb-4 pr-2" data-aos="zoom-y-out">
+      Create your own <span className="bg-clip-text p-1 text-transparent bg-gradient-to-r from-blue-600 to-violet-400">Quiz</span>
+    </h1>
+  </div>
+  <div className="max-w-3xl mx-auto">
+                    <p className="text-xl text-gray-600 mb-10 text-center" data-aos="zoom-y-out" data-aos-delay="150">
+                      Our landing page template works on all devices, so you only have to set it up once, and get beautiful results forever.
+                    </p>
+                  </div>
     <form
       onSubmit={handleSubmit}
-      className="ml-14 mt-[2px] p-10 border-y-orange-400 border-8 bg-indigo-300 space-y-4"
+      className="ml-14 mt-[2px] p-10 border-indigo-700 border-2 bg-indigo-300 opacity-90 space-y-4 rounded-lg w-3/4 ml-60"
     >
       <label className="block">
         <span className="text-gray-700 text-lg font-extralight">Title:</span>
@@ -189,7 +216,7 @@ const CreateQuiz = () => {
                 return newQuestions;
               });
             }}
-            className="mt-2 px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-500 transform transition duration-500 ease-in-out hover:scale-105"
+            className="mt-2 px-4 py-2 text-sm font-medium text-white bg-emerald-500 rounded-md hover:bg-emerald-700 transform transition duration-500 ease-in-out hover:scale-105"
           >
             Add Answer
           </button>
@@ -203,17 +230,18 @@ const CreateQuiz = () => {
             { question: "", answers: [{ text: "", isCorrect: false }] },
           ]);
         }}
-        className="mt-2 px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-500 transform transition duration-500 ease-in-out hover:scale-105"
+        className="mt-2 px-4 py-2 text-sm font-medium text-white bg-emerald-500 rounded-md hover:bg-emerald-700 transform transition duration-500 ease-in-out hover:scale-105"
       >
         Add Question
       </button>
       <button
         type="submit"
-        className="mt-2 px-4 py-2 text-sm font-medium text-white bg-green-600 rounded-md hover:bg-green-500 float-right transform transition duration-500 ease-in-out hover:scale-105"
+        className="mt-2 px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md hover:bg-green-500 float-right transform transition duration-500 ease-in-out hover:scale-105"
       >
         Create Quiz
       </button>
     </form>
+    </div>
   );
 };
 

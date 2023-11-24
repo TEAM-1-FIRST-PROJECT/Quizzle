@@ -31,7 +31,7 @@ const SearchBar = () => {
       return (
         <div className="relative flex items-center">
           <input
-            className="rounded p-1.5 border-2 border-b-4 border-t-4 focus:outline-none hover:shadow-inner hover:shoadow-sm w-full"
+            className="rounded-full p-1.5 border-2 border-indigo-700 focus:outline-none hover:shadow-inner hover:shoadow-sm w-full bg-indigo opacity-80"
             type="search"
             placeholder="Search..."
             autoComplete="off"
@@ -40,7 +40,7 @@ const SearchBar = () => {
             required
           />
           {results.length > 0 && (
-            <div className="absolute top-full mt-2 w-full bg-white rounded-md shadow-lg overflow-hidden z-50">
+            <div className="absolute top-full mt-2 w-full bg-white rounded-lg shadow-lg overflow-hidden z-max">
               {results.map((quiz, index) => (
                 <div 
                   key={index} 
