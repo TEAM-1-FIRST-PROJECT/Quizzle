@@ -39,10 +39,9 @@ const SingleQuizView = () => {
   const handleTimerFinish = () => {
     setTimerFinished(true);
   };
-  
-console.log(score, quiz?.questions.length)
+
   if (quizIsComplete || timerFinished) {
-    const scorePoints = Math.ceil(score/quiz?.questions.length*100)
+    const scorePoints = Math.ceil(score / quiz?.questions.length * 100)
     return (
       <div id="summary">
         <h2>Quiz Completed!</h2>
@@ -55,7 +54,10 @@ console.log(score, quiz?.questions.length)
     <>
       <div id="quiz">
         <div id="question">
-          <Timer onTimerFinish={handleTimerFinish}></Timer>
+          <div className="flex justify-between items-center">
+            <p >{quiz?.title}</p>
+            <Timer onTimerFinish={handleTimerFinish}></Timer>
+          </div>
           <h2>{quiz?.questions[activeQuestionIndex].question}</h2>
           <ul id="answers" className="grid grid-cols-1 divide-y">
             {quiz?.questions[activeQuestionIndex].answers.map((answer) => (
@@ -67,6 +69,7 @@ console.log(score, quiz?.questions.length)
               </div>
             ))}
           </ul>
+          <p className="text-right">Max points available 100</p>
         </div>
       </div>
     </>
