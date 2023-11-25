@@ -10,12 +10,13 @@ const SingleQuizView = () => {
   const [quiz, setQuiz] = useState(null);
   const [userAnswers, setUserAnswers] = useState([]);
   const [score, setScore] = useState(0)
+  const [timerFinished, setTimerFinished] = useState(false);
   const activeQuestionIndex = userAnswers.length;
 
   useEffect(() => {
     getQuizById(id)
-      .then((fechedQuiz) => {
-        setQuiz(fechedQuiz);
+      .then((fetchedQuiz) => {
+        setQuiz(fetchedQuiz);
       })
       .catch((error) => {
         console.error("Error fetching quiz details:", error);
@@ -35,19 +36,17 @@ const SingleQuizView = () => {
     }
   }, [userAnswers, activeQuestionIndex]);
 
-  if (quizIsComplete) {
-    //console.log(score)
+  const handleTimerFinish = () => {
+    setTimerFinished(true);
+  };
+
+  if (quizIsComplete || timerFinished) {
     return (
       <div id="summary">
-
         <h2>Quiz Completed!{score}</h2>
       </div>
     );
   }
-  const handleTimerFinish = () => {
-    // Your logic to handle timer finish, e.g., trigger a re-render or move to the next question
-    console.log('Timer finished!');
-  };
 
   return (
     <>
@@ -59,7 +58,7 @@ const SingleQuizView = () => {
             {quiz?.questions[activeQuestionIndex].answers.map((answer) => (
               <div key={answer.text} >
                 <button className="border-2 rounded-md border-black place-content-stretch"
-                onClick={() => handleSelectAnswer(answer)}>
+                  onClick={() => handleSelectAnswer(answer)}>
                   {answer.text}
                 </button>
               </div>
