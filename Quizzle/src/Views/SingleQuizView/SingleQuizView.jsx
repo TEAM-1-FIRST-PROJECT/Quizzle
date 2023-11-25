@@ -1,18 +1,19 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getQuizById } from "../../services/quiz.services";
-// import './SingleQuizView.css'
 import Timer from "../../components/Timer/Timer";
+import Summary from "../../components/Summary/Summary";
 
 
 const SingleQuizView = () => {
+  //const { quizz } = props//.location.query;
   const { id } = useParams();
   const [quiz, setQuiz] = useState(null);
   const [userAnswers, setUserAnswers] = useState([]);
   const [score, setScore] = useState(0)
   const [timerFinished, setTimerFinished] = useState(false);
   const activeQuestionIndex = userAnswers.length;
-
+// console.log(props)
   useEffect(() => {
     getQuizById(id)
       .then((fetchedQuiz) => {
@@ -42,12 +43,7 @@ const SingleQuizView = () => {
 
   if (quizIsComplete || timerFinished) {
     const scorePoints = Math.ceil(score / quiz?.questions.length * 100)
-    return (
-      <div id="summary">
-        <h2>Quiz Completed!</h2>
-        <h2>You score {scorePoints}</h2>
-      </div>
-    );
+    return <Summary value={scorePoints}></Summary>
   }
 
   return (
