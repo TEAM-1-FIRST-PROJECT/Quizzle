@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getQuizById } from "../../services/quiz.services";
 import './SingleQuizView.css'
+import Timer from "../../components/Timer/Timer";
 
 
 const SingleQuizView = () => {
@@ -17,7 +18,7 @@ const SingleQuizView = () => {
         setQuiz(fechedQuiz);
       })
       .catch((error) => {
-        console.error("Error fetching post details:", error);
+        console.error("Error fetching quiz details:", error);
         setQuiz(null);
       });
   }, [id]);
@@ -43,16 +44,22 @@ const SingleQuizView = () => {
       </div>
     );
   }
+  const handleTimerFinish = () => {
+    // Your logic to handle timer finish, e.g., trigger a re-render or move to the next question
+    console.log('Timer finished!');
+  };
 
   return (
     <>
       <div id="quiz">
         <div id="question">
+          <Timer onTimerFinish={handleTimerFinish}></Timer>
           <h2>{quiz?.questions[activeQuestionIndex].question}</h2>
-          <ul id="answers">
+          <ul id="answers" className="grid grid-cols-1 divide-y">
             {quiz?.questions[activeQuestionIndex].answers.map((answer) => (
-              <div key={answer.text}>
-                <button onClick={() => handleSelectAnswer(answer)}>
+              <div key={answer.text} >
+                <button className="border-2 rounded-md border-black place-content-stretch"
+                onClick={() => handleSelectAnswer(answer)}>
                   {answer.text}
                 </button>
               </div>
