@@ -39,11 +39,14 @@ const SingleQuizView = () => {
   const handleTimerFinish = () => {
     setTimerFinished(true);
   };
-
+  
+console.log(score, quiz?.questions.length)
   if (quizIsComplete || timerFinished) {
+    const scorePoints = Math.ceil(score/quiz?.questions.length*100)
     return (
       <div id="summary">
-        <h2>Quiz Completed!{score}</h2>
+        <h2>Quiz Completed!</h2>
+        <h2>You score {scorePoints}</h2>
       </div>
     );
   }
