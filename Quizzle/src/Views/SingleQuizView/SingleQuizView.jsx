@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getQuizById } from "../../services/quiz.services";
-import './SingleQuizView.css'
+// import './SingleQuizView.css'
 import Timer from "../../components/Timer/Timer";
 
 
@@ -52,28 +52,37 @@ const SingleQuizView = () => {
 
   return (
     <>
-      <div id="quiz">
-        <div id="question">
-          <div className="flex justify-between items-center">
-            <p >{quiz?.title}</p>
-            <Timer onTimerFinish={handleTimerFinish}></Timer>
-          </div>
-          <h2>{quiz?.questions[activeQuestionIndex].question}</h2>
-          <ul id="answers" className="grid grid-cols-1 divide-y">
+    <div className="h-screen bg-hero-pattern-2 bg-cover items-center">
+      <div className=" text-center pb-12 md:pb-8 mt-20">
+        <h1 className="text-5xl md:text-6xl font-extrabold leading-tighter tracking-tighter mb-4 pr-2 pt-6" data-aos="zoom-y-out">
+          <span className="bg-clip-text p-1 text-transparent bg-gradient-to-r from-blue-600 to-violet-400">{quiz?.title}</span>
+        </h1>
+      </div>
+      <div className="max-w-3xl mx-auto">
+        <p className="text-xl text-gray-600 mb-10 text-center" data-aos="zoom-y-out" data-aos-delay="150">
+          Our landing page template works on all devices, so you only have to set it up once, and get beautiful results forever.
+        </p>
+      </div>
+      <div id="quiz" className="ml-14 mt-[2px] p-10 border-indigo-700 border-2 bg-indigo-300 opacity-80 space-y-4 rounded-lg w-3/4 ml-60 h-4/">
+      <Timer onTimerFinish={handleTimerFinish}></Timer>
+        <div id="question" className="text-center">
+          <h2 className="mx-auto mb-10 font-medium text-2xl">{quiz?.questions[activeQuestionIndex].question}</h2>
+          <ul id="answers" className="grid grid-cols-1 space-y-4 mx-auto">
             {quiz?.questions[activeQuestionIndex].answers.map((answer) => (
-              <div key={answer.text} >
-                <button className="border-2 rounded-md border-black place-content-stretch"
-                  onClick={() => handleSelectAnswer(answer)}>
+              <div key={answer.text} className="mx-auto">
+                <button className="border-2 border-indigo-800  px-1 py-1 ml-34 rounded-lg place-content-stretch hover:bg-emerald-500"
+                onClick={() => handleSelectAnswer(answer)}>
                   {answer.text}
                 </button>
               </div>
             ))}
           </ul>
-          <p className="text-right">Max points available 100</p>
+          <p className="bottom-0 right-0 mt-80 mr-4 text-right ">Maximum points available - 100</p>
         </div>
       </div>
+    </div>
     </>
-  )
+)
 }
 
 export default SingleQuizView
