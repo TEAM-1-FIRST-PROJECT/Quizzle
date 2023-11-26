@@ -1,7 +1,11 @@
+import UserResultsTable from "../../components/UserResultTable/UserResultsTable"
+
 
 const UserProfile = () => {
+ 
+
   return (
-    <div>UserProfile</div>
+    <UserResultsTable></UserResultsTable>
   )
 }
 
