@@ -10,6 +10,7 @@ import CreateQuiz from '../../views/CreateQuiz/CreateQuiz';
 import About from '../../views/About/About';
 import Contact from '../../views/Contact/Contact';
 import AdminPanel from '../../views/AdminPanel/AdminPanel';
+import QuizManagement from '../../views/AdminPanel/QuizManagement/QuizManagement';
 const AppRouter = () => {
   return (
     <Routes>
@@ -24,6 +25,7 @@ const AppRouter = () => {
       <Route path="/Contact" element={<Contact />} />
       <Route path="/singleQuizView/:id" element={<SingleQuizView />} />
       <Route path="/admin" element={<AdminPanel />} />
+      <Route path="/quiz-management" element={<QuizManagement />} />
     </Routes>
   )
 }

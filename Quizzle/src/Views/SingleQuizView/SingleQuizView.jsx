@@ -24,7 +24,7 @@ const SingleQuizView = () => {
         setQuiz(null);
       });
   }, [id]);
-  const quizIsComplete = activeQuestionIndex === quiz?.questions.length;
+  const quizIsComplete = activeQuestionIndex === quiz?.question.length;
 
   const handleSelectAnswer = (selectedAnswer) => {
     setUserAnswers((prevUserAnswers) => {
@@ -42,7 +42,7 @@ const SingleQuizView = () => {
   };
 
   if (quizIsComplete || timerFinished) {
-    const scorePoints = Math.ceil(score / quiz?.questions.length * 100)
+    const scorePoints = Math.ceil(score / quiz?.question.length * 100)
     return <Summary score={scorePoints} id={id}></Summary>
   }
 
@@ -62,9 +62,9 @@ const SingleQuizView = () => {
       <div id="quiz" className="ml-14 mt-[2px] p-10 border-indigo-700 border-2 bg-indigo-300 opacity-80 space-y-4 rounded-lg w-3/4 ml-60 h-4/">
       <Timer onTimerFinish={handleTimerFinish}></Timer>
         <div id="question" className="text-center">
-          <h2 className="mx-auto mb-10 font-medium text-2xl">{quiz?.questions[activeQuestionIndex].question}</h2>
+          <h2 className="mx-auto mb-10 font-medium text-2xl">{quiz?.question[activeQuestionIndex].question}</h2>
           <ul id="answers" className="grid grid-cols-1 space-y-4 mx-auto">
-            {quiz?.questions[activeQuestionIndex].answers.map((answer) => (
+            {quiz?.question[activeQuestionIndex].answers.map((answer) => (
               <div key={answer.text} className="mx-auto">
                 <button className="border-2 border-indigo-800  px-1 py-1 ml-34 rounded-lg place-content-stretch hover:bg-emerald-500"
                 onClick={() => handleSelectAnswer(answer)}>

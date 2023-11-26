@@ -17,7 +17,7 @@ const CreateQuiz = () => {
 
 
   const { userData } = useContext(AuthContext);
-  const username = userData.username;
+  const username = userData?.username;
   useEffect(() => {
     onValue(quizzesRef, (snapshot) => {
       const categories = [];

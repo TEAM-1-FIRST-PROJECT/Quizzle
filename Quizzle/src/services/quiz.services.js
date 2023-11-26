@@ -28,7 +28,8 @@ export const addQuiz = (
     contestType,
     invitedUsers,
     timeLimit,
-    questions: { ...question },
+    question,
+    createdOn: Date.now(),
   };
 
   // Add quiz to the quizzes collection
