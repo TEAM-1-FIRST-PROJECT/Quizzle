@@ -1,5 +1,6 @@
 import { useContext } from "react"
 import { AuthContext } from "../../context/authContext"
+import { dateFormat } from "../../common/helpers";
 
 const UserResultsTable = () => {
   const { userData } = useContext(AuthContext)
@@ -85,9 +86,9 @@ const UserResultsTable = () => {
                       </div>
                     </td>
                     <td className="px-4 py-2 text-white">$3.2M</td>
-                    <td className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">Resolved on</td>
+                    <td className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">{dateFormat(quiz.resolvedOn)}</td>
                   </tr>
-                  <tr className="border-b dark:border-indigo-600 hover:bg-indigo-100 dark:hover:bg-indigo-200">
+                  {/* <tr className="border-b dark:border-indigo-600 hover:bg-indigo-100 dark:hover:bg-indigo-200">
                     <td className="w-4 px-4 py-3">
                       <div className="flex items-center">
                         <input id="checkbox-table-search-1" type="checkbox" onClick="event.stopPropagation()" className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"></input>
@@ -140,7 +141,7 @@ const UserResultsTable = () => {
                     <td className="px-4 py-2 text-white">$785K</td>
                     <td className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">This week</td>
                   </tr>
-
+ */}
 
 
                 </tbody>
