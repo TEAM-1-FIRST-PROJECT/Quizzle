@@ -6,6 +6,7 @@ import { AuthContext } from "../../context/authContext";
 
 const CreateQuiz = () => {
   const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [contestType, setContestType] = useState("open");
   const [invitedUsers, setInvitedUsers] = useState([]);
@@ -17,7 +18,7 @@ const CreateQuiz = () => {
 
 
   const { userData } = useContext(AuthContext);
-  const username = userData.username;
+  const username = userData?.username;
   useEffect(() => {
     onValue(quizzesRef, (snapshot) => {
       const categories = [];
@@ -60,6 +61,7 @@ const CreateQuiz = () => {
         addQuiz(
           username,
           title,
+          description,
           contestType,
           invitedUsers,
           timeLimit,
@@ -68,6 +70,7 @@ const CreateQuiz = () => {
         )
           .then(() => {
             setTitle("");
+            setDescription("");
             setCategory("");
             setContestType("open");
             setInvitedUsers([]);
@@ -89,7 +92,7 @@ const CreateQuiz = () => {
   };
 
   return (
-    <div className="h-screen bg-hero-pattern-2 bg-cover items-center">
+    <div className="h-screen bg-hero-pattern-2 bg-cover items-center pt-16">
     <div className=" text-center pb-12 md:pb-8 mt-20">
     <h1 className="text-5xl md:text-6xl font-extrabold leading-tighter tracking-tighter mb-4 pr-2" data-aos="zoom-y-out">
       Create your own <span className="bg-clip-text p-1 text-transparent bg-gradient-to-r from-blue-600 to-violet-400">Quiz</span>
@@ -110,6 +113,16 @@ const CreateQuiz = () => {
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+          required
+          className="mt-1 block w-full p-2 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
+        />
+      </label>
+      <label className="block">
+        <span className="text-gray-700 text-lg font-extralight">Description:</span>
+        <input
+          type="text"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
           required
           className="mt-1 block w-full p-2 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
         />

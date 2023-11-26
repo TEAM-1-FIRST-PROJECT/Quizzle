@@ -14,6 +14,7 @@ import { database } from "../config/firebase-config";
 export const addQuiz = (
   username,
   title,
+  description,
   contestType,
   invitedUsers,
   timeLimit,
@@ -25,11 +26,13 @@ export const addQuiz = (
     id: newQuizRef.key,
     category,
     title,
+    description,
     createdBy: username,
     contestType,
     invitedUsers,
     timeLimit,
-    questions: { ...question },
+    question,
+    createdOn: Date.now(),
   };
 
   // Add quiz to the quizzes collection

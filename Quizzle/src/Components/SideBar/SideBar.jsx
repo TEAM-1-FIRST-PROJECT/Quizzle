@@ -3,6 +3,7 @@ import logout from "../../assets/logout.gif";
 import profile from "../../assets/profile.gif";
 import settings from "../../assets/settings.gif";
 import quiz from "../../assets/quiz.gif";
+import ManageQuiz from '../../assets/quiz-management.gif'
 import { logoutUser } from "../../services/auth.services";
 import { useContext } from "react";
 import { AuthContext } from "../../context/authContext";
@@ -111,25 +112,11 @@ const Sidebar = () => {
               </li>
               <li className="min-w-max">
                 <Link
-                  to="#"
+                  to='quiz-management'
                   className="flex items-center space-x-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-4 py-3 text-white"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      className="fill-current"
-                      d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"
-                    />
-                    <path
-                      className="fill-current"
-                      d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"
-                    />
-                  </svg>
-                  <span className="group-hover:text-gray-700">Other data</span>
+                  <img className="h-7 w-7 mix-blend-multiply" src={ManageQuiz} alt="quiz" />
+                  <span className="group-hover:text-gray-700">Quiz Management</span>
                 </Link>
               </li>
               <li className="min-w-max">
