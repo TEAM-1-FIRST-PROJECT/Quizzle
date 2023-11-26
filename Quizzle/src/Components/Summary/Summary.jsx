@@ -4,17 +4,18 @@ import { AuthContext } from "../../context/authContext"
 import { updateUserScore } from "../../services/users.services"
 import { useNavigate } from "react-router-dom";
 
-const Summary = ({ score, id }) => {
+const Summary = ({ id, score, title, category }) => {
 
   const { userData } = useContext(AuthContext)
   const navigate = useNavigate();
+
   const saveResultHandler = () => {
-    updateUserScore(userData.username, id, score)
+    updateUserScore(userData.username, id, title, score, category)
       .then(() => console.log('Quiz result saved successfully'))
       .catch((e) => console.error(e));
     navigate("/");
-
   }
+  
   return (
     <div className=" bg-indigo-300 flex flex-col items-center justify-center h-screen">
       <button className="max-w-40rem mx-auto my-8 p-8 pt-10 bg-indigo-300 text-gray-800 rounded-lg shadow-md animate-slide-in-from-bottom"
@@ -30,6 +31,8 @@ const Summary = ({ score, id }) => {
 }
 Summary.propTypes = {
   score: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
 };
 export default Summary

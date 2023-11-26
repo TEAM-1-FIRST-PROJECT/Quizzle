@@ -16,22 +16,23 @@ const SingleCard = ({
         <div className="p-8 text-center sm:p-9 md:p-7 xl:p-9">
           <h3>
             <a
-
-              className="mb-4 block text-xl font-semibold text-dark hover:text-primary dark:text-white sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px]"
+              className="mb-4 block text-xl font-semibold text-dark hover:text-primary dark:text-black sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px]"
             >
               {quiz?.title}
             </a>
           </h3>
           <p className="mb-7 text-base leading-relaxed text-body-color dark:text-dark-6">
-            some very striking and attractive info about thisQuiz
+           {quiz?.description}
           </p>
           <p className="mb-7 text-base leading-relaxed text-body-color dark:text-dark-6">
-            {`In this quiz you have ${quiz?.timeLimit} seconds to resolve ${quiz?.question.length} question`}
+            {`In this quiz you have ${quiz?.timeLimit} seconds to resolve ${quiz?.question?.length} questions`}
           </p>
-
-
-          <Link to={`/singleQuizView/${quiz?.id}`}>Attempt Quiz</Link>
-
+          <Link 
+  to={`/singleQuizView/${quiz?.id}`} 
+  className="inline-block px-4 py-2 border border-indigo-500 rounded-lg text-center font-medium hover:bg-indigo-500 hover:text-white dark:hover:bg-dark-1 dark:hover:text-white-300"
+>
+  Enroll quiz
+</Link>
         </div>
       </div>
       {/*  */}

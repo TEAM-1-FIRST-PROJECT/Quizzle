@@ -7,13 +7,14 @@ import {
   ref,
   remove,
   set,
-  update,
+  update
 } from "firebase/database";
 import { database } from "../config/firebase-config";
 
 export const addQuiz = (
   username,
   title,
+  description,
   contestType,
   invitedUsers,
   timeLimit,
@@ -25,6 +26,7 @@ export const addQuiz = (
     id: newQuizRef.key,
     category,
     title,
+    description,
     createdBy: username,
     contestType,
     invitedUsers,
@@ -58,47 +60,31 @@ export const addQuiz = (
 export const quizzesRef = ref(database, "quizzes");
 
 const fromQuizDocument = snapshot => {
-    const quizDocument = snapshot.val();
-  
-    return Object.keys(quizDocument).map(key => {
-      const quiz = quizDocument[key];
-  
-      return {
-        ...quiz,
-        id: key,
-        createdOn: new Date(quiz.createdOn),
-        likedBy: quiz.likedBy ? Object.keys(quiz.likedBy) : [],
-      };
-    });
-  }
+  const quizDocument = snapshot.val();
+
+  return Object.keys(quizDocument).map(key => {
+    const quiz = quizDocument[key];
+
+    return {
+      ...quiz,
+      id: key,
+      createdOn: new Date(quiz.createdOn),
+      likedBy: quiz.likedBy ? Object.keys(quiz.likedBy) : [],
+    };
+  });
+}
 export const getAllQuizzes = () => {
 
-    return get(ref(database, 'quizzes'))
-      .then(snapshot => {
-        if (!snapshot.exists()) {
-          return [];
-        }
-  
-        return fromQuizDocument(snapshot);
-      });
-  };
+  return get(ref(database, 'quizzes'))
+    .then(snapshot => {
+      if (!snapshot.exists()) {
+        return [];
+      }
 
-  export const getQuizById = (id) => {
+      return fromQuizDocument(snapshot);
+    });
+};
 
-    return get(ref(database, `quizzes/${id}`))
-      .then(result => {
-        if (!result.exists()) {
-          throw new Error(`Quiz with id ${id} does not exist!`);
-        }
-  
-        const quiz = result.val();
-        quiz.id = id;
-        quiz.createdOn = new Date(quiz.createdOn);
-        if (!quiz.likedBy) quiz.likedBy = [];
-  
-        return quiz;
-      });
-  };
   export const updateQuizData = (quizId, questionId, question, answers) => {
     const pathQuestion = `quizzes/${quizId}/question/${questionId}`;
     return update(ref(database), {
@@ -111,4 +97,28 @@ export const getAllQuizzes = () => {
       console.error('Update failed:', error);
     });
   };
-  
+
+export const getQuizById = (id) => {
+
+  return get(ref(database, `quizzes/${id}`))
+    .then(result => {
+      if (!result.exists()) {
+        throw new Error(`Quiz with id ${id} does not exist!`);
+      }
+
+      const quiz = result.val();
+      quiz.id = id;
+      quiz.createdOn = new Date(quiz.createdOn);
+      if (!quiz.likedBy) quiz.likedBy = [];
+
+      return quiz;
+    });
+};
+
+export const saveUserScore = (username, postId, score) => {
+  const updateLikes = {};
+  updateLikes[`/posts/${postId}/likedBy/${username}`] = score;
+  updateLikes[`/users/${username}/likedPosts/${postId}`] = score;
+
+  return update(ref(database), updateLikes);
+};
