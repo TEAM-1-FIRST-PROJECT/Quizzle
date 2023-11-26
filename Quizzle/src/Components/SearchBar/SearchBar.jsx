@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import { getAllQuizzes } from "../../services/quiz.services";
+import { useNavigate } from 'react-router-dom';
 
 const SearchBar = () => {
     const [quizzes, setQuizzes] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [results, setResults] = useState([]);
     const [selectedQuiz, setSelectedQuiz] = useState(null);
+    const navigate = useNavigate();
+
     useEffect(() => {
         getAllQuizzes().then(setQuizzes);
       }, []);
@@ -26,6 +29,7 @@ const SearchBar = () => {
       const handleUserClick = (title) => {
         const quiz = quizzes.find(quiz => quiz.title === title);
         setSelectedQuiz(quiz);
+        navigate(`/singleQuizView/${quiz.id}`);
       };
 
       return (
