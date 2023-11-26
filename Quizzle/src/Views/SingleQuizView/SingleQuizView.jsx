@@ -1,19 +1,22 @@
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getQuizById } from "../../services/quiz.services";
 import Timer from "../../components/Timer/Timer";
 import Summary from "../../components/Summary/Summary";
+import { AuthContext } from "../../context/authContext";
+import QuizResolved from "../../components/QuizResolved/QuizResolved";
 
 
 const SingleQuizView = () => {
-  
+
   const { id } = useParams();
+  const { userData } = useContext(AuthContext)
   const [quiz, setQuiz] = useState(null);
   const [userAnswers, setUserAnswers] = useState([]);
-  const [score, setScore] = useState(0)
+  const [score, setScore] = useState(0);
   const [timerFinished, setTimerFinished] = useState(false);
   const activeQuestionIndex = userAnswers.length;
-  
+
   useEffect(() => {
     getQuizById(id)
       .then((fetchedQuiz) => {
@@ -24,6 +27,9 @@ const SingleQuizView = () => {
         setQuiz(null);
       });
   }, [id]);
+
+  const isQuizResolved = Object.values(userData?.score).map(el => el.id).includes(id)
+
   const quizIsComplete = activeQuestionIndex === quiz?.question.length;
 
   const handleSelectAnswer = (selectedAnswer) => {
@@ -31,6 +37,7 @@ const SingleQuizView = () => {
       return [...prevUserAnswers, selectedAnswer];
     });
   }
+
   useEffect(() => {
     if (userAnswers[activeQuestionIndex - 1]?.isCorrect) {
       setScore((score) => score + 1);
@@ -40,6 +47,11 @@ const SingleQuizView = () => {
   const handleTimerFinish = () => {
     setTimerFinished(true);
   };
+  
+  if (isQuizResolved) {
+    const scorePoints = Object.values(userData?.score).find(el => el.id === id).score
+    return <QuizResolved score={scorePoints}/>
+  }
 
   if (quizIsComplete || timerFinished) {
     const scorePoints = Math.ceil(score / quiz?.question.length * 100)
