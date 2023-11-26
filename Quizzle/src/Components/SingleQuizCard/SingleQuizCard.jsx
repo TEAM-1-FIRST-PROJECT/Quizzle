@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const SingleCard = ({
   image,
- 
+
   quiz
 }) => {
 
@@ -16,20 +16,20 @@ const SingleCard = ({
         <div className="p-8 text-center sm:p-9 md:p-7 xl:p-9">
           <h3>
             <a
-              
+
               className="mb-4 block text-xl font-semibold text-dark hover:text-primary dark:text-white sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px]"
             >
               {quiz?.title}
             </a>
           </h3>
           <p className="mb-7 text-base leading-relaxed text-body-color dark:text-dark-6">
-            Question 1 ..........
+            some very striking and attractive info about thisQuiz
           </p>
           <p className="mb-7 text-base leading-relaxed text-body-color dark:text-dark-6">
-            Question 2 ..........
+            {`In this quiz you have ${quiz?.timeLimit} seconds to resolve ${quiz?.questions.length} question`}
           </p>
 
-        
+
           <Link to={`/singleQuizView/${quiz?.id}`}>Attempt Quiz</Link>
 
         </div>
@@ -41,7 +41,6 @@ const SingleCard = ({
 
 SingleCard.propTypes = {
   image: PropTypes.string.isRequired,
-  
   quiz: PropTypes.object.isRequired,
 };
 
