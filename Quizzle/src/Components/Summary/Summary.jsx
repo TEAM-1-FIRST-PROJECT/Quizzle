@@ -15,7 +15,7 @@ const Summary = ({ id, score, title, category }) => {
       .catch((e) => console.error(e));
     navigate("/");
   }
-  
+
   return (
     <div className=" bg-indigo-300 flex flex-col items-center justify-center h-screen">
       <button className="max-w-40rem mx-auto my-8 p-8 pt-10 bg-indigo-300 text-gray-800 rounded-lg shadow-md animate-slide-in-from-bottom"
@@ -23,7 +23,7 @@ const Summary = ({ id, score, title, category }) => {
         <p className="text-lg">Quiz Completed!</p>
         <p className="text-lg">You score {score}</p>
         <div className="mb-4"></div>
-        <p className="text-sm">click here to to save result</p>
+        <p className="text-sm">click here to save result</p>
       </button>
       <button className="mt-1 border-2 px-4 py-1" onClick={() => { }}>Next quiz</button>
     </div>
