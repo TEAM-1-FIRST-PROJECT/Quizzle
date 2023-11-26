@@ -7,6 +7,7 @@ import {
   ref,
   remove,
   set,
+  update,
 } from "firebase/database";
 import { database } from "../config/firebase-config";
 
@@ -98,3 +99,16 @@ export const getAllQuizzes = () => {
         return quiz;
       });
   };
+  export const updateQuizData = (quizId, questionId, question, answers) => {
+    const pathQuestion = `quizzes/${quizId}/question/${questionId}`;
+    return update(ref(database), {
+      [pathQuestion]: {
+        id: questionId,
+        question: question,
+        answers: answers,
+      },
+    }).catch((error) => {
+      console.error('Update failed:', error);
+    });
+  };
+  
