@@ -39,7 +39,7 @@ export const getUserData = (uid) => {
 export const checkUserPhone = (phone) => {
   return get(ref(database, `users`))
     .then(snapshot => {
-      if(!snapshot.exists()){
+      if (!snapshot.exists()) {
         return false
       }
       return Object.values(snapshot.val()).map(el => el.phone).includes(phone)
@@ -59,4 +59,11 @@ export const updateUserData = (username, firstName, lastName, email, imgURL, add
     [pathPhoto]: imgURL,
     [pathAddress]: address,
   });
+};
+
+export const updateUserScore = (username, postId, score) => {
+
+  const updateUserScore = {[`/users/${username}/score/${postId}`]: score};
+
+  return update(ref(database), updateUserScore);
 };
