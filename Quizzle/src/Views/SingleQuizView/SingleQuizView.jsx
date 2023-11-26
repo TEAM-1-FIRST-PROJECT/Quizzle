@@ -6,14 +6,14 @@ import Summary from "../../components/Summary/Summary";
 
 
 const SingleQuizView = () => {
-  //const { quizz } = props//.location.query;
+  
   const { id } = useParams();
   const [quiz, setQuiz] = useState(null);
   const [userAnswers, setUserAnswers] = useState([]);
   const [score, setScore] = useState(0)
   const [timerFinished, setTimerFinished] = useState(false);
   const activeQuestionIndex = userAnswers.length;
-  // console.log(props)
+  
   useEffect(() => {
     getQuizById(id)
       .then((fetchedQuiz) => {
@@ -43,7 +43,7 @@ const SingleQuizView = () => {
 
   if (quizIsComplete || timerFinished) {
     const scorePoints = Math.ceil(score / quiz?.question.length * 100)
-    return <Summary id={id} score={scorePoints} title={quiz?.title}></Summary>
+    return <Summary id={id} score={scorePoints} title={quiz?.title} category={quiz?.category}></Summary>
   }
 
   return (
