@@ -26,7 +26,7 @@ const SingleCard = ({
             some very striking and attractive info about thisQuiz
           </p>
           <p className="mb-7 text-base leading-relaxed text-body-color dark:text-dark-6">
-            {`In this quiz you have ${quiz?.timeLimit} seconds to resolve ${quiz?.question.length} question`}
+            {`In this quiz you have ${quiz?.timeLimit} seconds to resolve ${quiz?.question?.length} question`}
           </p>
 
 
