@@ -24,7 +24,7 @@ const SingleQuizView = () => {
         setQuiz(null);
       });
   }, [id]);
-  const quizIsComplete = activeQuestionIndex === quiz?.questions.length;
+  const quizIsComplete = activeQuestionIndex === quiz?.question.length;
 
   const handleSelectAnswer = (selectedAnswer) => {
     setUserAnswers((prevUserAnswers) => {
