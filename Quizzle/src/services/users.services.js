@@ -62,8 +62,9 @@ export const updateUserData = (username, firstName, lastName, email, imgURL, add
 };
 
 export const updateUserScore = (username, quizId, title, score, category) => {
-
-  const updateUserScore = { [`/users/${username}/score/${title}`]: { score, title, id: `${quizId}`, category, resolvedOn: Date.now(), } };
-
+  const updateUserScore = {};
+  updateUserScore[`/users/${username}/score/${title}`] = { score, title, id: `${quizId}`, category, resolvedOn: Date.now(), };
+  updateUserScore[`/quizzes/${quizId}/scoreBoard/${username}`] = {username, score}
+  
   return update(ref(database), updateUserScore);
 };
