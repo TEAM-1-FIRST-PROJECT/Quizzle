@@ -5,6 +5,7 @@ import Timer from "../../components/Timer/Timer";
 import Summary from "../../components/Summary/Summary";
 import { AuthContext } from "../../context/authContext";
 import QuizResolved from "../../components/QuizResolved/QuizResolved";
+import  dice  from "../../assets/dice.gif";
 
 
 const SingleQuizView = () => {
@@ -17,11 +18,13 @@ const SingleQuizView = () => {
   const [timerFinished, setTimerFinished] = useState(false);
   const [isQuizResolved, setIsQuizResolved] = useState(false);
   const activeQuestionIndex = userAnswers.length;
+  const [questions, setQuestions] = useState([]);
 
   useEffect(() => {
     getQuizById(id)
       .then((fetchedQuiz) => {
         setQuiz(fetchedQuiz);
+        setQuestions(fetchedQuiz.question);
       })
       .catch((error) => {
         console.error("Error fetching quiz details:", error);
@@ -42,6 +45,15 @@ const SingleQuizView = () => {
       return [...prevUserAnswers, selectedAnswer];
     });
   }
+
+  const handleRandomizeQuiz = () => {
+    let randomizedQuestions = [...questions];
+    for (let i = randomizedQuestions.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [randomizedQuestions[i], randomizedQuestions[j]] = [randomizedQuestions[j], randomizedQuestions[i]];
+    }
+    setQuestions(randomizedQuestions);
+  };
 
   useEffect(() => {
     if (userAnswers[activeQuestionIndex - 1]?.isCorrect) {
@@ -80,18 +92,26 @@ const SingleQuizView = () => {
         <div id="quiz" className="ml-14 mt-[2px] p-10 border-indigo-700 border-2 bg-indigo-300 opacity-80 space-y-4 rounded-lg w-3/4 ml-60 h-4/">
           <Timer onTimerFinish={handleTimerFinish}></Timer>
           <div id="question" className="text-center">
-            <h2 className="mx-auto mb-10 font-medium text-2xl">{quiz?.question[activeQuestionIndex].question}</h2>
+          <h2 className="mx-auto mb-10 font-medium text-2xl">{questions[activeQuestionIndex]?.question}</h2>
             <ul id="answers" className="grid grid-cols-1 space-y-4 mx-auto">
-              {quiz?.question[activeQuestionIndex].answers.map((answer) => (
+              {questions[activeQuestionIndex]?.answers.map((answer) => (
                 <div key={answer.text} className="mx-auto">
-                  <button className="border-2 border-indigo-800  px-1 py-1 ml-34 rounded-lg place-content-stretch hover:bg-emerald-500"
+                  <button className="border-2 border-indigo-800 px-1 py-1 ml-34 rounded-lg place-content-stretch hover:bg-emerald-500"
                     onClick={() => handleSelectAnswer(answer)}>
                     {answer.text}
                   </button>
                 </div>
               ))}
             </ul>
+            <div className="flex flex-col items-end mt-80 mr-4">
+            <div className="mb-4">
+            <button onClick={handleRandomizeQuiz}>
+                <img className="h-7 w-7 mix-blend-multiply" src={dice} alt="{dice}"/>
+                <span className="group-hover:text-gray-700">Randomize quiz</span>
+                </button>
+            </div>
             <p className="bottom-0 right-0 mt-80 mr-4 text-right ">Maximum points available - 100</p>
+          </div>
           </div>
         </div>
       </div>
