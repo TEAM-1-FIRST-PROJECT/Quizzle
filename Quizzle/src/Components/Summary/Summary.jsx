@@ -25,7 +25,7 @@ const Summary = ({ id, score, title, category }) => {
         <div className="mb-4"></div>
         <p className="text-sm">click here to save result</p>
       </button>
-      <button className="mt-1 border-2 px-4 py-1" onClick={() => { }}>Next quiz</button>
+      <button className="mt-1 border-2 px-4 py-1" onClick={() => { navigate('/') }}>Next quiz</button>
     </div>
   )
 }
