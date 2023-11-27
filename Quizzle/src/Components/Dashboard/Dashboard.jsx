@@ -8,7 +8,7 @@ import { FaCircleUser } from "react-icons/fa6";
 
 const Dashboard = () => {
 
-  const [quizzes, setQuizzes] = useState([])
+  const [quizzes, setQuizzes] = useState([{}])
   useEffect(() => {
     getAllQuizzes()
       .then(snapshot => {

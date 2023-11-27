@@ -2,11 +2,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 
-const SingleCard = ({
-  image,
-
-  quiz
-}) => {
+const SingleCard = ({ image, quiz }) => {
 
   return (
     <>
@@ -22,17 +18,17 @@ const SingleCard = ({
             </a>
           </h3>
           <p className="mb-7 text-base leading-relaxed text-body-color dark:text-dark-6">
-           {quiz?.description}
+            {quiz?.description}
           </p>
           <p className="mb-7 text-base leading-relaxed text-body-color dark:text-dark-6">
             {`In this quiz you have ${quiz?.timeLimit} seconds to resolve ${quiz?.question?.length} questions`}
           </p>
-          <Link 
-  to={`/singleQuizView/${quiz?.id}`} 
-  className="inline-block px-4 py-2 border border-indigo-500 rounded-lg text-center font-medium hover:bg-indigo-500 hover:text-white dark:hover:bg-dark-1 dark:hover:text-white-300"
->
-  Enroll quiz
-</Link>
+          <Link
+            to={`/singleQuizView/${quiz?.id}`}
+            className="inline-block px-4 py-2 border border-indigo-500 rounded-lg text-center font-medium hover:bg-indigo-500 hover:text-white dark:hover:bg-dark-1 dark:hover:text-white-300"
+          >
+            Enroll quiz
+          </Link>
         </div>
       </div>
       {/*  */}
@@ -42,7 +38,7 @@ const SingleCard = ({
 
 SingleCard.propTypes = {
   image: PropTypes.string.isRequired,
-  quiz: PropTypes.object.isRequired,
+  quiz: PropTypes.object.isRequired || undefined,
 };
 
 export default SingleCard;
