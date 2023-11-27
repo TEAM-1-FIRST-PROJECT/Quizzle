@@ -11,6 +11,9 @@ import About from '../../views/About/About';
 import Contact from '../../views/Contact/Contact';
 import AdminPanel from '../../views/AdminPanel/AdminPanel';
 import QuizManagement from '../../views/AdminPanel/QuizManagement/QuizManagement';
+import Students from '../../views/EducatorPanel/Students/Students';
+import EducatorPanel from '../../views/EducatorPanel/EducatorPanel';
+import QuizManage from '../../views/EducatorPanel/QuizManage/QuizManage';
 const AppRouter = () => {
   return (
     <Routes>
@@ -26,6 +29,9 @@ const AppRouter = () => {
       <Route path="/singleQuizView/:id" element={<SingleQuizView />} />
       <Route path="/admin" element={<AdminPanel />} />
       <Route path="/quiz-management" element={<QuizManagement />} />
+      <Route path="/students" element={<Students />} />
+      <Route path="/educator" element={<EducatorPanel />} />
+      <Route path="/quiz-manage" element={<QuizManage />} />
     </Routes>
   )
 }
