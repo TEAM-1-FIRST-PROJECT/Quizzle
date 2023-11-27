@@ -6,7 +6,7 @@ const UserResultsTable = () => {
   const { userData } = useContext(AuthContext)
 
   if (!userData?.score) {
-    console.log('0 quizzes resolved')
+    
     return (
       <section className="bg-white dark:bg-white py-3 sm:py-5">
         <div className="px-4 mx-auto max-w-screen-2xl lg:px-12">
