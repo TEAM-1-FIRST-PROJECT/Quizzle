@@ -19,6 +19,7 @@ const Settings = () => {
     firstName: "",
     lastName: "",
     email: "",
+    address:"",
   });
 
   const updateForm = (field) => (e) => {
@@ -72,20 +73,33 @@ const Settings = () => {
         return;
       }
     }
+
     if (!form.email) {
       alert("Email is required");
       return;
+    }
+
+    if (form.address) {
+      if (
+        form.address.length < MIN_NAME_LENGTH ||
+        form.address.length > MAX_NAME_LENGTH
+      ) {
+        alert("Address is required");
+        return;
+      }
     }
    
     if (!form.firstName) form.firstName = userData.firstName;
     if (!form.lastName) form.lastName = userData.lastName;
     if (!form.email) form.email = userData.email;
+    if (!form.address) form.address = userData.address;
 
     updateUserData(
       userData.username,
       form.firstName,
       form.lastName,
       form.email,
+      form.address,
       data.value
     ).then(() => {
       alert("Profile updated successfully")

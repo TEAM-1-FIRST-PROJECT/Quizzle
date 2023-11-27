@@ -46,7 +46,7 @@ export const checkUserPhone = (phone) => {
     });
 }
 
-export const updateUserData = (username, firstName, lastName, email, imgURL, address) => {
+export const updateUserData = (username, firstName, lastName, email, address, imgURL) => {
   const pathFirstName = `users/${username}/firstName`;
   const pathLastName = `users/${username}/lastName`;
   const pathEmail = `users/${username}/email`;
