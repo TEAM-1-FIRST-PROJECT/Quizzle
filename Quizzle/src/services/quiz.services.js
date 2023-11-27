@@ -85,14 +85,10 @@ export const getAllQuizzes = () => {
     });
 };
 
-  export const updateQuizData = (quizId, questionId, question, answers) => {
-    const pathQuestion = `quizzes/${quizId}/question/${questionId}`;
+    export const updateQuizData = (quizId, quiz) => {
+    const pathQuestion = `quizzes/${quizId}`;
     return update(ref(database), {
-      [pathQuestion]: {
-        id: questionId,
-        question: question,
-        answers: answers,
-      },
+      [pathQuestion]: quiz
     }).catch((error) => {
       console.error('Update failed:', error);
     });

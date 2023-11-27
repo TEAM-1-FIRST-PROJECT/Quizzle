@@ -22,14 +22,14 @@ const QuizManagement = () => {
   useEffect(() => {
     onValue(quizzesRef, (snapshot) => {
       const data = snapshot.val();
-      const filteredQuizzes = Object.values(data).filter(quiz => 
+      const filteredQuizzes = Object.values(data).filter(quiz =>
         quiz.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         quiz.createdBy.toLowerCase().includes(searchTerm.toLowerCase())
       );
       setQuizzes(filteredQuizzes);
     });
   }, [searchTerm]);
-  
+
 
   const handleEditQuiz = (quiz) => {
     setSelectedQuiz(quiz);
@@ -51,44 +51,47 @@ const QuizManagement = () => {
     }
   };
 
-    let question = selectedQuiz ? selectedQuiz.question : null;
-    
-  const handleSaveQuestion = () => {
-    if (question) {
-      updateQuizData(
-        selectedQuiz.id,
-        selectedQuestion.id,
-        editedQuestion,
-        editedAnswers
-      ).then(() => {
-        const updatedQuestion = {
-          ...selectedQuestion,
-          question: editedQuestion,
-          answers: editedAnswers,
-        };
-        setSelectedQuestion(updatedQuestion);
-      });
-    } else {
-      console.error("selectedQuestion or selectedQuestion.id is undefined");
-    }
-  };
+  //let question = selectedQuiz ? selectedQuiz.question : null;
 
-  const handleDelete = (id) => {
-    deleteQuiz(id);
-  };
+  // if (question) {
+    // updateQuizData(quizId, )
+    // ).then(() => {
+      //     const updatedQuestion = {
+    //       ...selectedQuestion,
+    //       question: editedQuestion,
+    //       answers: editedAnswers,
+    //     };
+    //     setSelectedQuestion(updatedQuestion);
+    //   });
+    // } else {
+      //   console.error("selectedQuestion or selectedQuestion.id is undefined");
+      // }
+      
+      //};
+      
+      const handleDelete = (id) => {
+        deleteQuiz(id);
+      };
+      
+      const handleTitleChange = (event) => {
+        setEditedTitle(event.target.value);
+      };
+      
+      const handleAnswerChange = (questionIndex, index, event) => {
+       
+        const newAnswers = {...selectedQuiz};  
+        newAnswers.question[questionIndex].answers[index].text = event.target.value;
+        setEditedAnswers(newAnswers);
+      };
+     
+      const handleSaveQuestion = () => {
+        updateQuizData(selectedQuiz.id,editedAnswers )
+        .then(()=>console.log('ok'))
+        .catch((e)=> console.log(e))
+      }
 
-  const handleTitleChange = (event) => {
-    setEditedTitle(event.target.value);
-  };
-
-  const handleAnswerChange = (index, event) => {
-    const newAnswers = [...editedAnswers];
-    newAnswers[index] = event.target.value;
-    setEditedAnswers(newAnswers);
-  };
-
-  return (
-    <div className="m-20 border p-10 rounded-lg">
+      return (
+        <div className="m-20 border p-10 rounded-lg">
       <h1 className="mb-2">Quiz Management</h1>
       <input
         type="text"
@@ -149,39 +152,39 @@ const QuizManagement = () => {
           <h3 className="my-2 text-lg font-bold rounded p-2 border-2 bg-gray-100">
             Questions
           </h3>
-          {selectedQuiz.question.map((question, index) => (
-            <div key={index} className="my-2">
+          {selectedQuiz.question.map((question, questionIndex) => (
+            <div key={questionIndex} className="my-2">
               <button
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                 onClick={() => handleEditQuestion(question)}
               >
                 {question.question}
               </button>
-              {selectedQuestion === question && (
-                <div className="mt-2">
+
+              <div className="mt-2">
+                <input
+                  className="border-2 rounded p-2 w-full"
+                  type="text"
+                  value={editedQuestion}
+                  onChange={(event) => setEditedQuestion(event.target.value)}
+                />
+                {question.answers.map((answer, index) => (
                   <input
-                    className="border-2 rounded p-2 w-full"
+                    key={index}
+                    className="border-2 rounded p-2 w-full mt-2"
                     type="text"
-                    value={editedQuestion}
-                    onChange={(event) => setEditedQuestion(event.target.value)}
+                    value={answer.text}
+                    onChange={(event) => handleAnswerChange(questionIndex, index, event)}
                   />
-                  {editedAnswers.map((answer, index) => (
-                    <input
-                      key={index}
-                      className="border-2 rounded p-2 w-full mt-2"
-                      type="text"
-                      value={answer.text}
-                      onChange={(event) => handleAnswerChange(index, event)}
-                    />
-                  ))}
-                  <button
-                    className="ml-2 bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-2"
-                    onClick={handleSaveQuestion}
-                  >
-                    Save changes
-                  </button>
-                </div>
-              )}
+                ))}
+                <button
+                  className="ml-2 bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-2"
+                  onClick={handleSaveQuestion}
+                >
+                  Save changes
+                </button>
+              </div>
+
             </div>
           ))}
         </div>
