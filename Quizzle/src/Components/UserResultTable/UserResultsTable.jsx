@@ -4,7 +4,20 @@ import { dateFormat } from "../../common/helpers";
 
 const UserResultsTable = () => {
   const { userData } = useContext(AuthContext)
-
+  console.log(userData?.score)
+  if (!userData?.score) {
+    console.log('0 quizzes resolved')
+    return (<div className=" bg-indigo-300 flex flex-col items-center justify-center h-screen">
+    <button className="max-w-40rem mx-auto my-8 p-8 pt-10 bg-indigo-300 text-gray-800 rounded-lg shadow-md animate-slide-in-from-bottom"
+      >
+      <p className="text-lg">0 quizzes resolved</p>
+      
+      <div className="mb-4"></div>
+      <p className="text-sm"></p>
+    </button>
+    <button className="mt-1 border-2 px-4 py-1">Next quiz</button>
+  </div>)
+  }
   const userResults = Object.values(userData?.score);
 
   return (
@@ -43,7 +56,7 @@ const UserResultsTable = () => {
                         <label htmlFor="checkbox-table-search-1" className="sr-only">checkbox</label>
                       </div>
                     </td>
-                    
+
                     <td className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">{quiz.title}</td>
                     <th scope="row" className="flex items-center px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                       <img src="https://flowbite.s3.amazonaws.com/blocks/application-ui/products/imac-front-image.png" alt="iMac Front Image" className="w-auto h-8 mr-3"></img>
