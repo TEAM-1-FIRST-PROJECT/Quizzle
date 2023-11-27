@@ -1,13 +1,25 @@
 import { NavLink } from "react-router-dom";
 import SingleQuizCard from "../SingleQuizCard/SingleQuizCard";
 import PublicQuizzesTable from "../PublicQuizzesTable/PublicQuizzesTable";
+import { useEffect, useState } from "react";
+import { getAllQuizzes } from "../../services/quiz.services";
 
 const Public = () => {
+
+  const [quizzes, setQuizzes] = useState([{}])
+  useEffect(() => {
+    getAllQuizzes()
+      .then(snapshot => {
+        setQuizzes(snapshot)
+
+      })
+      .catch(e => console.error(e));
+  }, []);
 
     return (
         <>
           <div className="h-screen bg-hero-pattern-2 bg-cover flex flex-col items-center">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 bg-white opacity-80 rounded-lg">
+            <div className=" mt-36 max-w-6xl mx-auto px-4 sm:px-6 bg-white opacity-80 rounded-lg">
               {/* Hero content */}
               <div className="pt-32 md:pt-10 ">
                 {/* Section header */}
@@ -42,31 +54,20 @@ const Public = () => {
     
             {/* Section with Cards */}
             <section className="bg-gray-2 pb-10 pt-5 dark:bg-dark lg:pb-10 lg:pt-10">
-              <div className="container">
-                <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                  <SingleQuizCard
-                    image="https://i.ibb.co/r2zns1m/image-01.jpg"
-                    CardTitle="50+ Best creative website themes & templates"
-                    titleHref="/#"
-                    btnHref="/#"
-                    CardDescription="Lorem ipsum dolor sit amet pretium consectetur adipiscing elit. Lorem consectetur adipiscing elit."
-                    Button="View Details"
-                  />
-                  <SingleQuizCard
-                    image="https://i.ibb.co/0nbbWM9/image-02-1.jpg"
-                    CardTitle="Creative Card Component designs graphic elements"
-                    CardDescription="Lorem ipsum dolor sit amet pretium consectetur adipiscing elit. Lorem consectetur adipiscing elit."
-                    Button="View Details"
-                  />
-                  <SingleQuizCard
-                    image="https://i.ibb.co/dL9fH7N/image-03-1.jpg"
-                    CardTitle="The ultimate UX and UI guide to card design"
-                    CardDescription="Lorem ipsum dolor sit amet pretium consectetur adipiscing elit. Lorem consectetur adipiscing elit."
-                    Button="View Details"
-                  />
-                </div>
-              </div>
-            </section>
+        <div className="container">
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {quizzes.map(quiz => (
+              <div key={quiz.id}><SingleQuizCard
+                image="https://i.ibb.co/r2zns1m/image-01.jpg"
+                titleHref="/#"
+                btnHref="/#"
+                Button="View Details"
+                quiz={quiz}
+              /></div>
+            ))}
+          </div>
+        </div>
+      </section>
             {/* Section with public quizzes */}
             <PublicQuizzesTable></PublicQuizzesTable>
           </div>
