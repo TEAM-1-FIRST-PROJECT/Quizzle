@@ -4,7 +4,7 @@ import { dateFormat } from "../../common/helpers";
 
 const UserResultsTable = () => {
   const { userData } = useContext(AuthContext)
-  console.log(userData?.score)
+  
   if (!userData?.score) {
     console.log('0 quizzes resolved')
     return (<div className=" bg-indigo-300 flex flex-col items-center justify-center h-screen">
