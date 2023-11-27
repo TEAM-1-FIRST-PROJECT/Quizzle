@@ -3,11 +3,16 @@ import { AuthContext } from "../../context/authContext";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/logo.webp";
 import SearchBar from '../../components/SearchBar/SearchBar';
-
+import { BellIcon } from '@heroicons/react/outline'
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [notifications, setNotifications] = useState([]);
   const { user, userData } = useContext(AuthContext);
+
+  const handleNotification = () => {
+    // Тук добавете логиката за обработка на нотификациите
+  };
 
   return (
     
@@ -63,6 +68,14 @@ function Navbar() {
             >
               Register
             </Link>}
+            <button onClick={handleNotification} className="p-1 mr-5">
+        <BellIcon className="h-6 w-6 text-gray-500"/>
+        {notifications.length > 0 && (
+          <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
+            {notifications.length}
+          </span>
+        )}
+      </button>
             <img
               className="ml-4 rounded-full bg-black w-10 h-10"
               src={userData?.profileImgUrl || Logo}
