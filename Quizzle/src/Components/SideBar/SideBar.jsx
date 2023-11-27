@@ -20,7 +20,7 @@ const Sidebar = () => {
       });
     });
   };
-  const isAdmin = userData?.role === 'admin'
+
   return (
     <>
     {user && (
