@@ -7,6 +7,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { getUserData } from "./services/users.services";
 import { AuthContext } from "./context/authContext";
 import Footer from "./components/Footer/Footer";
+import { Toaster } from "react-hot-toast";
 
 const App = () => {
   const [user] = useAuthState(auth);
@@ -43,10 +44,12 @@ const App = () => {
 
   return (
     <AuthContext.Provider value={{ ...appState, setUser: setAppState }}>
+      <Toaster/>
       <Navbar />
       <Sidebar />
       <AppRouter />
-      <Footer />
+       <Footer />
+      
     </AuthContext.Provider>
   );
 };
