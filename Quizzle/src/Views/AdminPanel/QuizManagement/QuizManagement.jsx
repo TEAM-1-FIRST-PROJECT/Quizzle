@@ -54,44 +54,44 @@ const QuizManagement = () => {
   //let question = selectedQuiz ? selectedQuiz.question : null;
 
   // if (question) {
-    // updateQuizData(quizId, )
-    // ).then(() => {
-      //     const updatedQuestion = {
-    //       ...selectedQuestion,
-    //       question: editedQuestion,
-    //       answers: editedAnswers,
-    //     };
-    //     setSelectedQuestion(updatedQuestion);
-    //   });
-    // } else {
-      //   console.error("selectedQuestion or selectedQuestion.id is undefined");
-      // }
-      
-      //};
-      
-      const handleDelete = (id) => {
-        deleteQuiz(id);
-      };
-      
-      const handleTitleChange = (event) => {
-        setEditedTitle(event.target.value);
-      };
-      
-      const handleAnswerChange = (questionIndex, index, event) => {
-       
-        const newAnswers = {...selectedQuiz};  
-        newAnswers.question[questionIndex].answers[index].text = event.target.value;
-        setEditedAnswers(newAnswers);
-      };
-     
-      const handleSaveQuestion = () => {
-        updateQuizData(selectedQuiz.id,editedAnswers )
-        .then(()=>console.log('ok'))
-        .catch((e)=> console.log(e))
-      }
+  // updateQuizData(quizId, )
+  // ).then(() => {
+  //     const updatedQuestion = {
+  //       ...selectedQuestion,
+  //       question: editedQuestion,
+  //       answers: editedAnswers,
+  //     };
+  //     setSelectedQuestion(updatedQuestion);
+  //   });
+  // } else {
+  //   console.error("selectedQuestion or selectedQuestion.id is undefined");
+  // }
 
-      return (
-        <div className="m-20 border p-10 rounded-lg">
+  //};
+
+  const handleDelete = (id) => {
+    deleteQuiz(id);
+  };
+
+  const handleTitleChange = (event) => {
+    setEditedTitle(event.target.value);
+  };
+
+  const handleAnswerChange = (questionIndex, index, event) => {
+
+    const newAnswers = { ...selectedQuiz };
+    newAnswers.question[questionIndex].answers[index].text = event.target.value;
+    setEditedAnswers(newAnswers);
+  };
+
+  const handleSaveQuestion = () => {
+    updateQuizData(selectedQuiz.id, editedAnswers)
+      .then(() => console.log('ok'))
+      .catch((e) => console.log(e))
+  }
+
+  return (
+    <div className="m-20 border p-10 rounded-lg">
       <h1 className="mb-2">Quiz Management</h1>
       <input
         type="text"
@@ -177,16 +177,15 @@ const QuizManagement = () => {
                     onChange={(event) => handleAnswerChange(questionIndex, index, event)}
                   />
                 ))}
-                <button
-                  className="ml-2 bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-2"
-                  onClick={handleSaveQuestion}
-                >
-                  Save changes
-                </button>
               </div>
-
             </div>
           ))}
+          <button
+            className="ml-2 bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-2"
+            onClick={handleSaveQuestion}
+          >
+            Save changes
+          </button>
         </div>
       )}
     </div>
