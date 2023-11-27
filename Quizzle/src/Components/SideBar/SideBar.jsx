@@ -7,10 +7,11 @@ import ManageQuiz from '../../assets/quiz-management.gif'
 import { logoutUser } from "../../services/auth.services";
 import { useContext } from "react";
 import { AuthContext } from "../../context/authContext";
+import { ROLE_CHECK } from "../../common/constants";
 
 const Sidebar = () => {
 //add to HELPER>FUNCS
-  const { user, setUser } = useContext(AuthContext);
+  const { user, setUser, userData } = useContext(AuthContext);
 
   const onLogout = () => {
     logoutUser().then(() => {
@@ -30,7 +31,8 @@ const Sidebar = () => {
             <div className="w-max p-2.5">
               <img src="" className="w-32" alt="" />
             </div>
-            <ul className="mt-6 space-y-2 tracking-wide">
+                <ul className="mt-6 space-y-2 tracking-wide">
+                  {userData && userData.role === ROLE_CHECK.admin && (
               <li className="min-w-max">
                 <Link
                   to="/admin"
@@ -60,6 +62,7 @@ const Sidebar = () => {
                   </span>
                 </Link>
               </li>
+                    )}
               <li className="min-w-max">
                 <Link
                   to="#"
@@ -109,16 +112,18 @@ const Sidebar = () => {
                   </svg>
                   <span className="group-hover:text-gray-700">Reports</span>
                 </Link>
-              </li>
-              <li className="min-w-max">
-                <Link
-                  to='quiz-management'
-                  className="flex items-center space-x-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-4 py-3 text-white"
-                >
-                  <img className="h-7 w-7 mix-blend-multiply" src={ManageQuiz} alt="quiz" />
-                  <span className="group-hover:text-gray-700">Quiz Management</span>
-                </Link>
-              </li>
+                  </li>
+                  {userData && userData.role === ROLE_CHECK.admin && (
+                    <li className="min-w-max">
+                      <Link
+                        to='quiz-management'
+                        className="flex items-center space-x-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-4 py-3 text-white"
+                      >
+                        <img className="h-7 w-7 mix-blend-multiply" src={ManageQuiz} alt="quiz" />
+                        <span className="group-hover:text-gray-700">Quiz Management</span>
+                      </Link>
+                    </li>
+                  )}
               <li className="min-w-max">
                 <Link
                   to="/create"

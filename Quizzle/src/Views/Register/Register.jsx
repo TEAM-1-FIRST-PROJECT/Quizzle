@@ -8,6 +8,8 @@ import {
   checkUserPhone
 } from "../../services/users.services";
 import { registerUser } from "../../services/auth.services";
+import { ROLE_CHECK } from "../../common/constants";
+import toast from "react-hot-toast";
 // import {
 //   MAX_NAME_LENGTH,
 //   MIN_NAME_LENGTH,
@@ -34,7 +36,7 @@ const RegisterForm = () => {
   const navigate = useNavigate();
 
   const updateForm = (field) => (e) => {
-    const value = e.target.type === "checkbox" ? (e.target.checked ? "teacher" : "student") : e.target.value;
+    const value = e.target.type === "checkbox" ? (e.target.checked ? ROLE_CHECK.educator : ROLE_CHECK.student) : e.target.value;
     setForm({
       ...form,
       [field]: value,
@@ -89,20 +91,20 @@ const RegisterForm = () => {
     // }
 
     if (!form.email) {
-      alert("Email is required");
+      toast("Email is required!");
       return;
     }
 
     checkUserPhone(form.phone)
       .then(result => {
         if (result) {
-          alert(`user with phone ${form.phone} exist`);
+          toast.error(`user with phone ${form.phone} already exist!`);
           navigate("/register")
         } else {
           getUserByHandle(form.username)
             .then((snapshot) => {
               if (snapshot.exists()) {
-                alert("Username already exists");
+                toast.error("Username already exists!");
               }
               return registerUser(form.email, form.password);
             })
@@ -125,8 +127,7 @@ const RegisterForm = () => {
               });
             })
             .then(() => {
-              alert("User created successfully, redirecting...");
-
+              toast.success("User created successfully, redirecting...");
               navigate("/");
             })
             .catch((e) => console.error(e.message));
@@ -215,7 +216,7 @@ const RegisterForm = () => {
                 <input
                   className="ml-2"
                   type="checkbox"
-                  checked={form.role === "teacher"}
+                  checked={form.role === ROLE_CHECK.educator}
                   onChange={updateForm("role")}
                 />
               </div>
