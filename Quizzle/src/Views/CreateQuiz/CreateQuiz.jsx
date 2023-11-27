@@ -1,8 +1,9 @@
 import { useState, useEffect, useContext } from "react";
 import { addQuiz, quizzesRef } from "../../services/quiz.services";
 
-import { get, onValue } from "firebase/database";
+import { onValue } from "firebase/database";
 import { AuthContext } from "../../context/authContext";
+import { titleCheck } from "../../common/helpers";
 
 const CreateQuiz = () => {
   const [title, setTitle] = useState("");
@@ -47,16 +48,7 @@ const CreateQuiz = () => {
     }
 
 
-    //add to HELPER>FUNCS
-    get(quizzesRef)
-      .then((snapshot) => {
-        let quizzes = snapshot.val();
-        for (let key in quizzes) {
-          if (quizzes[key].title === title) {
-            alert("Quiz with the same title already exists!");
-            return;
-          }
-        }
+    titleCheck(title);
 
         addQuiz(
           username,
@@ -85,10 +77,7 @@ const CreateQuiz = () => {
           .catch((error) => {
             console.error("Error adding document: ", error);
           });
-      })
-      .catch((error) => {
-        console.error("Error checking title: ", error);
-      });
+    
   };
 
   return (
