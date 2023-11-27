@@ -20,18 +20,12 @@ const Sidebar = () => {
       });
     });
   };
-  const permission = userData?.role === ROLE_CHECK.educator || userData?.role === ROLE_CHECK.admin
+  const permission =
+    userData?.role === ROLE_CHECK.educator ||
+    userData?.role === ROLE_CHECK.admin;
 
   return (
     <>
-      {user && (
-        <div className="fixed z-10 top-14">
-          <div className="border-r-2 border-spacing-x-2.5 w-[3.35rem] bg overflow-hidden hover:w-56 hover:bg-white bg-gradient-to-br from-violet-400 to-indigo-400 overflow-y-auto transition-all duration-1000 ease-in-out">
-            <div className="flex flex-1 h-screen flex-col justify-between pt-2 pb-6">
-              <div>
-                <div className="w-max p-2.5">
-                  <img src="" className="w-32" alt="" />
-                </div>
       {user && (
         <div className="fixed z-10 top-14">
           <div className="border-r-2 border-spacing-x-2.5 w-[3.35rem] bg overflow-hidden hover:w-56 hover:bg-white bg-gradient-to-br from-violet-400 to-indigo-400 overflow-y-auto transition-all duration-1000 ease-in-out">
@@ -102,7 +96,6 @@ const Sidebar = () => {
                         </span>
                       </Link>
                     </li>
-                  
                   )}
                   <li className="min-w-max">
                     <Link
@@ -132,21 +125,22 @@ const Sidebar = () => {
                     </Link>
                   </li>
                   {userData && userData.role === ROLE_CHECK.educator && (
-                  <li className="min-w-max">
-                    <Link
-                      to="/students"
-                      className="flex items-center space-x-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-4 py-3 text-white"
-                    >
-                     <img
-                    className="h-8 w-8 mix-blend-multiply"
-                    src={students}
-                    alt="students"
-                  />
-                      <span className="group-hover:text-gray-700">Students</span>
-                    </Link>
+                    <li className="min-w-max">
+                      <Link
+                        to="/students"
+                        className="flex items-center space-x-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-4 py-3 text-white"
+                      >
+                        <img
+                          className="h-8 w-8 mix-blend-multiply"
+                          src={students}
+                          alt="students"
+                        />
+                        <span className="group-hover:text-gray-700">
+                          Students
+                        </span>
+                      </Link>
                     </li>
-
-                    )}
+                  )}
                   {userData && userData.role === ROLE_CHECK.admin && (
                     <li className="min-w-max">
                       <Link
@@ -166,35 +160,37 @@ const Sidebar = () => {
                   )}
                   {userData && userData.role === ROLE_CHECK.educator && (
                     <>
-                    <li className="min-w-max">
-                      <Link
-                        nk
-                        to="/create"
-                        className="flex items-center space-x-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-4 py-3 text-white"
-                      >
-                        <img
-                          className="h-7 w-7 mix-blend-multiply"
-                          src={quiz}
-                          alt="quiz"
-                        />
-                        <span className="group-hover:text-gray-700">
-                          Create Quiz
-                        </span>
-                      </Link>
-                    </li>
-                    
-                  <li className="min-w-max">
-                  <Link
-                    to="/quiz-manage"
-                    className="flex items-center space-x-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-4 py-3 text-white"
-                  >
-                   <img
-                  className="h-8 w-8 mix-blend-multiply"
-                  src={ManageQuiz}
-                  alt="manage quiz"
-                />
-                    <span className="group-hover:text-gray-700">Quiz Manage</span>
-                  </Link>
+                      <li className="min-w-max">
+                        <Link
+                          nk
+                          to="/create"
+                          className="flex items-center space-x-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-4 py-3 text-white"
+                        >
+                          <img
+                            className="h-7 w-7 mix-blend-multiply"
+                            src={quiz}
+                            alt="quiz"
+                          />
+                          <span className="group-hover:text-gray-700">
+                            Create Quiz
+                          </span>
+                        </Link>
+                      </li>
+
+                      <li className="min-w-max">
+                        <Link
+                          to="/quiz-manage"
+                          className="flex items-center space-x-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-4 py-3 text-white"
+                        >
+                          <img
+                            className="h-8 w-8 mix-blend-multiply"
+                            src={ManageQuiz}
+                            alt="manage quiz"
+                          />
+                          <span className="group-hover:text-gray-700">
+                            Quiz Manage
+                          </span>
+                        </Link>
                       </li>
                     </>
                   )}
