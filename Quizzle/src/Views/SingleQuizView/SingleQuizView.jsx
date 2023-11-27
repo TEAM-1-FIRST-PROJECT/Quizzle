@@ -15,6 +15,7 @@ const SingleQuizView = () => {
   const [userAnswers, setUserAnswers] = useState([]);
   const [score, setScore] = useState(0);
   const [timerFinished, setTimerFinished] = useState(false);
+  const [isQuizResolved, setIsQuizResolved] = useState(false);
   const activeQuestionIndex = userAnswers.length;
 
   useEffect(() => {
@@ -28,7 +29,11 @@ const SingleQuizView = () => {
       });
   }, [id]);
 
-  const isQuizResolved = Object.values(userData?.score).map(el => el.id).includes(id)
+  useEffect(() => {
+    if (userData?.score) {
+      setIsQuizResolved(Object.values(userData?.score).map(el => el.id).includes(id))
+    }
+  }, [id, userData?.score]);
 
   const quizIsComplete = activeQuestionIndex === quiz?.question.length;
 
@@ -47,11 +52,11 @@ const SingleQuizView = () => {
   const handleTimerFinish = () => {
     setTimerFinished(true);
   };
-  
+
   if (isQuizResolved) {
     const resolvedOn = Object.values(userData?.score).find(el => el.id === id).resolvedOn
     const scorePoints = Object.values(userData?.score).find(el => el.id === id).score
-    return <QuizResolved score={scorePoints} resolvedOn={resolvedOn}/>
+    return <QuizResolved score={scorePoints} resolvedOn={resolvedOn} />
   }
 
   if (quizIsComplete || timerFinished) {
