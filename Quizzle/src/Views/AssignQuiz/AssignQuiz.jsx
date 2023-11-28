@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { getAllUsers } from "../../services/users.services";
 import { totalScore } from "../../common/helpers";
 import { quizAssignments } from "../../services/users.services";
+import toast from "react-hot-toast";
 
 const AssignQuiz = () => {
 
@@ -14,7 +15,7 @@ const AssignQuiz = () => {
       .then(snapshot => {
         setUsers(Object.values(snapshot.val()))
       })
-      .catch(e => console.error(e));
+      .catch(e => toast.error(e));
   }, []);
 
   const assignQuizHandler = (user) => {

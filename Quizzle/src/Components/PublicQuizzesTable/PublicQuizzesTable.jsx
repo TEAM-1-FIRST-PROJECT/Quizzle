@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getAllQuizzes } from "../../services/quiz.services";
 import { dateFormat } from "../../common/helpers";
+import toast from "react-hot-toast";
 
 const PublicQuizzesTable = () => {
 
@@ -12,7 +13,7 @@ const PublicQuizzesTable = () => {
             setQuizzes(snapshot)
     
           })
-          .catch(e => console.error(e));
+          .catch(e => toast.error(e));
       }, []);
 
 return (

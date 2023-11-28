@@ -1,3 +1,4 @@
+import toast from "react-hot-toast";
 import { getAllCategories } from "../../services/quiz.services";
 import SingleCategoryCard from "../SingleCategoryCard/SingleCategoryCard";
 import { useEffect, useState } from "react";
@@ -12,7 +13,7 @@ const Categories = () => {
           setCategories(snapshot)
   
         })
-        .catch(e => console.error(e));
+        .catch(e => toast.error(e));
     }, []);
 
     return (
