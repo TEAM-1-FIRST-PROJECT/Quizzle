@@ -16,6 +16,8 @@ import EducatorPanel from '../../views/EducatorPanel/EducatorPanel';
 import QuizManage from '../../views/EducatorPanel/QuizManage/QuizManage';
 import AssignedQuizzes from '../../views/AssignedQuizzes/AssignedQuizzes';
 import NotFound from '../NotFound/NotFound';
+import Categories from '../Categories/Categories';
+import QuizListByCategory from '../Categories/QuizListByCategory/QuizListByCategory';
 
 const AppRouter = () => {
   return (
@@ -37,6 +39,8 @@ const AppRouter = () => {
       <Route path="/quiz-manage" element={<QuizManage />} />
       <Route path="/assigned-quizzes" element={<AssignedQuizzes />} />
       <Route path="*" element={<NotFound />} />
+      <Route path="/categories" element={<Categories />} />
+      <Route path="/categories/:category" element={<QuizListByCategory />} />
     </Routes>
   )
 }
