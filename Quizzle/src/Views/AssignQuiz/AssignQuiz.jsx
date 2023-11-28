@@ -1,8 +1,21 @@
-
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { getAllUsers } from "../../services/users.services";
 
 const AssignQuiz = () => {
 
-  const userResults = [1, 2, 3]
+  const { id } = useParams();
+  const [users, setUsers] = useState([])
+
+  useEffect(() => {
+    getAllUsers()
+      .then(snapshot => {
+        setUsers(Object.values(snapshot.val()))
+      })
+      .catch(e => console.error(e));
+  }, []);
+  //console.log(users)
+
   return (
     <section className="bg-white dark:bg-white py-3 sm:py-5">
       <div className="px-4 mx-auto max-w-screen-2xl lg:px-12">
@@ -29,9 +42,9 @@ const AssignQuiz = () => {
                 </tr>
               </thead>
 
-              {userResults.map(quiz => (
+              {users.map(user => (
 
-                <tbody key={quiz.id}>
+                <tbody key={user.id}>
                   <tr className="border-b dark:border-indigo-600 hover:bg-indigo-100 dark:hover:bg-indigo-200">
                     <td className="w-4 px-4 py-3">
                       <div className="flex items-center">
@@ -40,15 +53,15 @@ const AssignQuiz = () => {
                       </div>
                     </td>
 
-                    <td className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">{quiz.title}</td>
+                    <td className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">{'quiz.title'}</td>
                     <th scope="row" className="flex items-center px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                       <img src="https://flowbite.s3.amazonaws.com/blocks/application-ui/products/imac-front-image.png" alt="iMac Front Image" className="w-auto h-8 mr-3"></img>
-                      {quiz.category}
+                      {'quiz.category'}
                     </th>
                     <td className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                       <div className="flex items-center">
                         <div className="inline-block w-4 h-4 mr-2 bg-red-700 rounded-full"></div>
-                        {quiz.score}
+                        {'quiz.score'}
                       </div>
                     </td>
                     <td className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">100</td>
