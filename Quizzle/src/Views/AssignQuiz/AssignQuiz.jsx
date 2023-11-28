@@ -25,8 +25,12 @@ const AssignQuiz = () => {
       })
       .catch(e => console.error(e));
   }
+  // if (users[6]?.score) console.log(Object.values(users[6]?.score).map((quiz) => quiz.id), id)//)
+  // let isQuizResolved = false;
+  // if (users[6]?.score) isQuizResolved = Object.values(users[6]?.score).map((quiz) => quiz.id).includes(id)
 
-
+  //console.log(isQuizResolved)
+  //Object.values(users[5]?.score).map((quiz) => quiz.id).includes(id)
   return (
     <>
       {users && <section className="bg-white dark:bg-white py-3 sm:py-5">
@@ -73,6 +77,7 @@ const AssignQuiz = () => {
 
                       </td>
                       <td className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">{user.score ? totalScore(Object.values(user.score)) : 0}</td>
+
                       <td className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">???0.47</td>
                       <td className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         <div className="flex items-center">
@@ -103,7 +108,10 @@ const AssignQuiz = () => {
                         </div>
                       </td>
                       <td className="px-4 py-2 text-yellow-400">
-                        <button onClick={() => assignQuizHandler(user.username)}>Assign</button>
+                        {!user?.score ? <button onClick={() => assignQuizHandler(user.username)}>Assign</button> :
+                          Object.values(user.score).map((quiz) => quiz.id).includes(id)
+                            ? <button >Resolved</button>
+                            : <button onClick={() => assignQuizHandler(user.username)}>Assign</button>}
                       </td>
                       <td className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">{33}</td>
                     </tr>
