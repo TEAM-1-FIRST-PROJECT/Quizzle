@@ -23,9 +23,9 @@ const UserResultsTable = () => {
                     </th>
                     <th scope="col" className="px-4 py-3 bg-indigo-500 text-white">Title</th>
                     <th scope="col" className="px-4 py-3 bg-indigo-500 text-white">Category</th>
-                    <th scope="col" className="px-4 py-3 bg-indigo-500 text-white">Max points</th>
+                    <th scope="col" className="px-4 py-3 bg-indigo-500 text-white">Points</th>
                     <th scope="col" className="px-4 py-3 bg-indigo-500 text-white">Average points</th>
-                    <th scope="col" className="px-4 py-3 bg-indigo-500 text-white">Max points</th>
+                    <th scope="col" className="px-4 py-3 bg-indigo-500 text-white">Points</th>
                     <th scope="col" className="px-4 py-3 bg-indigo-500 text-white">Rating</th>
                     <th scope="col" className="px-4 py-3 bg-indigo-500 text-white">Likes</th>
                     <th scope="col" className="px-4 py-3 bg-indigo-500 text-white">Questions</th>
@@ -61,8 +61,8 @@ const UserResultsTable = () => {
                   </th>
                   <th scope="col" className="px-4 py-3 bg-indigo-500 text-white">Title</th>
                   <th scope="col" className="px-4 py-3 bg-indigo-500 text-white">Category</th>
+                  <th scope="col" className="px-4 py-3 bg-indigo-500 text-white">Points</th>
                   <th scope="col" className="px-4 py-3 bg-indigo-500 text-white">Max points</th>
-                  <th scope="col" className="px-4 py-3 bg-indigo-500 text-white">Average points</th>
                   <th scope="col" className="px-4 py-3 bg-indigo-500 text-white">Max points</th>
                   <th scope="col" className="px-4 py-3 bg-indigo-500 text-white">Rating</th>
                   <th scope="col" className="px-4 py-3 bg-indigo-500 text-white">Likes</th>
@@ -93,7 +93,7 @@ const UserResultsTable = () => {
                         {quiz.score}
                       </div>
                     </td>
-                    <td className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">1.47</td>
+                    <td className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">100</td>
                     <td className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">0.47</td>
                     <td className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                       <div className="flex items-center">
