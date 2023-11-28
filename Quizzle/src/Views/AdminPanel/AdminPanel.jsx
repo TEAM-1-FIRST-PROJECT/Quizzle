@@ -8,6 +8,27 @@ const AdminPanel = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [usersPerPage] = useState(10);
 
+  
+  // const userResults = Object.values(userData?.score);
+
+  // const score = userResults.map((quiz) => quiz?.score).reduce((a, b) => a + b, 0);
+  
+
+ 
+  // const usersData = () => {
+  //   get(ref(database, 'users'))
+  //     .then((snapshot) => {
+  //       const user = snapshot.val();
+
+  //       setUserName((Object.values(user).map(user => user.username)));
+  //       setScore((Object.values(user).map(user => Object.values(user.score).reduce((sum, quiz) => sum + quiz.score, 0))));
+
+
+  //     })
+  // }
+
+  // usersData();
+
   useEffect(() => {
     searchUser("").then(setUsers);
   }, [setUsers]);
@@ -40,6 +61,7 @@ const AdminPanel = () => {
       user.email.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+
   const indexOfLastUser = currentPage * usersPerPage;
   const indexOfFirstUser = indexOfLastUser - usersPerPage;
   const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
@@ -61,11 +83,12 @@ const AdminPanel = () => {
             <tr>
               <th className="border px-4 py-2">Username</th>
               <th className="border px-4 py-2">Email</th>
+              <th className="border px-4 py-2">Role</th>
               <th className="border px-4 py-2">Average Points</th>
               <th className="border px-4 py-2">Max Points</th>
               <th className="border px-4 py-2">Questions</th>
               <th className="border px-4 py-2">Last Update</th>
-              <th className="border px-4 py-2">Block</th>
+              <th className="border px-4 py-2">Block/Unblock</th>
             </tr>
           </thead>
           <tbody>
@@ -73,7 +96,10 @@ const AdminPanel = () => {
               <tr key={user.username}>
                 <td className="border px-4 py-2">{user.username}</td>
                 <td className="border px-4 py-2">{user.email}</td>
-                <td className="border px-4 py-2">{/* Average Points */}</td>
+                <td className="border px-4 py-2">{user.role}</td>
+               
+                <td className="border px-4 py-2">{/*SCORE */}</td>
+              
                 <td className="border px-4 py-2">{/* Max Points */}</td>
                 <td className="border px-4 py-2">{/* Questions */}</td>
                 <td className="border px-4 py-2">{/* Last Update */}</td>

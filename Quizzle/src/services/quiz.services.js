@@ -118,3 +118,20 @@ export const saveUserScore = (username, postId, score) => {
 
   return update(ref(database), updateLikes);
 };
+
+export const getAllCategories = () => {
+  return get(ref(database, 'categories'))
+    .then(snapshot => {
+      if (!snapshot.exists()) {
+        return [];
+      }
+
+      const categoriesDocument = snapshot.val();
+      return Object.keys(categoriesDocument);
+    });
+};
+
+export const getQuizzesByCategory = (category) => {
+  return getAllQuizzes()
+    .then(quizzes => quizzes.filter(quiz => quiz.category === category));
+}
