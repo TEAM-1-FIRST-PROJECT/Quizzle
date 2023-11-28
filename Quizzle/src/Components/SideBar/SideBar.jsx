@@ -9,6 +9,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../context/authContext";
 import { ROLE_CHECK } from "../../common/constants";
 import students from "../../assets/students.gif";
+import group from "../../assets/group.png";
 const Sidebar = () => {
   //add to HELPER>FUNCS
   const { user, setUser, userData } = useContext(AuthContext);
@@ -137,6 +138,23 @@ const Sidebar = () => {
                         />
                         <span className="group-hover:text-gray-700">
                           Students
+                        </span>
+                      </Link>
+                    </li>
+                  )}
+                  {userData && userData.role === ROLE_CHECK.educator && (
+                    <li className="min-w-max">
+                      <Link
+                        to="/group"
+                        className="flex items-center space-x-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-4 py-3 text-white"
+                      >
+                        <img
+                          className="h-8 w-8 mix-blend-multiply"
+                          src={group}
+                          alt="group"
+                        />
+                        <span className="group-hover:text-gray-700">
+                          Group
                         </span>
                       </Link>
                     </li>
