@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { blockUser, searchUser } from "../../../services/admin.services";
+import { ROLE_CHECK } from "../../../common/constants";
 
 const Students = () => {
   const [users, setUsers] = useState([]);
@@ -62,21 +63,16 @@ const Students = () => {
               <th className="border px-4 py-2">Username</th>
               <th className="border px-4 py-2">Email</th>
               <th className="border px-4 py-2">Average Points</th>
-              <th className="border px-4 py-2">Max Points</th>
-              <th className="border px-4 py-2">Questions</th>
-              <th className="border px-4 py-2">Last Update</th>
               <th className="border px-4 py-2">Block</th>
             </tr>
           </thead>
           <tbody>
             {filteredUsers.map((user) => (
+                user.role === ROLE_CHECK.student && (
               <tr key={user.username}>
                 <td className="border px-4 py-2">{user.username}</td>
                 <td className="border px-4 py-2">{user.email}</td>
-                <td className="border px-4 py-2">{/* Average Points */}</td>
-                <td className="border px-4 py-2">{/* Max Points */}</td>
-                <td className="border px-4 py-2">{/* Questions */}</td>
-                <td className="border px-4 py-2">{/* Last Update */}</td>
+                <td className="border px-4 py-2">{Object.keys(user.score)}</td>
                 <td className="border px-4 py-2">
                   <button
                     className={`${
@@ -90,6 +86,7 @@ const Students = () => {
                   </button>
                 </td>
               </tr>
+                  )
             ))}
           </tbody>
         </table>

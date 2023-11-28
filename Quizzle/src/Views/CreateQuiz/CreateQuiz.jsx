@@ -84,18 +84,18 @@ const CreateQuiz = () => {
   return (
     <div className="h-screen bg-hero-pattern-2 bg-cover items-center pt-16">
     <div className=" text-center pb-12 md:pb-8 mt-20">
-    <h1 className="text-5xl md:text-6xl font-extrabold leading-tighter tracking-tighter mb-4 pr-2" data-aos="zoom-y-out">
+    <h1 className="text-5xl md:text-6xl font-extrabold leading-tighter tracking-tighter mb-4 pr-2">
       Create your own <span className="bg-clip-text p-1 text-transparent bg-gradient-to-r from-blue-600 to-violet-400">Quiz</span>
     </h1>
   </div>
   <div className="max-w-3xl mx-auto">
-                    <p className="text-xl text-gray-600 mb-10 text-center" data-aos="zoom-y-out" data-aos-delay="150">
+                    <p className="text-xl text-gray-600 mb-10 text-center">
                       Our landing page template works on all devices, so you only have to set it up once, and get beautiful results forever.
                     </p>
                   </div>
     <form
       onSubmit={handleSubmit}
-      className="ml-14 mt-[2px] p-10 border-indigo-700 border-2 bg-indigo-300 opacity-90 space-y-4 rounded-lg w-3/4 ml-60"
+      className=" mt-[2px] p-10 border-indigo-700 border-2 bg-indigo-300 opacity-90 space-y-4 rounded-lg w-3/4 ml-60"
     >
       <label className="block">
         <span className="text-gray-700 text-lg font-extralight">Title:</span>
