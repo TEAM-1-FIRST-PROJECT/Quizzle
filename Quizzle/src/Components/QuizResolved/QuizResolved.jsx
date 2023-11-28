@@ -20,6 +20,6 @@ const QuizResolved = ({ score, resolvedOn }) => {
 }
 QuizResolved.propTypes = {
   score: PropTypes.number.isRequired,
-  resolvedOn: PropTypes.string.isRequired,
+  resolvedOn: PropTypes.number.isRequired,
 }
 export default QuizResolved
