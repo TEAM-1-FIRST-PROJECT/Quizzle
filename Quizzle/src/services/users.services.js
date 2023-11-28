@@ -68,3 +68,7 @@ export const updateUserScore = (username, quizId, title, score, category) => {
   
   return update(ref(database), updateUserScore);
 };
+
+export const getAllUsers =()=>{
+  return get(ref(database, 'users'))
+}
