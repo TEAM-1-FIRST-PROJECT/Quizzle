@@ -5,7 +5,7 @@ import Timer from "../../components/Timer/Timer";
 import Summary from "../../components/Summary/Summary";
 import { AuthContext } from "../../context/authContext";
 import QuizResolved from "../../components/QuizResolved/QuizResolved";
-import  dice  from "../../assets/dice.gif";
+import dice from "../../assets/dice.gif";
 
 
 const SingleQuizView = () => {
@@ -78,7 +78,7 @@ const SingleQuizView = () => {
 
   return (
     <>
-      <div className="h-screen bg-hero-pattern-2 bg-cover items-center">
+      {quiz && <div className="h-screen bg-hero-pattern-2 bg-cover items-center">
         <div className=" text-center pb-12 md:pb-8 mt-20">
           <h1 className="text-5xl md:text-6xl font-extrabold leading-tighter tracking-tighter mb-4 pr-2 pt-6" data-aos="zoom-y-out">
             <span className="bg-clip-text p-1 text-transparent bg-gradient-to-r from-blue-600 to-violet-400">{quiz?.title}</span>
@@ -90,9 +90,9 @@ const SingleQuizView = () => {
           </p>
         </div>
         <div id="quiz" className="ml-14 mt-[2px] p-10 border-indigo-700 border-2 bg-indigo-300 opacity-80 space-y-4 rounded-lg w-3/4 ml-60 h-4/">
-          <Timer onTimerFinish={handleTimerFinish}></Timer>
+          <Timer onTimerFinish={handleTimerFinish} timeLimit={quiz?.timeLimit}></Timer>
           <div id="question" className="text-center">
-          <h2 className="mx-auto mb-10 font-medium text-2xl">{questions[activeQuestionIndex]?.question}</h2>
+            <h2 className="mx-auto mb-10 font-medium text-2xl">{questions[activeQuestionIndex]?.question}</h2>
             <ul id="answers" className="grid grid-cols-1 space-y-4 mx-auto">
               {questions[activeQuestionIndex]?.answers.map((answer) => (
                 <div key={answer.text} className="mx-auto">
@@ -104,17 +104,17 @@ const SingleQuizView = () => {
               ))}
             </ul>
             <div className="flex flex-col items-end mt-80 mr-4">
-            <div className="mb-4">
-            <button onClick={handleRandomizeQuiz}>
-                <img className="h-7 w-7 mix-blend-multiply" src={dice} alt="{dice}"/>
-                <span className="group-hover:text-gray-700">Randomize quiz</span>
+              <div className="mb-4">
+                <button onClick={handleRandomizeQuiz}>
+                  <img className="h-7 w-7 mix-blend-multiply" src={dice} alt="{dice}" />
+                  <span className="group-hover:text-gray-700">Randomize quiz</span>
                 </button>
+              </div>
+              <p className="bottom-0 right-0 mt-80 mr-4 text-right ">Maximum points available - 100</p>
             </div>
-            <p className="bottom-0 right-0 mt-80 mr-4 text-right ">Maximum points available - 100</p>
-          </div>
           </div>
         </div>
-      </div>
+      </div>}
     </>
   )
 }

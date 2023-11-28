@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import { useState, useEffect } from 'react';
 
-const Timer = ({ onTimerFinish }) => {
-  const [seconds, setSeconds] = useState(30);
+const Timer = ({ onTimerFinish, timeLimit }) => {
+  const [seconds, setSeconds] = useState(timeLimit);
 
   useEffect(() => {
     if (seconds === 0) {
@@ -30,5 +30,6 @@ const Timer = ({ onTimerFinish }) => {
 };
 Timer.propTypes = {
   onTimerFinish: PropTypes.func.isRequired,
+  timeLimit: PropTypes.number.isRequired,
 };
 export default Timer;
