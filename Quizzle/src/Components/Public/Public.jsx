@@ -3,6 +3,7 @@ import SingleQuizCard from "../SingleQuizCard/SingleQuizCard";
 import PublicQuizzesTable from "../PublicQuizzesTable/PublicQuizzesTable";
 import { useEffect, useState } from "react";
 import { getAllQuizzes } from "../../services/quiz.services";
+import toast from "react-hot-toast";
 
 const Public = () => {
 
@@ -13,7 +14,7 @@ const Public = () => {
         setQuizzes(snapshot)
 
       })
-      .catch(e => console.error(e));
+      .catch(e => toast.error(e));
   }, []);
 
     return (

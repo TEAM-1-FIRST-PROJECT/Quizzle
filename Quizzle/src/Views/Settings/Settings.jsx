@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { uploadToStorage } from "../../services/uploadToStorage.services";
 import { deleteObject, ref as sRef } from "firebase/storage";
 import { imageStorageDb } from "../../config/firebase-config";
+import toast from "react-hot-toast";
 
 const Settings = () => {
 
@@ -44,7 +45,7 @@ const Settings = () => {
           console.log("Previous image deleted");
         })
         .catch((error) => {
-          console.error("Error deleting image: ", error);
+          toast.error("Error deleting image: ", error);
         });
     }
     setProfilePhoto(e.target.files[0]);

@@ -6,6 +6,7 @@ import Summary from "../../components/Summary/Summary";
 import { AuthContext } from "../../context/authContext";
 import QuizResolved from "../../components/QuizResolved/QuizResolved";
 import dice from "../../assets/dice.gif";
+import toast from "react-hot-toast";
 
 
 const SingleQuizView = () => {
@@ -27,7 +28,7 @@ const SingleQuizView = () => {
         setQuestions(fetchedQuiz.question);
       })
       .catch((error) => {
-        console.error("Error fetching quiz details:", error);
+        toast.error("Error fetching quiz details:", error);
         setQuiz(null);
       });
   }, [id]);

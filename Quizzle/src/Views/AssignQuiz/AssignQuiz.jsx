@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getAllUsers } from "../../services/users.services";
+import toast from "react-hot-toast";
 
 const AssignQuiz = () => {
 
@@ -12,7 +13,7 @@ const AssignQuiz = () => {
       .then(snapshot => {
         setUsers(Object.values(snapshot.val()))
       })
-      .catch(e => console.error(e));
+      .catch(e => toast.error(e));
   }, []);
   //console.log(users)
 

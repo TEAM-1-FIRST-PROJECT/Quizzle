@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getQuizzesByCategory } from '../../../services/quiz.services';
 import SingleCard from '../../SingleQuizCard/SingleQuizCard';
+import toast from 'react-hot-toast';
 
 const QuizListByCategory = () => {
   const { category } = useParams();
@@ -12,7 +13,7 @@ const QuizListByCategory = () => {
       .then(quizzes => {
         setQuizzes(quizzes);
       })
-      .catch(e => console.error(e));
+      .catch(e => toast.error(e));
   }, [category]);
 
   return (

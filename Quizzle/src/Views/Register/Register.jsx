@@ -130,10 +130,10 @@ const RegisterForm = () => {
               toast.success("User created successfully, redirecting...");
               navigate("/");
             })
-            .catch((e) => console.error(e.message));
+            .catch((e) => toast.error(e.message));
         }
       })
-      .catch(e => console.log(e))
+      .catch(e => toast.log(e))
   };
   return (
     <>

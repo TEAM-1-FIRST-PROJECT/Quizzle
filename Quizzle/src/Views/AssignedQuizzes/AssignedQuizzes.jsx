@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { getAllQuizzes } from "../../services/quiz.services";
 import SingleCard from "../../components/SingleQuizCard/SingleQuizCard";
+import toast from "react-hot-toast";
 
 const AssignedQuizzes = () => {
 
@@ -12,7 +13,7 @@ const AssignedQuizzes = () => {
         setQuizzes(snapshot)
 
       })
-      .catch(e => console.error(e));
+      .catch(e => toast.error(e));
   }, []);
 
   return (

@@ -5,6 +5,7 @@ import { FaUnlockAlt } from "react-icons/fa";
 import { IoMdMailUnread } from "react-icons/io";
 import { FaBarsProgress } from "react-icons/fa6";
 import { FaCircleUser } from "react-icons/fa6";
+import toast from "react-hot-toast";
 
 const Dashboard = () => {
 
@@ -15,7 +16,7 @@ const Dashboard = () => {
         setQuizzes(snapshot)
 
       })
-      .catch(e => console.error(e));
+      .catch(e => toast.error(e));
   }, []);
 
   return (

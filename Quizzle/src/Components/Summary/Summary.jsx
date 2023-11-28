@@ -3,6 +3,7 @@ import { useContext } from "react"
 import { AuthContext } from "../../context/authContext"
 import { updateUserScore } from "../../services/users.services"
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const Summary = ({ id, score, title, category }) => {
 
@@ -11,7 +12,7 @@ const Summary = ({ id, score, title, category }) => {
 
   updateUserScore(userData.username, id, title, score, category)
     .then(() => console.log('Quiz result saved successfully'))
-    .catch((e) => console.error(e));
+    .catch((e) => toast.error(e));
 
   return (
     <div className=" bg-indigo-300 flex flex-col items-center justify-center h-screen">
