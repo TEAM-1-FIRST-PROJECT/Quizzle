@@ -15,6 +15,7 @@ import Students from '../../views/EducatorPanel/Students/Students';
 import EducatorPanel from '../../views/EducatorPanel/EducatorPanel';
 import QuizManage from '../../views/EducatorPanel/QuizManage/QuizManage';
 import AssignedQuizzes from '../../views/AssignedQuizzes/AssignedQuizzes';
+import NotFound from '../NotFound/NotFound';
 
 const AppRouter = () => {
   return (
@@ -35,6 +36,7 @@ const AppRouter = () => {
       <Route path="/educator" element={<EducatorPanel />} />
       <Route path="/quiz-manage" element={<QuizManage />} />
       <Route path="/assigned-quizzes" element={<AssignedQuizzes />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   )
 }
