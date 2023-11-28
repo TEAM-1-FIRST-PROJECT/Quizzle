@@ -4,6 +4,7 @@ import { addQuiz, quizzesRef } from "../../services/quiz.services";
 import { onValue } from "firebase/database";
 import { AuthContext } from "../../context/authContext";
 import { titleCheck } from "../../common/helpers";
+import toast from "react-hot-toast";
 
 const CreateQuiz = () => {
   const [title, setTitle] = useState("");
@@ -75,7 +76,7 @@ const CreateQuiz = () => {
             alert("Successfully created quiz!");
           })
           .catch((error) => {
-            console.error("Error adding document: ", error);
+            toast.error("Error adding document: ", error);
           });
     
   };

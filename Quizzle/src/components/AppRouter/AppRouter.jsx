@@ -18,6 +18,7 @@ import AssignedQuizzes from '../../views/AssignedQuizzes/AssignedQuizzes';
 import NotFound from '../NotFound/NotFound';
 import Categories from '../Categories/Categories';
 import QuizListByCategory from '../Categories/QuizListByCategory/QuizListByCategory';
+import AssignQuiz from '../../views/AssignQuiz/AssignQuiz';
 
 const AppRouter = () => {
   return (
@@ -41,6 +42,7 @@ const AppRouter = () => {
       <Route path="*" element={<NotFound />} />
       <Route path="/categories" element={<Categories />} />
       <Route path="/categories/:category" element={<QuizListByCategory />} />
+      <Route path="/assign-quiz/:id" element={<AssignQuiz />} />
     </Routes>
   )
 }

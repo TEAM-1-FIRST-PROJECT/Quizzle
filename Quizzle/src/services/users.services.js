@@ -64,7 +64,18 @@ export const updateUserData = (username, firstName, lastName, email, address, im
 export const updateUserScore = (username, quizId, title, score, category) => {
   const updateUserScore = {};
   updateUserScore[`/users/${username}/score/${title}`] = { score, title, id: `${quizId}`, category, resolvedOn: Date.now(), };
-  updateUserScore[`/quizzes/${quizId}/scoreBoard/${username}`] = {username, score}
-  
+  updateUserScore[`/quizzes/${quizId}/scoreBoard/${username}`] = { username, score }
+
   return update(ref(database), updateUserScore);
 };
+
+export const getAllUsers = () => {
+  return get(ref(database, 'users'))
+}
+
+export const quizAssignments = (user, id) => {
+  const quizAssignment = {};
+  quizAssignment[`/users/${user}/assignments/${id}`] = true;
+
+  return update(ref(database), quizAssignment);
+}
