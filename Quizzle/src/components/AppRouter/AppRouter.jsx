@@ -36,7 +36,7 @@ const AppRouter = () => {
       <Route path="/educator" element={<EducatorPanel />} />
       <Route path="/quiz-manage" element={<QuizManage />} />
       <Route path="/assigned-quizzes" element={<AssignedQuizzes />} />
-      <Route path="/assign-quiz" element={<AssignQuiz />} />
+      <Route path="/assign-quiz/:id" element={<AssignQuiz />} />
     </Routes>
   )
 }
