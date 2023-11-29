@@ -1,13 +1,10 @@
 import {
-  equalTo,
   get,
-  orderByChild,
   push,
-  query,
   ref,
-  remove,
   set,
-  update
+  update,
+  remove
 } from "firebase/database";
 import { database } from "../config/firebase-config";
 
@@ -85,14 +82,14 @@ export const getAllQuizzes = () => {
     });
 };
 
-    export const updateQuizData = (quizId, quiz) => {
-    const pathQuestion = `quizzes/${quizId}`;
-    return update(ref(database), {
-      [pathQuestion]: quiz
-    }).catch((error) => {
-      console.error('Update failed:', error);
-    });
-  };
+export const updateQuizData = (quizId, quiz) => {
+  const pathQuestion = `quizzes/${quizId}`;
+  return update(ref(database), {
+    [pathQuestion]: quiz
+  }).catch((error) => {
+    console.error('Update failed:', error);
+  });
+};
 
 export const getQuizById = (id) => {
 
@@ -135,3 +132,20 @@ export const getQuizzesByCategory = (category) => {
   return getAllQuizzes()
     .then(quizzes => quizzes.filter(quiz => quiz.category === category));
 }
+
+export const quizAssignments = (user, id) => {
+  const quizAssignment = {};
+  quizAssignment[`/assignments/users/${user}/${id}`] = true;
+  quizAssignment[`/quizzes/${id}/assignedUsers/${user}`] = true;
+
+  return update(ref(database), quizAssignment);
+}
+
+export const removeFromAssignments = (user, id) => {
+  
+  return remove(ref(database, `/assignments/users/${user}/${id}`));
+};
+export const removeAssignmentsFromQuiz = (user, id) => {
+  
+  return remove(ref(database, `/quizzes/${id}/assignedUsers/${user}`));
+};
