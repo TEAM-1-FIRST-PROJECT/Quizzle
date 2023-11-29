@@ -2,13 +2,14 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getAllUsers } from "../../services/users.services";
 import { totalScore } from "../../common/helpers";
-import { quizAssignments } from "../../services/users.services";
+import { quizAssignments, getQuizById } from "../../services/quiz.services";
 import toast from "react-hot-toast";
 
 const AssignQuiz = () => {
 
   const { id } = useParams();
-  const [users, setUsers] = useState([])
+  const [users, setUsers] = useState([]);
+  const [assignedUsers, setAssignedUsers] = useState([]);
 
   useEffect(() => {
     getAllUsers()
@@ -18,6 +19,16 @@ const AssignQuiz = () => {
       .catch(e => toast.error(e));
   }, []);
 
+  useEffect(() => {
+    getQuizById(id)
+      .then(snapshot => {
+        snapshot.assignedUsers ?
+          setAssignedUsers(Object.keys(snapshot.assignedUsers))
+          : assignedUsers
+      })
+      .catch(e => toast.error(e));
+  }, [id, assignedUsers]);
+
   const assignQuizHandler = (user) => {
     quizAssignments(user, id)
       .then(() => {
@@ -25,12 +36,7 @@ const AssignQuiz = () => {
       })
       .catch(e => console.error(e));
   }
-  // if (users[6]?.score) console.log(Object.values(users[6]?.score).map((quiz) => quiz.id), id)//)
-  // let isQuizResolved = false;
-  // if (users[6]?.score) isQuizResolved = Object.values(users[6]?.score).map((quiz) => quiz.id).includes(id)
 
-  //console.log(isQuizResolved)
-  //Object.values(users[5]?.score).map((quiz) => quiz.id).includes(id)
   return (
     <>
       {users && <section className="bg-white dark:bg-white py-3 sm:py-5">
@@ -108,10 +114,17 @@ const AssignQuiz = () => {
                         </div>
                       </td>
                       <td className="px-4 py-2 text-yellow-400">
-                        {!user?.score ? <button onClick={() => assignQuizHandler(user.username)}>Assign</button> :
-                          Object.values(user.score).map((quiz) => quiz.id).includes(id)
-                            ? <button >Resolved</button>
-                            : <button onClick={() => assignQuizHandler(user.username)}>Assign</button>}
+                        {assignedUsers.length > 0
+                          ? assignedUsers.includes(user.username)
+                            ? <button >Assigned</button>
+                            : !user?.score ? <button onClick={() => assignQuizHandler(user.username)}>Assign</button> :
+                              Object.values(user.score).map((quiz) => quiz.id).includes(id)
+                                ? <button >Resolved</button>
+                                : <button onClick={() => assignQuizHandler(user.username)}>Assign</button>
+                          : !user?.score ? <button onClick={() => assignQuizHandler(user.username)}>Assign</button> :
+                            Object.values(user.score).map((quiz) => quiz.id).includes(id)
+                              ? <button >Resolved</button>
+                              : <button onClick={() => assignQuizHandler(user.username)}>Assign</button>}
                       </td>
                       <td className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">{33}</td>
                     </tr>
