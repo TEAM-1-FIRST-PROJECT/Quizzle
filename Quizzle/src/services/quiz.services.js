@@ -133,19 +133,23 @@ export const getQuizzesByCategory = (category) => {
     .then(quizzes => quizzes.filter(quiz => quiz.category === category));
 }
 
-export const quizAssignments = (user, id) => {
+export const quizAssignments = (user, id, openFrom, openTo) => {
   const quizAssignment = {};
-  quizAssignment[`/assignments/users/${user}/${id}`] = true;
-  quizAssignment[`/quizzes/${id}/assignedUsers/${user}`] = true;
-
+  quizAssignment[`/assignments/users/${user}/${id}`] = [openFrom, openTo];
+  quizAssignment[`/quizzes/${id}/assignedUsers/${user}`] = [openFrom, openTo];
+  quizAssignment[`/users/${user}/assignedQuizzes/${id}`] = [openFrom, openTo];
   return update(ref(database), quizAssignment);
 }
 
 export const removeFromAssignments = (user, id) => {
-  
+
   return remove(ref(database, `/assignments/users/${user}/${id}`));
 };
 export const removeAssignmentsFromQuiz = (user, id) => {
-  
+
   return remove(ref(database, `/quizzes/${id}/assignedUsers/${user}`));
+};
+export const removeAssignmentsFromUser = (user, id) => {
+
+  return remove(ref(database, `/users/${user}/assignedQuizzes/${id}`));
 };
