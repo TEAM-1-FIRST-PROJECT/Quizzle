@@ -4,6 +4,7 @@ import { AuthContext } from "../../context/authContext"
 import { updateUserScore } from "../../services/users.services"
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { removeAssignmentsFromQuiz, removeFromAssignments } from "../../services/quiz.services";
 
 const Summary = ({ id, score, title, category }) => {
 
@@ -12,6 +13,14 @@ const Summary = ({ id, score, title, category }) => {
 
   updateUserScore(userData.username, id, title, score, category)
     .then(() => console.log('Quiz result saved successfully'))
+    .catch((e) => toast.error(e));
+
+  removeFromAssignments(userData.username, id)
+    .then(() => console.log('Quiz assignment updated successfully'))
+    .catch((e) => toast.error(e));
+
+  removeAssignmentsFromQuiz(userData.username, id)
+    .then(() => console.log('Quiz assignment updated successfully'))
     .catch((e) => toast.error(e));
 
   return (
