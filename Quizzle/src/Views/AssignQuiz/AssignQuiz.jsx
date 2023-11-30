@@ -108,7 +108,7 @@ const AssignQuiz = () => {
                 </tr>
                 {users.map(user => (
 
-                  <tbody key={user.id}>
+                  <tbody key={user.uid}>
                     <tr className="border-b dark:border-indigo-600 hover:bg-indigo-100 dark:hover:bg-indigo-200">
                       <td className="w-4 px-4 py-3">
                         <div className="flex items-center">
