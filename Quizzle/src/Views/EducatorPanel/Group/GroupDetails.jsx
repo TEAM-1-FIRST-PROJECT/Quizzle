@@ -117,9 +117,9 @@ const GroupsDetails = () => {
   };
 
   return (
-    <motion.div className="flex flex-col items-center p-20 text-white bg-gradient-to-r from-blue-500 to-blue-900 min-h-screen">
+    <motion.div className="m-20 text-black h-screen bg-hero-pattern-2 bg-cover flex flex-col items-center">
       <motion.h1
-        className="mb-4 text-4xl text-center text-white font-bold mt-10"
+        className="mb-4 text-4xl text-center text-black font-bold mt-10"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.2 }}
@@ -134,7 +134,7 @@ const GroupsDetails = () => {
           animate="visible"
         >
           <motion.div
-            className="p-4 border-2 border-blue-300 rounded-md w-80 text-white bg-blue-900 shadow-2xl  transition-transform "
+            className="p-4 border-2 border-blue-300 rounded-md w-80 shadow-2xl  transition-transform "
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300 }}
             variants={childVariants}
@@ -174,9 +174,9 @@ const GroupsDetails = () => {
               {isEditingDescription ? "Save Description" : "Edit Description"}
             </motion.button>
           </motion.div>
-          <p className="text-2xl text-white font-bold">Members:</p>
+          <p className="text-2xl text-black font-bold">Members:</p>
           <motion.div
-            className="p-4 border-2 border-blue-300 rounded-md w-80 text-white bg-blue-900 shadow-2xl transform transition-transform "
+            className="p-4 border-4 border-blue-300 rounded-md w-80 text-black shadow-2xl transform transition-transform "
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300 }}
             variants={childVariants}
@@ -197,14 +197,14 @@ const GroupsDetails = () => {
                     {currentUser === groupCreator ? (
                       <button
                         onClick={() => handleRemoveMember()}
-                        className="ml-1 rounded py-1 px-1 mb-2 bg-black"
+                        className="ml-1 rounded py-1 px-1 mb-2 text-white bg-black"
                       >
                         Remove
                       </button>
                     ) : (
                       <button
                         onClick={() => handleRemoveMember()}
-                        className="ml-1 rounded py-1 px-1 mb-2 bg-black"
+                        className="ml-1 rounded py-1 px-1 mb-2 text-white bg-black"
                       >
                         Leave group
                       </button>
