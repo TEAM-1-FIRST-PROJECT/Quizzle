@@ -10,3 +10,5 @@ export const ROLE_CHECK = {
     student: 'student',
     educator: 'educator',
 };    
+
+export const dateNow = Date.now();
