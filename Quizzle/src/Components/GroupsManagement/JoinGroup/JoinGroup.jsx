@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { getGroupDetails, groupsRef, updateGroupMembers } from "../../../services/educatorGroups.services";
 import { AuthContext } from "../../../context/authContext";
 import toast from "react-hot-toast";
-import Group from "../../../assets/educators.gif";
+import joinGroup from "../../../assets/joinGroup.gif";
 
 const JoinGroup = () => {
   const [groupName, setGroupName] = useState("");
@@ -49,7 +49,7 @@ const JoinGroup = () => {
 
   return (
     <div className="">
-      <img className="h-full ml-32 w-[200px]" src={Group} alt="group" />
+      <img className="h-full ml-3 w-[370px] mix-blend-multiply" src={joinGroup} alt="group" />
 
       <h1 className="mb-4 mt-10 text-2xl text-white">Join Group</h1>
       <input

@@ -2,7 +2,7 @@ import { useState, useContext, useEffect } from "react";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../../context/authContext";
 import { createGroup } from "../../../services/educatorGroups.services";
-import Group from '../../../assets/educators.gif';
+import Group from '../../../assets/createGroup.gif';
 
 const CreateGroup = () => {
   const [groupName, setGroupName] = useState("");
@@ -42,7 +42,7 @@ const CreateGroup = () => {
 
   return (
     <div className="">
-      <img className="rounded-lg h-full w-[200px]" src={Group} alt="group" />
+      <img className="h-full w-[350px] mix-blend-multiply" src={Group} alt="group" />
       <h1 className="mb-4 text-2xl text-white">Create Group</h1>
       <input
         type="text"
