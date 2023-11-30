@@ -53,7 +53,7 @@ const GroupsDetails = () => {
         setMembers(membersArray);
       });
     };
-  }, [groupId, members]);
+  }, [groupId]);
 
   const handleRemoveMember = () => {
     getGroupDetails(groupId)
@@ -78,7 +78,7 @@ const GroupsDetails = () => {
   const handleSaveDescription = () => {
     updateGroupDescription(groupId, newDescription).then(() => {
       setIsEditingDescription(false);
-      toast("Description updated successfully");
+      toast.success("Description updated successfully");
     });
   };
 
@@ -117,9 +117,9 @@ const GroupsDetails = () => {
   };
 
   return (
-    <motion.div className="m-20 text-black h-screen bg-hero-pattern-2 bg-cover flex flex-col items-center">
+    <motion.div className="m-20 h-screen bg-hero-pattern-2 bg-cover flex flex-col items-center">
       <motion.h1
-        className="mb-4 text-4xl text-center text-black font-bold mt-10"
+        className="mb-4 text-4xl text-center font-bold mt-10"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.2 }}
@@ -134,7 +134,7 @@ const GroupsDetails = () => {
           animate="visible"
         >
           <motion.div
-            className="p-4 border-2 border-blue-300 rounded-md w-80 shadow-2xl  transition-transform "
+            className="p-4 border-4 border-blue-300 rounded-md w-80 shadow-2xl transform transition-transform "
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300 }}
             variants={childVariants}
@@ -144,7 +144,7 @@ const GroupsDetails = () => {
               <h2 className="text-2xl font-bold mb-4">{group.name}</h2>
             </p>
             <p className="text-center mb-5">
-              Formed by <p className="font-bold text-sm">{group.createdBy}</p>
+              Formed by <p className="font-bold text-lg">{group.createdBy}</p>
             </p>
 
             <p className=" text-xl mb-3 text-center">
@@ -152,7 +152,7 @@ const GroupsDetails = () => {
             </p>
             {isEditingDescription ? (
               <textarea
-                className="w-full p-2 mb-4 bg-black rounded-md shadow-inner"
+                className="w-full p-2 mb-4 rounded-md shadow-inner"
                 value={newDescription}
                 onChange={(e) => setNewDescription(e.target.value)}
               />
