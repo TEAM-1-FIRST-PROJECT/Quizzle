@@ -72,10 +72,3 @@ export const updateUserScore = (username, quizId, title, score, category) => {
 export const getAllUsers = () => {
   return get(ref(database, 'users'))
 }
-
-export const quizAssignments = (user, id) => {
-  const quizAssignment = {};
-  quizAssignment[`/users/${user}/assignments/${id}`] = true;
-
-  return update(ref(database), quizAssignment);
-}
