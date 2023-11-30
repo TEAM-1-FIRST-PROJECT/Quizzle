@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "firebase/database";
 import { quizzesRef, } from "../../services/quiz.services";
 import { onValue } from "firebase/database";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import { dateFormat } from "../../common/helpers";
 import { dateNow } from "../../common/constants";
 //import toast from "react-hot-toast";
@@ -11,8 +11,7 @@ const EducatorPanel = () => {
 
   const [quizzes, setQuizzes] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [ongoing, setOngiong] = useState(true);
-  //const [assignedUsers, setAssignedUsers]= useState(0)
+  const [finishedQuizzes, setFinishedQuizzes] = useState(true);
 
   useEffect(() => {
     onValue(quizzesRef, (snapshot) => {
@@ -28,16 +27,14 @@ const EducatorPanel = () => {
     let finalDate = Object.values(ob).map(arr => arr[1]);
     return Math.max(...finalDate);
   }
-  //quizzes[3]?.assignedUsers ? console.log(f(quizzes[3].assignedUsers)) : console.log('open')
-  // const openQuizzes = quizzes.filter(quiz => quiz.assignedUsers === undefined || f(quiz.assignedUsers) > dateNow);
-  //const openQuizzes = quizzes.filter(quiz => quiz.assignedUsers !== undefined && f(quiz.assignedUsers) < dateNow)
-  const openQuizzes = ongoing
+  
+  const openQuizzes = finishedQuizzes
     ? quizzes.filter(quiz => quiz.assignedUsers === undefined || f(quiz.assignedUsers) > dateNow)
     : quizzes.filter(quiz => quiz.assignedUsers !== undefined && f(quiz.assignedUsers) < dateNow)
-  //console.log(openQuizzes)
+  
   return (
     <div className="m-20 justify-center items-center border-4 p-10 rounded-lg bg-gradient-to-bl from-indigo-400 to-cyan-400">
-      <h1 className="mb-5 text-3xl text-white">Quiz Manage</h1>
+      <h1 className="mb-5 text-3xl text-white">Quizzes</h1>
       <input
         type="text"
         className="border p-2 rounded mb-5"
@@ -46,7 +43,7 @@ const EducatorPanel = () => {
         onChange={(e) => setSearchTerm(e.target.value)}
       />
       <button className="mt-2 px-4 py-2 text-sm font-medium text-white bg-cyan-400 rounded-md hover:bg-green-400 float-right transform transition duration-500 ease-in-out hover:scale-105"
-        onClick={() => { }}>Switch to</button>
+        onClick={() => { setFinishedQuizzes((!finishedQuizzes)) }}>{finishedQuizzes ? 'switch to finished quizzes' : 'switch to opened quizzes'}</button>
       <table className="table-auto rounded w-full text-center bg-gradient-to-r from-indigo-400 to-cyan-400 text-white">
         <thead className=" text-lg">
           <tr>
@@ -72,12 +69,12 @@ const EducatorPanel = () => {
                   onClick={() => { console.log(quiz.id) }}>Switch to</button> */}
               </td>
               <td className="border px-4 py-2">
-                <Link
+                {/* <Link
                   to={`/assign-quiz/${quiz?.id}`}
                   className=" px-4 py-1 border border-indigo-500 rounded-lg text-center font-medium hover:bg-indigo-500 hover:text-white dark:hover:bg-dark-1 dark:hover:text-white-300"
                 >
                   Choose a students
-                </Link>
+                </Link> */}
               </td>
             </tr>
           ))}

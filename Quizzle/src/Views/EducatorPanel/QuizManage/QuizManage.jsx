@@ -4,7 +4,6 @@ import { quizzesRef, updateQuizData } from "../../../services/quiz.services";
 import { onValue } from "firebase/database";
 import { deleteQuiz } from "../../../services/admin.services";
 import toast from "react-hot-toast";
-
 import { AuthContext } from "../../../context/authContext";
 
 const QuizManage = () => {
@@ -16,7 +15,7 @@ const QuizManage = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const {userData} = useContext(AuthContext);
-const username = userData.username;
+const username = userData?.username;
   useEffect(() => {
     onValue(quizzesRef, (snapshot) => {
       const data = snapshot.val();
@@ -71,7 +70,7 @@ const username = userData.username;
             <th className="border px-4 py-2">Create By</th>
             <th className="border px-4 py-2">Quiz Title</th>
             <th className="border px-4 py-2">Created On</th>
-            <th className="border px-4 py-2">Edit</th>
+            <th className="border px-4 py-2">Edit Quiz</th>
             <th className="border px-4 py-2">Delete</th>
           </tr>
         </thead>
@@ -89,7 +88,7 @@ const username = userData.username;
                   onClick={() => handleEditQuiz(quiz)}
                   className="ml-2 px-2 py-1 bg-blue-500 text-white rounded"
                 >
-                  Edit
+                  Edit Quiz
                 </button>
               </td>
               <td className="border px-4 py-2">
@@ -146,4 +145,3 @@ const username = userData.username;
 };
 
 export default QuizManage;
-

@@ -21,9 +21,6 @@ const Sidebar = () => {
       });
     });
   };
-  const permission =
-    userData?.role === ROLE_CHECK.educator ||
-    userData?.role === ROLE_CHECK.admin;
 
   return (
     <>
@@ -67,37 +64,6 @@ const Sidebar = () => {
                       </Link>
                     </li>
                   )}
-                  {userData && userData.role === ROLE_CHECK.educator && (
-                    <li className="min-w-max">
-                      <Link
-                        to="/educator"
-                        aria-label="educator dashboard"
-                        className="flex items-center space-x-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-4 py-3 text-white"
-                      >
-                        <svg
-                          className="-ml-1 h-6 w-6"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                        >
-                          <path
-                            d="M6 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8ZM6 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-1Z"
-                            className="fill-current"
-                          ></path>
-                          <path
-                            d="M13 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2V8Z"
-                            className="fill-current"
-                          ></path>
-                          <path
-                            d="M13 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-1Z"
-                            className="fill-current"
-                          ></path>
-                        </svg>
-                        <span className="-mr-1 font-medium font-montserrat">
-                          Educator Dashboard
-                        </span>
-                      </Link>
-                    </li>
-                  )}
                   <li className="min-w-max">
                     <Link
                       to="/categories"
@@ -125,40 +91,6 @@ const Sidebar = () => {
                       </span>
                     </Link>
                   </li>
-                  {userData && userData.role === ROLE_CHECK.educator && (
-                    <li className="min-w-max">
-                      <Link
-                        to="/students"
-                        className="flex items-center space-x-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-4 py-3 text-white"
-                      >
-                        <img
-                          className="h-8 w-8 mix-blend-multiply"
-                          src={students}
-                          alt="students"
-                        />
-                        <span className="group-hover:text-gray-700">
-                          Students
-                        </span>
-                      </Link>
-                    </li>
-                  )}
-                  {userData && userData.role === ROLE_CHECK.educator && (
-                    <li className="min-w-max">
-                      <Link
-                        to="/group"
-                        className="flex items-center space-x-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-4 py-3 text-white"
-                      >
-                        <img
-                          className="h-8 w-8 mix-blend-multiply"
-                          src={group}
-                          alt="group"
-                        />
-                        <span className="group-hover:text-gray-700">
-                          Group
-                        </span>
-                      </Link>
-                    </li>
-                  )}
                   {userData && userData.role === ROLE_CHECK.admin && (
                     <li className="min-w-max">
                       <Link
@@ -180,6 +112,65 @@ const Sidebar = () => {
                     <>
                       <li className="min-w-max">
                         <Link
+                          to="/educator"
+                          aria-label="educator dashboard"
+                          className="flex items-center space-x-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-4 py-3 text-white"
+                        >
+                          <svg
+                            className="-ml-1 h-6 w-6"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                          >
+                            <path
+                              d="M6 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8ZM6 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-1Z"
+                              className="fill-current"
+                            ></path>
+                            <path
+                              d="M13 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2V8Z"
+                              className="fill-current"
+                            ></path>
+                            <path
+                              d="M13 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-1Z"
+                              className="fill-current"
+                            ></path>
+                          </svg>
+                          <span className="-mr-1 font-medium font-montserrat">
+                            Educator Dashboard
+                          </span>
+                        </Link>
+                      </li>
+                      <li className="min-w-max">
+                        <Link
+                          to="/students"
+                          className="flex items-center space-x-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-4 py-3 text-white"
+                        >
+                          <img
+                            className="h-8 w-8 mix-blend-multiply"
+                            src={students}
+                            alt="students"
+                          />
+                          <span className="group-hover:text-gray-700">
+                            Students
+                          </span>
+                        </Link>
+                      </li>
+                      <li className="min-w-max">
+                        <Link
+                          to="/groups"
+                          className="flex items-center space-x-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-4 py-3 text-white"
+                        >
+                          <img
+                            className="h-8 w-8 mix-blend-multiply"
+                            src={group}
+                            alt="group"
+                          />
+                          <span className="group-hover:text-gray-700">
+                            Create or join Group
+                          </span>
+                        </Link>
+                      </li>
+                      <li className="min-w-max">
+                        <Link
                           nk
                           to="/create"
                           className="flex items-center space-x-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-4 py-3 text-white"
@@ -191,6 +182,21 @@ const Sidebar = () => {
                           />
                           <span className="group-hover:text-gray-700">
                             Create Quiz
+                          </span>
+                        </Link>
+                      </li>
+                      <li className="min-w-max">
+                        <Link
+                          to="/groups-list"
+                          className="flex items-center space-x-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-4 py-3 text-white"
+                        >
+                          <img
+                            className="h-8 w-8 mix-blend-multiply"
+                            src=""
+                            alt="group"
+                          />
+                          <span className="group-hover:text-gray-700">
+                            Groups List
                           </span>
                         </Link>
                       </li>
