@@ -27,7 +27,6 @@ const CreateQuiz = () => {
       snapshot.forEach((doc) => {
         const data = doc.val();
         if (!categories.includes(data.category)) {
-          console.log(data);
           categories.push(data.category);
         }
       });
