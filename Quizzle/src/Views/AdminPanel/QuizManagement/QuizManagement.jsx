@@ -21,6 +21,7 @@ const QuizManagement = () => {
           quiz.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
           quiz.createdBy.toLowerCase().includes(searchTerm.toLowerCase())
       );
+
       setQuizzes(filteredQuizzes);
     });
   }, [searchTerm]);
@@ -56,8 +57,8 @@ const QuizManagement = () => {
       <h1 className="mb-2">Quiz Management</h1>
       <input
         type="text"
-        className="border p-2 rounded mb-2"
-        placeholder="Search for user..."
+        className="border p-2 rounded mb-2 w-1/4"
+        placeholder="Search by title or creator..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
@@ -74,6 +75,7 @@ const QuizManagement = () => {
         </thead>
         <tbody>
           {quizzes.map((quiz) => (
+            
             <tr key={quiz.id}>
               <td className="border px-4 py-2">{quiz.createdBy}</td>
               <td className="border px-4 py-2">{quiz.title}</td>
