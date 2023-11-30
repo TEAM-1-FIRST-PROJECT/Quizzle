@@ -72,7 +72,7 @@ const Students = () => {
               <tr key={user.username}>
                 <td className="border px-4 py-2">{user.username}</td>
                 <td className="border px-4 py-2">{user.email}</td>
-                <td className="border px-4 py-2">{Object.keys(user.score)}</td>
+                <td className="border px-4 py-2">{}</td>
                 <td className="border px-4 py-2">
                   <button
                     className={`${
