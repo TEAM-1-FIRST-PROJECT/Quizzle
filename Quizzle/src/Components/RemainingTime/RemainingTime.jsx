@@ -2,6 +2,9 @@ import PropTypes from "prop-types";
 import { useState, useEffect } from 'react';
 import { updateUserScore } from "../../services/users.services";
 import toast from "react-hot-toast";
+import { removeFromAssignments,
+ removeAssignmentsFromQuiz,
+removeAssignmentsFromUser} from "../../services/quiz.services";
 
 const RemainingTime = ({ timeLimit, username, id, title, score, category }) => {
   const [seconds, setSeconds] = useState(timeLimit);
@@ -10,6 +13,18 @@ const RemainingTime = ({ timeLimit, username, id, title, score, category }) => {
     if (seconds === 0) {
       updateUserScore(username, id, title, score, category)
         .then(() => console.log('Quiz result saved successfully'))
+        .catch((e) => toast.error(e));
+
+        removeFromAssignments(username, id)
+        .then(() => console.log('Quiz assignment updated successfully'))
+        .catch((e) => toast.error(e));
+    
+      removeAssignmentsFromQuiz(username, id)
+        .then(() => console.log('Quiz assignment updated successfully'))
+        .catch((e) => toast.error(e));
+    
+      removeAssignmentsFromUser(username, id)
+        .then(() => console.log('Quiz assignment updated successfully'))
         .catch((e) => toast.error(e));
       return;
     }
