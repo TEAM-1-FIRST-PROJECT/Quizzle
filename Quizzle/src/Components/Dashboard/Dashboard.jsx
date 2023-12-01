@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import SingleQuizCard from "../SingleQuizCard/SingleQuizCard";
 import { getAllQuizzes } from "../../services/quiz.services";
 import { FaUnlockAlt } from "react-icons/fa";
@@ -6,22 +6,27 @@ import { IoMdMailUnread } from "react-icons/io";
 import { FaBarsProgress } from "react-icons/fa6";
 import { FaCircleUser } from "react-icons/fa6";
 import toast from "react-hot-toast";
+import { AuthContext } from "../../context/authContext";
 
 const Dashboard = () => {
 
-  const [quizzes, setQuizzes] = useState([{}])
+  const [quizzes, setQuizzes] = useState([{}]);
+  const { userData } = useContext(AuthContext);
   useEffect(() => {
     getAllQuizzes()
       .then(snapshot => {
         setQuizzes(snapshot)
-
       })
       .catch(e => toast.error(e));
   }, []);
 
+  const filteredQuizzes = (quizzes && userData) ? quizzes.filter(quiz => (!quiz.assignedUsers === false && Object.keys(quiz.assignedUsers).includes(userData?.username))
+    || (!quiz.scoreBoard === false) && Object.keys(quiz?.scoreBoard).includes(userData?.username))
+    : [];
+
   return (
     <>
-      {quizzes && <div className="h-screen bg-hero-pattern-2 bg-cover flex flex-col items-center">
+      {filteredQuizzes && <div className="h-screen bg-hero-pattern-2 bg-cover flex flex-col items-center">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 mt-20 rounded-lg">
           <div className="pt-32 md:pt-10 ">
             <div className=" text-center pb-12 md:pb-16">
