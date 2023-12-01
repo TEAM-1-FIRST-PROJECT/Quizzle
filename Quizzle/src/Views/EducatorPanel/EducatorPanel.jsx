@@ -68,7 +68,8 @@ const EducatorPanel = () => {
                 {/* <button className="mt-2 px-4 py-2 text-sm font-medium text-white bg-cyan-400 rounded-md hover:bg-green-400 float-right transform transition duration-500 ease-in-out hover:scale-105"
                   onClick={() => { console.log(quiz.id) }}>Switch to</button> */}
               </td>
-              <td className="border px-4 py-2">
+              <td className="border px-4 py-2">{quiz.id}
+              <a href={`/assign-quiz/${quiz?.id}`} onClick={()=>{history.push(`/assign-quiz/${quiz?.id}`)}}>Click</a>
                 {/* <Link
                   to={`/assign-quiz/${quiz?.id}`}
                   className=" px-4 py-1 border border-indigo-500 rounded-lg text-center font-medium hover:bg-indigo-500 hover:text-white dark:hover:bg-dark-1 dark:hover:text-white-300"
