@@ -20,13 +20,16 @@ const Dashboard = () => {
       .catch(e => toast.error(e));
   }, []);
 
-  const filteredQuizzes = (quizzes && userData) ? quizzes.filter(quiz => (!quiz.assignedUsers === false && Object.keys(quiz.assignedUsers).includes(userData?.username))
-    || (!quiz.scoreBoard === false) && Object.keys(quiz?.scoreBoard).includes(userData?.username))
-    : [];
-
+  if (userData?.username === 'student') {
+    const filteredQuizzes = (quizzes && userData) ? quizzes.filter(quiz => (!quiz.assignedUsers === false && Object.keys(quiz.assignedUsers).includes(userData?.username))
+      || (!quiz.scoreBoard === false) && Object.keys(quiz?.scoreBoard).includes(userData?.username))
+      : [];
+    setQuizzes(filteredQuizzes)
+    console.log(filteredQuizzes)
+  }
   return (
     <>
-      {filteredQuizzes && <div className="h-screen bg-hero-pattern-2 bg-cover flex flex-col items-center">
+      {quizzes && <div className="h-screen bg-hero-pattern-2 bg-cover flex flex-col items-center">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 mt-20 rounded-lg">
           <div className="pt-32 md:pt-10 ">
             <div className=" text-center pb-12 md:pb-16">
