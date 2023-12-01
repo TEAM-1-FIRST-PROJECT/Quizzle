@@ -27,11 +27,11 @@ const EducatorPanel = () => {
     let finalDate = Object.values(ob).map(arr => arr[1]);
     return Math.max(...finalDate);
   }
-  
+
   const openQuizzes = finishedQuizzes
     ? quizzes.filter(quiz => quiz.assignedUsers === undefined || f(quiz.assignedUsers) > dateNow)
     : quizzes.filter(quiz => quiz.assignedUsers !== undefined && f(quiz.assignedUsers) < dateNow)
-  
+
   return (
     <div className="m-20 justify-center items-center border-4 p-10 rounded-lg bg-gradient-to-bl from-indigo-400 to-cyan-400">
       <h1 className="mb-5 text-3xl text-white">Quizzes</h1>
@@ -65,23 +65,16 @@ const EducatorPanel = () => {
               </td>
               <td className="border px-4 py-2">
                 {quiz.assignedUsers ? Object.keys(quiz.assignedUsers).length : 0}
-                {/* <button className="mt-2 px-4 py-2 text-sm font-medium text-white bg-cyan-400 rounded-md hover:bg-green-400 float-right transform transition duration-500 ease-in-out hover:scale-105"
-                  onClick={() => { console.log(quiz.id) }}>Switch to</button> */}
               </td>
-              <td className="border px-4 py-2">{quiz.id}
-              <a href={`/assign-quiz/${quiz?.id}`} onClick={()=>{history.push(`/assign-quiz/${quiz?.id}`)}}>Click</a>
-                {/* <Link
-                  to={`/assign-quiz/${quiz?.id}`}
+              <td className="border px-4 py-2">
+                <a href={`/assign-quiz/${quiz?.id}`}
                   className=" px-4 py-1 border border-indigo-500 rounded-lg text-center font-medium hover:bg-indigo-500 hover:text-white dark:hover:bg-dark-1 dark:hover:text-white-300"
-                >
-                  Choose a students
-                </Link> */}
+                  onClick={() => { history.push(`/assign-quiz/${quiz?.id}`) }}>Assign</a>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-
     </div>
   );
 };
