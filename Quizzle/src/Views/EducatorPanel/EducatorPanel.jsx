@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import "firebase/database";
 import { quizzesRef, } from "../../services/quiz.services";
 import { onValue } from "firebase/database";
-//import { Link } from "react-router-dom";
 import { dateFormat } from "../../common/helpers";
 import { dateNow } from "../../common/constants";
 //import toast from "react-hot-toast";
@@ -23,14 +22,15 @@ const EducatorPanel = () => {
       setQuizzes(filteredQuizzes);
     });
   }, [searchTerm]);
-  const f = (ob) => {
-    let finalDate = Object.values(ob).map(arr => arr[1]);
+
+  const finalDate = (ob) => {
+    const finalDate = Object.values(ob).map(arr => arr[1]);
     return Math.max(...finalDate);
   }
 
   const openQuizzes = finishedQuizzes
-    ? quizzes.filter(quiz => quiz.assignedUsers === undefined || f(quiz.assignedUsers) > dateNow)
-    : quizzes.filter(quiz => quiz.assignedUsers !== undefined && f(quiz.assignedUsers) < dateNow)
+    ? quizzes.filter(quiz => quiz.assignedUsers === undefined || finalDate(quiz.assignedUsers) > dateNow)
+    : quizzes.filter(quiz => quiz.scoreBoard !== undefined)
 
   return (
     <div className="m-20 justify-center items-center border-4 p-10 rounded-lg bg-gradient-to-bl from-indigo-400 to-cyan-400">
@@ -64,7 +64,9 @@ const EducatorPanel = () => {
                 {dateFormat(quiz.createdOn)}
               </td>
               <td className="border px-4 py-2">
-                {quiz.assignedUsers ? Object.keys(quiz.assignedUsers).length : 0}
+                {openQuizzes
+                  ? (quiz.assignedUsers ? Object.keys(quiz.assignedUsers).length : 0)
+                  : (quiz.scoreBoard ? Object.keys(quiz.scoreBoard).length : 0)}
               </td>
               <td className="border px-4 py-2">
                 <a href={`/assign-quiz/${quiz?.id}`}
