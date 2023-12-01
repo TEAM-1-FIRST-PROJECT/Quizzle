@@ -81,7 +81,7 @@ const CreateQuiz = () => {
   };
 
   return (
-    <div className="h-screen bg-hero-pattern-2 bg-cover items-center pt-16">
+    <div className="min-h-screen bg-hero-pattern-2 bg-cover items-center pt-16">
     <div className=" text-center pb-12 md:pb-8 mt-20">
     <h1 className="text-5xl md:text-6xl font-extrabold leading-tighter tracking-tighter mb-4 pr-2">
       Create your own <span className="bg-clip-text p-1 text-transparent bg-gradient-to-r from-blue-600 to-violet-400">Quiz</span>
@@ -94,7 +94,7 @@ const CreateQuiz = () => {
                   </div>
     <form
       onSubmit={handleSubmit}
-      className=" mt-[2px] p-10 border-indigo-700 border-2 bg-indigo-300 opacity-90 space-y-4 rounded-lg w-3/4 ml-60"
+      className=" mt-[2px] p-10 mb-32 border-indigo-700 border-2 bg-indigo-300 opacity-90 space-y-4 rounded-lg w-3/4 ml-60"
     >
       <label className="block">
         <span className="text-gray-700 text-lg font-extralight">Title:</span>
