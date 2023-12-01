@@ -17,15 +17,15 @@ const GroupsManagement = () => {
 
   return (
     <div className="h-screen bg-hero-pattern-2 bg-cover flex flex-col items-center">
-    <div className="flex flex-wrap justify-between p-20 m-14 opacity-80">
-      <div className="w-1/3 m-4 hero-pattern-2 bg-gradient-to-l from-indigo-400 to-cyan-400 shadow-md rounded-lg p-10 text-black">
-        <CreateGroup />
-      </div>
-      <p className="text-black font-extrabold text-2xl">
+      <p className="text-black font-extrabold text-2xl mt-24">
         {text.slice(0, index).split('').map((char, i) => (
           <span key={i} className="animate-gradient">{char}</span>
         ))}
       </p>
+    <div className="flex flex-wrap justify-between p-20 m-14 opacity-80">
+      <div className="w-1/3 m-4 hero-pattern-2 bg-gradient-to-l from-indigo-400 to-cyan-400 shadow-md rounded-lg p-10 text-black">
+        <CreateGroup />
+      </div>
       <div className="w-1/3 m-4 bg-gradient-to-r from-indigo-400 to-cyan-400 shadow-md rounded-lg p-10 text-black">
         <JoinGroup />
       </div>
