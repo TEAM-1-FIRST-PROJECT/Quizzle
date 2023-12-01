@@ -11,10 +11,10 @@ const SingleCard = ({ image, quiz }) => {
   const { userData } = useContext(AuthContext);
   const isEducator = userData?.role === ROLE_CHECK.educator;
 
-  const timer = userData?.assignedQuizzes ? userData.assignedQuizzes[quiz?.id] : false;
-  const showTimer= Object.keys(userData?.assignedQuizzes).includes(quiz?.id)
-  console.log(timer)
-  console.log(quiz?.id)
+  const timer = userData?.assignedQuizzes ? userData.assignedQuizzes : false;
+  const showTimer = userData?.assignedQuizzes ? Object.keys(userData?.assignedQuizzes).includes(quiz?.id) : false;
+  // console.log(timer)
+  // console.log(quiz?.id)
   return (
     <>
       {quiz && <div className="mb-10 overflow-hidden rounded-lg bg-white shadow-1 duration-300 hover:shadow-3 dark:bg-dark-2 dark:shadow-card dark:hover:shadow-3">
