@@ -20,11 +20,9 @@ const SeeSummary = () => {
       });
   }, [id]);
 
-  console.log(quiz?.question)
-  //console.log(userData?.score[quiz?.title].userAnswers[0].text)
   return (
     <>
-      {quiz && <div className=" flex flex-col items-center justify-center h-screen">
+      {quiz && <div className="h-screen bg-hero-pattern-2 bg-cover flex items-center justify-center">
         <button className="max-w-40rem mx-auto my-8 p-8 pt-10 bg-indigo-100 text-gray-800 rounded-lg shadow-md animate-slide-in-from-bottom">
           <p className="text-lg">{quiz?.title}</p>
           <p className="text-lg">{quiz.category}</p>
