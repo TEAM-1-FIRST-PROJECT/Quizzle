@@ -4,6 +4,7 @@ import { quizzesRef, } from "../../services/quiz.services";
 import { onValue } from "firebase/database";
 import { dateFormat } from "../../common/helpers";
 import { dateNow } from "../../common/constants";
+import { Link } from "react-router-dom";
 //import toast from "react-hot-toast";
 
 const EducatorPanel = () => {
@@ -50,7 +51,9 @@ const EducatorPanel = () => {
             <th className="border px-4 py-2">Create By</th>
             <th className="border px-4 py-2">Quiz Title</th>
             <th className="border px-4 py-2">Created On</th>
-            <th className="border px-4 py-2">Assigned students </th>
+            {finishedQuizzes
+            ?<th className="border px-4 py-2">Assigned students </th>
+            :<th className="border px-4 py-2">Students result</th>}
             <th className="border px-4 py-2">Assign</th>
           </tr>
         </thead>
@@ -59,14 +62,15 @@ const EducatorPanel = () => {
             <tr key={quiz.id}>
 
               <td className="border px-4 py-2">{quiz.createdBy}</td>
-              <td className="border px-4 py-2">{quiz.title}</td>
+              <td className="border px-4 py-2">{quiz.title }</td>
               <td className="border px-4 py-2">
                 {dateFormat(quiz.createdOn)}
               </td>
               <td className="border px-4 py-2">
+                <Link to={`/quiz-scoreboard/${quiz?.id}`}>
                 {openQuizzes
                   ? (quiz.assignedUsers ? Object.keys(quiz.assignedUsers).length : 0)
-                  : (quiz.scoreBoard ? Object.keys(quiz.scoreBoard).length : 0)}
+                  : (quiz.scoreBoard ? Object.keys(quiz.scoreBoard).length : 0)}</Link>
               </td>
               <td className="border px-4 py-2">
                 <a href={`/assign-quiz/${quiz?.id}`}
