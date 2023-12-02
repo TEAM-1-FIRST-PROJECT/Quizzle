@@ -1,11 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import "firebase/database";
 import { quizzesRef, updateQuizData } from "../../../services/quiz.services";
 import { onValue } from "firebase/database";
 import { deleteQuiz } from "../../../services/admin.services";
 import toast from "react-hot-toast";
+import { AuthContext } from "../../../context/authContext";
 
-const QuizManagement = () => {
+const QuizManage = () => {
   const [quizzes, setQuizzes] = useState([]);
   const [selectedQuiz, setSelectedQuiz] = useState(null);
   const [selectedQuestion, setSelectedQuestion] = useState(null);
@@ -13,6 +14,8 @@ const QuizManagement = () => {
   const [editedAnswers, setEditedAnswers] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
+  const {userData} = useContext(AuthContext);
+const username = userData?.username;
   useEffect(() => {
     onValue(quizzesRef, (snapshot) => {
       const data = snapshot.val();
@@ -21,7 +24,6 @@ const QuizManagement = () => {
           quiz.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
           quiz.createdBy.toLowerCase().includes(searchTerm.toLowerCase())
       );
-
       setQuizzes(filteredQuizzes);
     });
   }, [searchTerm]);
@@ -53,12 +55,13 @@ const QuizManagement = () => {
   };
 
   return (
-    <div className="m-20 border p-10 rounded-lg">
-      <h1 className="mb-2">Quiz Management</h1>
+    <div className="bg-black min-h-screen p-5">
+    <div className=" pt-16 pb-24 ml-[320px] mr-[34px] mb-[80px] mt-[110px] justify-center items-center border-4 p-10 rounded-lg bg-gradient-to-bl from-indigo-400 to-cyan-400">
+      <h1 className="mb-5 text-3xl text-white">Quiz Manage</h1>
       <input
         type="text"
-        className="border p-2 rounded mb-2 w-1/4"
-        placeholder="Search by title or creator..."
+        className="border p-2 rounded mb-5"
+        placeholder="Search for quiz ..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
@@ -67,19 +70,17 @@ const QuizManagement = () => {
           <tr>
             <th className="border px-4 py-2">Create By</th>
             <th className="border px-4 py-2">Quiz Title</th>
-            <th className="border px-4 py-2">Questions</th>
             <th className="border px-4 py-2">Created On</th>
-            <th className="border px-4 py-2">Edit</th>
+            <th className="border px-4 py-2">Edit Quiz</th>
             <th className="border px-4 py-2">Delete</th>
           </tr>
         </thead>
         <tbody>
           {quizzes.map((quiz) => (
-            
+            quiz.createdBy === username && (
             <tr key={quiz.id}>
               <td className="border px-4 py-2">{quiz.createdBy}</td>
               <td className="border px-4 py-2">{quiz.title}</td>
-              <td className="border px-4 py-2">{quiz.question.length}</td>
               <td className="border px-4 py-2">
                 {new Date(quiz.createdOn).toLocaleString()}
               </td>
@@ -88,7 +89,7 @@ const QuizManagement = () => {
                   onClick={() => handleEditQuiz(quiz)}
                   className="ml-2 px-2 py-1 bg-blue-500 text-white rounded"
                 >
-                  Edit
+                  Edit Quiz
                 </button>
               </td>
               <td className="border px-4 py-2">
@@ -99,23 +100,21 @@ const QuizManagement = () => {
                   Delete
                 </button>
               </td>
-            </tr>
+              </tr>
+              )
           ))}
         </tbody>
       </table>
       {selectedQuiz && selectedQuiz.question && (
-        <div className="border-2 rounded mt-5 p-5 bg-white shadow-md table-auto w-full bg-gradient-to-r from-indigo-400 to-cyan-400 text-black">
-          <h1 className="text-lg my-3 font-bold text-gray-700">Edit Quiz</h1>
-          <h2 className="my-2 text-lg font-bold rounded p-2 border-2 bg-gray-100">
-            {editedTitle}
-          </h2>
-          <h3 className="my-2 text-lg font-bold rounded p-2 border-2 bg-gray-100">
-            Questions
-          </h3>
+        <div className="border-2 rounded mt-5 p-5 bg-white shadow-md table-auto w-full bg-gradient-to-r from-indigo-400 to-cyan-400 text-white">
+          <h1 className=" text-3xl mb-6 font-bold text-white">Edit Quiz</h1>
+          <h1 className="font-bold text-2xl"> Title: {editedTitle}</h1>
+         
           {selectedQuiz.question.map((question, questionIndex) => (
             <div key={questionIndex} className="my-2">
-              <span className="font-bold text-gray-700">
-                {question.question}
+              
+              <span className="font-bold text-xl">
+               Question: {question.question}
               </span>
 
               <div className="text-black">
@@ -142,9 +141,9 @@ const QuizManagement = () => {
           </button>
         </div>
       )}
-    </div>
+      </div>
+      </div>
   );
 };
 
-export default QuizManagement;
-
+export default QuizManage;

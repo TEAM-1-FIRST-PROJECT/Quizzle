@@ -26,7 +26,7 @@ const Sidebar = () => {
     <>
       {user && (
         <div className="fixed z-10 top-14">
-          <div className="border-r-2 border-spacing-x-2.5 w-[3.35rem] bg overflow-hidden hover:w-56 hover:bg-white bg-gradient-to-br from-violet-400 to-indigo-400 overflow-y-auto transition-all duration-1000 ease-in-out">
+          <div className="border-r-2 border-spacing-x-3 bg-gradient-to-br from-violet-400 to-indigo-400 overflow-y-auto transition-all duration-1000 ease-in-out">
             <div className="flex flex-1 h-screen flex-col justify-between pt-2 pb-6">
               <div>
                 <div className="w-max p-2.5">
@@ -165,7 +165,7 @@ const Sidebar = () => {
                             alt="group"
                           />
                           <span className="group-hover:text-gray-700">
-                            Create or join Group
+                          Form a group
                           </span>
                         </Link>
                       </li>

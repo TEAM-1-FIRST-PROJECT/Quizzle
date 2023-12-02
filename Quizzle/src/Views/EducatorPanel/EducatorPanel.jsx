@@ -33,8 +33,9 @@ const EducatorPanel = () => {
     ? quizzes.filter(quiz => quiz.assignedUsers === undefined || finalDate(quiz.assignedUsers) > dateNow)
     : quizzes.filter(quiz => quiz.scoreBoard !== undefined)
 
-  return (
-    <div className="m-20 justify-center items-center border-4 p-10 rounded-lg bg-gradient-to-bl from-indigo-400 to-cyan-400">
+    return (
+    <div className="bg-black min-h-screen p-5">
+    <div className="mt-[180px] ml-[330px] mr-[50px] justify-center items-center border-4 p-10 rounded-lg bg-gradient-to-bl from-indigo-400 to-cyan-400">
       <h1 className="mb-5 text-3xl text-white">Quizzes</h1>
       <input
         type="text"
@@ -81,7 +82,8 @@ const EducatorPanel = () => {
           ))}
         </tbody>
       </table>
-    </div>
+            </div>
+            </div>
   );
 };
 

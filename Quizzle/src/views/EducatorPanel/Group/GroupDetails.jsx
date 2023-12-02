@@ -1,26 +1,21 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import { getUserByHandle } from "../../../services/users.services";
 import {
   getGroupDetails,
-  removeEducator,
   updateGroupDescription,
 } from "../../../services/educatorGroups.services";
-import { AuthContext } from "../../../context/authContext";
 import { motion } from "framer-motion";
 
 const GroupsDetails = () => {
   const { groupId } = useParams();
-  const { userData } = useContext(AuthContext);
   const [group, setGroup] = useState(null);
   const [members, setMembers] = useState([]);
   const [isEditingDescription, setIsEditingDescription] = useState(false);
   const [newDescription, setNewDescription] = useState("");
   const [groupCreator, setGroupCreator] = useState("");
-
-  const currentUser = userData?.username;
 
   useEffect(() => {
     getGroupDetails(groupId)
@@ -54,22 +49,6 @@ const GroupsDetails = () => {
       });
     };
   }, [groupId]);
-
-  const handleRemoveMember = () => {
-    getGroupDetails(groupId)
-      .then((snapshot) => {
-        const group = snapshot.val();
-        const members = Object.keys(group.members).map((memberId) => {
-          return memberId;
-        });
-        return members;
-      })
-      .then((result) => {
-        console.log(result.toString());
-        toast.success("Member removed successfully");
-        // removeEducator(groupId, memberId)
-      });
-  };
 
   const handleEditDescription = () => {
     setIsEditingDescription(true);
@@ -117,9 +96,9 @@ const GroupsDetails = () => {
   };
 
   return (
-    <motion.div className="m-20 h-screen bg-hero-pattern-2 bg-cover flex flex-col items-center">
+    <motion.div className="mt-[70px] p-10 ml-[240px] bg-black min-h-screen items-center">
       <motion.h1
-        className="mb-4 text-4xl text-center font-bold mt-10"
+        className="mb-4 text-4xl text-center font-bold mt-10 text-white"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.2 }}
@@ -139,25 +118,25 @@ const GroupsDetails = () => {
             transition={{ type: "spring", stiffness: 300 }}
             variants={childVariants}
           >
-            <p className="">
+            <p className="text-white">
               Group name{" "}
               <h2 className="text-2xl font-bold mb-4">{group.name}</h2>
             </p>
-            <p className="text-center mb-5">
-              Formed by <p className="font-bold text-lg">{group.createdBy}</p>
+            <p className="text-center mb-5 text-white">
+              Formed by <p className="font-bold text-lg text-white">{group.createdBy}</p>
             </p>
 
-            <p className=" text-xl mb-3 text-center">
+            <p className=" text-xl mb-3 text-center text-white">
               Created on: {new Date(group.createdOn).toLocaleDateString()}
             </p>
             {isEditingDescription ? (
               <textarea
-                className="w-full p-2 mb-4 rounded-md shadow-inner"
+                className="w-full p-2 mb-4 rounded-md shadow-inner text-white"
                 value={newDescription}
                 onChange={(e) => setNewDescription(e.target.value)}
               />
             ) : (
-              <p className="mb-4 text-xl text-center">
+              <p className="mb-4 text-xl text-center text-white">
                 Description <p>{group.description}</p>
               </p>
             )}
@@ -174,9 +153,9 @@ const GroupsDetails = () => {
               {isEditingDescription ? "Save Description" : "Edit Description"}
             </motion.button>
           </motion.div>
-          <p className="text-2xl text-black font-bold">Members:</p>
+          <p className="text-2xl text-white font-bold">Members:</p>
           <motion.div
-            className="p-4 border-4 border-blue-300 rounded-md w-80 text-black shadow-2xl transform transition-transform "
+            className="p-4 border-4 border-blue-300 rounded-md w-80 text-white shadow-2xl transform transition-transform "
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300 }}
             variants={childVariants}
@@ -193,8 +172,31 @@ const GroupsDetails = () => {
                     alt="avatar"
                   />
                   <p className="font-bold">
-                    {member.userName}{" "}
-                    {currentUser === groupCreator ? (
+                    {member.userName} <p></p>Member since:{" "}
+                    {new Date(member.joinedAt).toLocaleDateString()}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+      <Link to="/group-quizzes">
+        <motion.button
+          className="mt-5 ml-[650px] py-3 px-3 text-white bg-blue-500 rounded-md shadow-lg mx-auto"
+          variants={buttonVariants}
+          whileHover="hover"
+        >
+          View Group Quizzes
+        </motion.button>
+      </Link>
+    </motion.div>
+  );
+};
+
+export default GroupsDetails;
+
+/* {currentUser === groupCreator ? (
                       <button
                         onClick={() => handleRemoveMember()}
                         className="ml-1 rounded py-1 px-1 mb-2 text-white bg-black"
@@ -208,27 +210,4 @@ const GroupsDetails = () => {
                       >
                         Leave group
                       </button>
-                    )}
-                    <p></p>Member since:{" "}
-                    {new Date(member.joinedAt).toLocaleDateString()}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-        </motion.div>
-      )}
-      <Link to={`/quiz-management`}>
-        <motion.button
-          className="mt-5 py-3 px-3 text-white bg-blue-500 rounded-md shadow-lg"
-          variants={buttonVariants}
-          whileHover="hover"
-        >
-          View Group Quizzes
-        </motion.button>
-      </Link>
-    </motion.div>
-  );
-};
-
-export default GroupsDetails;
+                    )} */
