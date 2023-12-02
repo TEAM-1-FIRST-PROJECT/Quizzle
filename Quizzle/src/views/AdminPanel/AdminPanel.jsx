@@ -62,6 +62,7 @@ const AdminPanel = () => {
   );
 
 
+
   const indexOfLastUser = currentPage * usersPerPage;
   const indexOfFirstUser = indexOfLastUser - usersPerPage;
   const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
@@ -98,7 +99,7 @@ const AdminPanel = () => {
                 <td className="border px-4 py-2">{user.email}</td>
                 <td className="border px-4 py-2">{user.role}</td>
                
-                <td className="border px-4 py-2">{/*SCORE */}</td>
+                <td className="border px-4 py-2">{}</td>
               
                 <td className="border px-4 py-2">{/* Max Points */}</td>
                 <td className="border px-4 py-2">{/* Questions */}</td>
