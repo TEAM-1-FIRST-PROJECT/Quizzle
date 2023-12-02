@@ -21,6 +21,8 @@ const SingleCard = ({ image, quiz }) => {
     score = userData?.score[quiz?.title].score
   }
 
+  const rejectQuiz = () => { }
+
   return (
     <>
       {quiz && <div className="mb-10 overflow-hidden rounded-lg bg-white shadow-1 duration-300 hover:shadow-3 dark:bg-dark-2 dark:shadow-card dark:hover:shadow-3">
@@ -64,6 +66,12 @@ const SingleCard = ({ image, quiz }) => {
           >
             Assign quiz
           </Link>}
+          {isEducator && <button
+            className="inline-block mx-1 px-4 py-2 border border-indigo-500 rounded-lg text-center font-medium hover:bg-indigo-500 hover:text-white dark:hover:bg-dark-1 dark:hover:text-white-300"
+            onClick={rejectQuiz}
+          >
+            Assign quiz
+          </button>}
         </div>
       </div>}
     </>
