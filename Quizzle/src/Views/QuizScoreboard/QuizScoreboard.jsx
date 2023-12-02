@@ -42,7 +42,7 @@ const QuizScoreboard = () => {
                 <td className="border px-4 py-2">{user.score}</td>
                 <td className="border px-4 py-2">100</td>
                 <td className="border px-4 py-2">
-                  <Link to={`/quiz-scoreboard/${quiz?.id}`}>
+                  <Link to={`/user-answers/${quiz?.id}--${user.username}`}>
                     View User Answers</Link>
                 </td>
               </tr>

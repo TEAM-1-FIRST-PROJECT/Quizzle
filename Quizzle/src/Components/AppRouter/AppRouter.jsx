@@ -24,6 +24,7 @@ import GroupsManagement from '../GroupsManagement/GroupsManagement';
 import UserProfileView from '../../views/UserProfileView/UserProfileView'
 import QuizScoreboard from "../../views/QuizScoreboard/QuizScoreboard";
 import SeeSummary from "../../views/Summary/Summary";
+import UserAnswers from "../../views/UserAnswers/UserAnswers";
 
 const AppRouter = () => {
   return (
@@ -51,8 +52,9 @@ const AppRouter = () => {
       <Route path="/groups" element={<GroupsManagement />} />
       <Route path="/group/:groupId" element={<GroupDetails />} />
       <Route path="/groups-list" element={<GroupsList />} />
-      <Route path="/see-summary/:id" element={<SeeSummary />} />
+      <Route path="/summary/:id" element={<SeeSummary />} />
       <Route path="/quiz-scoreboard/:id" element={<QuizScoreboard />} />
+      <Route path="/user-answers/:id" element={<UserAnswers />} />
     </Routes>
   );
 };
