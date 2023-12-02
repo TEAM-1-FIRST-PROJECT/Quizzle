@@ -40,7 +40,7 @@ const QuizScoreboard = () => {
           </thead>
           <tbody>
             {Object.values(quiz?.scoreBoard).map((user) => (
-              <tr key={quiz.id}>
+              <tr key={user.username}>
 
                 <td className="border px-4 py-2">{user.username}</td>
                 <td className="border px-4 py-2">{quiz.title}</td>
