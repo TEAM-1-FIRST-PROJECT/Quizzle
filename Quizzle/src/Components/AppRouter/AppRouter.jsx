@@ -21,7 +21,7 @@ import AssignQuiz from "../../views/AssignQuiz/AssignQuiz";
 import GroupDetails from "../../views/EducatorPanel/Group/GroupDetails";
 import GroupsList from "../../views/EducatorPanel/Group/GroupsList";
 import GroupsManagement from '../GroupsManagement/GroupsManagement';  
-import UserProfileView from '../../views/Summary/Summary'
+import UserProfileView from '../../views/UserProfileView/UserProfileView'
 import QuizScoreboard from "../../views/QuizScoreboard/QuizScoreboard";
 import SeeSummary from "../../views/Summary/Summary";
 
