@@ -30,10 +30,10 @@ const SeeSummary = () => {
             <div key={i}>
               <div className="border border-solid border-indigo-300 p-4">
                 <p className="block text-lg">{quest.question}</p>
-                <p1 className="block text-left">correct answer:{quest.answers.find(item => item.isCorrect === true)
+                <p className="block text-left">correct answer:{quest.answers.find(item => item.isCorrect === true)
                   ? quest.answers.find(item => item.isCorrect === true).text
-                  : null}</p1>
-                <p1 className="block text-left">your answer:    {userData?.score[quiz?.title].userAnswers[i].text}</p1>
+                  : null}</p>
+                <p className="block text-left">your answer:    {userData?.score[quiz?.title].userAnswers[i].text}</p>
               </div>
             </div>
           ))}
