@@ -22,7 +22,7 @@ const SingleCard = ({ image, quiz }) => {
   }
 
   const rejectQuiz = () => { }
-  
+
   const showSummary = userData?.score ? Object.keys(userData?.score).includes(quiz?.title) : false
 
   return (
@@ -75,10 +75,10 @@ const SingleCard = ({ image, quiz }) => {
             Reject Quiz
           </button>}
           {showSummary && <Link
-            to={`/see-summary/${quiz?.id}`}
+            to={`/summary/${quiz?.id}`}
             className="inline-block mx-1 px-4 py-2 border border-indigo-500 rounded-lg text-center font-medium hover:bg-indigo-500 hover:text-white dark:hover:bg-dark-1 dark:hover:text-white-300"
           >
-            See Summary
+            Summary
           </Link>}
         </div>
       </div>}
