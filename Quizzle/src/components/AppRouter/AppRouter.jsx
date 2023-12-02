@@ -22,7 +22,7 @@ import GroupDetails from "../../views/EducatorPanel/Group/GroupDetails";
 import GroupsList from "../../views/EducatorPanel/Group/GroupsList";
 import GroupsManagement from '../GroupsManagement/GroupsManagement';  
 import UserProfileView from '../../views/UserProfileView/UserProfileView';
-import SeeSummary from "../../views/SeeSummary/SeeSummary";
+import SeeSummary from "../../views/Summary/Summary";
 import QuizScoreboard from "../../views/QuizScoreboard/QuizScoreboard";
 
 const AppRouter = () => {
@@ -51,7 +51,7 @@ const AppRouter = () => {
       <Route path="/groups" element={<GroupsManagement />} />
       <Route path="/group/:groupId" element={<GroupDetails />} />
       <Route path="/groups-list" element={<GroupsList />} />
-      <Route path="/see-summary/:id" element={<SeeSummary />} />
+      <Route path="/summary/:id" element={<SeeSummary />} />
       <Route path="/quiz-scoreboard/:id" element={<QuizScoreboard />} />
     </Routes>
   );
