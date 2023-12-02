@@ -74,7 +74,7 @@ const SingleQuizView = () => {
 
   if (quizIsComplete || timerFinished) {
     const scorePoints = Math.ceil(score / quiz?.question.length * 100)
-    return <Summary id={id} score={scorePoints} title={quiz?.title} category={quiz?.category}></Summary>
+    return <Summary id={id} score={scorePoints} title={quiz?.title} category={quiz?.category} userAnswers={userAnswers}></Summary>
   }
 
   return (

@@ -40,8 +40,15 @@ const AssignQuiz = () => {
     const chosenFinalDate = new Date(finalDate);
     const finalDateInSeconds = chosenFinalDate.getTime();
     if (dateInSeconds === '' || finalDateInSeconds === '') {
-      toast('date and finalDate cant be empty');
+      alert('date and finalDate can\'t be empty');
       return;
+    }
+
+    if (!dateInSeconds) {
+      alert('date and finalDate cant\'be empty');
+    }
+    if (!finalDateInSeconds) {
+      alert('date and finalDate cant\'be empty');
     }
 
     quizAssignments(user, id, dateInSeconds, finalDateInSeconds)

@@ -10,12 +10,12 @@ import {
   removeFromAssignments
 } from "../../services/quiz.services";
 
-const Summary = ({ id, score, title, category }) => {
+const Summary = ({ id, score, title, category, userAnswers }) => {
 
   const { userData } = useContext(AuthContext)
   const navigate = useNavigate();
 
-  updateUserScore(userData.username, id, title, score, category)
+  updateUserScore(userData.username, id, title, score, category, userAnswers)
     .then(() => console.log('Quiz result saved successfully'))
     .catch((e) => toast.error(e));
 
@@ -47,5 +47,6 @@ Summary.propTypes = {
   title: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
+  userAnswers: PropTypes.object.isRequired,
 };
 export default Summary
