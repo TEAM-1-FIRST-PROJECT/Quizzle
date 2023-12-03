@@ -49,7 +49,7 @@ const UserAnswers = () => {
       {quiz && <div className="ml-48 mt-10">
         <section className="bg-white dark:bg-white py-3 sm:py-5">
           <div className="px-4  max-w-screen-2xl lg:px-12">
-            <div className="relative overflow-hidden bg-white shadow-md dark:bg-indigo-300 opacity-80 sm:rounded-lg mb-20">
+            <div className="relative overflow-hidden bg-white shadow-md dark:bg-indigo-100 opacity-80 sm:rounded-lg mb-20">
               <div className="overflow-x-auto">
                 <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                   <thead className="text-lg text-gray-700  bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -58,7 +58,7 @@ const UserAnswers = () => {
                         <p className="text-lg">{quiz?.title}</p>
                         <p className="text-lg">{quiz?.category}</p>
                       </th>
-                      <th scope="col" className="px-4 py-3 bg-indigo-500 text-white"></th>
+                      
                       <th scope="col" className="px-4 py-3 bg-indigo-500 text-white"></th>
                     </tr>
                   </thead>
@@ -69,8 +69,6 @@ const UserAnswers = () => {
                       <tr className="border-b dark:border-indigo-600 hover:bg-indigo-100 dark:hover:bg-indigo-200">
                         <th className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                           <p className="block text-lg">{quest.question}</p>
-                        </th>
-                        <th scope="row" className="flex items-center px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                           <div className="relative p-2">
                             <p className="block text-left">correct answer:{quest.answers.find(item => item.isCorrect === true)
                               ? quest.answers.find(item => item.isCorrect === true).text
@@ -79,6 +77,7 @@ const UserAnswers = () => {
                             <p className="block text-left">your answer: {user?.score[quiz?.title].userAnswers[i].text}</p>
                           </div>
                         </th>
+                        
                         <th>
                           <button className="border"
                             onClick={AddCommentHandler}>
