@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getQuizById } from "../../services/quiz.services";
 import toast from "react-hot-toast";
-import { getUserByHandle } from "../../services/users.services";
+import { addCommentInUserResults, getUserByHandle } from "../../services/users.services";
 
 
 const UserAnswers = () => {
@@ -43,6 +43,7 @@ const UserAnswers = () => {
 
 
   const saveComment = (user, quiz) => {
+    addCommentInUserResults(user, quiz, answers, comment)
     console.log(comment, user, quiz, answers)
     console.log()
   }
@@ -62,7 +63,6 @@ const UserAnswers = () => {
                         <p className="text-lg">{quiz?.title}</p>
                         <p className="text-lg">{quiz?.category}</p>
                       </th>
-
                       <th scope="col" className="px-4 py-3 bg-indigo-500 text-white"></th>
                     </tr>
                   </thead>
@@ -72,11 +72,12 @@ const UserAnswers = () => {
                         <th className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                           <p className="block text-lg">{quest.question}</p>
                           <div className="relative p-2">
-                            <p className="block text-left">correct answer:{quest.answers.find(item => item.isCorrect === true)
+                            <p className="block text-left">correct answer: {quest.answers.find(item => item.isCorrect === true)
                               ? quest.answers.find(item => item.isCorrect === true).text
                               : null}
                             </p>
                             <p className="block text-left">your answer: {user?.score[quiz?.title].userAnswers[i].text}</p>
+                            {user?.score[quiz?.title].userAnswers[i].comment && <p className="block text-left">{user?.score[quiz?.title].userAnswers[i].comment}</p>}
                           </div>
                         </th>
                         <th>
