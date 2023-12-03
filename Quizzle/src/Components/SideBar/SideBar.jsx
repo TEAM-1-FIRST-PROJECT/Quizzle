@@ -5,13 +5,13 @@ import settings from "../../assets/settings.gif";
 import quiz from "../../assets/quiz.gif";
 import ManageQuiz from "../../assets/quiz-management.gif";
 import { logoutUser } from "../../services/auth.services";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../context/authContext";
 import { ROLE_CHECK } from "../../common/constants";
 import students from "../../assets/students.gif";
 import group from "../../assets/group.png";
+import { useMediaQuery } from "react-responsive";
 const Sidebar = () => {
-  //add to HELPER>FUNCS
   const { user, setUser, userData } = useContext(AuthContext);
 
   const onLogout = () => {
@@ -25,11 +25,11 @@ const Sidebar = () => {
   return (
     <>
       {user && (
-        <div className="fixed z-10 top-14">
-          <div className="border-r-2 border-spacing-x-3 bg-gradient-to-br from-violet-400 to-indigo-400 overflow-y-auto transition-all duration-1000 ease-in-out">
+        <div className="abosulute lg:w-[280px] w-[67px]">
+          <div className=" border-r-2 border-spacing-x-3 bg-gradient-to-br from-violet-400 to-indigo-400 overflow-y-auto transition-all duration-1000 ease-in-out">
             <div className="flex flex-1 h-screen flex-col justify-between pt-2 pb-6">
               <div>
-                <div className="w-max p-2.5">
+                <div className="w-max p-2.5 lg:block hidden">
                   <img src="" className="w-32" alt="" />
                 </div>
                 <ul className="mt-6 space-y-2 tracking-wide">
@@ -64,33 +64,7 @@ const Sidebar = () => {
                       </Link>
                     </li>
                   )}
-                  <li className="min-w-max">
-                    <Link
-                      to="/categories"
-                      className="flex items-center space-x-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-4 py-3 text-white"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          className="fill-current"
-                          fillRule="evenodd"
-                          d="M2 6a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1H8a3 3 0 00-3 3v1.5a1.5 1.5 0 01-3 0V6z"
-                          clipRule="evenodd"
-                        />
-                        <path
-                          className="fill-current"
-                          d="M6 12a2 2 0 012-2h8a2 2 0 012 2v2a2 2 0 01-2 2H2h2a2 2 0 002-2v-2z"
-                        />
-                      </svg>
-                      <span className="group-hover:text-gray-700">
-                        Categories
-                      </span>
-                    </Link>
-                  </li>
+            
                   {userData && userData.role === ROLE_CHECK.admin && (
                     <li className="min-w-max">
                       <Link
@@ -165,7 +139,7 @@ const Sidebar = () => {
                             alt="group"
                           />
                           <span className="group-hover:text-gray-700">
-                          Form a group
+                            Form a group
                           </span>
                         </Link>
                       </li>
@@ -220,7 +194,7 @@ const Sidebar = () => {
                   )}
                 </ul>
               </div>
-              <div className="p-5 mb-20">
+              <div className=" mb-20">
                 <Link
                   to="/profile"
                   className="flex items-center space-x-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-4 py-3 text-white"

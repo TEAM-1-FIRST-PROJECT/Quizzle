@@ -96,9 +96,9 @@ const GroupsDetails = () => {
   };
 
   return (
-    <motion.div className="mt-[70px] p-10 ml-[240px] bg-black min-h-screen items-center">
+    <motion.div className="flex flex-col h-screen items-center">
       <motion.h1
-        className="mb-4 text-4xl text-center font-bold mt-10 text-white"
+        className="mb-4 text-4xl text-center font-bold mt-10 text-stone-400"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.2 }}
@@ -118,25 +118,25 @@ const GroupsDetails = () => {
             transition={{ type: "spring", stiffness: 300 }}
             variants={childVariants}
           >
-            <p className="text-white">
+            <p className="text-stone-400">
               Group name{" "}
               <h2 className="text-2xl font-bold mb-4">{group.name}</h2>
             </p>
-            <p className="text-center mb-5 text-white">
-              Formed by <p className="font-bold text-lg text-white">{group.createdBy}</p>
+            <p className="text-center mb-5 text-stone-400">
+              Formed by <p className="font-bold text-lg text-stone-400">{group.createdBy}</p>
             </p>
 
-            <p className=" text-xl mb-3 text-center text-white">
+            <p className=" text-xl mb-3 text-center text-stone-400">
               Created on: {new Date(group.createdOn).toLocaleDateString()}
             </p>
             {isEditingDescription ? (
               <textarea
-                className="w-full p-2 mb-4 rounded-md shadow-inner text-white"
+                className="w-full p-2 mb-4 rounded-md shadow-inner text-stone-400"
                 value={newDescription}
                 onChange={(e) => setNewDescription(e.target.value)}
               />
             ) : (
-              <p className="mb-4 text-xl text-center text-white">
+              <p className="mb-4 text-xl text-center text-stone-400">
                 Description <p>{group.description}</p>
               </p>
             )}
@@ -153,9 +153,9 @@ const GroupsDetails = () => {
               {isEditingDescription ? "Save Description" : "Edit Description"}
             </motion.button>
           </motion.div>
-          <p className="text-2xl text-white font-bold">Members:</p>
+          <p className="text-2xl text-stone-400 font-bold">Members:</p>
           <motion.div
-            className="p-4 border-4 border-blue-300 rounded-md w-80 text-white shadow-2xl transform transition-transform "
+            className="p-4 border-4 border-blue-300 rounded-md w-80 text-stone-400 shadow-2xl transform transition-transform "
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300 }}
             variants={childVariants}
@@ -181,15 +181,17 @@ const GroupsDetails = () => {
           </motion.div>
         </motion.div>
       )}
-      <Link to="/group-quizzes">
-        <motion.button
-          className="mt-5 ml-[650px] py-3 px-3 text-white bg-blue-500 rounded-md shadow-lg mx-auto"
-          variants={buttonVariants}
-          whileHover="hover"
-        >
-          View Group Quizzes
-        </motion.button>
-      </Link>
+          <div className="flex justify-center mt-4">
+        <Link to="/group-quizzes">
+          <motion.button
+            className=" p-2 text-white bg-blue-500 rounded-md shadow-lg"
+            variants={buttonVariants}
+            whileHover="hover"
+          >
+            View Group Quizzes
+          </motion.button>
+        </Link>
+      </div>
     </motion.div>
   );
 };

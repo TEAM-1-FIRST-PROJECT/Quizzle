@@ -6,13 +6,10 @@ export default {
   ],
   theme: {
     screens: {
-      sm: '480px',
+      sm: '320px',
       md: '768px',
       lg: '976px',
       xl: '1440px',
-    },
-    zIndex: {
-      '1030': 1030,
     },
     
     fontFamily: {
@@ -26,11 +23,17 @@ export default {
       animation: { 
         'fade-in': 'fadeIn 5s',
         'gradient': 'gradient 5s ease infinite',
+        'gradient-x': 'gradient-x 5s ease infinite',
       },
       keyframes: { 
         slideInFromRight: {
           '0%': { transform: 'translateX(100%)', opacity: '0' },
           '100%': { transform: 'translateX(0)', opacity: '1' },
+        },
+        'gradient-x': {
+          '0%': { 'background-position': '0% 50%' },
+          '50%': { 'background-position': '100% 50%' },
+          '100%': { 'background-position': '0% 50%' },
         },
         'fadeIn': {
           '0%': { opacity: '0' },

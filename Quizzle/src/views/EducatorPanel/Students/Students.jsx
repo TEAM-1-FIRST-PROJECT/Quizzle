@@ -12,7 +12,7 @@ const Students = () => {
   const { userData } = useContext(AuthContext);
   const educatorName = userData?.firstName;
   const [index, setIndex] = useState(0);
-  const text = `Teacher ${educatorName}`;
+  const text = `Teacher ${educatorName}! `;
 
   useEffect(() => {
     searchUser("").then(setUsers);
@@ -57,30 +57,30 @@ const Students = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div className="bg-black min-h-screen pt-10">
-      <p className="mt-[100px] ml-[460px] mr-[60px] text-3xl font-extrabold bg-clip-text p-1 text-transparent bg-gradient-to-r from-slate-200 to-gray-400">
+    <div className="bg-black h-screen">
+      <p className="pt-12 text-center text-3xl font-extrabold bg-clip-text p-1 text-transparent bg-gradient-to-r from-zinc-100 to-fuchsia-300">
         Hello,{" "}
         {text
           .slice(0, index)
           .split("")
           .map((char, i) => (
-            <span key={i} className="animate-gradient bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-violet-300">
+            <span key={i} className="animate-gradient bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-violet-500">
               {char}
             </span>
           ))}
-        ! Welcome to the students’ page.
-        <p className="ml-[100px] mt-2">
+         Welcome to the students’ page.
+        <p className="mt-2">
           Here, on this table, you will see all the students.
         </p>
-        <p className="ml-[200px] mt-2">
+        <p className="ml-32 mt-2">
           In the search field, you can look for a specific student.
         </p>
-        <p className="ml-[300px] mt-2">
+        <p className="ml-44 mt-2">
           Enjoy the convenience and efficiency of our system!
         </p>
       </p>
 
-      <div className="relative p-4 ml-[350px] mt-[80px] mr-[60px] mb-[100px]  border shadow-md rounded bg-gradient-to-br from-violet-400 to-cyan-400">
+      <div className="relative p-5 ml-10 mr-10 mt-20 border shadow-md rounded bg-gradient-to-br from-violet-400 to-cyan-400">
         <input
           type="text"
           className="border p-2 rounded w-full sm:w-3/4 md:w-1/2 lg:w-1/3 xl:w-1/4"
@@ -88,7 +88,7 @@ const Students = () => {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <div className="mt-4 overflow-x-auto">
+        <div className="mt-4 ">
           <table className="table-auto rounded w-full text-center bg-gradient-to-r from-indigo-400 to-cyan-400 text-white">
             <thead className=" text-lg">
               <tr>

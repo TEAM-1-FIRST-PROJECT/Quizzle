@@ -34,9 +34,14 @@ const EducatorPanel = () => {
     : quizzes.filter(quiz => quiz.scoreBoard !== undefined)
 
   return (
-    <div className="bg-black min-h-screen p-5">
-      <div className="mt-[180px] ml-[330px] mr-[50px] justify-center items-center border-4 p-10 rounded-lg bg-gradient-to-bl from-indigo-400 to-cyan-400">
-        <h1 className="mb-5 text-3xl text-white">Quizzes</h1>
+    <div className="h-screen bg-white pb-20 overflow-auto p-5">
+      <div className="animate-gradient-x text-start ml-20 text-4xl bg-clip-text text-transparent bg-gradient-to-r from-zinc-500 to-stone-400 ">
+      <p className="mt-10 ">On this page, you can view all the quizzes.</p>
+      <p className="mt-5 ">You have the option to search for a quiz using the search field,</p>
+        <p className="mt-5 "> and you can assign a specific quiz to a particular student.</p>
+        </div>
+      <div className="mt-20 justify-center items-center border-4 p-10 rounded-lg bg-gradient-to-bl from-indigo-400 to-cyan-400">
+        <h1 className="mb-5 text-5xl bg-clip-text text-transparent bg-gradient-to-r from-zinc-400 to-stone-100">Quizzes</h1>
         <input
           type="text"
           className="border p-2 rounded mb-5"
@@ -49,7 +54,6 @@ const EducatorPanel = () => {
         <table className="table-auto rounded w-full text-center bg-gradient-to-r from-indigo-400 to-cyan-400 text-white">
           <thead className=" text-lg">
             <tr>
-              <th className="border px-4 py-2">Create By</th>
               <th className="border px-4 py-2">Quiz Title</th>
               <th className="border px-4 py-2">Created On</th>
               {finishedQuizzes
@@ -61,10 +65,8 @@ const EducatorPanel = () => {
           <tbody>
             {openQuizzes.map((quiz) => (
               <tr key={quiz.id}>
-
-                <td className="border px-4 py-2">{quiz.createdBy}</td>
-                <td className="border px-4 py-2">{quiz.title}</td>
-                <td className="border px-4 py-2">
+                <td className=" border px-4 py-2">{quiz.title}</td>
+                <td className="border-2 px-4 py-2">
                   {dateFormat(quiz.createdOn)}
                 </td>
                 <td className="border px-4 py-2">

@@ -55,8 +55,8 @@ const username = userData?.username;
   };
 
   return (
-    <div className="bg-black min-h-screen p-5">
-    <div className=" pt-16 pb-24 ml-[320px] mr-[34px] mb-[80px] mt-[110px] justify-center items-center border-4 p-10 rounded-lg bg-gradient-to-bl from-indigo-400 to-cyan-400">
+ 
+    <div className="  border-4 p-10 rounded-lg bg-gradient-to-bl from-indigo-400 to-cyan-400">
       <h1 className="mb-5 text-3xl text-white">Quiz Manage</h1>
       <input
         type="text"
@@ -141,7 +141,6 @@ const username = userData?.username;
           </button>
         </div>
       )}
-      </div>
       </div>
   );
 };
