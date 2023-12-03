@@ -130,7 +130,7 @@ const GroupQuizzes = () => {
                   <td className="border px-4 py-2">{quiz.createdBy}</td>
                   <td className="border px-4 py-2">{dateFormat(quiz.createdOn)}</td>
                   <td className="border px-4 py-2">
-                    <button onClick={() => handleEditQuiz(quiz)}>Edit</button>
+                    <button className="ml-2 px-2 py-1 bg-blue-500 text-white rounded" onClick={() => handleEditQuiz(quiz)}>Edit</button>
                   </td>
                 </tr>
               );
