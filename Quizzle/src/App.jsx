@@ -1,5 +1,4 @@
 import Navbar from "./Components/NavBar/NavBar";
-import Sidebar from "./Components/SideBar/SideBar";
 import { useState, useEffect } from "react";
 import AppRouter from "./components/AppRouter/AppRouter";
 import { auth } from "./config/firebase-config";
@@ -8,6 +7,7 @@ import { getUserData } from "./services/users.services";
 import { AuthContext } from "./context/authContext";
 import Footer from "./components/Footer/Footer";
 import { Toaster } from "react-hot-toast";
+import Sidebar from "./components/SideBar/SideBar";
 
 const App = () => {
   const [user] = useAuthState(auth);

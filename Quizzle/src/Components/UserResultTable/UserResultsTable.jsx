@@ -1,6 +1,7 @@
 import { useContext } from "react"
 import { AuthContext } from "../../context/authContext"
 import { dateFormat } from "../../common/helpers";
+import SortButton from "../SortButton/SortButton";
 
 const UserResultsTable = () => {
   const { userData } = useContext(AuthContext)
@@ -55,8 +56,7 @@ const UserResultsTable = () => {
                 <tr>
                   <th scope="col" className="p-4 bg-indigo-500 border-indigo-700">
                     <div className="flex items-center">
-                      <input id="checkbox-all" type="checkbox" className="w-4 h-4 bg-indigo-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-indigo-800 focus:ring-2 dark:bg-indigo-700 dark:border-indigo-600"></input>
-                      <label htmlFor="checkbox-all" className="sr-only">checkbox</label>
+                      <SortButton/>
                     </div>
                   </th>
                   <th scope="col" className="px-4 py-3 bg-indigo-500 text-white">Title</th>
