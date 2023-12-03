@@ -2,9 +2,11 @@ import PropTypes from "prop-types";
 import { useState, useEffect } from 'react';
 import { updateUserScore } from "../../services/users.services";
 import toast from "react-hot-toast";
-import { removeFromAssignments,
- removeAssignmentsFromQuiz,
-removeAssignmentsFromUser} from "../../services/quiz.services";
+import {
+  removeFromAssignments,
+  removeAssignmentsFromQuiz,
+  removeAssignmentsFromUser
+} from "../../services/quiz.services";
 
 const RemainingTime = ({ timeLimit, username, id, title, score, category }) => {
   const [seconds, setSeconds] = useState(timeLimit);
@@ -15,14 +17,14 @@ const RemainingTime = ({ timeLimit, username, id, title, score, category }) => {
         .then(() => console.log('Quiz result saved successfully'))
         .catch((e) => toast.error(e));
 
-        removeFromAssignments(username, id)
+      removeFromAssignments(username, id)
         .then(() => console.log('Quiz assignment updated successfully'))
         .catch((e) => toast.error(e));
-    
+
       removeAssignmentsFromQuiz(username, id)
         .then(() => console.log('Quiz assignment updated successfully'))
         .catch((e) => toast.error(e));
-    
+
       removeAssignmentsFromUser(username, id)
         .then(() => console.log('Quiz assignment updated successfully'))
         .catch((e) => toast.error(e));
@@ -52,7 +54,6 @@ const RemainingTime = ({ timeLimit, username, id, title, score, category }) => {
 };
 
 RemainingTime.propTypes = {
-  onTimerFinish: PropTypes.func.isRequired,
   timeLimit: PropTypes.number.isRequired,
   username: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
