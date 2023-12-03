@@ -69,7 +69,7 @@ const EducatorPanel = () => {
               </td>
               <td className="border px-4 py-2">
                 <Link to={`/quiz-scoreboard/${quiz?.id}`}>
-                {openQuizzes
+                {finishedQuizzes
                   ? (quiz.assignedUsers ? Object.keys(quiz.assignedUsers).length : 0)
                   : (quiz.scoreBoard ? Object.keys(quiz.scoreBoard).length : 0)}</Link>
               </td>
