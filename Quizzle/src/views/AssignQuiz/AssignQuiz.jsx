@@ -97,7 +97,7 @@ const AssignQuiz = () => {
                     <td ></td>
                     <td ></td>
                     <td ></td>
-                    <td className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    <td className="pr-6 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                       open from <input
                         type="date"
                         placeholder="date"
