@@ -34,7 +34,9 @@ const QuizScoreboard = () => {
             </tr>
           </thead>
           <tbody>
-            {Object.values(quiz?.scoreBoard).map((user) => (
+            {Object.values(Object.values(quiz?.scoreBoard))
+            .sort((a, b) => b.score - a.score)
+            .map((user) => (
               <tr key={user.username}>
 
                 <td className="border px-4 py-2">{user.username}</td>
