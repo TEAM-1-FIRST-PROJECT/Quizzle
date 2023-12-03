@@ -106,7 +106,7 @@ const AssignQuiz = () => {
                     />
                   </td>
                   <td className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    closed<input
+                    closed on <input
                       type="date"
                       onChange={(e) => setFinalDate(e.target.value)}
                     // Add any additional attributes or props as needed
