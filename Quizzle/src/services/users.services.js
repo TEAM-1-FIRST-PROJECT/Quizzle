@@ -73,6 +73,9 @@ export const getAllUsers = () => {
   return get(ref(database, 'users'))
 }
 
-export const addCommentInUserResults= (username, quiz, index)=>{
-  return update(ref(database), {[`/users/${username}/score/${quiz}/userAnswers/${index}`]:'XXX'});
+export const addCommentInUserResults = (username, quiz, index, comment) => {
+  const updateUserScore = {};
+  updateUserScore[`/users/${username}/score/${quiz}/userAnswers/${index}/comment`] = comment
+
+  return update(ref(database), updateUserScore);
 }
