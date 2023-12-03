@@ -25,6 +25,7 @@ import UserProfileView from '../../views/UserProfileView/UserProfileView'
 import QuizScoreboard from "../../views/QuizScoreboard/QuizScoreboard";
 import SeeSummary from "../../views/Summary/Summary";
 import UserAnswers from "../../views/UserAnswers/UserAnswers";
+import GroupQuizzes from "../../views/EducatorPanel/Group/GroupQuizzes";
 
 const AppRouter = () => {
   return (
@@ -55,6 +56,7 @@ const AppRouter = () => {
       <Route path="/summary/:id" element={<SeeSummary />} />
       <Route path="/quiz-scoreboard/:id" element={<QuizScoreboard />} />
       <Route path="/user-answers/:id" element={<UserAnswers />} />
+      <Route path="/group-quizzes" element={<GroupQuizzes />} />
     </Routes>
   );
 };

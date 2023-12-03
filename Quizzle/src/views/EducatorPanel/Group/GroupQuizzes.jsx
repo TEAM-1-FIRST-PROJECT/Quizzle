@@ -2,6 +2,10 @@ import { useState, useEffect } from "react";
 import { blockUser, searchUser } from "../../../services/admin.services";
 import { ROLE_CHECK } from "../../../common/constants";
 import { useParams } from "react-router-dom";
+import { getGroupDetails } from "../../../services/educatorGroups.services";
+import toast from "react-hot-toast";
+import { getAllQuizzes, updateQuizData } from "../../../services/quiz.services";
+import { dateFormat } from "../../../common/helpers.js";
 
 const GroupQuizzes = () => {
     const { groupId } = useParams();
@@ -10,11 +14,64 @@ const GroupQuizzes = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [usersPerPage] = useState(10);
+  const [groupMembers, setGroupMembers] = useState([]);
+  const [group, setGroup] = useState({});
+  const [editedTitle, setEditedTitle] = useState("");
+  const [editedAnswers, setEditedAnswers] = useState([]);
+  const [quizzes, setQuizzes] = useState([{}]);
+  const [selectedQuiz, setSelectedQuiz] = useState(null);
+  const [selectedQuestion, setSelectedQuestion] = useState(null);
+
+  useEffect(() => {
+    getAllQuizzes()
+      .then(snapshot => {
+        setQuizzes(snapshot)
+      })
+      .catch(e => toast.error(e.message));
+  }, []);
 
   useEffect(() => {
     searchUser("").then(setUsers);
   }, [setUsers]);
 
+  useEffect(() => {
+    getGroupDetails(groupId)
+      .then(snapshot => {
+        const group = snapshot.val();
+        setGroup(group);
+        setGroupMembers(Object.keys(group.members));
+      })
+      .catch(e => toast.error(e.message));
+  }, [groupId]);
+  
+  useEffect(() => {
+    if (groupMembers.length > 0) {
+      const filteredQuizzes = quizzes.filter(quiz => groupMembers.includes(quiz.createdBy));
+      setQuizzes(filteredQuizzes);
+    }
+  }, [quizzes, groupMembers]);
+
+  const handleEditQuiz = (quiz) => {
+    setSelectedQuiz(quiz);
+    if (quiz.question && quiz.question.length > 0) {
+      const firstQuestion = quiz.question[0];
+      setSelectedQuestion(firstQuestion);
+      setEditedAnswers(firstQuestion.answers);
+    }
+    setEditedTitle(quiz.title);
+  };
+
+  const handleAnswerChange = (questionIndex, index, event) => {
+    const newAnswers = { ...selectedQuiz };
+    newAnswers.question[questionIndex].answers[index].text = event.target.value;
+    setEditedAnswers(newAnswers);
+  };
+
+  const handleSaveQuestion = () => {
+    updateQuizData(selectedQuiz.id, editedAnswers)
+      .then(() => toast.success("Quiz updated successfully"))
+      .catch((e) => console.log(e));
+  };
     
 //   const handleRemoveMember = () => {
 //     getGroupDetails(groupId)
@@ -46,8 +103,8 @@ const GroupQuizzes = () => {
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-return (
-    <div className="p-4 m-20 border shadow-md rounded bg-gradient-to-br from-violet-400 to-cyan-400">
+  return (
+    <div className="p-4 m-20 border shadow-md rounded bg-gradient-to-br from-violet-400 to-cyan-400 max-w-full md:max-w-7xl mx-auto">
       <input
         type="text"
         className="border p-2 rounded w-full sm:w-3/4 md:w-1/2 lg:w-1/3 xl:w-1/4"
@@ -59,25 +116,25 @@ return (
         <table className="table-auto rounded w-full text-center bg-gradient-to-r from-indigo-400 to-cyan-400 text-white">
           <thead className=" text-lg">
             <tr>
-              <th className="border px-4 py-2">Username</th>
-              <th className="border px-4 py-2">Email</th>
-              <th className="border px-4 py-2">Average Points</th>
-                        <th className="border px-4 py-2">
-                            {}
-              </th>
+              <th className="border px-4 py-2">Quiz title</th>
+              <th className="border px-4 py-2">Created by</th>
+              <th className="border px-4 py-2">Created on</th>
+              <th className="border px-4 py-2">Edit</th>
             </tr>
           </thead>
           <tbody>
-            {filteredUsers.map((user) => (
-                user.role === ROLE_CHECK.educator && (
-              <tr key={user.username}>
-                <td className="border px-4 py-2">{user.username}</td>
-                <td className="border px-4 py-2">{user.email}</td>
-                <td className="border px-4 py-2">{}</td>
-                <td className="border px-4 py-2"></td>
-              </tr>
-                  )
-            ))}
+            {quizzes.map((quiz) => {
+              return (
+                <tr key={quiz.id}>
+                  <td className="border px-4 py-2">{quiz.title}</td>
+                  <td className="border px-4 py-2">{quiz.createdBy}</td>
+                  <td className="border px-4 py-2">{dateFormat(quiz.createdOn)}</td>
+                  <td className="border px-4 py-2">
+                    <button onClick={() => handleEditQuiz(quiz)}>Edit</button>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
         <div className="flex justify-between items-center mt-4">
@@ -111,11 +168,45 @@ return (
           </div>
         </div>
       </div>
+      {selectedQuiz && selectedQuiz.question && (
+        <div className="border-2 rounded mt-5 p-5 bg-white shadow-md table-auto w-full bg-gradient-to-r from-indigo-400 to-cyan-400 text-black">
+          <h1 className="text-lg my-3 font-bold text-gray-700">Edit Quiz</h1>
+          <h2 className="my-2 text-lg font-bold rounded p-2 border-2 bg-gray-100">
+            {editedTitle}
+          </h2>
+          <h3 className="my-2 text-lg font-bold rounded p-2 border-2 bg-gray-100">
+            Questions
+          </h3>
+          {selectedQuiz.question.map((question, questionIndex) => (
+            <div key={questionIndex} className="my-2">
+              <span className="font-bold text-gray-700">
+                {question.question}
+              </span>
+              <div className="text-black">
+                {question.answers.map((answer, index) => (
+                  <input
+                    key={index}
+                    className="border-2 rounded p-2 w-full mt-2"
+                    type="text"
+                    value={answer.text}
+                    onChange={(event) =>
+                      handleAnswerChange(questionIndex, index, event)
+                    }
+                  />
+                ))}
+              </div>
+            </div>
+          ))}
+          <button
+            role="alert"
+            className="alert alert-success ml-2 bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-2"
+            onClick={handleSaveQuestion}
+          >
+            Save changes
+          </button>
+        </div>
+      )}
     </div>
   );
-
-};
-
-
-
-export default GroupQuizzes;
+                  }
+  export default GroupQuizzes;
