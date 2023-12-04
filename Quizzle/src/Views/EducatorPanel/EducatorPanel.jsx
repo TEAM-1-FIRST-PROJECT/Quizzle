@@ -35,7 +35,7 @@ const EducatorPanel = () => {
 
   return (
     <div className="h-screen  pb-20 overflow-auto p-5">
-      <div className="ml-20 text-4xl">
+      <div className="ml-20 text-4xl animate-fade-in font-bold bg-clip-text text-transparent bg-gradient-to-r from-stone-400 to-zinc-500">
       <p className="mt-10">On this page, you can view all the quizzes.</p>
       <p className="mt-5 ">You have the option to search for a quiz using the search field,</p>
         <p className="mt-5"> and you can assign a specific quiz to a particular student.</p>
