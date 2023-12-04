@@ -79,7 +79,8 @@ const CreateQuiz = () => {
       });
   };
   return (
-    <div className=" grid grid-flow-row h-screen ">
+    
+    <div className=" grid grid-flow-row h-screen">
       <div className="mb-20">
       <div className=" text-center mt-10 ">
         <h1 className="text-6xl text-black font-extrabold leading-tighter tracking-tighter mb-4 mt-10 pr-2">
@@ -97,7 +98,7 @@ const CreateQuiz = () => {
       </div>
       <form
         onSubmit={handleSubmit}
-        className="z-0 p-10 pb-10 m-32  hover:shadow-2xl hover:shadow-black border-2 bg-indigo-300 space-y-4 rounded-lg "
+        className="z-0 p-10 pb-10 m-32  hover:shadow-2xl border-2 bg-indigo-300 space-y-4 rounded-lg "
       >
         <div className="flex flex-wrap -mx-3">
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -308,6 +309,7 @@ const CreateQuiz = () => {
       </form>
       </div>
       </div>
+    
   );
 };
 

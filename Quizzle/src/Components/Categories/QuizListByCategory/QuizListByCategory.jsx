@@ -17,8 +17,8 @@ const QuizListByCategory = () => {
   }, [category]);
 
   return (
-    <div className="h-screen bg-hero-pattern-2 bg-cover flex flex-col items-center">
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 mt-20 rounded-lg">
+    <div className="h-screen  flex flex-col items-center">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 mt-8  rounded-lg">
       <div className="pt-32 md:pt-10 ">
         <div className=" text-center pb-12 md:pb-16">
           <h1 className="text-5xl md:text-6xl font-extrabold leading-tighter tracking-tighter mb-4" data-aos="zoom-y-out">

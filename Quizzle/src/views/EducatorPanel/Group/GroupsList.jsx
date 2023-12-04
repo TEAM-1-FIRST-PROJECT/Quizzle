@@ -24,10 +24,10 @@ const GroupsList = () => {
 
   return (
       <div className="h-screen justify-center p-6">
-      <div className="flex flex-col text-center  space-y-7 w-1/3 ">
+      <div className="flex flex-col text-center ml-96 space-y-7 w-1/3 ">
       <h1 className="mb-4 text-3xl font-bold text-black">Groups List</h1>
         {groups.map((group, index) => (
-          <div style={{ animation: `slideInFromRight 0.5s ${index * 0.1}s both` }} key={group.id} className="p-4 border-2 hover:border-fuchsia-400 rounded-md w-full text-white hover:shadow-2xl hover:shadow-white bg-gradient-to-l from-indigo-400 to-cyan-400 transition-all duration-500 ease-in-out transform hover:scale-105">
+          <div style={{ animation: `slideInFromRight 0.5s ${index * 0.1}s both` }} key={group.id} className="p-4 border-2  rounded-md w-full text-white hover:shadow-2xl hover:shadow-stone-300 bg-gradient-to-l from-indigo-400 to-cyan-400 transition-all duration-500 ease-in-out transform hover:scale-105">
             <Link to={`/group/${group.id}`} className="no-underline text-white">
               Name
               <h2 className="text-xl font-semibold mb-2">{group.name}</h2>

@@ -120,7 +120,7 @@ const Settings = () => {
             share!
           </p>
         </p>
-        <form className="p-5 pb-10 border-black border-2 rounded m-10 mt-[70px] mb-[40px]">
+        <form className="p-5 pb-10 bg-white border-black border-2 rounded m-10 mt-[70px] mb-[40px]">
           <div className="space-y-12 p-7 bg-white rounded-lg">
             <div className="">
               <h2 className="text-base font-semibold leading-7 text-gray-900">
