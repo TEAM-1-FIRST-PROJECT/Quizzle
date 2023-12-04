@@ -56,7 +56,7 @@ const username = userData?.username;
 
   return (
  
-    <div className="  border-4 p-10 rounded-lg bg-gradient-to-bl from-indigo-400 to-cyan-400">
+    <div className=" m-10 border-4 p-10 rounded-lg bg-gradient-to-bl from-indigo-400 to-cyan-400">
       <h1 className="mb-5 text-3xl text-white">Quiz Manage</h1>
       <input
         type="text"

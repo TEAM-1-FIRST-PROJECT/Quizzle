@@ -48,6 +48,7 @@ export default {
       backgroundImage: {
         'hero-pattern': "url('./src/assets/backgroung.jpeg')",
         'hero-pattern-2': "url('./src/assets/Home.jpg')",
+        'hero-pattern-3': "url('./src/assets/bg-img.jpeg')",
       },
       
       spacing: {

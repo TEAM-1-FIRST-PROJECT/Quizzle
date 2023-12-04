@@ -43,9 +43,10 @@ const App = () => {
 
   return (
     <AuthContext.Provider value={{ ...appState, setUser: setAppState }}>
+      <div className="bg-hero-pattern-3 bg-cover bg-fixed bg-blend-multiply">
       <Toaster />
-      <Navbar className="fixed top-0 left-0 w-full z-10" />
-      <div className="flex min-h-screen">
+      <Navbar className="fixed top-0 left-0 w-full z-10 " />
+      <div className="flex ">
         <div className="">
           <Sidebar />
         </div>
@@ -53,7 +54,8 @@ const App = () => {
           <AppRouter />
         </div>
       </div>
-      <Footer className="fixed bottom-0 left-0 w-full z-10" />
+        <Footer className="fixed bottom-0 left-0 w-full z-10" />
+        </div>
     </AuthContext.Provider>
   );
 };

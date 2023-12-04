@@ -17,9 +17,9 @@ const UserResultsTable = () => {
     };
 
     return (
-      <section className="bg-white dark:bg-white ">
+      <section className="">
         <div className="ml-12 px-12 mx-auto max-w-screen-2xl lg:px-12">
-          <div className="relative overflow-hidden bg-white shadow-md dark:bg-indigo-300 opacity-80 sm:rounded-lg mb-20">
+          <div className="relative overflow-hidden  shadow-md dark:bg-indigo-300 opacity-80 sm:rounded-lg mb-20">
             <div className="overflow-x-auto">
               <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">

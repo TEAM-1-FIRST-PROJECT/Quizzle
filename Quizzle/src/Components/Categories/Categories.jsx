@@ -15,7 +15,7 @@ const Categories = () => {
   }, []);
 
   return (
-    <div className="h-screen bg-white">
+    <div className="h-screen">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 rounded-lg">
         <div className=" md:pt-10 text-center">
           <div className=" text-center pb-5 md:pb-5">

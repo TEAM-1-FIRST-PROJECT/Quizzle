@@ -57,8 +57,9 @@ const Students = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div className="bg-black h-screen">
-      <p className="pt-12 text-center text-3xl font-extrabold bg-clip-text p-1 text-transparent bg-gradient-to-r from-zinc-100 to-fuchsia-300">
+    <div className="h-screen">
+      <div className="ml-64">
+      <p className="pt-12 text-start text-3xl font-extrabold bg-clip-text p-1 text-transparent bg-gradient-to-r from-zinc-600 to-gray-500">
         Hello,{" "}
         {text
           .slice(0, index)
@@ -72,13 +73,14 @@ const Students = () => {
         <p className="mt-2">
           Here, on this table, you will see all the students.
         </p>
-        <p className="ml-32 mt-2">
+        <p className=" mt-2">
           In the search field, you can look for a specific student.
         </p>
-        <p className="ml-44 mt-2">
+        <p className=" mt-2">
           Enjoy the convenience and efficiency of our system!
         </p>
-      </p>
+        </p>
+        </div>
 
       <div className="relative p-5 ml-10 mr-10 mt-20 border shadow-md rounded bg-gradient-to-br from-violet-400 to-cyan-400">
         <input
