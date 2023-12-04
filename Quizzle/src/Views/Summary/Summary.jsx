@@ -40,8 +40,6 @@ const SeeSummary = () => {
                       <th scope="col" className="px-4 py-3 bg-indigo-500 text-white"></th>
                     </tr>
                   </thead>
-
-
                   {quiz.question.map((quest, i) => (
                     <tbody key={i}>
                       <tr className="border-b dark:border-indigo-600 hover:bg-indigo-100 dark:hover:bg-indigo-200">
