@@ -79,8 +79,8 @@ const SingleQuizView = () => {
 
   return (
     <>
-      {quiz && <div className="h-screen bg-hero-pattern-2 bg-cover items-center">
-        <div className=" text-center pb-12 md:pb-8 mt-20">
+      {quiz && <div className="flex flex-col overflow-auto h-screen items-center justify-center">
+        <div className="text-center md:pb-8 mt-20">
           <h1 className="text-5xl md:text-6xl font-extrabold leading-tighter tracking-tighter mb-4 pr-2 pt-6" data-aos="zoom-y-out">
             <span className="bg-clip-text p-1 text-transparent bg-gradient-to-r from-blue-600 to-violet-400">{quiz?.title}</span>
           </h1>
@@ -90,34 +90,39 @@ const SingleQuizView = () => {
             Our landing page template works on all devices, so you only have to set it up once, and get beautiful results forever.
           </p>
         </div>
-        <div id="quiz" className="ml-14 mt-[2px] p-10 border-indigo-700 border-2 bg-indigo-300 opacity-80 space-y-4 rounded-lg w-3/4 ml-60 h-4/">
-          <Timer onTimerFinish={handleTimerFinish} timeLimit={quiz?.timeLimit}></Timer>
-          <div id="question" className="text-center">
-            <h2 className="mx-auto mb-10 font-medium text-2xl">{questions[activeQuestionIndex]?.question}</h2>
-            <ul id="answers" className="grid grid-cols-1 space-y-4 mx-auto">
+            <div className="flex xl:space-x-96 lg:space-x-28 sm:space-x-24">
+              <div className="">
+                <button onClick={handleRandomizeQuiz}>
+                  <img className="h-7 w-7 mix-blend-multiply" src={dice} alt="{dice}" />
+                  <span className="group-hover:text-gray-700">Randomize quiz</span>
+                </button>
+              </div>
+              <p className="pt-7">Maximum points available - 100</p>
+            </div>
+        <div id="quiz" className="flex flex-col p-10 mb-20 bg-gradient-to-r from-indigo-400 rounded-lg w-full md:w-3/4 lg:w-2/3 shadow-xl mx-auto">
+          <div className="mb">
+          <div className="w-20 h-20 pt-4 pl-2 border-2 border-amber-300 rounded-full">
+            <Timer onTimerFinish={handleTimerFinish} timeLimit={quiz?.timeLimit}></Timer>
+            </div>
+            </div>
+          <div id="question" className="text-center mt-10">
+            <h2 className="mb-20 font-medium text-2xl">{questions[activeQuestionIndex]?.question}</h2>
+            <ul id="answers" className="grid grid-cols-1 md:grid-cols-2 gap-4 mx-auto">
               {questions[activeQuestionIndex]?.answers.map((answer) => (
-                <div key={answer.text} className="mx-auto">
-                  <button className="border-2 border-indigo-800 px-1 py-1 ml-34 rounded-lg place-content-stretch hover:bg-emerald-500"
+                <div key={answer.text} className="">
+                  <button className="border-2 border-indigo-500 px-4 py-2 rounded-lg w-full text-center bg-gray-200 hover:bg-green-500"
                     onClick={() => handleSelectAnswer(answer)}>
                     {answer.text}
                   </button>
                 </div>
               ))}
             </ul>
-            <div className="flex flex-col items-end mt-80 mr-4">
-              <div className="mb-4">
-                <button onClick={handleRandomizeQuiz}>
-                  <img className="h-7 w-7 mix-blend-multiply" src={dice} alt="{dice}" />
-                  <span className="group-hover:text-gray-700">Randomize quiz</span>
-                </button>
-              </div>
-              <p className="bottom-0 right-0 mt-80 mr-4 text-right ">Maximum points available - 100</p>
-            </div>
           </div>
         </div>
       </div>}
     </>
   )
+
 }
 
 export default SingleQuizView
