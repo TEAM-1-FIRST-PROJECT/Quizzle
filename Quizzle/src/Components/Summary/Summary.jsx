@@ -1,9 +1,7 @@
 import PropTypes from "prop-types";
-import { useContext, useEffect, useState } from "react"
+import { useContext } from "react"
 import { AuthContext } from "../../context/authContext"
 import { updateUserScore } from "../../services/users.services"
-import { getQuizById } from "../../services/quiz.services";
-import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import {
   removeAssignmentsFromQuiz,
@@ -14,19 +12,6 @@ import {
 const Summary = ({ id, score, title, category, userAnswers }) => {
 
   const { userData } = useContext(AuthContext);
-  const navigate = useNavigate();
-  const [quiz, setQuiz] = useState(null);
-
-  useEffect(() => {
-    getQuizById(id)
-      .then((fetchedQuiz) => {
-        setQuiz(fetchedQuiz);
-      })
-      .catch((error) => {
-        toast.error("Error fetching quiz details:", error);
-        setQuiz(null);
-      });
-  }, [id]);
 
   updateUserScore(userData.username, id, title, score, category, userAnswers)
     .then(() => console.log('Quiz result saved successfully'))
@@ -43,7 +28,7 @@ const Summary = ({ id, score, title, category, userAnswers }) => {
   removeAssignmentsFromUser(userData.username, id)
     .then(() => console.log('Quiz assignment updated successfully'))
     .catch((e) => toast.error(e));
-console.log(quiz)
+
   return (
     <>
       {/* <div className=" bg-indigo-300 flex flex-col items-center justify-center h-screen">
@@ -53,7 +38,7 @@ console.log(quiz)
         </button>
         <button className="mt-1 border-2 px-4 py-1" onClick={() => { navigate('/') }}>Next quiz</button>
       </div> */}
-      {quiz && <div className="ml-48 mt-10 bg-hero-pattern-2 bg-cover">
+      {/* {quiz && <div className="ml-48 mt-10 bg-hero-pattern-2 bg-cover">
         <section className="bg-white dark:bg-white py-3 sm:py-5 ">
           <div className="px-4  max-w-screen-2xl lg:px-12">
             <div className="relative overflow-hidden bg-white shadow-md dark:bg-indigo-100 opacity-80 sm:rounded-lg mb-20">
@@ -81,7 +66,7 @@ console.log(quiz)
                               ? quest.answers.find(item => item.isCorrect === true).text
                               : null}
                             </p>
-                            <p className="block text-left">your answer: {userData?.score[quiz?.title].userAnswers[i].text}</p>
+                            <p className="block text-left">your answer: {userAnswers[i].text}</p>
                           </div>
                         </th>
                         <th>
@@ -100,8 +85,8 @@ console.log(quiz)
             </div>
           </div>
         </section>
-      </div>}
-    
+      </div>} */}
+
     </>
   )
 }
