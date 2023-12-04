@@ -61,7 +61,7 @@ const AssignQuiz = () => {
 
   return (
     <>
-      {users && <div className="ml-48 mt-10">
+      {users && <div className="ml-2 mt-6">
         <section className="bg-white dark:bg-white py-3 sm:py-5">
           <div className="px-4  max-w-screen-2xl lg:px-12">
             <div className="relative overflow-hidden bg-white shadow-md dark:bg-indigo-300 opacity-80 sm:rounded-lg mb-20">
