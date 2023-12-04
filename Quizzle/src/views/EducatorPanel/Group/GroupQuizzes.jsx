@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { blockUser, searchUser } from "../../../services/admin.services";
 import { ROLE_CHECK } from "../../../common/constants";
 import { useParams } from "react-router-dom";
-import { getGroupDetails } from "../../../services/educatorGroups.services";
 import toast from "react-hot-toast";
 import { getAllQuizzes, updateQuizData } from "../../../services/quiz.services";
 import { dateFormat } from "../../../common/helpers.js";
@@ -15,7 +14,6 @@ const GroupQuizzes = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [usersPerPage] = useState(10);
   const [groupMembers, setGroupMembers] = useState([]);
-  const [group, setGroup] = useState({});
   const [editedTitle, setEditedTitle] = useState("");
   const [editedAnswers, setEditedAnswers] = useState([]);
   const [quizzes, setQuizzes] = useState([{}]);
@@ -33,16 +31,6 @@ const GroupQuizzes = () => {
   useEffect(() => {
     searchUser("").then(setUsers);
   }, [setUsers]);
-
-  useEffect(() => {
-    getGroupDetails(groupId)
-      .then(snapshot => {
-        const group = snapshot.val();
-        setGroup(group);
-        setGroupMembers(Object.keys(group.members));
-      })
-      .catch(e => toast.error(e.message));
-  }, [groupId]);
   
   useEffect(() => {
     if (groupMembers.length > 0) {
