@@ -191,7 +191,7 @@ const AssignQuiz = () => {
             </div>
           </div>
         </section></div>}
-      <div className="m-20 justify-center items-center border-4 p-10 rounded-lg bg-gradient-to-bl from-indigo-400 to-cyan-400">
+      {/* <div className="m-20 justify-center items-center border-4 p-10 rounded-lg bg-gradient-to-bl from-indigo-400 to-cyan-400">
         <h1 className="mb-5 text-3xl text-white">Quiz </h1>
         <table className="table-auto rounded w-full text-center bg-gradient-to-r from-indigo-400 to-cyan-400 text-white">
           <thead className=" text-lg"><tr>
@@ -230,7 +230,7 @@ const AssignQuiz = () => {
             </tr>
           </tbody>
         </table>
-      </div>
+      </div> */}
     </>
   )
 }
