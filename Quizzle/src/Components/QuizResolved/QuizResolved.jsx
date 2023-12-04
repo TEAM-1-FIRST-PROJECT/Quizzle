@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 import { AuthContext } from "../../context/authContext";
 
 
-const QuizResolved = ({ id, score, title, category, userAnswers, resolvedOn }) => {
+const QuizResolved = ({ id, score, resolvedOn }) => {
 
   const navigate = useNavigate();
   const [quiz, setQuiz] = useState(null);
@@ -57,8 +57,7 @@ const QuizResolved = ({ id, score, title, category, userAnswers, resolvedOn }) =
                             </p>
                             <p className="block text-left">your answer: {userData?.score[quiz?.title].userAnswers[i].text}</p>
                           </div>
-                        </th>
-                        
+                        </th>                     
                       </tr>
                     </tbody>
                   ))}
