@@ -48,6 +48,51 @@ const Login = () => {
       });
   };
 
+  // const handleLogin = () => {
+  //   if (!form.email) {
+  //     alert("Email is required");
+  //   }
+  //   if (!form.password) {
+  //     alert("Password is required");
+  //     return;
+  //   }
+  //   console.log('form.email:', form.email);
+
+  //   const test = getUserDataByEmail(form.email)
+  //     .then((snapshot) => {
+  //       console.log('snapshot:', snapshot.val());
+  //       setUserr(snapshot.val());
+  //       return snapshot.val().isBlocked;
+  //     })
+
+  //     console.log(test);
+
+  //   loginUser(form.email, form.password)
+  //     .then((credential) => {
+  //       console.log('username:', credential.user.username);        
+        
+  //       getUserData(credential.user.uid)
+  //         .then((snapshot) => {
+  //           const userData = snapshot.val();
+  //           console.log('userData:', userData.isBlocked);
+
+  //           if (userData && userData.isBlocked === true) {
+  //             console.log("This user is blocked.");
+  //           } else if (userData) {
+  //             setUser({user: credential.user});
+  //             toast.success("Login successful, redirecting...");
+  //             navigate("/");
+  //           } 
+  //         })
+  //         .catch((err) => {
+  //           alert(err.message);
+  //         });
+  //     })
+  //     .catch((err) => {
+  //       alert(err.message);
+  //     });
+  // };
+
   return (
     <>
       <div className="h-screen bg-hero-pattern-2 bg-cover flex flex-row items-center justify-center pb-20">
