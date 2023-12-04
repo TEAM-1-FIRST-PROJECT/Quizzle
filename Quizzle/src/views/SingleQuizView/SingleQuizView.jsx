@@ -69,7 +69,7 @@ const SingleQuizView = () => {
   if (isQuizResolved) {
     const resolvedOn = Object.values(userData?.score).find(el => el.id === id).resolvedOn
     const scorePoints = Object.values(userData?.score).find(el => el.id === id).score
-    return <QuizResolved score={scorePoints} resolvedOn={resolvedOn} />
+    return <QuizResolved id={id} score={scorePoints} title={quiz?.title} category={quiz?.category} userAnswers={userAnswers} resolvedOn={resolvedOn} />
   }
 
   if (quizIsComplete || timerFinished) {

@@ -38,19 +38,14 @@ const UserAnswers = () => {
   const addCommentHandler = (answers) => {
     setShowInput(!showInput);
     setAnswers(answers)
-    console.log(answers)
   }
-
 
   const saveComment = (user, quiz) => {
     addCommentInUserResults(user, quiz, answers, comment)
-    console.log(comment, user, quiz, answers)
-    console.log()
   }
 
   return (
     <>
-
       {quiz && <div className="ml-48 mt-10">
         <section className="bg-white dark:bg-white py-3 sm:py-5">
           <div className="px-4  max-w-screen-2xl lg:px-12">
@@ -88,11 +83,13 @@ const UserAnswers = () => {
                         </th>
                       </tr>
                       {showInput && (
-                        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
+                        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-30">
                           <div className="bg-white p-4 rounded">
                             <input
+                              rows="6"  // Set the number of rows
+                              className="w-full p-1"
                               type="text"
-                              placeholder={i}
+                              placeholder={comment}
                               value={comment}
                               onChange={(e) => setComment(e.target.value)}
                             />
