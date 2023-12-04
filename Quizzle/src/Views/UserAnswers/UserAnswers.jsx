@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getQuizById } from "../../services/quiz.services";
 import toast from "react-hot-toast";
@@ -14,6 +14,7 @@ const UserAnswers = () => {
   const [comment, setComment] = useState('');
   const [quizId, username] = id.split('--');
   const [answers, setAnswers] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     getQuizById(quizId)
@@ -42,11 +43,12 @@ const UserAnswers = () => {
 
   const saveComment = (user, quiz) => {
     addCommentInUserResults(user, quiz, answers, comment)
+    navigate(0)
   }
 
   return (
     <>
-      {quiz && <div className="ml-48 mt-10">
+      {quiz && <div className="ml-4 mt-4">
         <section className="bg-white dark:bg-white py-3 sm:py-5">
           <div className="px-4  max-w-screen-2xl lg:px-12">
             <div className="relative overflow-hidden bg-white shadow-md dark:bg-indigo-100 opacity-80 sm:rounded-lg mb-20">
