@@ -45,7 +45,7 @@ const App = () => {
     <AuthContext.Provider value={{ ...appState, setUser: setAppState }}>
       <div className="bg-hero-pattern-3 bg-cover bg-fixed bg-blend-multiply">
       <Toaster />
-      <Navbar className="fixed top-0 left-0 w-full z-10 " />
+      <Navbar />
       <div className="flex ">
         <div className="">
           <Sidebar />

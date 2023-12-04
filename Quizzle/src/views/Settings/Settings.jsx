@@ -115,13 +115,13 @@ const Settings = () => {
         <div className="pb-20">
         <p className="m-14 text-3xl font-bold leading-6 text-black">
           Update profile information.
-          <p className="pt-10 text-red-500">
+          <p className="pt-10 text-red-600 animate-pulse">
             This information will be displayed publicly so be careful what you
             share!
           </p>
         </p>
-        <form className="p-5 pb-10 bg-white border-black border-2 rounded m-10 mt-[70px] mb-[40px]">
-          <div className="space-y-12 p-7 bg-white rounded-lg">
+        <form className="p-5 pb-10 border-indigo-300 border bg-gradient-to-t from-violet-200 to-violet-300 rounded m-10">
+          <div className="space-y-12 p-7 bg-gradient-to-bl from-indigo-400 rounded-lg">
             <div className="">
               <h2 className="text-base font-semibold leading-7 text-gray-900">
                 Profile
@@ -161,7 +161,7 @@ const Settings = () => {
                 </button>
               </div>
             </div>
-            <div className="border-b border-gray-900/10 pb-12">
+            <div className="">
               <h2 className="text-base font-semibold leading-7 text-gray-900">
                 Personal Information
               </h2>

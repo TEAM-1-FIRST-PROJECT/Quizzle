@@ -56,48 +56,48 @@ const username = userData?.username;
 
   return (
  
-    <div className=" m-10 border-4 p-10 rounded-lg bg-gradient-to-bl from-indigo-400 to-cyan-400">
+    <div className=" m-10 border-4 p-10 rounded-lg bg-gradient-to-bl from-indigo-400">
       <h1 className="mb-5 text-3xl text-white">Quiz Manage</h1>
       <input
         type="text"
-        className="border p-2 rounded mb-5"
-        placeholder="Search for quiz ..."
+        className=" p-2 rounded mb-5 placeholder-orange-300 font-bold"
+        placeholder="Search for Quiz..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
       <table className="table-auto rounded w-full text-center bg-gradient-to-r from-indigo-400 to-cyan-400 text-white">
-        <thead className=" text-lg">
+        <thead className=" text-lg border bg-indigo-400">
           <tr>
-            <th className="border px-4 py-2">Create By</th>
-            <th className="border px-4 py-2">Quiz Title</th>
-            <th className="border px-4 py-2">Created On</th>
-            <th className="border px-4 py-2">Edit Quiz</th>
-            <th className="border px-4 py-2">Delete</th>
+            <th className=" px-4 py-2">Create By</th>
+            <th className=" px-4 py-2">Quiz Title</th>
+            <th className=" px-4 py-2">Created On</th>
+            <th className=" px-4 py-2">Edit Quiz</th>
+            <th className=" px-4 py-2">Delete</th>
           </tr>
         </thead>
         <tbody>
           {quizzes.map((quiz) => (
             quiz.createdBy === username && (
-            <tr key={quiz.id}>
-              <td className="border px-4 py-2">{quiz.createdBy}</td>
-              <td className="border px-4 py-2">{quiz.title}</td>
-              <td className="border px-4 py-2">
+            <tr key={quiz.id} className="bg-indigo-300">
+              <td className=" px-4 py-2">{quiz.createdBy}</td>
+              <td className=" px-4 py-2">{quiz.title}</td>
+              <td className=" px-4 py-2">
                 {new Date(quiz.createdOn).toLocaleString()}
               </td>
-              <td className="border px-4 py-2">
+              <td className=" px-4 py-2">
                 <button
                   onClick={() => handleEditQuiz(quiz)}
-                  className="ml-2 px-2 py-1 bg-blue-500 text-white rounded"
+                  className="ml-2 px-2 py-1 bg-blue-500 text-white rounded transform transition duration-500 ease-in-out hover:scale-105"
                 >
                   Edit Quiz
                 </button>
               </td>
-              <td className="border px-4 py-2">
+              <td className=" px-4 py-2">
                 <button
                   onClick={() => handleDelete(quiz.id)}
-                  className="ml-2 px-2 py-1 bg-red-500 text-white rounded"
+                  className="ml-2 px-2 py-1 bg-red-500 text-white rounded transform transition duration-500 ease-in-out hover:scale-105"
                 >
-                  Delete
+                  Delete Quiz
                 </button>
               </td>
               </tr>
@@ -106,7 +106,7 @@ const username = userData?.username;
         </tbody>
       </table>
       {selectedQuiz && selectedQuiz.question && (
-        <div className="border-2 rounded mt-5 p-5 bg-white shadow-md table-auto w-full bg-gradient-to-r from-indigo-400 to-cyan-400 text-white">
+        <div className="border-2 rounded mt-5 p-5 shadow-md table-auto w-full bg-gradient-to-br from-indigo-400 text-white">
           <h1 className=" text-3xl mb-6 font-bold text-white">Edit Quiz</h1>
           <h1 className="font-bold text-2xl"> Title: {editedTitle}</h1>
          
@@ -134,7 +134,7 @@ const username = userData?.username;
           ))}
           <button
             role="alert"
-            className="alert alert-success ml-2 bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-2"
+            className="alert alert-success ml-2 bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-2 transform transition duration-500 ease-in-out hover:scale-105"
             onClick={handleSaveQuestion}
           >
             Save changes

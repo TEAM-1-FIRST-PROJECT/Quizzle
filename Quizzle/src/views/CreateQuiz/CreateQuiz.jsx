@@ -98,7 +98,7 @@ const CreateQuiz = () => {
       </div>
       <form
         onSubmit={handleSubmit}
-        className="z-0 p-10 pb-10 m-32  hover:shadow-2xl border-2 bg-indigo-300 space-y-4 rounded-lg "
+        className="z-0 p-10 pb-10 m-32 mt-10  hover:shadow-2xl border-2 bg-indigo-300 space-y-4 rounded-lg "
       >
         <div className="flex flex-wrap -mx-3">
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">

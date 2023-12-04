@@ -3,6 +3,7 @@ import { useState, useContext } from "react";
 import { AuthContext } from "../../context/authContext";
 import { useNavigate } from "react-router";
 import { loginUser } from "../../services/auth.services";
+import toast from "react-hot-toast";
 
 
 
@@ -39,7 +40,7 @@ const Login = () => {
         });
       })
       .then(() => {
-        alert("Login successful, redirecting...");
+        toast.success("Login successful, redirecting...");
         navigate("/");
       })
       .catch((err) => {
@@ -49,11 +50,11 @@ const Login = () => {
 
   return (
     <>
-      <div className="h-screen bg-hero-pattern-2 bg-cover flex items-center justify-center">
+      <div className="h-screen bg-hero-pattern-2 bg-cover flex flex-row items-center justify-center pb-20">
         <div className=" flex flex-col justify-center">
           <form className="w-[450px] mx-auto shadow-xl hover:shadow-violet-400 bg-indigo-300 p-8 rounded-lg opacity-80">
             <h2 className="text-4x1 text-3xl dark:text-white font-bold text-center">
-              Log in
+              Login
             </h2>
             <div className="flex flex-col text-black py-2">
               <label>Email</label>
@@ -92,7 +93,7 @@ const Login = () => {
               type="button"
               onClick={handleLogin}
             >
-              Log In
+              Login
             </button>
             <p className="text-indigo-500 py-2 flex justify-center">
               Don&#39;t have an account?{" "}

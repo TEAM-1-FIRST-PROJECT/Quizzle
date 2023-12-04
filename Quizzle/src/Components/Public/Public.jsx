@@ -19,8 +19,8 @@ const Public = () => {
 
   return (
     <>
-      {quizzes && <div className="h-screen bg-hero-pattern-2 bg-cover flex flex-col items-center">
-        <div className=" mt-36 max-w-6xl mx-auto px-4 sm:px-6 bg-white opacity-80 rounded-lg">
+      {quizzes && <div className="h-screen flex flex-col items-center">
+        <div className=" max-w-6xl mx-auto px-4 sm:px-6  opacity-80 rounded-lg">
           {/* Hero content */}
           <div className="pt-32 md:pt-10 ">
             {/* Section header */}

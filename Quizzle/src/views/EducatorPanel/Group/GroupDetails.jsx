@@ -61,138 +61,123 @@ const GroupsDetails = () => {
     });
   };
 
-  const buttonVariants = {
-    hover: {
-      scale: 1.1,
-      transition: {
-        duration: 0.3,
-        yoyo: Infinity,
-      },
-    },
-  };
+  // const buttonVariants = {
+  //   hover: {
+  //     scale: 1.1,
+  //     transition: {
+  //       duration: 0.3,
+  //       yoyo: Infinity,
+  //     },
+  //   },
+  // };
 
-  const containerVariants = {
-    hidden: {
-      opacity: 0,
-    },
-    visible: {
-      opacity: 1,
-      transition: {
-        delayChildren: 0.3,
-        staggerChildren: 0.2,
-      },
-    },
-  };
+  // const containerVariants = {
+  //   hidden: {
+  //     opacity: 0,
+  //   },
+  //   visible: {
+  //     opacity: 1,
+  //     transition: {
+  //       delayChildren: 0.3,
+  //       staggerChildren: 0.2,
+  //     },
+  //   },
+  // };
 
-  const childVariants = {
-    hidden: {
-      opacity: 0,
-      y: 20,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-    },
-  };
+  // const childVariants = {
+  //   hidden: {
+  //     opacity: 0,
+  //     y: 20,
+  //   },
+  //   visible: {
+  //     opacity: 1,
+  //     y: 0,
+  //   },
+  // };
 
   return (
-    <motion.div className="flex flex-col h-screen items-center">
-      <motion.h1
-        className="mb-4 text-4xl text-center font-bold mt-10 text-stone-400"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.2 }}
-      >
-        Group Details
-      </motion.h1>
-      {group && (
-        <motion.div
-          className="flex flex-col items-center space-y-4"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <motion.div
-            className="p-4 border-4 border-blue-300 rounded-md w-80 shadow-2xl transform transition-transform "
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 300 }}
-            variants={childVariants}
-          >
-            <p className="text-stone-400">
-              Group name{" "}
-              <h2 className="text-2xl font-bold mb-4">{group.name}</h2>
-            </p>
-            <p className="text-center mb-5 text-stone-400">
-              Formed by <p className="font-bold text-lg text-stone-400">{group.createdBy}</p>
-            </p>
-
-            <p className=" text-xl mb-3 text-center text-stone-400">
-              Created on: {new Date(group.createdOn).toLocaleDateString()}
-            </p>
-            {isEditingDescription ? (
-              <textarea
-                className="w-full p-2 mb-4 rounded-md shadow-inner text-stone-400"
-                value={newDescription}
-                onChange={(e) => setNewDescription(e.target.value)}
-              />
-            ) : (
-              <p className="mb-4 text-xl text-center text-stone-400">
-                Description <p>{group.description}</p>
+    <div className="">
+      <div className="flex flex-col h-screen items-center ">
+        <h1 className="mb-4 text-4xl text-center font-bold mt-10 rounded-full bg-gradient-to-r from-indigo-300">
+          Group Details
+        </h1>
+        {group && (
+          <div className="flex flex-col items-center rounded-xl space-y-4 bg-gradient-to-bl from-indigo-400 to">
+            <div className="p-4 rounded-xl w-80 shadow-2xl transform transition-transform bg-gradient-to-br from-indigo-400">
+              <p className="text-black">
+                Group name{" "}
+                <h2 className="text-2xl font-bold mb-4 text-white">
+                  {group.name}
+                </h2>
               </p>
-            )}
-            <motion.button
-              className="w-full p-2 text-white bg-blue-500 rounded-md shadow-lg"
-              onClick={
-                isEditingDescription
-                  ? handleSaveDescription
-                  : handleEditDescription
-              }
-              variants={buttonVariants}
-              whileHover="hover"
-            >
-              {isEditingDescription ? "Save Description" : "Edit Description"}
-            </motion.button>
-          </motion.div>
-          <p className="text-2xl text-stone-400 font-bold">Members:</p>
-          <motion.div
-            className="p-4 border-4 border-blue-300 rounded-md w-80 text-stone-400 shadow-2xl transform transition-transform "
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 300 }}
-            variants={childVariants}
-          >
-            <div className="flex flex-col space-y-4">
-              {members.map((member, index) => (
-                <div
-                  key={index}
-                  className="flex items-center justify-center space-x-2"
-                >
-                  <img
-                    className="w-8 h-8 rounded-full shadow-lg"
-                    src={member.avatar}
-                    alt="avatar"
-                  />
-                  <p className="font-bold">
-                    {member.userName} <p></p>Member since:{" "}
-                    {new Date(member.joinedAt).toLocaleDateString()}
-                  </p>
+              <p className="text-center mb-5 text-black">
+                Formed by{" "}
+                <p className="font-bold text-lg text-white">
+                  {group.createdBy}
+                </p>
+              </p>
+
+              <p className=" text-xl mb-3 text-center text-black">
+                Created on:{" "}
+                <span className=" text-yellow-200">
+                  {new Date(group.createdOn).toLocaleDateString()}
+                </span>
+              </p>
+              {isEditingDescription ? (
+                <textarea
+                  className="w-full p-2 mb-4 rounded-md shadow-inner text-black"
+                  value={newDescription}
+                  onChange={(e) => setNewDescription(e.target.value)}
+                />
+              ) : (
+                <p className="mb-4 text-xl text-center text-black">
+                  Description <p className="text-white">{group.description}</p>
+                </p>
+              )}
+              
+              <button
+                className=" p-2 w-full text-white bg-blue-500 border rounded-md hover:shadow-xl transform transition duration-500 ease-in-out hover:scale-105"
+                onClick={
+                  isEditingDescription
+                    ? handleSaveDescription
+                    : handleEditDescription
+                }
+              >
+                {isEditingDescription ? "Save Description" : "Edit Description"}
+              </button>
+              
+                <div className="flex justify-center mt-10">
+                  <Link to="/group-quizzes">
+                    <button className=" p-2 text-white bg-blue-500 border rounded-md hover:shadow-xl transform transition duration-500 ease-in-out hover:scale-105">
+                      View Group Quizzes
+                    </button>
+                  </Link>
                 </div>
-              ))}
+              <p className="text-2xl mt-2 text-white font-bold">Members:</p>
+
+              <div className="flex flex-col space-y-4">
+                {members.map((member, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center justify-center space-x-2"
+                  >
+                    <img
+                      className="w-8 h-8 rounded-full shadow-lg"
+                      src={member.avatar}
+                      alt="avatar"
+                    />
+                    <p className="font-bold">
+                      {member.userName} <p></p>Member since:{" "}
+                      {new Date(member.joinedAt).toLocaleDateString()}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
-          </motion.div>
-        </motion.div>
-      )}
-          <div className="flex justify-center mt-4">
-        <Link to="/group-quizzes">
-          <motion.button
-            className=" p-2 text-white bg-blue-500 rounded-md shadow-lg"
-            variants={buttonVariants}
-            whileHover="hover"
-          >
-            View Group Quizzes
-          </motion.button>
-        </Link>
+          </div>
+        )}
       </div>
-    </motion.div>
+    </div>
   );
 };
 

@@ -51,7 +51,7 @@ const JoinGroup = () => {
     <div className="">
       <img className="h-full ml-3 w-[370px] mix-blend-multiply" src={joinGroup} alt="group" />
 
-      <h1 className="mb-4 mt-10 text-2xl text-white">Join Group</h1>
+      <h1 className="mb-4 mt-16 text-2xl text-white">Join Group</h1>
       <input
         type="text"
         className="w-full p-2 mb-2  bg-white rounded-md shadow-md"

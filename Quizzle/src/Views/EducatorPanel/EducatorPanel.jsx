@@ -40,7 +40,7 @@ const EducatorPanel = () => {
       <p className="mt-5 ">You have the option to search for a quiz using the search field,</p>
         <p className="mt-5"> and you can assign a specific quiz to a particular student.</p>
         </div>
-      <div className="mt-20 justify-center items-center border-4 p-10 rounded-lg bg-gradient-to-bl from-indigo-400 to-cyan-400">
+      <div className="mt-20 justify-center items-center border-4 p-10 rounded-lg bg-gradient-to-bl from-indigo-400">
         <h1 className="mb-5 text-5xl bg-clip-text text-transparent bg-gradient-to-r from-gray-800 to-stone-100">Quizzes</h1>
         <input
           type="text"
@@ -49,11 +49,11 @@ const EducatorPanel = () => {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <button className="mt-2 px-4 py-2 text-sm font-medium text-white bg-cyan-400 rounded-md hover:bg-green-400 float-right transform transition duration-500 ease-in-out hover:scale-105"
+        <button className="mt-2 px-4 py-2 font-medium text-white bg-violet-400 rounded-md hover:bg-green-400 float-right transform transition duration-500 ease-in-out hover:scale-105"
           onClick={() => { setFinishedQuizzes((!finishedQuizzes)) }}>{finishedQuizzes ? 'switch to finished quizzes' : 'switch to opened quizzes'}</button>
-        <table className="table-auto rounded w-full text-center bg-gradient-to-r from-indigo-400 to-cyan-400 text-white">
-          <thead className=" text-lg">
-            <tr className="border-r border-l border-t border-violet-200">
+        <table className="table-auto rounded w-full text-center  text-white">
+          <thead className=" text-lg bg-indigo-400">
+            <tr className="border border-violet-200 ">
               <th className="  px-4 py-2">Quiz Title</th>
               <th className=" px-4 py-2">Created On</th>
               {finishedQuizzes
@@ -64,7 +64,7 @@ const EducatorPanel = () => {
           </thead>
           <tbody>
             {openQuizzes.map((quiz) => (
-              <tr key={quiz.id} className="border-r border-l border-t border-b border-violet-200">
+              <tr key={quiz.id} className="border bg-indigo-300 ">
                 <td className=" px-4 py-2">{quiz.title}</td>
                 <td className=" px-4 py-2">
                   {dateFormat(quiz.createdOn)}

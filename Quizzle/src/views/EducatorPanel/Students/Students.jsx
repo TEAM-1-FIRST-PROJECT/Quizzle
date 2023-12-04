@@ -82,37 +82,37 @@ const Students = () => {
         </p>
         </div>
 
-      <div className="relative p-5 ml-10 mr-10 mt-20 border shadow-md rounded bg-gradient-to-br from-violet-400 to-cyan-400">
+      <div className="relative p-5 ml-10 mr-10 mt-20 border shadow-md rounded bg-gradient-to-br from-indigo-400">
         <input
           type="text"
-          className="border p-2 rounded w-full sm:w-3/4 md:w-1/2 lg:w-1/3 xl:w-1/4"
+          className="border p-2 rounded w-full sm:w-3/4 md:w-1/2 lg:w-1/3 xl:w-1/4 placeholder-orange-300 font-bold"
           placeholder="Search for user..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
         <div className="mt-4 ">
-          <table className="table-auto rounded w-full text-center bg-gradient-to-r from-indigo-400 to-cyan-400 text-white">
-            <thead className=" text-lg">
+          <table className="table-auto rounded w-full text-center text-white">
+            <thead className=" text-lg border bg-indigo-400">
               <tr>
-                <th className="border px-4 py-2">Username</th>
-                <th className="border px-4 py-2">Email</th>
-                <th className="border px-4 py-2">Average Points</th>
-                <th className="border px-4 py-2">Block</th>
+                <th className=" px-4 py-2">Username</th>
+                <th className=" px-4 py-2">Email</th>
+                <th className=" px-4 py-2">Average Points</th>
+                <th className=" px-4 py-2">Block</th>
               </tr>
             </thead>
             <tbody>
               {filteredUsers.map(
                 (user) =>
                   user.role === ROLE_CHECK.student && (
-                    <tr key={user.username}>
-                      <td className="border px-4 py-2">{user.username}</td>
-                      <td className="border px-4 py-2">{user.email}</td>
-                      <td className="border px-4 py-2">{}</td>
-                      <td className="border px-4 py-2">
+                    <tr key={user.username} className="border bg-indigo-300 ">
+                      <td className=" px-4 py-2">{user.username}</td>
+                      <td className=" px-4 py-2">{user.email}</td>
+                      <td className=" px-4 py-2">{}</td>
+                      <td className=" px-4 py-2">
                         <button
                           className={`${
                             user.isBlocked ? "bg-green-500" : "bg-red-500"
-                          } text-white px-4 py-2 rounded`}
+                          } text-white px-4 py-2 rounded transform transition duration-500 ease-in-out hover:scale-105` }
                           onClick={() =>
                             handleBlockUser(user.username, user.isBlocked)
                           }
@@ -131,7 +131,7 @@ const Students = () => {
             </div>
             <div>
               <button
-                className="bg-blue-500 text-white px-4 py-2 rounded mr-2"
+                className="bg-blue-500 text-white px-4 py-2 rounded mr-2 transform transition duration-500 ease-in-out hover:scale-105"
                 onClick={() =>
                   paginate(currentPage > 1 ? currentPage - 1 : currentPage)
                 }
@@ -142,7 +142,7 @@ const Students = () => {
                 Page {currentPage} of {Math.ceil(users.length / usersPerPage)}
               </span>
               <button
-                className="bg-blue-500 text-white px-4 py-2 rounded ml-2"
+                className="bg-blue-500 text-white px-4 py-2 rounded ml-2 transform transition duration-500 ease-in-out hover:scale-105"
                 onClick={() =>
                   paginate(
                     currentPage < Math.ceil(users.length / usersPerPage)

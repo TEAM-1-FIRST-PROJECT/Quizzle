@@ -33,9 +33,9 @@ const SearchBar = () => {
       };
 
       return (
-        <div className="relative flex items-center">
+        <div className="flex items-center">
           <input
-            className="rounded-full p-1.5 border-2 border-indigo-700 focus:outline-none hover:shadow-inner hover:shoadow-sm w-full bg-indigo opacity-80"
+            className="rounded-full placeholder-orange-300 text-lg font-bold p-1 border-2 border-indigo-700 focus:outline-none hover:shadow-inner hover:shoadow-sm w-full bg-indigo opacity-80"
             type="search"
             placeholder="Search..."
             autoComplete="off"

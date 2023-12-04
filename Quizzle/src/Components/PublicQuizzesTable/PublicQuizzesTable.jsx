@@ -17,7 +17,7 @@ const PublicQuizzesTable = () => {
       }, []);
 
 return (
-    <section className="bg-white dark:bg-white py-3 sm:py-5">
+    <section className="py-3 sm:py-5">
     <div className="px-4 mx-auto max-w-screen-2xl lg:px-12">
       <div className="relative overflow-hidden bg-white shadow-md dark:bg-indigo-300 opacity-80 sm:rounded-lg mb-20">
         <div className="overflow-x-auto">

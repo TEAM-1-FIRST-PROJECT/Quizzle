@@ -47,10 +47,10 @@ const CreateGroup = () => {
       <input
         type="text"
         className="w-full p-2 mb-2 bg-white rounded-md shadow-md"
-        placeholder="Enter group name"
+        placeholder={`Enter group name`}
         value={groupName}
         onChange={(e) => setGroupName(e.target.value)}
-      />
+        />
       <input
         type="text"
         className="w-full p-2 mb-2 bg-white rounded-md shadow-md"
