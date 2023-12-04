@@ -5,7 +5,7 @@ import JoinGroup from "./JoinGroup/JoinGroup";
 
 const GroupsManagement = () => {
   const [index, setIndex] = useState(0);
-  const text = 'CREATE or JOIN GROUP';
+  const text = 'Create or Join a Group';
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -16,13 +16,13 @@ const GroupsManagement = () => {
   }, []);
 
   return (
-    <div className="h-screen bg-black bg-cover flex flex-col items-center ml-56">
-      <p className="font-extrabold text-4xl mt-24 bg-clip-text p-1 text-transparent bg-gradient-to-r from-blue-600 to-violet-400">
+    <div className="h-screen bg-white bg-cover flex flex-col items-center">
+      <p className="font-extrabold text-6xl mt-10 bg-clip-text p-1 text-transparent bg-gradient-to-r from-blue-600 to-violet-400">
         {text.slice(0, index).split('').map((char, i) => (
           <span key={i} className="animate-gradient">{char}</span>
         ))}
       </p>
-    <div className="flex flex-wrap justify-between  opacity-80 m-10">
+    <div className="flex flex-wrap justify-between m-10 pb-12">
       <div className="w-1/3 m-4 hero-pattern-2 bg-gradient-to-l from-indigo-400 to-cyan-400 shadow-md rounded-lg p-10 text-black">
         <CreateGroup />
       </div>

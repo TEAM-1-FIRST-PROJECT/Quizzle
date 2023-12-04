@@ -78,11 +78,11 @@ const CreateQuiz = () => {
         toast.error("Error adding document: ", error);
       });
   };
-
   return (
-    <div className=" min-h-screen bg-black bg-cover items-center pt-16 pb-24">
-      <div className=" text-center pb-12 md:pb-8 mt-10 ml-[280px]">
-        <h1 className="text-5xl md:text-6xl text-white font-extrabold leading-tighter tracking-tighter  mb-4 pr-2">
+    <div className=" grid grid-flow-row h-screen ">
+      <div className="mb-20">
+      <div className=" text-center mt-10 ">
+        <h1 className="text-6xl text-black font-extrabold leading-tighter tracking-tighter mb-4 mt-10 pr-2">
           Create your own{" "}
           <span className="bg-clip-text p-1 text-transparent bg-gradient-to-r from-blue-600 to-violet-400">
             Quiz
@@ -90,19 +90,19 @@ const CreateQuiz = () => {
         </h1>
       </div>
       <div className="max-w-3xl mx-auto">
-        <p className="text-xl text-gray-500 mb-10 text-center ml-[280px]">
+        <p className="text-xl text-gray-500 text-center">
           Our landing page template works on all devices, so you only have to
           set it up once, and get beautiful results forever.
         </p>
       </div>
       <form
         onSubmit={handleSubmit}
-        className=" justify-center items-center p-10 ml-[380px] border-white hover:shadow-2xl hover:shadow-white indigo-700 border-2 bg-indigo-300 space-y-4 rounded-lg w-3/4 z-0"
+        className="z-0 p-10 pb-10 m-32  hover:shadow-2xl hover:shadow-black border-2 bg-indigo-300 space-y-4 rounded-lg "
       >
         <div className="flex flex-wrap -mx-3">
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label className="block">
-              <span className="text-gray-700 text-lg font-extralight">
+              <span className="text-gray-700 text-xl font-extralight">
                 Title:
               </span>
               <input
@@ -116,7 +116,7 @@ const CreateQuiz = () => {
           </div>
           <div className="w-full md:w-1/2 px-3">
             <label className="block">
-              <span className="text-gray-700 text-lg font-extralight">
+              <span className="text-gray-700 text-xl font-extralight">
                 Description:
               </span>
               <input
@@ -132,7 +132,7 @@ const CreateQuiz = () => {
         <div className="flex flex-wrap -mx-3">
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label className="block">
-              <span className="text-gray-700 text-lg font-extralight">
+              <span className="text-gray-700 text-xl font-extralight">
                 Category:
               </span>
               <input
@@ -146,7 +146,7 @@ const CreateQuiz = () => {
           </div>
           <div className="w-full md:w-1/2 px-3">
             <label className="block">
-              <span className="text-gray-700 text-lg font-extralight">
+              <span className="text-gray-700 text-xl font-extralight">
                 Contest Type:
               </span>
               <select
@@ -168,9 +168,9 @@ const CreateQuiz = () => {
           />
         )}
         <div className="flex flex-wrap -mx-3">
-          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+          <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
             <label className="block">
-              <span className="text-gray-700 text-lg font-extralight">
+              <span className="text-gray-700 text-xl font-extralight">
                 Time Limit:
               </span>
               <input
@@ -182,9 +182,10 @@ const CreateQuiz = () => {
               />
             </label>
           </div>
-          <div className="w-full md:w-1/2 px-3">
+
+          <div className="w-full md:w-1/3 px-3">
             <label className="block">
-              <span className="text-gray-700 text-lg font-extralight">
+              <span className="text-gray-700 text-xl font-extralight">
                 Total Points:
               </span>
               <input
@@ -196,11 +197,27 @@ const CreateQuiz = () => {
               />
             </label>
           </div>
+
+          <div className="w-full md:w-1/3 px-3">
+            <label className="block">
+              <span className="text-gray-700 text-xl font-extralight">
+                Minimum Passing Score:
+              </span>
+              <input
+                type="number"
+                value={totalPoints}
+                onChange={(e) => setTotalPoints(e.target.value)}
+                required
+                className="mt-1 block w-full p-2 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
+              />
+            </label>
+          </div>
         </div>
+
         {questions.map((question, index) => (
           <div key={index} className="space-y-4">
             <label className="block">
-              <span className="text-gray-700 text-lg font-extralight">
+              <span className="text-gray-700 text-xl font-extralight">
                 Question:
               </span>
               <input
@@ -218,7 +235,7 @@ const CreateQuiz = () => {
             {question.answers.map((answer, answerIndex) => (
               <div key={answerIndex}>
                 <label className="block">
-                  <span className="text-gray-700 text-lg font-extralight">
+                  <span className="text-gray-700 text-xl font-extralight">
                     Answer:
                   </span>
                   <input
@@ -289,7 +306,8 @@ const CreateQuiz = () => {
           Create Quiz
         </button>
       </form>
-    </div>
+      </div>
+      </div>
   );
 };
 

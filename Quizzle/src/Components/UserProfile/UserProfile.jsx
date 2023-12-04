@@ -32,7 +32,7 @@ const UserProfile = () => {
     const closedQuizzes = quizzes.filter(quiz => quiz.assignedUsers !== undefined && f(quiz.assignedUsers) <= dateNow);
 
     return (
-        <div className="h-screen bg-hero-pattern-2 bg-cover flex flex-col items-center">
+        <div className="bg-hero-pattern-2 bg-cover flex flex-col items-center">
         <section className="bg-gray-2 pb-10 pt-5 dark:bg-dark lg:pb-10 lg:pt-10">
             <div className="container">
                 <h2 className='mt-12 text-3xl md:text-3xl font-extrabold leading-tighter tracking-tighter mb-4'>Ongoing Quizzes</h2>

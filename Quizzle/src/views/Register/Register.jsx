@@ -1,24 +1,18 @@
 import { Link } from "react-router-dom";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { AuthContext } from "../../context/authContext";
 import { useNavigate } from "react-router";
 import {
   getUserByHandle,
   createUserHandle,
-  checkUserPhone
+  checkUserPhone,
 } from "../../services/users.services";
 import { registerUser } from "../../services/auth.services";
 import { ROLE_CHECK } from "../../common/constants";
 import toast from "react-hot-toast";
-// import {
-//   MAX_NAME_LENGTH,
-//   MIN_NAME_LENGTH,
-//   MIN_USER_NAME_LENGTH,
-//   PHONE_NUMBER_CHECK,
-//   NAME_CHECK
-// } from "../../common/constants";
 
 const RegisterForm = () => {
+  const [index, setIndex] = useState(0);
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
@@ -36,59 +30,31 @@ const RegisterForm = () => {
   const navigate = useNavigate();
 
   const updateForm = (field) => (e) => {
-    const value = e.target.type === "checkbox" ? (e.target.checked ? ROLE_CHECK.educator : ROLE_CHECK.student) : e.target.value;
+    const value =
+      e.target.type === "checkbox"
+        ? e.target.checked
+          ? ROLE_CHECK.educator
+          : ROLE_CHECK.student
+        : e.target.value;
     setForm({
       ...form,
       [field]: value,
-
     });
   };
 
+  const text =
+    "Quizzes are a popular form of entertainment, but they also have numerous benefits that can contribute to personal and professional development. They require recall of information, which strengthens memory pathways. This makes it easier to retrieve this information later, enhancing long-term memory.";
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex((prevIndex) => prevIndex + 1);
+    }, 30);
+
+    return () => clearInterval(timer);
+  }, []);
+
   const handleRegisterUser = (e) => {
     e.preventDefault();
-
-    // if (
-    //   form.firstName.length < MIN_NAME_LENGTH ||
-    //   form.firstName.length > MAX_NAME_LENGTH
-    // ) {
-    //   alert(
-    //     `First name must be between ${MIN_NAME_LENGTH} and ${MAX_NAME_LENGTH} characters long`
-    //   );
-    //   return;
-    // }
-    // if (!NAME_CHECK.test(form.firstName)) {
-    //   alert("first name is required");
-    //   return;
-    // }
-
-    // if (
-    //   form.lastName.length < MIN_NAME_LENGTH ||
-    //   form.lastName.length > MAX_NAME_LENGTH
-    // ) {
-    //   alert(
-    //     `Last name must be between ${MIN_NAME_LENGTH} and ${MAX_NAME_LENGTH} characters long`
-    //   );
-    //   return;
-    // }
-    // if (!NAME_CHECK.test(form.lastName)) {
-    //   alert("Last name is required");
-    //   return;
-    // }
-
-    // if (
-    //   form.username.length < MIN_USER_NAME_LENGTH ||
-    //   form.username.length > MAX_NAME_LENGTH
-    // ) {
-    //   alert(
-    //     `User name must be between ${MIN_USER_NAME_LENGTH} and ${MAX_NAME_LENGTH} characters long`
-    //   );
-    //   return;
-    // }
-
-    // if (!PHONE_NUMBER_CHECK.test(form.phone)) {
-    //   alert("correct phone number is required");
-    //   return;
-    // }
 
     if (!form.email) {
       toast("Email is required!");
@@ -96,10 +62,10 @@ const RegisterForm = () => {
     }
 
     checkUserPhone(form.phone)
-      .then(result => {
+      .then((result) => {
         if (result) {
           toast.error(`user with phone ${form.phone} already exist!`);
-          navigate("/register")
+          navigate("/register");
         } else {
           getUserByHandle(form.username)
             .then((snapshot) => {
@@ -133,19 +99,29 @@ const RegisterForm = () => {
             .catch((e) => toast.error(e.message));
         }
       })
-      .catch(e => toast.log(e))
+      .catch((e) => toast.log(e));
   };
   return (
     <>
+      <p className="font-extrabold p-10 text-2xl bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-violet-400">
+        {text
+          .slice(0, index)
+          .split("")
+          .map((char, i) => (
+            <span key={i} className="animate-gradient">
+              {char}
+            </span>
+          ))}
+      </p>
       <div className="h-screen bg-hero-pattern-2 bg-cover flex items-center justify-center">
-        <div className="hidden sm:block mt-20 justify-center">
-          <div className="">
-            <form className="w-[450px] mx-auto shadow-xl hover:shadow-violet-400 bg-indigo-300 p-6 rounded-lg opacity-80">
-              <h2 className="text-4x1 text-3xl text-black font-bold text-center">
-                Register
-              </h2>
-              <div className="flex flex-col text-black py-1">
-                <label>First Name</label>
+        <div className="hidden sm:block  justify-center">
+          <form className="w-[650px] mx-auto mb-10 shadow-xl hover:shadow-violet-400 bg-indigo-300 p-6 rounded-lg opacity-80">
+            <h2 className="text-4x1 text-3xl mb-8 text-black font-bold text-center">
+              Register
+            </h2>
+            <div className="flex flex-wrap -mx-1">
+              <div className="w-full sm:w-1/2 px-5">
+                <text className="">First Name</text>
                 <input
                   className="rounded-lg  mt-2 p-2 focus-within:border-blue-500 focus:outline-none"
                   type="text"
@@ -153,7 +129,7 @@ const RegisterForm = () => {
                   onChange={updateForm("firstName")}
                 />
               </div>
-              <div className="flex flex-col text-black py-1">
+              <div className="w-full sm:w-1/2 px-5">
                 <label>Last Name</label>
                 <input
                   className="rounded-lg  mt-2 p-2 focus-within:border-blue-500 focus:outline-none"
@@ -162,7 +138,7 @@ const RegisterForm = () => {
                   onChange={updateForm("lastName")}
                 />
               </div>
-              <div className="flex flex-col text-black py-1">
+              <div className="mt-2 w-full sm:w-1/2 px-5">
                 <label>Username</label>
                 <input
                   className="rounded-lg mt-2 p-2 focus-within:border-blue-500 focus:outline-none"
@@ -171,8 +147,8 @@ const RegisterForm = () => {
                   onChange={updateForm("username")}
                 />
               </div>
-              <div className="flex flex-col text-black py-1">
-                <label>phone</label>
+              <div className="mt-2 w-full sm:w-1/2 px-5">
+                <label>Phone</label>
                 <input
                   className="rounded-lg mt-2 p-2 focus-within:border-blue-500 focus:outline-none"
                   type="text"
@@ -180,29 +156,29 @@ const RegisterForm = () => {
                   onChange={updateForm("phone")}
                 />
               </div>
-              <div className="flex flex-col text-black py-1">
-        <label>Address</label>
-        <input
-          className="rounded-lg  mt-2 p-2 focus-within:border-blue-500 focus:outline-none"
-          type="text"
-          value={form.address}
-          onChange={updateForm("address")}
-        />
-      </div>
-              <div className="flex flex-col text-black py-1">
+              <div className="w-full mt-2 sm:w-1/2 px-5">
+                <label>Address</label>
+                <textarea
+                  className="rounded-lg  mt-2 p-2 focus-within:border-blue-500 focus:outline-none"
+                  type="text"
+                  value={form.address}
+                  onChange={updateForm("address")}
+                />
+              </div>
+              <div className="mt-2 w-full sm:w-1/2 px-5">
                 <label>Email</label>
                 <input
                   className="rounded-lg mt-2 p-2 placeholder-slate-400
-      focus:outline-none 
-      disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
-      invalid:border-pink-500 invalid:text-pink-600
-      focus:invalid:border-pink-500 focus:invalid:ring-pink-500"
+            focus:outline-none 
+            disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
+            invalid:border-pink-500 invalid:text-pink-600
+            focus:invalid:border-pink-500 focus:invalid:ring-pink-500"
                   type="email"
                   value={form.email}
                   onChange={updateForm("email")}
                 />
               </div>
-              <div className="flex flex-col text-black py-1">
+              <div className="mt-2 w-full sm:w-1/2 px-5">
                 <label>Password</label>
                 <input
                   className="rounded-lg bg-white mt-2 p-2 focus-within:border-blue-500 focus:outline-none"
@@ -211,7 +187,7 @@ const RegisterForm = () => {
                   onChange={updateForm("password")}
                 />
               </div>
-              <div className=" flex justify-center mt-1">
+              <div className=" mt-12 w-full sm:w-1/2 px-5">
                 <label>I am an educator</label>
                 <input
                   className="ml-2"
@@ -227,7 +203,7 @@ const RegisterForm = () => {
               >
                 SIGN UP
               </button>
-              <p className="text-black-500 hover:text-violet-500 py-2 flex justify-center">
+              <p className="text-black-500 ml-24 hover:text-violet-500 py-2 flex justify-center">
                 Already have an account?{" "}
                 <Link
                   className="ml-1 dark:text-white hover:animate-pulse mix-blend-color-dodge"
@@ -236,12 +212,11 @@ const RegisterForm = () => {
                   Log in
                 </Link>
               </p>
-            </form>
-          </div>
+            </div>
+          </form>
         </div>
       </div>
     </>
-
   );
 };
 

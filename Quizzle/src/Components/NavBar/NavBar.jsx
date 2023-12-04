@@ -15,7 +15,7 @@ function Navbar() {
   };
 
   return (
-      <nav className="fixed w-full z-100 top-0 bg-gradient-to-r from-violet-400 to-indigo-400 ">
+      <nav className="top-0 bg-gradient-to-r from-violet-400 to-indigo-400 ">
         <div className="mx-auto px-1 sm:px-2 lg:px-8 ">
           <div className="flex items-center justify-between h-14">
             <div className="flex items-center">
@@ -33,10 +33,10 @@ function Navbar() {
                     Dashboard
                   </Link>
                   <Link
-                    to="#"
+                    to="/categories"
                     className="hover:bg-gradient-to-br hover:from-violet-500 hover:to-fuchsia-400 text-white px-3 py-2 rounded-md"
                   >
-                    Team
+                    Categories
                   </Link>
                   <Link
                     to="#"
@@ -53,8 +53,10 @@ function Navbar() {
                 </div>
               </div>
             </div>
-            <div className="flex items-center">
+          <div className="flex items-center">
+            <div className="ml-10 sm:hidden lg:flex md:flex">
               <SearchBar />
+            </div>
               {!user && (
                 <Link
                   to="/login"
@@ -134,10 +136,10 @@ function Navbar() {
                 Dashboard
               </Link>
               <Link
-                to="#"
+                to="/categories"
                 className="text-white hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400  block px-3 py-2 rounded-md text-base font-medium font-montserrat"
               >
-                Team
+                Categories
               </Link>
               <Link
                 to="#"
@@ -150,7 +152,8 @@ function Navbar() {
                 className="text-white hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 block px-3 py-2 rounded-md text-base font-medium font-montserrat"
               >
                 Calendar
-              </Link>
+            </Link>
+            <SearchBar />
             </div>
           </div>
         </div>

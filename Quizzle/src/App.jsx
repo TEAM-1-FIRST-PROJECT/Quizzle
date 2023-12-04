@@ -41,15 +41,19 @@ const App = () => {
     });
   });
 
-
   return (
     <AuthContext.Provider value={{ ...appState, setUser: setAppState }}>
-      <Toaster/>
-      <Navbar />
-      <Sidebar />
-      <AppRouter />
-       <Footer />
-      
+      <Toaster />
+      <Navbar className="fixed top-0 left-0 w-full z-10" />
+      <div className="flex min-h-screen">
+        <div className="">
+          <Sidebar />
+        </div>
+        <div className="flex-grow overflow-auto">
+          <AppRouter />
+        </div>
+      </div>
+      <Footer className="fixed bottom-0 left-0 w-full z-10" />
     </AuthContext.Provider>
   );
 };

@@ -23,10 +23,9 @@ const GroupsList = () => {
   }, []);
 
   return (
-    <div className="">
-      <div className="h-screen bg-black bg-cover flex flex-col items-center ml-[280px] p-6">
-      <h1 className="mb-4 mt-[100px] text-3xl text-center font-bold text-white">Groups List</h1>
-      <div className="flex flex-col mt-[100px] text-center space-y-7 w-full md:w-1/4 opacity-95 ">
+      <div className="h-screen justify-center p-6">
+      <div className="flex flex-col text-center  space-y-7 w-1/3 ">
+      <h1 className="mb-4 text-3xl font-bold text-black">Groups List</h1>
         {groups.map((group, index) => (
           <div style={{ animation: `slideInFromRight 0.5s ${index * 0.1}s both` }} key={group.id} className="p-4 border-2 hover:border-fuchsia-400 rounded-md w-full text-white hover:shadow-2xl hover:shadow-white bg-gradient-to-l from-indigo-400 to-cyan-400 transition-all duration-500 ease-in-out transform hover:scale-105">
             <Link to={`/group/${group.id}`} className="no-underline text-white">
@@ -39,7 +38,6 @@ const GroupsList = () => {
         ))}
         {groups.length === 0 && <p className="text-red-500 font-bold">No groups available</p>}
       </div>
-    </div>
     </div>
   );
 };
