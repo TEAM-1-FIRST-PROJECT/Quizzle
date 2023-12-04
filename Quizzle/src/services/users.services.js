@@ -79,3 +79,7 @@ export const addCommentInUserResults = (username, quiz, index, comment) => {
 
   return update(ref(database), updateUserScore);
 }
+
+export const getUserDataByEmail = (email) => {
+  return get(query(ref(database, "users"), orderByChild("email"), equalTo(email)));
+};
