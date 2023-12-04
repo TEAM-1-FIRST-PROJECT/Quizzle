@@ -2,13 +2,12 @@ import PropTypes from "prop-types";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/authContext";
-import { ROLE_CHECK, dateNow } from "../../common/constants";
+import { dateNow } from "../../common/constants";
 import RemainingTime from "../RemainingTime/RemainingTime";
 
 const SingleCard = ({ image, quiz }) => {
 
   const { userData } = useContext(AuthContext);
-  const isEducator = userData?.role === ROLE_CHECK.educator;
 
   const showTimer = userData?.assignedQuizzes ? Object.keys(userData?.assignedQuizzes).includes(quiz?.id) : false;
   let timeLimit = 0;

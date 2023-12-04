@@ -17,7 +17,8 @@ export const addQuiz = (
   timeLimit,
   category,
   question,
-  totalPoints
+  minPassingPoints,
+  maxPassingPoints
 ) => {
   let newQuizRef = push(ref(database, "quizzes"));
   let quizData = {
@@ -31,7 +32,8 @@ export const addQuiz = (
     timeLimit,
     question,
     createdOn: Date.now(),
-    maxPoints: totalPoints,
+    minPassingPoints,
+    maxPassingPoints
   };
 
   // Add quiz to the quizzes collection
