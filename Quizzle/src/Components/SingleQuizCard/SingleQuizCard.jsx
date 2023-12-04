@@ -56,12 +56,12 @@ const SingleCard = ({ image, quiz }) => {
           <p className="mb-7 text-base leading-relaxed text-body-color dark:text-dark-6">
             {`In this quiz you have ${quiz?.timeLimit} seconds to resolve ${quiz?.question?.length} questions`}
           </p>
-          <Link
+          {!showSummary && <Link
             to={`/singleQuizView/${quiz?.id}`}
             className="inline-block mx-1 px-4 py-2 border border-indigo-500 rounded-lg text-center font-medium hover:bg-indigo-500 hover:text-white dark:hover:bg-dark-1 dark:hover:text-white-300"
           >
             Enroll quiz
-          </Link>
+          </Link>}
           {isEducator && <Link
             to={`/assign-quiz/${quiz?.id}`}
             className="inline-block mx-1 px-4 py-2 border border-indigo-500 rounded-lg text-center font-medium hover:bg-indigo-500 hover:text-white dark:hover:bg-dark-1 dark:hover:text-white-300"
