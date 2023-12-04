@@ -22,10 +22,10 @@ const SeeSummary = () => {
   return (
     <>
       {quiz && (
-        <div className="h-screen flex flex-row mt-20 bg-cover">
-          <section className=" ml-72 w-1/2">
-            <div className="px-4 lg:px-12 ml-20">
-              <div className="relative overflow-hidden  shadow-md opacity-80 sm:rounded-lg mb-20">
+        <div className="h-screen flex flex-col bg-cover">
+          <section className="m-20">
+            <div className="px-4 w-full lg:px-12 ">
+              <div className="relative overflow-hidden shadow-md opacity-80 sm:rounded-lg mb-20">
                 <div className="overflow-x-auto">
                   <table className="w-full text-sm text-left text-gray-500">
                     <thead className="text-lg text-gray-700 dark:text-gray-400">
@@ -64,7 +64,7 @@ const SeeSummary = () => {
                                   </span>
                               </p>
                               <p className="block text-lg font-bold">
-                                Your response:{" "}
+                                Your response: {" "}
                                 {
                                   userData?.score[quiz?.title].userAnswers[i]
                                     .text
