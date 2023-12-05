@@ -74,10 +74,10 @@ const UserAnswers = () => {
                               : null}
                             </p>
                             <p className="block text-left">your answer:  {
-                                 user?.score[quiz?.title].userAnswers
-                                 ? user?.score[quiz?.title].userAnswers[i].text
-                                 : "..."
-                                }</p>
+                              user?.score[quiz?.title].userAnswers
+                                ? user?.score[quiz?.title].userAnswers[i].text
+                                : "..."
+                            }</p>
                             {user?.score[quiz?.title].userAnswers[i].comment && <p className="block text-left">{user?.score[quiz?.title].userAnswers[i].comment}</p>}
                           </div>
                         </th>
@@ -90,16 +90,18 @@ const UserAnswers = () => {
                       </tr>
                       {showInput && (
                         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-30">
-                          <div className="bg-white p-4 rounded">
-                            <input
-                              rows="6"  // Set the number of rows
-                              className="w-full p-1"
-                              type="text"
-                              placeholder={comment}
+                          <div className="bg-white p-4 items-center justify-end rounded ">
+                            <textarea
+                              rows="8"
+                              className="rounded-lg w-full p-1 bg-white mt-2 -py focus-within:border-blue-500 focus:outline-none"
+                              type="password"
                               value={comment}
                               onChange={(e) => setComment(e.target.value)}
                             />
-                            <button onClick={() => { setComment(''); setShowInput(false); saveComment(user.username, quiz?.title) }}>Save comment</button>
+                            
+                              <button className="" onClick={() => { setComment(''); setShowInput(false); saveComment(user.username, quiz?.title) }}>Save comment</button>
+                              <button onClick={() => setShowInput(false)}>Cancel</button>
+                        
                           </div>
                         </div>
                       )}
