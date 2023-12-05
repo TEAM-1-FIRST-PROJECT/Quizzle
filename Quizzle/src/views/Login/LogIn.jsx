@@ -30,7 +30,7 @@ const Login = () => {
       alert("Password is required");
       return;
     }
-    console.log(form.email)
+    
     getUserDataByEmail(form.email)
       .then((snapshot) => {
         if (Object.values(snapshot.val())[0].isBlocked) {
