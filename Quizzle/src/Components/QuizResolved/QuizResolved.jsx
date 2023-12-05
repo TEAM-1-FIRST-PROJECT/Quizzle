@@ -77,6 +77,7 @@ const QuizResolved = ({ id, score, resolvedOn }) => {
                                  : "..."
                                 }
                               </p>
+                              {userData?.score[quiz?.title].userAnswers && <p className="block text-left">{userData?.score[quiz?.title].userAnswers[i].comment}</p>}
                             </div>
                           </th>
                         </tr>
