@@ -65,12 +65,6 @@ const AssignQuiz = () => {
                 <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                   <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
-                      <th scope="col" className="p-4 bg-indigo-500 border-indigo-700">
-                        <div className="flex items-center">
-                          <input id="checkbox-all" type="checkbox" className="w-4 h-4 bg-indigo-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-indigo-800 focus:ring-2 dark:bg-indigo-700 dark:border-indigo-600"></input>
-                          <label htmlFor="checkbox-all" className="sr-only">checkbox</label>
-                        </div>
-                      </th>
                       <th scope="col" className="px-4 py-3 bg-indigo-500 text-white">UserName</th>
                       <th scope="col" className="px-4 py-3 bg-indigo-500 text-white">Last name</th>
                       <th scope="col" className="px-4 py-3 bg-indigo-500 text-white"></th>
@@ -80,12 +74,6 @@ const AssignQuiz = () => {
                     </tr>
                   </thead>
                   <tr className="border-b dark:border-indigo-600 hover:bg-indigo-100 dark:hover:bg-indigo-200">
-                    <td className="w-4 px-4 py-3">
-                      <div className="flex items-center">
-                        <input id="checkbox-table-search-1" type="checkbox" className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"></input>
-                        <label htmlFor="checkbox-table-search-1" className="sr-only">checkbox</label>
-                      </div>
-                    </td>
                     <td ></td>
                     <td ></td>
                     <td ></td>
@@ -108,13 +96,6 @@ const AssignQuiz = () => {
 
                     <tbody key={user.uid}>
                       <tr className="border-b dark:border-indigo-600 hover:bg-indigo-100 dark:hover:bg-indigo-200">
-                        <td className="w-4 px-4 py-3">
-                          <div className="flex items-center">
-                            <input id="checkbox-table-search-1" type="checkbox" className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"></input>
-                            <label htmlFor="checkbox-table-search-1" className="sr-only">checkbox</label>
-                          </div>
-                        </td>
-
                         <td className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">{user.username}</td>
                         <th scope="row" className="flex items-center px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                           {user.lastName}

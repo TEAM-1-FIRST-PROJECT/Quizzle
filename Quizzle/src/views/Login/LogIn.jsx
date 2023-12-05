@@ -4,9 +4,7 @@ import { AuthContext } from "../../context/authContext";
 import { useNavigate } from "react-router";
 import { loginUser } from "../../services/auth.services";
 import toast from "react-hot-toast";
-
-
-
+import { getUserDataByEmail } from "../../services/users.services";
 
 const Login = () => {
   const [form, setForm] = useState({
@@ -32,66 +30,29 @@ const Login = () => {
       alert("Password is required");
       return;
     }
+    console.log(form.email)
+    getUserDataByEmail(form.email)
+      .then((snapshot) => {
+        if (Object.values(snapshot.val())[0].isBlocked) {
+          alert("Your account is blocked, try again within 90 days")
+          return;
+        }
 
-    loginUser(form.email, form.password)
-      .then((credential) => {
-        setUser({
-          user: credential.user,
-        });
+        loginUser(form.email, form.password)
+          .then((credential) => {
+            setUser({
+              user: credential.user,
+            });
+          })
+          .then(() => {
+            toast.success("Login successful, redirecting...");
+            navigate("/");
+          })
+          .catch((err) => {
+            alert(err.message);
+          });
       })
-      .then(() => {
-        toast.success("Login successful, redirecting...");
-        navigate("/");
-      })
-      .catch((err) => {
-        alert(err.message);
-      });
   };
-
-  // const handleLogin = () => {
-  //   if (!form.email) {
-  //     alert("Email is required");
-  //   }
-  //   if (!form.password) {
-  //     alert("Password is required");
-  //     return;
-  //   }
-  //   console.log('form.email:', form.email);
-
-  //   const test = getUserDataByEmail(form.email)
-  //     .then((snapshot) => {
-  //       console.log('snapshot:', snapshot.val());
-  //       setUserr(snapshot.val());
-  //       return snapshot.val().isBlocked;
-  //     })
-
-  //     console.log(test);
-
-  //   loginUser(form.email, form.password)
-  //     .then((credential) => {
-  //       console.log('username:', credential.user.username);        
-        
-  //       getUserData(credential.user.uid)
-  //         .then((snapshot) => {
-  //           const userData = snapshot.val();
-  //           console.log('userData:', userData.isBlocked);
-
-  //           if (userData && userData.isBlocked === true) {
-  //             console.log("This user is blocked.");
-  //           } else if (userData) {
-  //             setUser({user: credential.user});
-  //             toast.success("Login successful, redirecting...");
-  //             navigate("/");
-  //           } 
-  //         })
-  //         .catch((err) => {
-  //           alert(err.message);
-  //         });
-  //     })
-  //     .catch((err) => {
-  //       alert(err.message);
-  //     });
-  // };
 
   return (
     <>

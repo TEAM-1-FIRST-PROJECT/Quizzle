@@ -33,9 +33,9 @@ const SearchBar = () => {
       };
 
       return (
-        <div className="flex items-center">
+        <div className="flex items-center relative">
           <input
-            className="rounded-full placeholder-orange-300 text-lg font-bold p-1 border-2 border-indigo-700 focus:outline-none hover:shadow-inner hover:shoadow-sm w-full bg-indigo opacity-80"
+            className="rounded-full placeholder-orange-300 text-lg font-semibold p-1 border-2 border-indigo-700 focus:outline-none hover:shadow-inner hover:shoadow-sm w-full bg-indigo opacity-80"
             type="search"
             placeholder="Search..."
             autoComplete="off"
@@ -48,7 +48,7 @@ const SearchBar = () => {
               {results.map((quiz, index) => (
                 <div 
                   key={index} 
-                  className="text-sm leading-5 text-gray-700 px-4 py-3 hover:bg-indigo-200 cursor-pointer" 
+                  className="text-lg font-semibold leading-5 text-gray-700 px-4 py-3 hover:bg-indigo-200 cursor-pointer" 
                   onClick={() => handleUserClick(quiz.title)}
                 >
                   {quiz.title}

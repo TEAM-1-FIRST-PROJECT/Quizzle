@@ -2,11 +2,16 @@ import { useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { getQuizById } from "../../services/quiz.services";
 import Timer from "../../components/Timer/Timer";
-import Summary from "../../components/Summary/Summary";
 import { AuthContext } from "../../context/authContext";
 import QuizResolved from "../../components/QuizResolved/QuizResolved";
 import dice from "../../assets/dice.gif";
+import { updateUserScore } from "../../services/users.services"
 import toast from "react-hot-toast";
+import {
+  removeAssignmentsFromQuiz,
+  removeAssignmentsFromUser,
+  removeFromAssignments
+} from "../../services/quiz.services";
 
 
 const SingleQuizView = () => {
@@ -74,7 +79,21 @@ const SingleQuizView = () => {
 
   if (quizIsComplete || timerFinished) {
     const scorePoints = Math.ceil(score / quiz?.question.length * 100)
-    return <Summary id={id} score={scorePoints} title={quiz?.title} category={quiz?.category} userAnswers={userAnswers}></Summary>
+    updateUserScore(userData.username, id, quiz?.title, scorePoints, quiz?.category, userAnswers)
+      .then(() => console.log('Quiz result saved successfully'))
+      .catch((e) => toast.error(e));
+
+    removeFromAssignments(userData.username, id)
+      .then(() => console.log('Quiz assignment updated successfully'))
+      .catch((e) => toast.error(e));
+
+    removeAssignmentsFromQuiz(userData.username, id)
+      .then(() => console.log('Quiz assignment updated successfully'))
+      .catch((e) => toast.error(e));
+
+    removeAssignmentsFromUser(userData.username, id)
+      .then(() => console.log('Quiz assignment updated successfully'))
+      .catch((e) => toast.error(e));
   }
 
   return (
@@ -90,21 +109,21 @@ const SingleQuizView = () => {
             Our landing page template works on all devices, so you only have to set it up once, and get beautiful results forever.
           </p>
         </div>
-            <div className="flex xl:space-x-96 lg:space-x-28 sm:space-x-24">
-              <div className="">
-                <button onClick={handleRandomizeQuiz}>
-                  <img className="h-7 w-7 mix-blend-multiply" src={dice} alt="{dice}" />
-                  <span className="group-hover:text-gray-700">Randomize quiz</span>
-                </button>
-              </div>
-              <p className="pt-7">Maximum points available - 100</p>
-            </div>
+        <div className="flex xl:space-x-96 lg:space-x-28 sm:space-x-24">
+          <div className="">
+            <button onClick={handleRandomizeQuiz}>
+              <img className="h-7 w-7 mix-blend-multiply" src={dice} alt="{dice}" />
+              <span className="group-hover:text-gray-700">Randomize quiz</span>
+            </button>
+          </div>
+          <p className="pt-7">Maximum points available - 100</p>
+        </div>
         <div id="quiz" className="flex flex-col p-10 mb-20 bg-gradient-to-r from-indigo-400 rounded-lg w-full md:w-3/4 lg:w-2/3 shadow-xl mx-auto">
           <div className="mb">
-          <div className="w-20 h-20 pt-4 pl-2 border-2 border-amber-300 rounded-full">
-            <Timer onTimerFinish={handleTimerFinish} timeLimit={quiz?.timeLimit}></Timer>
+            <div className="w-20 h-20 pt-4 pl-2 border-2 border-amber-300 rounded-full">
+              <Timer onTimerFinish={handleTimerFinish} timeLimit={quiz?.timeLimit}></Timer>
             </div>
-            </div>
+          </div>
           <div id="question" className="text-center mt-10">
             <h2 className="mb-20 font-medium text-2xl">{questions[activeQuestionIndex]?.question}</h2>
             <ul id="answers" className="grid grid-cols-1 md:grid-cols-2 gap-4 mx-auto">
