@@ -122,8 +122,8 @@ const RegisterForm = () => {
             <div className="flex flex-wrap -mx-1 text-center">
               <div className="w-full sm:w-1/2 px-5">
                 <text className="">First Name</text>
-                <textarea
-                  className="rounded-lg mt-2 -py focus-within:border-blue-500 focus:outline-none"
+                <input
+                  className="rounded-lg mt-2 py-3 px-3 focus-within:border-blue-500 focus:outline-none"
                   type="text"
                   value={form.firstName}
                   onChange={updateForm("firstName")}
@@ -131,8 +131,8 @@ const RegisterForm = () => {
               </div>
               <div className="w-full sm:w-1/2 px-5">
                 <label>Last Name</label>
-                <textarea
-                  className="rounded-lg  mt-2 -py focus-within:border-blue-500 focus:outline-none"
+                <input
+                  className="rounded-lg mt-2 py-3 px-3 focus-within:border-blue-500 focus:outline-none"
                   type="text"
                   value={form.lastName}
                   onChange={updateForm("lastName")}
@@ -140,8 +140,8 @@ const RegisterForm = () => {
               </div>
               <div className="mt-2 w-full sm:w-1/2 px-5">
                 <label>Username</label>
-                <textarea
-                  className="rounded-lg mt-2 -py focus-within:border-blue-500 focus:outline-none"
+                <input
+                  className="rounded-lg mt-2 py-3 px-3 focus-within:border-blue-500 focus:outline-none"
                   type="text"
                   value={form.username}
                   onChange={updateForm("username")}
@@ -149,8 +149,8 @@ const RegisterForm = () => {
               </div>
               <div className="mt-2 w-full sm:w-1/2 px-5">
                 <label>Phone</label>
-                <textarea
-                  className="rounded-lg mt-2 -py focus-within:border-blue-500 focus:outline-none"
+                <input
+                  className="rounded-lg mt-2 py-3 px-3 focus-within:border-blue-500 focus:outline-none"
                   type="text"
                   value={form.phone}
                   onChange={updateForm("phone")}
@@ -158,8 +158,8 @@ const RegisterForm = () => {
               </div>
               <div className="w-full mt-2 sm:w-1/2 px-5">
                 <label>Address</label>
-                <textarea
-                  className="rounded-lg  mt-2 -py focus-within:border-blue-500 focus:outline-none"
+                <input
+                  className="rounded-lg mt-2 py-3 px-3 focus-within:border-blue-500 focus:outline-none"
                   type="text"
                   value={form.address}
                   onChange={updateForm("address")}
@@ -167,8 +167,8 @@ const RegisterForm = () => {
               </div>
               <div className="mt-2 w-full sm:w-1/2 px-5">
                 <label>Email</label>
-                <textarea
-                  className="rounded-lg mt-2 -py placeholder-slate-400
+                <input
+                  className="rounded-lg mt-2 py-3 px-3 placeholder-slate-400
             focus:outline-none 
             disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
             invalid:border-pink-500 invalid:text-pink-600
@@ -180,24 +180,24 @@ const RegisterForm = () => {
               </div>
               <div className="mt-2 w-full sm:w-1/2 px-5">
                 <label>Password</label>
-                <textarea
-                  className="rounded-lg bg-white mt-2 -py focus-within:border-blue-500 focus:outline-none"
+                <input
+                  className="rounded-lg bg-white mt-2 py-3 px-3 focus-within:border-blue-500 focus:outline-none"
                   type="password"
                   value={form.password}
                   onChange={updateForm("password")}
                 />
               </div>
-              <div className="border rounded-lg p-3 bg-white mt-10 mb-10 sm:w-1/2">
+              <div className="border rounded-lg p-3 bg-red-400 mt-10 mb-10 sm:w-1/2">
                 <label>I am an educator</label>
                 <input
-                  className="ml-2"
+                  className="ml-1 -m-px-2"
                   type="checkbox"
                   checked={form.role === ROLE_CHECK.educator}
                   onChange={updateForm("role")}
                 />
               </div>
               <button
-                className="w-full my- py-2 bg-violet-400 shadow-xl hover:shadow-violet-600 text-black font-semibold rounded-lg"
+                className="w-full py-2 bg-violet-400 shadow-xl hover:shadow-violet-600 text-black font-semibold rounded-lg"
                 onClick={handleRegisterUser}
                 type="button"
               >

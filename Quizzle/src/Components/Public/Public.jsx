@@ -69,8 +69,6 @@ const Public = () => {
             </div>
           </div>
         </section>
-        {/* Section with public quizzes */}
-        <PublicQuizzesTable></PublicQuizzesTable>
       </div>}
     </>
   );
