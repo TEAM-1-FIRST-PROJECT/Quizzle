@@ -99,6 +99,12 @@ removeAssignmentsFromUser(userData.username, quiz.id)
             >
               Summary
             </Link>}
+            <Link
+              to={`/singleQuizScoreboard/${quiz?.id}`}
+              className="inline-block mx-1 px-4 py-2 border bg-violet-300 border-violet-500 rounded-lg text-center font-medium hover:bg-violet-500 hover:text-white dark:hover:bg-dark-1 dark:hover:text-white-300"
+            >
+              View scoreboard
+            </Link>
           </div>
         </div>
       </div>}
