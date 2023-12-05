@@ -1,35 +1,18 @@
-import PropTypes from "prop-types";
-import { useContext } from "react"
-import { AuthContext } from "../../context/authContext"
-import { updateUserScore } from "../../services/users.services"
-import toast from "react-hot-toast";
-import {
-  removeAssignmentsFromQuiz,
-  removeAssignmentsFromUser,
-  removeFromAssignments
-} from "../../services/quiz.services";
+// import PropTypes from "prop-types";
+// import { useContext } from "react"
+// import { AuthContext } from "../../context/authContext"
+// import { updateUserScore } from "../../services/users.services"
+// import toast from "react-hot-toast";
+// import {
+//   removeAssignmentsFromQuiz,
+//   removeAssignmentsFromUser,
+//   removeFromAssignments
+// } from "../../services/quiz.services";
 
-const Summary = ({ id, score, title, category, userAnswers }) => {
+// const Summary = ({ id, score, title, category, userAnswers }) => {
 
-  const { userData } = useContext(AuthContext);
 
-  updateUserScore(userData.username, id, title, score, category, userAnswers)
-    .then(() => console.log('Quiz result saved successfully'))
-    .catch((e) => toast.error(e));
-
-  removeFromAssignments(userData.username, id)
-    .then(() => console.log('Quiz assignment updated successfully'))
-    .catch((e) => toast.error(e));
-
-  removeAssignmentsFromQuiz(userData.username, id)
-    .then(() => console.log('Quiz assignment updated successfully'))
-    .catch((e) => toast.error(e));
-
-  removeAssignmentsFromUser(userData.username, id)
-    .then(() => console.log('Quiz assignment updated successfully'))
-    .catch((e) => toast.error(e));
-
-  return (
+//   return (
     <>
       {/* <div className=" bg-indigo-300 flex flex-col items-center justify-center h-screen">
         <button className="max-w-40rem mx-auto my-8 p-8 pt-10 bg-indigo-300 text-gray-800 rounded-lg shadow-md animate-slide-in-from-bottom">
@@ -88,14 +71,14 @@ const Summary = ({ id, score, title, category, userAnswers }) => {
       </div>} */}
 
     </>
-  )
-}
+//   )
+// }
 
-Summary.propTypes = {
-  score: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
-  category: PropTypes.string.isRequired,
-  userAnswers: PropTypes.array.isRequired,
-};
-export default Summary
+// Summary.propTypes = {
+//   score: PropTypes.number.isRequired,
+//   title: PropTypes.string.isRequired,
+//   id: PropTypes.string.isRequired,
+//   category: PropTypes.string.isRequired,
+//   userAnswers: PropTypes.array.isRequired,
+// };
+// export default Summary
