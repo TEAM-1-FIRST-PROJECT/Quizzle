@@ -15,7 +15,7 @@ function Navbar() {
   };
 
   return (
-      <nav className="top-0 bg-gradient-to-r from-violet-400 to-indigo-300 ">
+      <nav className="top-0 bg-gradient-to-r from-violet-400 to-indigo-300">
         <div className="mx-auto px-1 sm:px-2 lg:px-8 ">
           <div className="flex items-center justify-between h-14">
           <div className="flex items-center">

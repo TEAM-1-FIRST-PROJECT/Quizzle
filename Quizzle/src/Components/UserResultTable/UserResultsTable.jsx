@@ -7,7 +7,7 @@ const UserResultsTable = () => {
   const { userData } = useContext(AuthContext)
   const [ranking, setRanking] = useState(true)
 
-  if (userData) {
+  if (userData?.score) {
     const userResults = Object.values(userData?.score);
     userResults ? (userResults).sort((a, b) => b.score - a.score) : [];
 
@@ -17,7 +17,7 @@ const UserResultsTable = () => {
     };
 
     return (
-      <section className="">
+      <section className="flex flex-col h-screen overflow-auto">
         <div className="ml-12 px-12 mx-auto max-w-screen-2xl lg:px-12">
           <div className="relative overflow-hidden  shadow-md dark:bg-indigo-300 opacity-80 sm:rounded-lg mb-20">
             <div className="overflow-x-auto">

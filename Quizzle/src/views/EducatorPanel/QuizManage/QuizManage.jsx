@@ -55,8 +55,8 @@ const username = userData?.username;
   };
 
   return (
- 
-    <div className=" m-10 border-4 p-10 rounded-lg bg-gradient-to-bl from-indigo-400">
+ <div className="h-screen pb-20 overflow-auto ">
+    <div className="m-10 border-4 p-10 rounded-lg bg-gradient-to-bl from-indigo-400">
       <h1 className="mb-5 text-3xl text-white">Quiz Manage</h1>
       <input
         type="text"
@@ -141,6 +141,7 @@ const username = userData?.username;
           </button>
         </div>
       )}
+      </div>
       </div>
   );
 };
