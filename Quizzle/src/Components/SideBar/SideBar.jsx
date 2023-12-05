@@ -11,6 +11,13 @@ import { ROLE_CHECK } from "../../common/constants";
 import students from "../../assets/students.gif";
 import group from "../../assets/group.png";
 import { useMediaQuery } from "react-responsive";
+import { MdDashboard } from "react-icons/md";
+import { PiStudentBold } from "react-icons/pi";
+import { TiGroup } from "react-icons/ti";
+import { IoCreate } from "react-icons/io5";
+import { PiUserListBold } from "react-icons/pi";
+import { RiListSettingsFill } from "react-icons/ri";
+
 const Sidebar = () => {
   const { user, setUser, userData } = useContext(AuthContext);
 
@@ -28,7 +35,7 @@ const Sidebar = () => {
         <div className="abosulute lg:w-[265px] w-[67px]">
           <div className=" bg-gradient-to-b from-violet-400 to-indigo-300 overflow-y-auto transition-all duration-1000 ease-in-out">
             <div className="flex flex-1 h-screen flex-col justify-between pt-2 pb-6">
-              <div>
+              <div className="ml-4">
                 <div className="w-max p-2 lg:block hidden">
                   <img src="" className="w-32" alt="" />
                 </div>
@@ -88,26 +95,9 @@ const Sidebar = () => {
                         <Link
                           to="/educator"
                           aria-label="educator dashboard"
-                          className="flex items-center space-x-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-2 py-2 text-white"
+                          className="flex items-center space-x-4 mt-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-2 py-2 text-white"
                         >
-                          <svg
-                            className="-ml-1 h-6 w-6"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                          >
-                            <path
-                              d="M6 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8ZM6 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-1Z"
-                              className="fill-current"
-                            ></path>
-                            <path
-                              d="M13 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2V8Z"
-                              className="fill-current"
-                            ></path>
-                            <path
-                              d="M13 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-1Z"
-                              className="fill-current"
-                            ></path>
-                          </svg>
+                          <MdDashboard />
                           <span className="-mr-1 font-medium font-montserrat">
                             Educator Dashboard
                           </span>
@@ -116,13 +106,9 @@ const Sidebar = () => {
                       <li className="min-w-max">
                         <Link
                           to="/students"
-                          className="flex items-center space-x-8 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-2 py-2 text-white"
+                          className="flex items-center space-x-4 mt-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-2 py-2 text-white"
                         >
-                          <img
-                            className="h-8 w-8 mix-blend-multiply"
-                            src={students}
-                            alt="students"
-                          />
+                       <PiStudentBold />
                           <span className="group-hover:text-gray-700">
                             Students
                           </span>
@@ -131,13 +117,9 @@ const Sidebar = () => {
                       <li className="min-w-max">
                         <Link
                           to="/groups"
-                          className="flex items-center space-x-8 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-2 py-2 text-white"
+                          className="flex items-center space-x-4 mt-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-2 py-2 text-white"
                         >
-                          <img
-                            className="h-8 w-8 mix-blend-multiply"
-                            src={group}
-                            alt="group"
-                          />
+                        <TiGroup />
                           <span className="group-hover:text-gray-700">
                             Form a group
                           </span>
@@ -147,13 +129,9 @@ const Sidebar = () => {
                         <Link
                           nk
                           to="/create"
-                          className="flex items-center space-x-8 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-2 py-2 text-white"
+                          className="flex items-center space-x-4 mt-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-2 py-2 text-white"
                         >
-                          <img
-                            className="h-7 w-7 mix-blend-multiply"
-                            src={quiz}
-                            alt="quiz"
-                          />
+                         <IoCreate />
                           <span className="group-hover:text-gray-700">
                             Create Quiz
                           </span>
@@ -162,13 +140,9 @@ const Sidebar = () => {
                       <li className="min-w-max">
                         <Link
                           to="/groups-list"
-                          className="flex items-center space-x-8 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-2 py-2 text-white"
+                          className="flex items-center space-x-4 mt-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-2 py-2 text-white"
                         >
-                          <img
-                            className="h-8 w-8 mix-blend-multiply"
-                            src=""
-                            alt="group"
-                          />
+                    <PiUserListBold />
                           <span className="group-hover:text-gray-700">
                             Groups List
                           </span>
@@ -178,13 +152,9 @@ const Sidebar = () => {
                       <li className="min-w-max">
                         <Link
                           to="/quiz-manage"
-                          className="flex items-center space-x-8 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-2 py-2 text-white"
+                          className="flex items-center space-x-4 mt-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-2 py-2 text-white"
                         >
-                          <img
-                            className="h-8 w-8 mix-blend-multiply"
-                            src={ManageQuiz}
-                            alt="manage quiz"
-                          />
+                <RiListSettingsFill />
                           <span className="group-hover:text-gray-700">
                             Quiz Manage
                           </span>
@@ -194,10 +164,10 @@ const Sidebar = () => {
                   )}
                 </ul>
               </div>
-              <div className=" mb-20">
+              <div className=" ml-4 mb-20">
                 <Link
                   to="/profile"
-                  className="flex items-center space-x-8 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-2 py-2 text-white"
+                  className="flex items-center space-x-4 mt-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-2 py-2 text-white"
                 >
                   <img
                     className="h-7 w-7 mix-blend-multiply"
@@ -208,7 +178,7 @@ const Sidebar = () => {
                 </Link>
                 <Link
                   to="/settings"
-                  className="flex items-center space-x-8 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-2 py-2 text-white"
+                  className="flex items-center space-x-4 mt-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-2 py-2 text-white"
                 >
                   <img
                     className="h-7 w-7 mix-blend-multiply"
@@ -222,7 +192,7 @@ const Sidebar = () => {
                   <Link
                     to="/"
                     onClick={onLogout}
-                    className="flex items-center space-x-8 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-2 py-2 text-white"
+                    className="flex items-center space-x-4 mt-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-2 py-2 text-white"
                   >
                     <img
                       className="h-7 w-7 mix-blend-multiply"
