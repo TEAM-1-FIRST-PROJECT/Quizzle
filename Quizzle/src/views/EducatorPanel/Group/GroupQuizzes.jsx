@@ -92,10 +92,11 @@ const GroupQuizzes = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div className="p-4 m-20 border shadow-md rounded bg-gradient-to-br from-violet-400 to-cyan-400 max-w-full md:max-w-7xl mx-auto">
+    <div className="flex flex-col h-screen overflow-auto">
+    <div className="p-4 m-20 border shadow-md rounded bg-gradient-to-br from-violet-400 to-cyan-400 max-w-full md:max-w-7xl ">
       <input
         type="text"
-        className="border p-2 rounded w-full sm:w-3/4 md:w-1/2 lg:w-1/3 xl:w-1/4"
+        className="border p-2 rounded w-full placeholder-amber-300 font-bold sm:w-3/4 md:w-1/2 lg:w-1/3 xl:w-1/4 "
         placeholder="Search for user..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
@@ -194,7 +195,8 @@ const GroupQuizzes = () => {
           </button>
         </div>
       )}
-    </div>
+      </div>
+      </div>
   );
                   }
   export default GroupQuizzes;

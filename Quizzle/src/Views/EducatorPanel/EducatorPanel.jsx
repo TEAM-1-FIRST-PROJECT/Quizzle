@@ -35,7 +35,7 @@ const EducatorPanel = () => {
 
   return (
     <div className="h-screen  pb-20 overflow-auto p-5">
-      <div className="ml-20 text-4xl animate-fade-in font-bold bg-clip-text text-transparent bg-gradient-to-r from-stone-400 to-zinc-500">
+      <div className="ml-20 text-4xl animate-fade-in font-bold bg-clip-text text-transparent bg-gradient-to-r from-stone-600 to-zinc-500">
       <p className="mt-10">On this page, you can view all the quizzes.</p>
       <p className="mt-5 ">You have the option to search for a quiz using the search field,</p>
         <p className="mt-5"> and you can assign a specific quiz to a particular student.</p>
@@ -44,7 +44,7 @@ const EducatorPanel = () => {
         <h1 className="mb-5 text-5xl bg-clip-text text-transparent bg-gradient-to-r from-gray-800 to-stone-100">Quizzes</h1>
         <input
           type="text"
-          className="border focus-none p-2 rounded mb-5"
+          className="border focus-none p-2 placeholder-amber-300 font-bold rounded mb-5"
           placeholder="Search for quiz ..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
@@ -77,7 +77,7 @@ const EducatorPanel = () => {
                 </td>
                 <td className=" px-4 py-2">
                   <a href={`/assign-quiz/${quiz?.id}`}
-                    className=" px-4 py-1  border-indigo-500 bg-indigo-300 rounded text-center font-medium hover:bg-indigo-500 hover:text-white dark:hover:bg-dark-1 dark:hover:text-white-300"
+                    className=" px-4 py-1  border-indigo-500 bg-indigo-400 rounded text-center font-medium hover:bg-indigo-500 hover:text-white dark:hover:bg-dark-1 dark:hover:text-white-300"
                     onClick={() => { history.push(`/assign-quiz/${quiz?.id}`) }}>Assign</a>
                 </td>
               </tr>

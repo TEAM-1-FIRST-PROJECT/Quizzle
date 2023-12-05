@@ -12,7 +12,7 @@ import Loader from "./components/Loader/Loader";
 
 const App = () => {
   const [user] = useAuthState(auth);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [appState, setAppState] = useState({
     user,
     userData: false,
@@ -40,28 +40,27 @@ const App = () => {
         // snapshot.val() returns the value of the object
         // Google this part when you have lot's of user data Object.keys(snapshot.val())[0]
       });
-      setLoading(false);
+      setLoading(true);
     });
   });
 
-  
-   if (loading) return <Loader/>
- 
-
+  if (!loading) {
+    return <Loader />;
+  }
 
   return (
     <AuthContext.Provider value={{ ...appState, setUser: setAppState }}>
       <div className="bg-hero-pattern-3 bg-cover bg-fixed ">
-      <Toaster />
-      <Navbar />
-      <div className="flex ">
+        <Toaster />
+        <Navbar />
+        <div className="flex ">
           <Sidebar />
-        <div className="flex-grow overflow-auto">
-          <AppRouter />
+          <div className="flex-grow overflow-auto">
+            <AppRouter />
+          </div>
         </div>
-      </div>
         <Footer />
-        </div>
+      </div>
     </AuthContext.Provider>
   );
 };

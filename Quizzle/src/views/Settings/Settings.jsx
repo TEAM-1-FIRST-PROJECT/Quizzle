@@ -124,7 +124,7 @@ const Settings = () => {
           <div className="space-y-12 p-7 bg-gradient-to-bl from-indigo-400 rounded-lg">
             <div className="">
               <h2 className="text-base font-semibold leading-7 text-gray-900">
-                Profile
+                Profile Settings
               </h2>
             </div>
             <div className="col-span-full">
