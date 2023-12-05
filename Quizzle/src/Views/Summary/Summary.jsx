@@ -5,23 +5,23 @@ import toast from "react-hot-toast";
 import { AuthContext } from "../../context/authContext";
 
 const SeeSummary = () => {
-  const { id } = useParams();
-  const [quiz, setQuiz] = useState(null);
-  const { userData } = useContext(AuthContext);
-  useEffect(() => {
-    getQuizById(id)
-      .then((fetchedQuiz) => {
-        setQuiz(fetchedQuiz);
-      })
-      .catch((error) => {
-        toast.error("Error fetching quiz details:", error);
-        setQuiz(null);
-      });
-  }, [id]);
+  // const { id } = useParams();
+  // const [quiz, setQuiz] = useState(null);
+  // const { userData } = useContext(AuthContext);
+  // useEffect(() => {
+  //   getQuizById(id)
+  //     .then((fetchedQuiz) => {
+  //       setQuiz(fetchedQuiz);
+  //     })
+  //     .catch((error) => {
+  //       toast.error("Error fetching quiz details:", error);
+  //       setQuiz(null);
+  //     });
+  // }, [id]);
 
   return (
     <>
-      {quiz && (
+      {/* {quiz && (
         <div className="h-screen flex flex-col bg-cover">
           <section className="m-20">
             <div className="px-4 w-full lg:px-12 ">
@@ -81,7 +81,7 @@ const SeeSummary = () => {
             </div>
           </section>
         </div>
-      )}
+      )} */}
     </>
   );
 };
