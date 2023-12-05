@@ -96,6 +96,6 @@ Summary.propTypes = {
   title: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
-  userAnswers: PropTypes.object.isRequired,
+  userAnswers: PropTypes.array.isRequired,
 };
 export default Summary
