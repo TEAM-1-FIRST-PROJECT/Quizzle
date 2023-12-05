@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect, useRef } from "react";
 import { AuthContext } from "../../context/authContext";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/logo.webp";
@@ -7,22 +7,45 @@ import { BellIcon } from "@heroicons/react/outline";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [showNotification, setShowNotification] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
   const { user, userData } = useContext(AuthContext);
+  const notificationRef = useRef();
 
   let notifications = false;
-  if (userData?.assignedQuizzes) { notifications = true; }
-
+  if (userData?.assignedQuizzes) {
+    notifications = true;
+  }
 
   const handleNotification = () => {
-    //notification logic
+    if (!isClicked) {
+      setShowNotification(!showNotification);
+      setIsClicked(true);
+    }
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        notificationRef.current &&
+        !notificationRef.current.contains(event.target)
+      ) {
+        setShowNotification(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <nav className="top-0 bg-gradient-to-r from-violet-400 to-indigo-300 ">
       <div className="mx-auto px-1 sm:px-2 lg:px-8 ">
         <div className="flex items-center justify-between h-14">
           <div className="flex items-center">
-            <Link to='/'>
+            <Link to="/">
               <img
                 className="flex rounded transform skew-y-12 shadow-md shadow-slate-700 w-10 h-10 ml-1 mr-20"
                 src={Logo}
@@ -43,7 +66,6 @@ function Navbar() {
                 >
                   Categories
                 </Link>
-
               </div>
             </div>
           </div>
@@ -67,15 +89,35 @@ function Navbar() {
                 Register
               </Link>
             )}
-            {notifications
-              ? <button onClick={handleNotification} className="p-1 ">
-                <BellIcon className="h-6 w-6 text-green-200" />
-
+            {notifications ? (
+              <button onClick={handleNotification} className="p-1 relative">
+                <BellIcon
+                  className={
+                    isClicked
+                      ? "h-8 w-8 text-gray-500"
+                      : "h-8 w-8 text-blue-500"
+                  }
+                />
+                {notifications && !isClicked ? (
+                  <span className="absolute top-0 mt-2 inline-block w-3 h-3 bg-red-500 rounded-full"></span>
+                ) : null}
+                {showNotification && (
+                  <div
+                    ref={notificationRef}
+                    className="absolute top-0 mt-10 w-64 p-2 bg-white rounded shadow right-0"
+                  >
+                    <p>You have a new assignment! Please check your profile.</p>
+                    <Link className="hover:text-yellow-300" to="/profile">
+                      View
+                    </Link>
+                  </div>
+                )}
               </button>
-              : <button onClick={handleNotification} className="p-1 ">
+            ) : (
+              <button onClick={handleNotification} className="p-1 ">
                 <BellIcon className="h-6 w-6 text-gray-500" />
-
-              </button>}
+              </button>
+            )}
             <img
               className="ml-4 rounded-full bg-black w-10 h-10"
               src={userData?.profileImgUrl || Logo}

@@ -10,14 +10,19 @@ import { AuthContext } from "../../context/authContext";
 
 const Dashboard = () => {
   const [quizzes, setQuizzes] = useState([{}]);
+  
   const { userData } = useContext(AuthContext);
   useEffect(() => {
     getAllQuizzes()
       .then((snapshot) => {
         setQuizzes(snapshot);
+       
       })
       .catch((e) => toast.error(e));
+      
   }, []);
+
+
 
   if (userData?.username === "student") {
     const filteredQuizzes =

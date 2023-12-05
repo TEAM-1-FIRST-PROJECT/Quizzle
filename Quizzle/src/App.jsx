@@ -8,9 +8,11 @@ import { AuthContext } from "./context/authContext";
 import Footer from "./components/Footer/Footer";
 import { Toaster } from "react-hot-toast";
 import Sidebar from "./components/SideBar/SideBar";
+import Loader from "./components/Loader/Loader";
 
 const App = () => {
   const [user] = useAuthState(auth);
+  const [loading, setLoading] = useState(true);
   const [appState, setAppState] = useState({
     user,
     userData: false,
@@ -38,23 +40,27 @@ const App = () => {
         // snapshot.val() returns the value of the object
         // Google this part when you have lot's of user data Object.keys(snapshot.val())[0]
       });
+      setLoading(false);
     });
   });
 
+  
+   if (loading) return <Loader/>
+ 
+
+
   return (
     <AuthContext.Provider value={{ ...appState, setUser: setAppState }}>
-      <div className="bg-hero-pattern-3 bg-cover bg-fixed bg-blend-multiply">
+      <div className="bg-hero-pattern-3 bg-cover bg-fixed ">
       <Toaster />
       <Navbar />
       <div className="flex ">
-        <div className="">
           <Sidebar />
-        </div>
         <div className="flex-grow overflow-auto">
           <AppRouter />
         </div>
       </div>
-        <Footer className="fixed bottom-0 left-0 w-full z-10" />
+        <Footer />
         </div>
     </AuthContext.Provider>
   );

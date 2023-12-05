@@ -1,16 +1,15 @@
 import UserProfile from "../../components/UserProfile/UserProfile";
-import UserResultsTable from "../../components/UserResultTable/UserResultsTable"
-
+import UserResultsTable from "../../components/UserResultTable/UserResultsTable";
 
 const UserProfileView = () => {
- 
-
   return (
     <>
-    <UserProfile></UserProfile>
-    <UserResultsTable></UserResultsTable>
+      <div className="h-screen">
+        <UserProfile></UserProfile>
+        <UserResultsTable></UserResultsTable>
+      </div>
     </>
-  )
-}
+  );
+};
 
 export default UserProfileView;
