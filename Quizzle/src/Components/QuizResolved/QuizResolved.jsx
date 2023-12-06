@@ -23,8 +23,8 @@ const QuizResolved = ({ id, score, resolvedOn }) => {
         setQuiz(null);
       });
   }, [id]);
-
-  return (
+  
+    return (
     <>
       {quiz && (
         <div className="h-screen flex flex-col bg-cover">
@@ -72,13 +72,13 @@ const QuizResolved = ({ id, score, resolvedOn }) => {
                               <p className="block text-lg font-bold">
                                 Your response: {"  "}
                                 {
-                                 userData?.score[quiz?.title].userAnswers
+                                 userData?.score[quiz?.title].userAnswers[i]
                                  ? userData?.score[quiz?.title].userAnswers[i].text
                                  : "..."
                                 }
                               </p>
-                              {userData?.score[quiz?.title].userAnswers && <p className="block text-left">{userData?.score[quiz?.title].userAnswers[i].comment}</p>}
-                            </div>
+                              {userData?.score[quiz?.title].userAnswers[i] && userData?.score[quiz?.title].userAnswers[i].comment && <p className="block text-left">{userData?.score[quiz?.title].userAnswers[i].comment}</p>}
+                              </div>
                           </th>
                         </tr>
                       </tbody>
