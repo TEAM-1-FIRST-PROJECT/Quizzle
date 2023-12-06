@@ -9,34 +9,12 @@ const AdminPanel = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [usersPerPage] = useState(10);
 
-
-  // const userResults = Object.values(userData?.score);
-
-  // const score = userResults.map((quiz) => quiz?.score).reduce((a, b) => a + b, 0);
-
-
-
-  // const usersData = () => {
-  //   get(ref(database, 'users'))
-  //     .then((snapshot) => {
-  //       const user = snapshot.val();
-
-  //       setUserName((Object.values(user).map(user => user.username)));
-  //       setScore((Object.values(user).map(user => Object.values(user.score).reduce((sum, quiz) => sum + quiz.score, 0))));
-
-
-  //     })
-  // }
-
-  // usersData();
-
   useEffect(() => {
     searchUser("").then(setUsers);
   }, [setUsers]);
 
   const handleBlockUser = (username, blockStatus) => {
     const newBlockStatus = !blockStatus;
-
 
     setBlockedUsers((prevState) => ({
       ...prevState,
@@ -72,7 +50,7 @@ const AdminPanel = () => {
 
   return (
     <>
-      {filteredUsers && <div className="p-4 m-4 md:m-20 border shadow-md rounded bg-gradient-to-br from-violet-400 to-cyan-400">
+      {filteredUsers && <div className="p-4 m-2 md:m-10 border shadow-md rounded bg-gradient-to-br from-violet-400 to-cyan-400">
         <input
           type="text"
           className="border p-2 rounded w-full md:w-auto placeholder-orange-300 font-bold"
@@ -88,9 +66,7 @@ const AdminPanel = () => {
                 <th className=" px-4 py-2">Email</th>
                 <th className=" px-4 py-2">Role</th>
                 <th className=" px-4 py-2">Points</th>
-                <th className=" px-4 py-2">Points from</th>
-                <th className=" px-4 py-2">Questions</th>
-                <th className=" px-4 py-2">Last Update</th>
+                <th className=" px-4 py-2">Finished quizzes</th>
                 <th className=" px-4 py-2">Block/Unblock</th>
               </tr>
             </thead>
@@ -103,13 +79,13 @@ const AdminPanel = () => {
                   <td className=" px-4 py-2">{
                     user.score
                       ? totalScore(Object.values(user.score))
-                      : 0}</td>
+                      : 0}
+                  </td>
                   <td className=" px-4 py-2">{
                     user.score
                       ? Object.values(user.score).length
-                      : 0}</td>
-                  <td className=" px-4 py-2">{/* Questions */}</td>
-                  <td className=" px-4 py-2">{/* Last Update */}</td>
+                      : 0}
+                  </td>
                   <td className=" px-4 py-2">
                     <button
                       className={`${user.isBlocked ? "bg-green-500" : "bg-red-500"
