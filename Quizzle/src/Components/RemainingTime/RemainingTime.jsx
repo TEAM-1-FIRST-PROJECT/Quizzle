@@ -9,7 +9,7 @@ import {
 } from "../../services/quiz.services";
 
 const RemainingTime = ({ timeLimit, username, id, title, score, category }) => {
-  const [seconds, setSeconds] = useState(timeLimit);
+  const [seconds, setSeconds] = useState(timeLimit + 86400);
 
   useEffect(() => {
     if (seconds === 0) {
