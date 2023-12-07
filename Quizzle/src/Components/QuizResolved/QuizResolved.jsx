@@ -69,15 +69,21 @@ const QuizResolved = ({ id, score, resolvedOn }) => {
                                   }
                                   </span>
                               </p>
-                              <p className="block text-lg font-bold">
+                              <div className="block text-lg font-bold">
                                 Your response: {"  "}
                                 {
-                                 userData?.score[quiz?.title].userAnswers[i]
-                                 ? userData?.score[quiz?.title].userAnswers[i].text
-                                 : "..."
+                                userData?.score[quiz?.title].userAnswers
+                                ? userData?.score[quiz?.title].userAnswers[i]
+                                  ? userData?.score[quiz?.title].userAnswers[i].text
+                                  : '...'
+                                : '...'
                                 }
-                              </p>
-                              {userData?.score[quiz?.title].userAnswers[i] && userData?.score[quiz?.title].userAnswers[i].comment && <p className="block text-left">{userData?.score[quiz?.title].userAnswers[i].comment}</p>}
+                              </div>
+                              {
+                              userData?.score[quiz?.title].userAnswers
+                              && userData?.score[quiz?.title].userAnswers[i]
+                              && userData?.score[quiz?.title].userAnswers[i].comment
+                              && <p className="block text-left">{userData?.score[quiz?.title].userAnswers[i].comment}</p>}
                               </div>
                           </th>
                         </tr>
