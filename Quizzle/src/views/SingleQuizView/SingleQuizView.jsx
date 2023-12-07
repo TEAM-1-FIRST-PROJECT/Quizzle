@@ -12,12 +12,13 @@ import {
   removeAssignmentsFromUser,
   removeFromAssignments
 } from "../../services/quiz.services";
+import PublicQuizResolved from "../PublicQuizResolved/PublicQuizResolved";
 
 
 const SingleQuizView = () => {
 
   const { id } = useParams();
-  const { userData } = useContext(AuthContext)
+  const { userData, user } = useContext(AuthContext)
   const [quiz, setQuiz] = useState(null);
   const [userAnswers, setUserAnswers] = useState([]);
   const [score, setScore] = useState(0);
@@ -72,30 +73,39 @@ const SingleQuizView = () => {
   };
 
   if (isQuizResolved) {
-    const resolvedOn = Object.values(userData?.score).find(el => el.id === id).resolvedOn
-    const scorePoints = Object.values(userData?.score).find(el => el.id === id).score
-    return <QuizResolved id={id} score={scorePoints} title={quiz?.title} category={quiz?.category} userAnswers={userAnswers} resolvedOn={resolvedOn} />
-  }
+    if (user) {
+      const resolvedOn = Object.values(userData?.score).find(el => el.id === id).resolvedOn
+      const scorePoints = Object.values(userData?.score).find(el => el.id === id).score
 
+      return <QuizResolved id={id} score={scorePoints} title={quiz?.title} category={quiz?.category} userAnswers={userAnswers} resolvedOn={resolvedOn} />
+    } 
+  }
   if (quizIsComplete || timerFinished) {
+
     const scorePoints = Math.ceil(score / quiz?.question.length * quiz?.maxPassingPoints)
-    updateUserScore(userData.username, id, quiz?.title, scorePoints, quiz?.category, userAnswers)
-      .then(() => console.log('Quiz result saved successfully'))
-      .catch((e) => toast.error(e));
 
-    removeFromAssignments(userData.username, id)
-      .then(() => console.log('Quiz assignment updated successfully'))
-      .catch((e) => toast.error(e));
+    if (user) {
 
-    removeAssignmentsFromQuiz(userData.username, id)
-      .then(() => console.log('Quiz assignment updated successfully'))
-      .catch((e) => toast.error(e));
 
-    removeAssignmentsFromUser(userData.username, id)
-      .then(() => console.log('Quiz assignment updated successfully'))
-      .catch((e) => toast.error(e));
+      updateUserScore(userData.username, id, quiz?.title, scorePoints, quiz?.category, userAnswers)
+        .then(() => console.log('Quiz result saved successfully'))
+        .catch((e) => toast.error(e));
+
+      removeFromAssignments(userData.username, id)
+        .then(() => console.log('Quiz assignment updated successfully'))
+        .catch((e) => toast.error(e));
+
+      removeAssignmentsFromQuiz(userData.username, id)
+        .then(() => console.log('Quiz assignment updated successfully'))
+        .catch((e) => toast.error(e));
+
+      removeAssignmentsFromUser(userData.username, id)
+        .then(() => console.log('Quiz assignment updated successfully'))
+        .catch((e) => toast.error(e));
+    } else {
+      return <PublicQuizResolved id={id} score={scorePoints} userAnswers={userAnswers}></PublicQuizResolved>
+    }
   }
-
   return (
     <>
       {quiz && <div className="flex flex-col overflow-auto h-screen items-center justify-center">
