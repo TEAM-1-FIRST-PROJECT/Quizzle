@@ -78,7 +78,7 @@ const SingleQuizView = () => {
   }
 
   if (quizIsComplete || timerFinished) {
-    const scorePoints = Math.ceil(score / quiz?.question.length * 100)
+    const scorePoints = Math.ceil(score / quiz?.question.length * quiz?.maxPassingPoints)
     updateUserScore(userData.username, id, quiz?.title, scorePoints, quiz?.category, userAnswers)
       .then(() => console.log('Quiz result saved successfully'))
       .catch((e) => toast.error(e));
