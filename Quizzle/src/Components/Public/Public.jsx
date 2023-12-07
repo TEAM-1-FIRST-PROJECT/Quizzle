@@ -1,6 +1,5 @@
 import { NavLink } from "react-router-dom";
 import SingleQuizCard from "../SingleQuizCard/SingleQuizCard";
-import PublicQuizzesTable from "../PublicQuizzesTable/PublicQuizzesTable";
 import { useEffect, useState } from "react";
 import { getAllQuizzes } from "../../services/quiz.services";
 import toast from "react-hot-toast";
@@ -11,8 +10,9 @@ const Public = () => {
   useEffect(() => {
     getAllQuizzes()
       .then(snapshot => {
-        setQuizzes(snapshot)
+        const publicQuizzes = snapshot.filter(quiz => quiz.contestType === 'open')
 
+        setQuizzes(publicQuizzes)
       })
       .catch(e => toast.error(e));
   }, []);
