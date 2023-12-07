@@ -12,8 +12,8 @@ const RemainingTime = ({ timeLimit, username, id, title, score, category }) => {
   const [seconds, setSeconds] = useState(timeLimit + 86400);
 
   useEffect(() => {
-    if (seconds === 0) {
-      updateUserScore(username, id, title, score, category)
+    if (seconds <= 0) {
+      updateUserScore(username, id, title, score, category, [])
         .then(() => console.log('Quiz result saved successfully'))
         .catch((e) => toast.error(e));
 
