@@ -76,7 +76,8 @@ const QuizManagement = () => {
               </tr>
             </thead>
             <tbody>
-              {quizzes.map((quiz) => (
+              {quizzes.length > 0 ? (
+              quizzes.map((quiz) => (
                 <tr key={quiz.id} className="border border-rose-300">
                   <td className="px-4 py-2">{quiz.createdBy}</td>
                   <td className="px-4 py-2">{quiz.title}</td>
@@ -101,7 +102,13 @@ const QuizManagement = () => {
                     </button>
                   </td>
                 </tr>
-              ))}
+              ))
+              ) : (
+                <tr>
+                <td colSpan="6" className="px-4 py-2 text-2xl">No results found</td>
+              </tr>
+              )
+            }
             </tbody>
           </table>
         </div>

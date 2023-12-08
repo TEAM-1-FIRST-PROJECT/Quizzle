@@ -101,7 +101,8 @@ const Students = () => {
               </tr>
             </thead>
             <tbody>
-              {filteredUsers.map(
+              {filteredUsers.length > 0 ? (
+              filteredUsers.map(
                 (user) =>
                   user.role === ROLE_CHECK.student && (
                     <tr key={user.username} className="border bg-indigo-300 ">
@@ -122,7 +123,13 @@ const Students = () => {
                       </td>
                     </tr>
                   )
-              )}
+              )
+              ) : (
+                <tr>
+                <td colSpan="4" className="text-center py-4 text-2xl">No results found</td>
+              </tr>
+              )
+            }
             </tbody>
           </table>
           <div className="flex justify-between items-center mt-4">

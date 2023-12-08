@@ -63,7 +63,8 @@ const EducatorPanel = () => {
             </tr>
           </thead>
           <tbody>
-            {openQuizzes.map((quiz) => (
+             {openQuizzes.length > 0 ? (
+            openQuizzes.map((quiz) => (
               <tr key={quiz.id} className="border bg-indigo-300 ">
                 <td className=" px-4 py-2">{quiz.title}</td>
                 <td className=" px-4 py-2">
@@ -81,7 +82,12 @@ const EducatorPanel = () => {
                     onClick={() => { history.push(`/assign-quiz/${quiz?.id}`) }}>Assign</a>
                 </td>
               </tr>
-            ))}
+            ))
+            ):(
+              <tr>
+              <td colSpan="4" className="text-center py-4 text-2xl">No results found</td>
+            </tr>
+            )}
           </tbody>
         </table>
       </div>
