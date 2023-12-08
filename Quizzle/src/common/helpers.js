@@ -23,3 +23,4 @@ export const titleCheck = (title) => {
 };
 
 export const totalScore = arr => arr.reduce((sum, item) => sum + item.score, 0);
+export const timeLimitInSeconds = (timeLimit) => timeLimit * 60;
