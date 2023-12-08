@@ -34,14 +34,14 @@ const GroupsList = () => {
 
   return (
     <div className="h-screen flex flex-col">
-      <div className="text-center mt-10 mb-5 mr-20">
-   <p className="text-5xl font-bold animate-fade-in bg-clip-text text-transparent bg-gradient-to-b from-indigo-400 to-sky-400">Groups List</p>
+      <div className="text-center mt-10 mb-5">
+   <p className="text-4xl font-bold animate-fade-in bg-clip-text text-transparent bg-zinc-600 dark:bg-zinc-300">Groups List</p>
         </div>
-      <div className="justify-center p-6">
-      <div className="flex flex-col text-center ml-96 space-y-7 w-1/3 ">
+      <div className="flex flex-col items-center p-6">
+      <div className="flex flex-col text-center space-y-7 w-1/3 ">
         {groups.map((group, index) => (
-          <div style={{ animation: `slideInFromRight 0.5s ${index * 0.1}s both` }} key={group.id} className="p-4 border-2  rounded-md w-full text-white hover:shadow-2xl hover:shadow-stone-400 bg-gradient-to-b from-indigo-400 to-sky-300 transition-all duration-500 ease-in-out transform hover:scale-105">
-            <Link to={`/group/${group.id}`} className="no-underline text-white">
+          <div style={{ animation: `slideInFromRight 0.5s ${index * 0.1}s both` }} key={group.id} className="p-4 border-2  rounded-md w-full text-white hover:shadow-2xl hover:shadow-stone-400 bg-gradient-to-b from-indigo-400 to-sky-300 dark:bg-gradient-to-b dark:from-zinc-500 transition-all duration-500 ease-in-out transform hover:scale-105">
+            <Link to={`/group/${group.id}`} className="no-underline text-white dark:text-zinc-200">
               Name
               <h2 className="text-2xl font-semibold mb-2 bg-clip-text text-transparent bg-gradient-to-b from-rose-400 to-yellow-200">{group.name}</h2>
               Organization

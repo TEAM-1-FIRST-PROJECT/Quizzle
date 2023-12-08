@@ -57,42 +57,48 @@ const Students = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div className="h-screen">
-      <div className="ml-64">
-      <p className="pt-12 text-start text-3xl font-extrabold bg-clip-text p-1 text-transparent bg-gradient-to-r from-zinc-600 to-gray-500">
-        Hello,{" "}
-        {text
-          .slice(0, index)
-          .split("")
-          .map((char, i) => (
-            <span key={i} className="animate-gradient bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-violet-500">
-              {char}
-            </span>
-          ))}
-         Welcome to the students’ page.
-        <p className="mt-2">
-          Here, on this table, you will see all the students.
+    <div className="h-screen pb-20 overflow-auto">
+      <div className="flex flex-col items-center">
+          <h1 className=" mt-5 text-zinc-700 dark:text-zinc-300 text-4xl font-bold">
+            {" "}
+            Hello,{" "}
+            {text
+              .slice(0, index)
+              .split("")
+              .map((char, i) => (
+                <span
+                  key={i}
+                  className="animate-gradient bg-clip-text text-transparent bg-indigo-400"
+                >
+                  {char}
+                </span>
+              ))}
+          </h1>
+        <p className="pt-12 text-3xl font-extrabold bg-clip-text p-1 text-transparent bg-gradient-to-r from-zinc-700 to-gray-500 dark:bg-gradient-to-r dark:from-zinc-300 dark:to-gray-500">
+          Welcome to the students’ page.
+          <p className="mt-2">
+            Here, on this table, you will see all the students.
+          </p>
+          <p className=" mt-2">
+            In the search field, you can look for a specific student.
+          </p>
+          <p className=" mt-2">
+            Enjoy the convenience and efficiency of our system!
+          </p>
         </p>
-        <p className=" mt-2">
-          In the search field, you can look for a specific student.
-        </p>
-        <p className=" mt-2">
-          Enjoy the convenience and efficiency of our system!
-        </p>
-        </p>
-        </div>
+      </div>
 
-      <div className="relative p-5 ml-10 mr-10 mt-20 border shadow-md rounded bg-gradient-to-br from-indigo-400">
+      <div className="flex flex-col p-5 ml-10 mr-10 mt-20 border shadow-md rounded bg-gradient-to-br from-indigo-500 dark:bg-gradient-to-br dark:from-zinc-600">
         <input
           type="text"
-          className="border p-2 rounded w-full sm:w-3/4 md:w-1/2 lg:w-1/3 xl:w-1/4 placeholder-orange-300 font-bold"
+          className="border p-2 rounded w-full sm:w-3/4 md:w-1/2 lg:w-1/3 xl:w-1/4 placeholder-orange-300 font-bold dark:bg-zinc-400 dark:placeholder-orange-200"
           placeholder="Search for user..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
         <div className="mt-4 ">
-          <table className="table-auto rounded w-full text-center text-white">
-            <thead className=" text-lg border bg-indigo-400">
+          <table className="table-auto rounded w-full text-center text-white dark:text-zinc-100">
+            <thead className=" text-lg border dark:bg-gradient-to-br dark:from-zinc-600">
               <tr>
                 <th className=" px-4 py-2">Username</th>
                 <th className=" px-4 py-2">Email</th>
@@ -101,18 +107,24 @@ const Students = () => {
               </tr>
             </thead>
             <tbody>
-              {filteredUsers.map(
+              {filteredUsers.length > 0 ? (
+              filteredUsers.map(
                 (user) =>
                   user.role === ROLE_CHECK.student && (
-                    <tr key={user.username} className="border bg-indigo-300 ">
+                    <tr
+                      key={user.username}
+                      className="border dark:bg-gradient-to-br dark:from-zinc-800"
+                    >
                       <td className=" px-4 py-2">{user.username}</td>
                       <td className=" px-4 py-2">{user.email}</td>
                       <td className=" px-4 py-2">{}</td>
                       <td className=" px-4 py-2">
                         <button
                           className={`${
-                            user.isBlocked ? "bg-green-500" : "bg-red-500"
-                          } text-white px-4 py-2 rounded transform transition duration-500 ease-in-out hover:scale-105` }
+                            user.isBlocked
+                              ? "bg-green-500 dark:bg-green-700 dark:hover:bg-green-600"
+                              : "bg-red-500 dark:bg-red-700 dark:hover:bg-red-600"
+                          } text-white dark:text-zinc-100 px-4 py-2 rounded transform transition duration-500 ease-in-out hover:scale-105 `}
                           onClick={() =>
                             handleBlockUser(user.username, user.isBlocked)
                           }
@@ -122,16 +134,22 @@ const Students = () => {
                       </td>
                     </tr>
                   )
-              )}
+              )
+              ) : (
+                <tr>
+                <td colSpan="4" className="text-center py-4 text-2xl">No results found</td>
+              </tr>
+              )
+            }
             </tbody>
           </table>
-          <div className="flex justify-between items-center mt-4">
+          <div className="flex justify-between items-center mt-4 dark:text-zinc-100">
             <div>
               Showing {indexOfFirstUser + 1}-{indexOfLastUser} of {users.length}
             </div>
             <div>
               <button
-                className="bg-blue-500 text-white px-4 py-2 rounded mr-2 transform transition duration-500 ease-in-out hover:scale-105"
+                className="bg-blue-700 text-white dark:text-zinc-100 dark:hover:bg-blue-600 px-4 py-2 rounded mr-2 transform transition duration-500 ease-in-out hover:scale-105"
                 onClick={() =>
                   paginate(currentPage > 1 ? currentPage - 1 : currentPage)
                 }
@@ -142,7 +160,7 @@ const Students = () => {
                 Page {currentPage} of {Math.ceil(users.length / usersPerPage)}
               </span>
               <button
-                className="bg-blue-500 text-white px-4 py-2 rounded ml-2 transform transition duration-500 ease-in-out hover:scale-105"
+                className="bg-blue-700 text-white dark:text-zinc-100 dark:hover:bg-blue-600 px-4 py-2 rounded ml-2 transform transition duration-500 ease-in-out hover:scale-105"
                 onClick={() =>
                   paginate(
                     currentPage < Math.ceil(users.length / usersPerPage)

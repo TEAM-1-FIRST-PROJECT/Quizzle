@@ -12,7 +12,6 @@ import { ROLE_CHECK } from "../../common/constants";
 import toast from "react-hot-toast";
 
 const RegisterForm = () => {
-  const [index, setIndex] = useState(0);
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
@@ -41,17 +40,6 @@ const RegisterForm = () => {
       [field]: value,
     });
   };
-
-  const text =
-    "Quizzes are a popular form of entertainment, but they also have numerous benefits that can contribute to personal and professional development. They require recall of information, which strengthens memory pathways. This makes it easier to retrieve this information later, enhancing long-term memory.";
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setIndex((prevIndex) => prevIndex + 1);
-    }, 30);
-
-    return () => clearInterval(timer);
-  }, []);
 
   const handleRegisterUser = (e) => {
     e.preventDefault();
@@ -103,19 +91,9 @@ const RegisterForm = () => {
   };
   return (
     <>
-      <p className="font-extrabold p-10 text-2xl bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-violet-400">
-        {text
-          .slice(0, index)
-          .split("")
-          .map((char, i) => (
-            <span key={i} className="animate-gradient">
-              {char}
-            </span>
-          ))}
-      </p>
-      <div className="h-screen items-center justify-center">
-        <div className="hidden sm:block  justify-center">
-          <form className="w-[650px] mx-auto mb-10 shadow-xl hover:shadow-violet-400 bg-indigo-300 p-6 rounded-lg opacity-80">
+      <div className="flex flex-col h-screen items-center mt-20">
+        <div className="hidden sm:block justify-center">
+          <form className="w-[650px] mx-auto shadow-xl hover:shadow-violet-400 bg-indigo-300 p-6 rounded-lg opacity-80">
             <h2 className="text-4x1 text-3xl mb-8 text-black font-bold text-center">
               Register
             </h2>
@@ -123,7 +101,7 @@ const RegisterForm = () => {
               <div className="w-full sm:w-1/2 px-5">
                 <text className="">First Name</text>
                 <input
-                  className="rounded-lg mt-2 py-3 px-3 focus-within:border-blue-500 focus:outline-none"
+                  className="rounded-lg mt-2 py-3 px-3 focus-within:border-blue-500 focus:outline-none dark:bg-zinc-300"
                   type="text"
                   value={form.firstName}
                   onChange={updateForm("firstName")}
@@ -132,7 +110,7 @@ const RegisterForm = () => {
               <div className="w-full sm:w-1/2 px-5">
                 <label>Last Name</label>
                 <input
-                  className="rounded-lg mt-2 py-3 px-3 focus-within:border-blue-500 focus:outline-none"
+                  className="rounded-lg mt-2 py-3 px-3 focus-within:border-blue-500 focus:outline-none dark:bg-zinc-300"
                   type="text"
                   value={form.lastName}
                   onChange={updateForm("lastName")}
@@ -141,7 +119,7 @@ const RegisterForm = () => {
               <div className="mt-2 w-full sm:w-1/2 px-5">
                 <label>Username</label>
                 <input
-                  className="rounded-lg mt-2 py-3 px-3 focus-within:border-blue-500 focus:outline-none"
+                  className="rounded-lg mt-2 py-3 px-3 focus-within:border-blue-500 focus:outline-none dark:bg-zinc-300"
                   type="text"
                   value={form.username}
                   onChange={updateForm("username")}
@@ -150,7 +128,7 @@ const RegisterForm = () => {
               <div className="mt-2 w-full sm:w-1/2 px-5">
                 <label>Phone</label>
                 <input
-                  className="rounded-lg mt-2 py-3 px-3 focus-within:border-blue-500 focus:outline-none"
+                  className="rounded-lg mt-2 py-3 px-3 focus-within:border-blue-500 focus:outline-none dark:bg-zinc-300"
                   type="text"
                   value={form.phone}
                   onChange={updateForm("phone")}
@@ -159,7 +137,7 @@ const RegisterForm = () => {
               <div className="w-full mt-2 sm:w-1/2 px-5">
                 <label>Address</label>
                 <input
-                  className="rounded-lg mt-2 py-3 px-3 focus-within:border-blue-500 focus:outline-none"
+                  className="rounded-lg mt-2 py-3 px-3 focus-within:border-blue-500 focus:outline-none dark:bg-zinc-300"
                   type="text"
                   value={form.address}
                   onChange={updateForm("address")}
@@ -172,7 +150,7 @@ const RegisterForm = () => {
             focus:outline-none 
             disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
             invalid:border-pink-500 invalid:text-pink-600
-            focus:invalid:border-pink-500 focus:invalid:ring-pink-500"
+            focus:invalid:border-pink-500 focus:invalid:ring-pink-500 dark:bg-zinc-300"
                   type="email"
                   value={form.email}
                   onChange={updateForm("email")}
@@ -181,7 +159,7 @@ const RegisterForm = () => {
               <div className="mt-2 w-full sm:w-1/2 px-5">
                 <label>Password</label>
                 <input
-                  className="rounded-lg bg-white mt-2 py-3 px-3 focus-within:border-blue-500 focus:outline-none"
+                  className="rounded-lg bg-white mt-2 py-3 px-3 focus-within:border-blue-500 focus:outline-none dark:bg-zinc-300"
                   type="password"
                   value={form.password}
                   onChange={updateForm("password")}
@@ -197,7 +175,7 @@ const RegisterForm = () => {
                 />
               </div>
               <button
-                className="w-full py-2 bg-violet-400 shadow-xl hover:shadow-violet-600 text-black font-semibold rounded-lg"
+                className="w-full py-2 bg-violet-400 shadow-xl hover:shadow-violet-600 text-black font-semibold rounded-lg transform transition duration-500 ease-in-out hover:scale-90"
                 onClick={handleRegisterUser}
                 type="button"
               >

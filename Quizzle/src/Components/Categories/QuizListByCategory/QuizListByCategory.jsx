@@ -20,14 +20,14 @@ const QuizListByCategory = () => {
     <div className="h-screen  flex flex-col items-center">
     <div className="max-w-6xl mx-auto px-4 sm:px-6 mt-8  rounded-lg">
       <div className="pt-32 md:pt-10 ">
-        <div className=" text-center pb-12 md:pb-16">
+        <div className=" text-center pb-12 md:pb-16 dark:text-zinc-100">
           <h1 className="text-5xl md:text-6xl font-extrabold leading-tighter tracking-tighter mb-4" data-aos="zoom-y-out">
             Explore all quizzes from <span className="bg-clip-text p-1 text-transparent bg-gradient-to-r from-blue-600 to-violet-400">{category}</span>
           </h1>
         </div>
       </div>
     </div>
-    <section className="bg-gray-2 pb-10 pt-5 dark:bg-dark lg:pb-10 lg:pt-10">
+    <section className=" pb-10 pt-5 dark:bg-dark lg:pb-10 lg:pt-10">
       <div className="container">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {quizzes.map((quiz, index) => (

@@ -4,6 +4,7 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: 'class',
   theme: {
     screens: {
       sm: '320px',
@@ -49,6 +50,7 @@ export default {
         'hero-pattern': "url('./src/assets/backgroung.jpeg')",
         'hero-pattern-2': "url('./src/assets/Home.jpg')",
         'hero-pattern-3': "url('./src/assets/bg-img.jpeg')",
+        'hero-pattern-4': "url('./src/assets/bg-dark.jpeg')",
       },
       
       spacing: {

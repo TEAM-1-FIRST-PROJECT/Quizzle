@@ -61,82 +61,48 @@ const GroupsDetails = () => {
     });
   };
 
-  // const buttonVariants = {
-  //   hover: {
-  //     scale: 1.1,
-  //     transition: {
-  //       duration: 0.3,
-  //       yoyo: Infinity,
-  //     },
-  //   },
-  // };
-
-  // const containerVariants = {
-  //   hidden: {
-  //     opacity: 0,
-  //   },
-  //   visible: {
-  //     opacity: 1,
-  //     transition: {
-  //       delayChildren: 0.3,
-  //       staggerChildren: 0.2,
-  //     },
-  //   },
-  // };
-
-  // const childVariants = {
-  //   hidden: {
-  //     opacity: 0,
-  //     y: 20,
-  //   },
-  //   visible: {
-  //     opacity: 1,
-  //     y: 0,
-  //   },
-  // };
-
   return (
     <div className="">
       <div className="flex flex-col h-screen items-center ">
-        <h1 className="mb-4 text-4xl text-center font-bold mt-10 rounded-full bg-gradient-to-r from-indigo-300">
+        <h1 className="mb-4 text-4xl text-center font-bold mt-10 rounded-full bg-gradient-to-r from-indigo-300 dark:text-zinc-300">
           Group Details
         </h1>
         {group && (
-          <div className="flex flex-col items-center rounded-xl space-y-4 bg-gradient-to-bl from-indigo-400 to">
+          <div className="flex flex-col items-center rounded-xl space-y-4 bg-gradient-to-bl from-indigo-400 dark:bg-gradient-to-tl dark:from-zinc-600">
             <div className="p-4 rounded-xl w-80 shadow-2xl transform transition-transform bg-gradient-to-br from-indigo-400">
               <p className="text-black">
                 Group name{" "}
-                <h2 className="text-2xl font-bold mb-4 text-white">
+                <h2 className="text-2xl font-bold mb-4 text-white dark:text-zinc-300">
                   {group.name}
                 </h2>
               </p>
               <p className="text-center mb-5 text-black">
                 Formed by{" "}
-                <p className="font-bold text-lg text-white">
+                <p className="font-bold text-lg text-white dark:text-zinc-300">
                   {group.createdBy}
                 </p>
               </p>
 
               <p className=" text-xl mb-3 text-center text-black">
-                Created on:{" "}
-                <span className=" text-yellow-200">
+                Created on {" "}
+                <span className=" text-yellow-200 dark:text-zinc-300">
                   {new Date(group.createdOn).toLocaleDateString()}
                 </span>
               </p>
               {isEditingDescription ? (
                 <textarea
-                  className="w-full p-2 mb-4 rounded-md shadow-inner text-black"
+                  className="w-full p-2 mb-4 rounded-md shadow-inner text-black dark:bg-zinc-400"
                   value={newDescription}
                   onChange={(e) => setNewDescription(e.target.value)}
                 />
               ) : (
                 <p className="mb-4 text-xl text-center text-black">
-                  Description <p className="text-white">{group.description}</p>
+                  Description <p className="text-white dark:text-zinc-300">{group.description}</p>
                 </p>
               )}
               
               <button
-                className=" p-2 w-full text-white bg-blue-500 border rounded-md hover:shadow-xl transform transition duration-500 ease-in-out hover:scale-105"
+                className=" p-2 w-full text-white dark:text-zinc-300 bg-blue-500 dark:bg-indigo-600 border rounded-md hover:shadow-xl transform transition duration-500 ease-in-out hover:scale-105"
                 onClick={
                   isEditingDescription
                     ? handleSaveDescription
@@ -148,14 +114,14 @@ const GroupsDetails = () => {
               
                 <div className="flex justify-center mt-10">
                   <Link to="/group-quizzes">
-                    <button className=" p-2 text-white bg-blue-500 border rounded-md hover:shadow-xl transform transition duration-500 ease-in-out hover:scale-105">
+                    <button className=" p-2 text-white dark:text-zinc-300 bg-blue-500 dark:bg-indigo-600 border rounded-md hover:shadow-xl transform transition duration-500 ease-in-out hover:scale-105">
                       View Group Quizzes
                     </button>
                   </Link>
                 </div>
-              <p className="text-2xl mt-2 text-white font-bold">Members:</p>
+              <p className="text-2xl mt-2 text-white dark:text-black">Members</p>
 
-              <div className="flex flex-col space-y-4">
+              <div className="flex flex-col space-y-4 dark:text-zinc-300">
                 {members.map((member, index) => (
                   <div
                     key={index}
@@ -167,7 +133,8 @@ const GroupsDetails = () => {
                       alt="avatar"
                     />
                     <p className="font-bold">
-                      {member.userName} <p></p>Member since:{" "}
+                      {member.userName} <br />
+                      <span className="dark:text-black">Member Since {" "}</span>
                       {new Date(member.joinedAt).toLocaleDateString()}
                     </p>
                   </div>

@@ -130,28 +130,34 @@ const AssignQuiz = () => {
             </thead>
 
             <tbody>
-              {filteredUsers.map((user) =>
-                <tr key={user.uid} className="border bg-indigo-300 ">
-                  <td className=" px-4 py-2">{user.username}</td>
-                  <td className=" px-4 py-2">{user.lastName}</td>
-                  <td className=" px-4 py-2"></td>
-                  <td className=" px-4 py-2">
-                    {user.score ? Object.values(user?.score).find(item => item.id === `${id}`)
-                      ? Object.values(user?.score).find(item => item.id === `${id}`).score : 0 : 0
-                    }</td>
-                  <td className=" px-4 py-2">
-                    {assignedUsers.length > 0
-                      ? assignedUsers.includes(user.username)
-                        ? <button >Assigned</button>
+              {filteredUsers.length > 0 ? (
+                filteredUsers.map((user) => (
+                  <tr key={user.uid} className="border bg-indigo-300 ">
+                    <td className=" px-4 py-2">{user.username}</td>
+                    <td className=" px-4 py-2">{user.lastName}</td>
+                    <td className=" px-4 py-2"></td>
+                    <td className=" px-4 py-2">
+                      {user.score ? Object.values(user?.score).find(item => item.id === `${id}`)
+                        ? Object.values(user?.score).find(item => item.id === `${id}`).score : 0 : 0
+                      }</td>
+                    <td className=" px-4 py-2">
+                      {assignedUsers.length > 0
+                        ? assignedUsers.includes(user.username)
+                          ? <button >Assigned</button>
+                          : !user?.score ? <button onClick={() => assignQuizHandler(user.username)}>Assign</button> :
+                            Object.values(user.score).map((quiz) => quiz.id).includes(id)
+                              ? <button >Resolved</button>
+                              : <button onClick={() => assignQuizHandler(user.username)}>Assign</button>
                         : !user?.score ? <button onClick={() => assignQuizHandler(user.username)}>Assign</button> :
                           Object.values(user.score).map((quiz) => quiz.id).includes(id)
                             ? <button >Resolved</button>
-                            : <button onClick={() => assignQuizHandler(user.username)}>Assign</button>
-                      : !user?.score ? <button onClick={() => assignQuizHandler(user.username)}>Assign</button> :
-                        Object.values(user.score).map((quiz) => quiz.id).includes(id)
-                          ? <button >Resolved</button>
-                          : <button onClick={() => assignQuizHandler(user.username)}>Assign</button>}
-                  </td>
+                            : <button onClick={() => assignQuizHandler(user.username)}>Assign</button>}
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="5" className="text-center py-4 text-2xl">No results found</td>
                 </tr>
               )}
             </tbody>

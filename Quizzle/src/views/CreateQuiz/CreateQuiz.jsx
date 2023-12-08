@@ -86,7 +86,7 @@ const CreateQuiz = () => {
     <div className=" grid grid-flow-row h-screen">
       <div className="mb-20">
       <div className=" text-center mt-10 ">
-        <h1 className="text-6xl text-black font-extrabold leading-tighter tracking-tighter mb-4 mt-10 pr-2">
+        <h1 className="text-6xl text-black dark:text-zinc-200 font-extrabold leading-tighter tracking-tighter mb-4 mt-10 pr-2">
           Create your own{" "}
           <span className="bg-clip-text p-1 text-transparent bg-gradient-to-r from-blue-600 to-violet-400">
             Quiz
@@ -101,7 +101,7 @@ const CreateQuiz = () => {
       </div>
       <form
         onSubmit={handleSubmit}
-        className="z-0 p-10 pb-10 m-32 mt-10  hover:shadow-2xl border-2 bg-indigo-300 space-y-4 rounded-lg "
+        className="z-0 p-10 pb-10 m-32 mt-10  hover:shadow-2xl border-2 bg-indigo-300 dark:bg-zinc-500 space-y-4 rounded-lg "
       >
         <div className="flex flex-wrap -mx-3">
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -114,7 +114,7 @@ const CreateQuiz = () => {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 required
-                className="mt-1 block w-full p-2 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
+                className="mt-1 block w-full p-2 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 dark:bg-zinc-400 dark:text-zinc-800"
               />
             </label>
           </div>
@@ -128,7 +128,7 @@ const CreateQuiz = () => {
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 required
-                className="mt-1 block w-full p-2 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
+                className="mt-1 block w-full p-2 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 dark:bg-zinc-400 dark:text-zinc-800"
               />
             </label>
           </div>
@@ -144,7 +144,7 @@ const CreateQuiz = () => {
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
                 required
-                className="mt-1 block w-full p-2 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
+                className="mt-1 block w-full p-2 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 dark:bg-zinc-400 dark:text-zinc-800"
               />
             </label>
           </div>
@@ -155,7 +155,7 @@ const CreateQuiz = () => {
               </span>
               <select
                 onChange={(e) => setContestType(e.target.value)}
-                className="w-full px-3 py-2 mb-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+                className="w-full px-3 py-2 mb-3 border rounded-md focus:outline-none focus:ring-2 dark:bg-zinc-400 dark:text-zinc-800"
               >
                 <option value="open">Open Contest</option>
                 <option value="invitational">Invitational Contest</option>
@@ -168,7 +168,7 @@ const CreateQuiz = () => {
             type="text"
             placeholder="Invited Users"
             onChange={(e) => setInvitedUsers(e.target.value.split(","))}
-            className="w-full px-3 py-2 mb-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+            className="w-full px-3 py-2 mb-3 border rounded-md focus:outline-none focus:ring-2"
           />
         )}
         <div className="flex flex-wrap -mx-3">
@@ -182,7 +182,7 @@ const CreateQuiz = () => {
                 value={timeLimit}
                 onChange={(e) => setTimeLimit(e.target.value)}
                 required
-                className="mt-1 block w-full p-2 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
+                className="mt-1 block w-full p-2 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 dark:bg-zinc-400 dark:text-zinc-800"
               />
             </label>
           </div>
@@ -197,7 +197,7 @@ const CreateQuiz = () => {
                   value={totalPoints}
                   onChange={(e) => setTotalPoints(e.target.value)}
                   required
-                  className="mt-1 block w-full p-2 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
+                  className="mt-1 block w-full p-2 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 dark:bg-zinc-400 dark:text-zinc-800"
                 />
               </label>
             </div>
@@ -212,7 +212,7 @@ const CreateQuiz = () => {
                   value={miniPassingPoints}
                   onChange={(e) => setMiniPassingPoints(e.target.value)}
                   required
-                  className="mt-1 block w-full p-2 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
+                  className="mt-1 block w-full p-2 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 dark:bg-zinc-400 dark:text-zinc-800"
                 />
               </label>
             </div>
@@ -233,7 +233,7 @@ const CreateQuiz = () => {
                     setQuestions(newQuestions);
                   }}
                   required
-                  className="mt-1 block w-full p-2 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
+                  className="mt-1 block w-full p-2 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 dark:bg-zinc-400 dark:text-zinc-800"
                 />
               </label>
               {question.answers.map((answer, answerIndex) => (
@@ -252,12 +252,12 @@ const CreateQuiz = () => {
                         setQuestions(newQuestions);
                       }}
                       required
-                      className="mt-1 block w-full p-2 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
+                      className="mt-1 block w-full p-2 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 dark:bg-zinc-400 dark:text-zinc-800"
                     />
                   </label>
                   <label className="block">
                     <input
-                      className="w-4 h-4 mr-2 mt-2 rounded transition duration-500 ease-in-out text-blue-500 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      className="w-4 h-4 mr-2 mt-2 rounded transition duration-500 ease-in-out text-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                       type="checkbox"
                       checked={answer.isCorrect}
                       onChange={(e) => {
@@ -285,7 +285,7 @@ const CreateQuiz = () => {
                     return newQuestions;
                   });
                 }}
-                className="mt-2 px-4 py-2 text-sm font-medium text-white bg-emerald-500 rounded-md hover:bg-emerald-700 transform transition duration-500 ease-in-out hover:scale-105"
+                className="mt-2 px-4 py-2 text-sm font-medium text-white bg-violet-500 dark:bg-violet-600 dark:hover:bg-violet-500 rounded-md hover:bg-violet-700 transform transition duration-500 ease-in-out hover:scale-105"
               >
                 Add Answer
               </button>
@@ -299,7 +299,7 @@ const CreateQuiz = () => {
                 { question: "", answers: [{ text: "", isCorrect: false }] },
               ]);
             }}
-            className="mt-2 px-4 py-2 text-sm font-medium text-white bg-emerald-500 rounded-md hover:bg-emerald-700 transform transition duration-500 ease-in-out hover:scale-105"
+            className="mt-2 px-4 py-2 text-sm font-medium text-white bg-violet-500 rounded-md hover:bg-violet-700 dark:bg-violet-600 dark:hover:bg-violet-500 transform transition duration-500 ease-in-out hover:scale-105"
           >
             Add Question
           </button>

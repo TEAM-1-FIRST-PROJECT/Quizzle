@@ -56,17 +56,17 @@ const username = userData?.username;
 
   return (
  <div className="h-screen pb-20 overflow-auto ">
-    <div className="m-10 border-4 p-10 rounded-lg bg-gradient-to-bl from-indigo-400">
-      <h1 className="mb-5 text-3xl text-white">Quiz Manage</h1>
+    <div className="m-10 border-4 p-10 rounded-lg bg-gradient-to-bl from-indigo-400 dark:bg-gradient-to-br dark:from-zinc-600">
+      <h1 className="mb-5 text-3xl text-white dark:text-zinc-200">Quiz Manage</h1>
       <input
         type="text"
-        className=" p-2 rounded mb-5 placeholder-orange-300 font-bold"
+        className=" p-2 rounded mb-5 placeholder-orange-300 dark:placeholder-orange-200 dark:bg-zinc-400 font-bold"
         placeholder="Search for Quiz..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
-      <table className="table-auto rounded w-full text-center bg-gradient-to-r from-indigo-400 to-cyan-400 text-white">
-        <thead className=" text-lg border bg-indigo-400">
+      <table className="table-auto rounded w-full text-center bg-gradient-to-bl from-indigo-400 to-cyan-400 text-white dark:text-zinc-200 dark:bg-gradient-to-br dark:from-zinc-600">
+        <thead className=" text-lg border dark:bg-gradient-to-br dark:from-zinc-600">
           <tr>
             <th className=" px-4 py-2">Create By</th>
             <th className=" px-4 py-2">Quiz Title</th>
@@ -78,7 +78,7 @@ const username = userData?.username;
         <tbody>
           {quizzes.map((quiz) => (
             quiz.createdBy === username && (
-            <tr key={quiz.id} className="bg-indigo-300">
+            <tr key={quiz.id} className="dark:bg-gradient-to-br dark:from-zinc-800 dark:text-zinc-200">
               <td className=" px-4 py-2">{quiz.createdBy}</td>
               <td className=" px-4 py-2">{quiz.title}</td>
               <td className=" px-4 py-2">
@@ -87,7 +87,7 @@ const username = userData?.username;
               <td className=" px-4 py-2">
                 <button
                   onClick={() => handleEditQuiz(quiz)}
-                  className="ml-2 px-2 py-1 bg-blue-500 text-white rounded transform transition duration-500 ease-in-out hover:scale-105"
+                  className="ml-2 px-2 py-1 bg-blue-500 text-white dark:bg-blue-600 dark:text-zinc-200 rounded transform transition duration-500 ease-in-out hover:scale-90"
                 >
                   Edit Quiz
                 </button>
@@ -95,7 +95,7 @@ const username = userData?.username;
               <td className=" px-4 py-2">
                 <button
                   onClick={() => handleDelete(quiz.id)}
-                  className="ml-2 px-2 py-1 bg-red-500 text-white rounded transform transition duration-500 ease-in-out hover:scale-105"
+                  className="ml-2 px-2 py-1 bg-red-500 text-white dark:text-zinc-200 dark:bg-red-700 rounded transform transition duration-500 ease-in-out hover:scale-90"
                 >
                   Delete Quiz
                 </button>
@@ -106,8 +106,8 @@ const username = userData?.username;
         </tbody>
       </table>
       {selectedQuiz && selectedQuiz.question && (
-        <div className="border-2 rounded mt-5 p-5 shadow-md table-auto w-full bg-gradient-to-br from-indigo-400 text-white">
-          <h1 className=" text-3xl mb-6 font-bold text-white">Edit Quiz</h1>
+        <div className="border-2 rounded mt-5 p-5 shadow-md table-auto w-full bg-gradient-to-br from-indigo-400 text-white dark:bg-gradient-to-br dark:from-zinc-800 dark:text-zinc-200">
+          <h1 className=" text-3xl mb-6 font-bold text-white dark:text-zinc-200">Edit Quiz</h1>
           <h1 className="font-bold text-2xl"> Title: {editedTitle}</h1>
          
           {selectedQuiz.question.map((question, questionIndex) => (
@@ -121,7 +121,7 @@ const username = userData?.username;
                 {question.answers.map((answer, index) => (
                   <input
                     key={index}
-                    className="border-2 rounded p-2 w-full mt-2"
+                    className="border-2 rounded p-2 w-full mt-2 dark:bg-zinc-400"
                     type="text"
                     value={answer.text}
                     onChange={(event) =>
@@ -134,7 +134,7 @@ const username = userData?.username;
           ))}
           <button
             role="alert"
-            className="alert alert-success ml-2 bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-2 transform transition duration-500 ease-in-out hover:scale-105"
+            className="alert alert-success ml-2 bg-green-600 dark:bg-indigo-600 dark:text-zinc-100 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-2 transform transition duration-500 ease-in-out hover:scale-90"
             onClick={handleSaveQuestion}
           >
             Save changes
