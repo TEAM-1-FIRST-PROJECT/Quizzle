@@ -3,10 +3,14 @@ import SingleQuizCard from "../SingleQuizCard/SingleQuizCard";
 import { useEffect, useState } from "react";
 import { getAllQuizzes } from "../../services/quiz.services";
 import toast from "react-hot-toast";
+//import Settings from './../../views/Settings/Settings';
+import { dateFormat } from "../../common/helpers";
+
 
 const Public = () => {
 
-  const [quizzes, setQuizzes] = useState([{}])
+  const [quizzes, setQuizzes] = useState([{}]);
+  const [searchTerm, setSearchTerm] = useState('');
   useEffect(() => {
     getAllQuizzes()
       .then(snapshot => {
@@ -19,7 +23,7 @@ const Public = () => {
 
   return (
     <>
-      {quizzes && <div className="h-screen flex flex-col items-center">
+      {quizzes && <div className=" flex flex-col items-center">
         <div className=" max-w-6xl mx-auto px-4 sm:px-6  opacity-80 rounded-lg">
           {/* Hero content */}
           <div className="pt-32 md:pt-10 ">
@@ -70,6 +74,46 @@ const Public = () => {
           </div>
         </section>
       </div>}
+      <div className="m-10 justify-center items-center border-4 p-10 rounded-lg bg-gradient-to-bl from-indigo-400">
+        <h1 className="mb-5 text-5xl bg-clip-text text-transparent bg-gradient-to-r from-gray-800 to-stone-100">Public quiz scoerboard</h1>
+        <input
+          type="text"
+          className="border focus-none p-2 placeholder-amber-300 font-bold rounded mb-5"
+          placeholder="Search for quiz ..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        {/* <button className="mt-2 px-4 py-2 font-medium text-white bg-violet-400 rounded-md hover:bg-green-400 float-right transform transition duration-500 ease-in-out hover:scale-105"
+          onClick={() => { setFinishedQuizzes((!finishedQuizzes)) }}>{finishedQuizzes ? 'switch to finished quizzes' : 'switch to opened quizzes'}</button> */}
+        <table className="table-auto rounded w-full text-center  text-white">
+          <thead className=" text-lg bg-indigo-400">
+            <tr className="border border-violet-200 ">
+              <th className="  px-4 py-2">Quiz Title</th>
+              <th className=" px-4 py-2">Created On</th>
+              {/* {finishedQuizzes
+                ? <th className=" px-4 py-2">Assigned students </th> */}
+              <th className=" px-4 py-2">Attempted</th>
+              <th className=" px-4 py-2">Resolved with max score</th>
+            </tr>
+          </thead>
+          <tbody>
+            {quizzes.map((quiz) => (
+              <tr key={quiz.id} className="border bg-indigo-300 ">
+                <td className=" px-4 py-2">{quiz.title}</td>
+                <td className=" px-4 py-2">
+                  {dateFormat(quiz.createdOn)}
+                </td>
+                <td className="px-4 py-2">
+                  {quiz.scoreBoard ? quiz.scoreBoard.length : 0}
+                </td>
+                <td className=" px-4 py-2">
+                  {quiz.scoreBoard ? quiz.scoreBoard.filter(el => el === 100).length : 0}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </>
   );
 };
