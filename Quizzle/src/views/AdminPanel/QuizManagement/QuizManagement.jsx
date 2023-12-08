@@ -53,20 +53,20 @@ const QuizManagement = () => {
   };
 
   return (
-    <div className="h-screen flex flex-col">
-      <div className="md:m-14 opacity-90 p-6">
-        <h1 className="mb-10 text-3xl ">Quiz Management</h1>
+    <div className="h-screen flex flex-col overflow-auto">
+      <div className="md:m-14 opacity-95 bg-gradient-to-br from-indigo-400 dark:bg-gradient-to-br dark:from-zinc-600 border rounded-lg p-6">
+        <h1 className="mb-10 text-3xl dark:text-zinc-200">Quiz Management</h1>
         <input
           type="text"
-          className="border p-2 rounded mb-2 w-full md:w-1/4 placeholder-orange-300 font-bold"
+          className="border p-2 rounded mb-2 w-full md:w-1/4 placeholder-orange-300 dark:placeholder-orange-200 dark:bg-zinc-400 font-bold"
           placeholder="Search by title or creator..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
         <div className="">
-          <table className="table-auto rounded w-full text-center bg-gradient-to-r from-indigo-400 to-cyan-400 text-white">
+          <table className="table-auto mt-2 rounded w-full text-center bg-gradient-to-br from-indigo-400 to-cyan-400 dark:from-zinc-800 text-white dark:text-zinc-200">
             <thead className="text-lg">
-              <tr className="border border-rose-300">
+              <tr className="border border-indigo-500 dark:border-indigo-700">
                 <th className="px-4 py-2">Create By</th>
                 <th className="px-4 py-2">Quiz Title</th>
                 <th className="px-4 py-2">Questions</th>
@@ -77,7 +77,7 @@ const QuizManagement = () => {
             </thead>
             <tbody>
               {quizzes.map((quiz) => (
-                <tr key={quiz.id} className="border border-rose-300">
+                <tr key={quiz.id} className="border border-indigo-500 dark:border-indigo-700 dark:gradient-to-br dark:from-zinc-800 dark:text-zinc-200">
                   <td className="px-4 py-2">{quiz.createdBy}</td>
                   <td className="px-4 py-2">{quiz.title}</td>
                   <td className="px-4 py-2">{quiz.question?.length}</td>
@@ -87,7 +87,7 @@ const QuizManagement = () => {
                   <td className="px-4 py-2">
                     <button
                       onClick={() => handleEditQuiz(quiz)}
-                      className="ml-2 px-2 py-1 bg-blue-500 text-white rounded"
+                      className="ml-2 px-2 py-1 bg-blue-500 dark:bg-blue-600 dark:text-zinc-200 text-white rounded"
                     >
                       Edit Quiz
                     </button>
@@ -95,7 +95,7 @@ const QuizManagement = () => {
                   <td className="px-4 py-2">
                     <button
                       onClick={() => handleDelete(quiz.id)}
-                      className="ml-2 px-2 py-1 bg-red-500 text-white rounded"
+                      className="ml-2 px-2 py-1 bg-red-500 dark:bg-red-600 dark:text-zinc-200 text-white rounded"
                     >
                       Delete Quiz
                     </button>
@@ -106,17 +106,17 @@ const QuizManagement = () => {
           </table>
         </div>
         {selectedQuiz && selectedQuiz.question && (
-          <div className="border-2 border-rose-300 mb-10 rounded mt-5 p-5 bg-white shadow-md table-auto w-full bg-gradient-to-r from-indigo-400 to-cyan-400 text-black">
-            <h1 className="text-lg font-bold text-black">Quiz Edit</h1>
-            <h2 className="my-2 text-lg font-bold rounded p-2 text-center">
-              Title: {editedTitle}
+          <div className="border-2 border-rose-300 dark:border-indigo-600 mb-10 rounded-lg mt-5 p-5 shadow-md table-auto w-full bg-gradient-to-r from-indigo-400 to-cyan-400 dark:from-zinc-800  text-black">
+            <h1 className="font-bold text-black dark:text-zinc-200 text-2xl">Quiz Edit</h1>
+            <h2 className="my-2 text-xl font-bold rounded p-2 text-center dark:text-zinc-200">
+              Title - {editedTitle}
             </h2>
-            <h3 className="my-2 text-lg font-bold text-start rounded p-2">
+            <h3 className="my-2 text-lg font-bold text-start rounded dark:text-zinc-200 p-2">
               Questions
             </h3>
             {selectedQuiz.question.map((question, questionIndex) => (
               <div key={questionIndex} className="my-2">
-                <span className="font-bold text-black">
+                <span className="font-bold text-black dark:text-zinc-200">
                   {question.question}
                 </span>
 
@@ -126,7 +126,7 @@ const QuizManagement = () => {
                      <span className="text-red-500 mr-2">*</span>
                    <input
                      key={index}
-                     className="border-2 rounded p-2 w-full mt-2 placeholder-indigo-300"
+                     className="border-2 rounded p-2 w-full mt-2 placeholder-indigo-300 dark:bg-zinc-400"
                      placeholder="Write an answer..."
                      type="text"
                      value={answer.text}
@@ -141,7 +141,7 @@ const QuizManagement = () => {
             ))}
             <button
               role="alert"
-              className="alert alert-success ml-2 bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-2"
+              className="alert alert-success ml-2 bg-green-600 dark:bg-green-700 dark:hover:bg-green-600 dark:text-zinc-200 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-2"
               onClick={handleSaveQuestion}
             >
               Save changes

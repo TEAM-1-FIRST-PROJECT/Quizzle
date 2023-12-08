@@ -93,46 +93,46 @@ const GroupQuizzes = () => {
 
   return (
     <div className="flex flex-col h-screen overflow-auto">
-    <div className="p-4 m-20 border shadow-md rounded bg-gradient-to-br from-violet-400 to-cyan-400 max-w-full md:max-w-7xl ">
+    <div className="p-4 m-20 border shadow-md rounded bg-gradient-to-br from-violet-400 to-cyan-400 dark:bg-gradient-to-br dark:from-zinc-600 max-w-full md:max-w-7xl ">
       <input
         type="text"
-        className="border p-2 rounded w-full placeholder-amber-300 font-bold sm:w-3/4 md:w-1/2 lg:w-1/3 xl:w-1/4 "
+        className="border p-2 rounded w-full placeholder-amber-300 font-bold sm:w-3/4 md:w-1/2 lg:w-1/3 xl:w-1/4 dark:placeholder-orange-200 dark:bg-zinc-500"
         placeholder="Search for user..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
       <div className="mt-4 overflow-x-auto">
-        <table className="table-auto rounded w-full text-center bg-gradient-to-r from-indigo-400 to-cyan-400 text-white">
-          <thead className=" text-lg">
+        <table className="table-auto rounded w-full text-center bg-gradient-to-r from-indigo-400 to-cyan-400 text-white dark:text-zinc-200 dark:bg-gradient-to-br dark:from-zinc-800">
+          <thead className="border text-lg">
             <tr>
-              <th className="border px-4 py-2">Quiz title</th>
-              <th className="border px-4 py-2">Created by</th>
-              <th className="border px-4 py-2">Created on</th>
-              <th className="border px-4 py-2">Edit</th>
+              <th className="px-4 py-2">Quiz title</th>
+              <th className="px-4 py-2">Created by</th>
+              <th className="px-4 py-2">Created on</th>
+              <th className="px-4 py-2">Edit</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="border">
             {quizzes.map((quiz) => {
               return (
-                <tr key={quiz.id}>
-                  <td className="border px-4 py-2">{quiz.title}</td>
-                  <td className="border px-4 py-2">{quiz.createdBy}</td>
-                  <td className="border px-4 py-2">{dateFormat(quiz.createdOn)}</td>
-                  <td className="border px-4 py-2">
-                    <button className="ml-2 px-2 py-1 bg-blue-500 text-white rounded" onClick={() => handleEditQuiz(quiz)}>Edit</button>
+                <tr key={quiz.id} className="border">
+                  <td className="px-4 py-2">{quiz.title}</td>
+                  <td className="px-4 py-2">{quiz.createdBy}</td>
+                  <td className="px-4 py-2">{dateFormat(quiz.createdOn)}</td>
+                  <td className="px-4 py-2">
+                    <button className="ml-2 px-2 py-1 bg-blue-500 text-white rounded dark:bg-blue-600 dark:text-zinc-200" onClick={() => handleEditQuiz(quiz)}>Edit</button>
                   </td>
                 </tr>
               );
             })}
           </tbody>
         </table>
-        <div className="flex justify-between items-center mt-4">
+        <div className="flex justify-between items-center mt-4 dark:text-zinc-200">
           <div>
             Showing {indexOfFirstUser + 1}-{indexOfLastUser} of {users.length}
           </div>
           <div>
             <button
-              className="bg-blue-500 text-white px-4 py-2 rounded mr-2"
+              className="bg-blue-500 text-white dark:text-zinc-200 dark:bg-blue-600 px-4 py-2 rounded mr-2"
               onClick={() =>
                 paginate(currentPage > 1 ? currentPage - 1 : currentPage)
               }
@@ -143,7 +143,7 @@ const GroupQuizzes = () => {
               Page {currentPage} of {Math.ceil(users.length / usersPerPage)}
             </span>
             <button
-              className="bg-blue-500 text-white px-4 py-2 rounded ml-2"
+              className="bg-blue-500 text-white px-4 py-2 rounded ml-2 dark:text-zinc-200 dark:bg-blue-600"
               onClick={() =>
                 paginate(
                   currentPage < Math.ceil(users.length / usersPerPage)
@@ -158,24 +158,24 @@ const GroupQuizzes = () => {
         </div>
       </div>
       {selectedQuiz && selectedQuiz.question && (
-        <div className="border-2 rounded mt-5 p-5 bg-white shadow-md table-auto w-full bg-gradient-to-r from-indigo-400 to-cyan-400 text-black">
-          <h1 className="text-lg my-3 font-bold text-gray-700">Edit Quiz</h1>
-          <h2 className="my-2 text-lg font-bold rounded p-2 border-2 bg-gray-100">
-            {editedTitle}
+        <div className="border-2 rounded mt-5 p-5 shadow-md table-auto w-full bg-gradient-to-r from-indigo-400 to-cyan-400 text-black dark:bg-gradient-to-r dark:from-zinc-800 dark:text-zinc-100">
+          <h1 className="text-lg my-3 font-bold text-gray-700 dark:text-zinc-200">Edit Quiz</h1>
+          <h2 className="my-2 text-lg font-bold p-2 border-b dark:text-zinc-200">
+            Quiz Title - {editedTitle}
           </h2>
-          <h3 className="my-2 text-lg font-bold rounded p-2 border-2 bg-gray-100">
+          <h3 className="my-2 text-lg font-bold rounded p-2 dark:text-zinc-200">
             Questions
           </h3>
           {selectedQuiz.question.map((question, questionIndex) => (
             <div key={questionIndex} className="my-2">
-              <span className="font-bold text-gray-700">
+              <span className="font-bold text-gray-700 dark:text-zinc-200">
                 {question.question}
               </span>
               <div className="text-black">
                 {question.answers.map((answer, index) => (
                   <input
                     key={index}
-                    className="border-2 rounded p-2 w-full mt-2"
+                    className="border-2 rounded p-2 w-full mt-2 dark:bg-zinc-400"
                     type="text"
                     value={answer.text}
                     onChange={(event) =>
@@ -188,7 +188,7 @@ const GroupQuizzes = () => {
           ))}
           <button
             role="alert"
-            className="alert alert-success ml-2 bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-2"
+            className="alert alert-success ml-2 bg-green-600 dark:bg-indigo-600 dark:hover:bg-indigo-700 hover:bg-green-700 text-white dark:text-zinc-200 font-bold py-2 px-4 rounded mt-2"
             onClick={handleSaveQuestion}
           >
             Save changes

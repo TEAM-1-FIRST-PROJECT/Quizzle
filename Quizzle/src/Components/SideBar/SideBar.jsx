@@ -28,8 +28,8 @@ const Sidebar = () => {
   return (
     <>
       {user && (
-        <div className="abosulute lg:w-[265px] w-[67px]">
-          <div className=" bg-gradient-to-b from-violet-400 to-indigo-300 overflow-y-auto transition-all duration-1000 ease-in-out">
+        <div className="abosulute lg:w-[270px] w-[67px]">
+          <div className=" bg-gradient-to-t from-violet-400 overflow-y-auto transition-all duration-1000 ease-in-out dark:bg-gradient-to-t dark:from-zinc-500">
             <div className="flex flex-1 h-screen flex-col justify-between pt-2 pb-6">
               <div className="ml-4">
                 <div className="w-max p-2 lg:block hidden">
@@ -41,7 +41,7 @@ const Sidebar = () => {
                       <Link
                         to="/admin"
                         aria-label="admin dashboard"
-                        className="flex items-center space-x-4 rounded-lg hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-2 py-2 text-white"
+                        className="flex items-center space-x-4 rounded-md hover:bg-gradient-to-r hover:from-indigo-400 px-2 py-2 text-zinc-700 dark:text-zinc-100"
                       >
                         <svg
                           className="-ml-1 h-6 w-6"
@@ -72,13 +72,9 @@ const Sidebar = () => {
                     <li className="min-w-max">
                       <Link
                         to="quiz-management"
-                        className="flex items-center space-x-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-2 py-2 text-white"
+                        className="flex items-center space-x-4 rounded-md hover:bg-gradient-to-r hover:from-indigo-400 px-2 py-2 text-zinc-700 dark:text-zinc-100"
                       >
-                        <img
-                          className="h-7 w-7 mix-blend-multiply"
-                          src={ManageQuiz}
-                          alt="quiz"
-                        />
+                        <RiListSettingsFill />
                         <span className="group-hover:text-gray-700">
                           Quiz Management
                         </span>
@@ -91,7 +87,7 @@ const Sidebar = () => {
                         <Link
                           to="/educator"
                           aria-label="educator dashboard"
-                          className="flex items-center space-x-4 mt-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-2 py-2 text-white"
+                          className="flex items-center space-x-4 mt-4 rounded-md hover:bg-gradient-to-r hover:from-indigo-400 px-2 py-2 text-zinc-700 dark:text-zinc-100"
                         >
                           <MdDashboard />
                           <span className="-mr-1 font-medium font-montserrat">
@@ -102,7 +98,7 @@ const Sidebar = () => {
                       <li className="min-w-max">
                         <Link
                           to="/students"
-                          className="flex items-center space-x-4 mt-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-2 py-2 text-white"
+                          className="flex items-center space-x-4 mt-4 rounded-md hover:bg-gradient-to-r hover:from-indigo-400 px-2 py-2 text-zinc-700 dark:text-zinc-100"
                         >
                        <PiStudentBold />
                           <span className="group-hover:text-gray-700">
@@ -113,7 +109,7 @@ const Sidebar = () => {
                       <li className="min-w-max">
                         <Link
                           to="/groups"
-                          className="flex items-center space-x-4 mt-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-2 py-2 text-white"
+                          className="flex items-center space-x-4 mt-4 rounded-md hover:bg-gradient-to-r hover:from-indigo-400 px-2 py-2 text-zinc-700 dark:text-zinc-100"
                         >
                         <TiGroup />
                           <span className="group-hover:text-gray-700">
@@ -125,7 +121,7 @@ const Sidebar = () => {
                         <Link
                           nk
                           to="/create"
-                          className="flex items-center space-x-4 mt-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-2 py-2 text-white"
+                          className="flex items-center space-x-4 mt-4 rounded-md hover:bg-gradient-to-r hover:from-indigo-400 px-2 py-2 text-zinc-700 dark:text-zinc-100"
                         >
                          <IoCreate />
                           <span className="group-hover:text-gray-700">
@@ -136,7 +132,7 @@ const Sidebar = () => {
                       <li className="min-w-max">
                         <Link
                           to="/groups-list"
-                          className="flex items-center space-x-4 mt-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-2 py-2 text-white"
+                          className="flex items-center space-x-4 mt-4 rounded-md hover:bg-gradient-to-r hover:from-indigo-400 px-2 py-2 text-zinc-700 dark:text-zinc-100"
                         >
                     <PiUserListBold />
                           <span className="group-hover:text-gray-700">
@@ -148,7 +144,7 @@ const Sidebar = () => {
                       <li className="min-w-max">
                         <Link
                           to="/quiz-manage"
-                          className="flex items-center space-x-4 mt-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-2 py-2 text-white"
+                          className="flex items-center space-x-4 mt-4 rounded-md hover:bg-gradient-to-r hover:from-indigo-400 px-2 py-2 text-zinc-700 dark:text-zinc-100"
                         >
                 <RiListSettingsFill />
                           <span className="group-hover:text-gray-700">
@@ -163,7 +159,7 @@ const Sidebar = () => {
               <div className=" ml-4 mb-20">
                 <Link
                   to="/profile"
-                  className="flex items-center space-x-4 mt-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-2 py-2 text-white"
+                  className="flex items-center space-x-4 mt-4 rounded-md hover:bg-gradient-to-r hover:from-indigo-400 px-2 py-2 text-zinc-700 dark:text-zinc-100"
                 >
                   <img
                     className="h-7 w-7 mix-blend-multiply"
@@ -174,7 +170,7 @@ const Sidebar = () => {
                 </Link>
                 <Link
                   to="/settings"
-                  className="flex items-center space-x-4 mt-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-2 py-2 text-white"
+                  className="flex items-center space-x-4 mt-4 rounded-md hover:bg-gradient-to-r hover:from-indigo-400 px-2 py-2 text-zinc-700 dark:text-zinc-100"
                 >
                   <img
                     className="h-7 w-7 mix-blend-multiply"
@@ -188,7 +184,7 @@ const Sidebar = () => {
                   <Link
                     to="/"
                     onClick={onLogout}
-                    className="flex items-center space-x-4 mt-4 rounded-md hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400 px-2 py-2 text-white"
+                    className="flex items-center space-x-4 mt-4 rounded-md hover:bg-gradient-to-r hover:from-indigo-400 px-2 py-2 text-zinc-700 dark:text-zinc-100"
                   >
                     <img
                       className="h-7 w-7 mix-blend-multiply"

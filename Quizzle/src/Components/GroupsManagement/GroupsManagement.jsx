@@ -17,16 +17,16 @@ const GroupsManagement = () => {
 
   return (
     <div className="h-screen flex flex-col items-center">
-      <p className="font-extrabold animate-fade-in text-6xl mt-10 bg-clip-text p-1 text-transparent bg-gradient-to-r from-violet-400 to-indigo-400">
+      <p className="font-extrabold animate-fade-in text-5xl mt-10 bg-clip-text p-1 text-transparent bg-gradient-to-r from-violet-400 to-indigo-400 dark:text-violet-500">
         {text.slice(0, index).split('').map((char, i) => (
           <span key={i} className="animate-gradient">{char}</span>
         ))}
       </p>
     <div className="flex flex-wrap ml-32 m-10 space-x-60 pb-12">
-      <div className="w-1/3 m-4 bg-gradient-to-bl from-indigo-400 shadow-lg rounded-lg p-10 text-black">
+      <div className="w-1/3 m-4 bg-gradient-to-bl from-indigo-400 dark:from-zinc-500 shadow-lg rounded-lg p-10 text-black">
         <CreateGroup />
       </div>
-      <div className="w-1/3 m-4 bg-gradient-to-br from-indigo-400 shadow-lg rounded-lg p-10 text-black">
+      <div className="w-1/3 m-4 bg-gradient-to-br from-indigo-400 dark:from-zinc-500 shadow-lg rounded-lg p-10 text-black">
         <JoinGroup />
       </div>
       </div>

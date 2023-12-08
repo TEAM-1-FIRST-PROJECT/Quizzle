@@ -27,6 +27,7 @@ import SeeSummary from "../../views/Summary/Summary";
 import UserAnswers from "../../views/UserAnswers/UserAnswers";
 import GroupQuizzes from "../../views/EducatorPanel/Group/GroupQuizzes";
 import SingleQuizScoreBoard from "../../views/SingleQuizScoreboard/SingleQuizScoreboard";
+import ResetPassword from "../ResetPassword/ResetPassword";
 
 const AppRouter = () => {
   return (
@@ -59,6 +60,7 @@ const AppRouter = () => {
       <Route path="/user-answers/:id" element={<UserAnswers />} />
       <Route path="/group-quizzes" element={<GroupQuizzes />} />
       <Route path="/singleQuizScoreboard/:id" element={<SingleQuizScoreBoard />} />
+      <Route path="/reset-password" element={<ResetPassword />} />
     </Routes>
   );
 };

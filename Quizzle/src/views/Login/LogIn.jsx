@@ -5,6 +5,7 @@ import { useNavigate } from "react-router";
 import { loginUser } from "../../services/auth.services";
 import toast from "react-hot-toast";
 import { getUserDataByEmail } from "../../services/users.services";
+import ResetPassword from "../../Components/ResetPassword/ResetPassword";
 
 const Login = () => {
   const [form, setForm] = useState({
@@ -34,7 +35,7 @@ const Login = () => {
     getUserDataByEmail(form.email)
       .then((snapshot) => {
         if (Object.values(snapshot.val())[0].isBlocked) {
-          alert("Your account is blocked, try again within 90 days")
+          toast.error("Your account is blocked, try again within 90 days")
           return;
         }
 
@@ -49,7 +50,8 @@ const Login = () => {
             navigate("/");
           })
           .catch((err) => {
-            alert(err.message);
+            toast('Something went wrong!')
+            console.log(err.message);
           });
       })
   };
@@ -59,7 +61,7 @@ const Login = () => {
       <div className="h-screen bg-cover flex flex-row items-center justify-center pb-20">
         <div className=" flex flex-col justify-center">
           <form className="w-[450px] mx-auto shadow-xl hover:shadow-violet-400 bg-indigo-300 p-8 rounded-lg opacity-80">
-            <h2 className="text-4x1 text-3xl dark:text-white font-bold text-center">
+            <h2 className="text-4x1 text-3xl dark:text-zinc-200 font-bold text-center">
               Login
             </h2>
             <div className="flex flex-col text-black py-2">
@@ -69,7 +71,7 @@ const Login = () => {
               focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
               disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
               invalid:border-pink-500 invalid:text-pink-600
-              focus:invalid:border-pink-500 focus:invalid:ring-pink-500"
+              focus:invalid:border-pink-500 focus:invalid:ring-pink-500 dark:bg-zinc-300"
                 type="email"
                 name="email"
                 id="email"
@@ -80,7 +82,7 @@ const Login = () => {
             <div className="flex flex-col text-black py-2">
               <label>Password</label>
               <input
-                className="rounded-lg dark:bg-white mt-2 p-2 focus-within:border-blue-500 focus:outline-none"
+                className="rounded-lg mt-2 p-2 focus-within:border-blue-500 focus:outline-none dark:bg-zinc-300"
                 type="password"
                 name="password"
                 id="password"
@@ -92,10 +94,10 @@ const Login = () => {
               <p className="flex items-center">
                 <input className="mr-2" type="checkbox" /> Remember Me
               </p>
-              <Link >Forgot Password</Link>
+              <Link to='/reset-password'> Forgot Password</Link>
             </div>
             <button
-              className="w-full my-5 py-2 bg-violet-400 shadow-xl hover:shadow-violet-600 dark:text-white font-semibold rounded-lg"
+              className="w-full my-5 py-2 bg-violet-400 shadow-xl hover:shadow-violet-600 dark:text-white font-semibold rounded-lg transform transition duration-500 ease-in-out hover:scale-90"
               type="button"
               onClick={handleLogin}
             >

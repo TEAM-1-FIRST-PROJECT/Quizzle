@@ -1,9 +1,10 @@
 import { useState, useContext, useEffect, useRef } from "react";
 import { AuthContext } from "../../context/authContext";
 import { Link } from "react-router-dom";
-import Logo from "../../assets/logo.webp";
+import Logo from "../../assets/logo.png";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import { BellIcon } from "@heroicons/react/outline";
+import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -41,13 +42,13 @@ function Navbar() {
   }, []);
 
   return (
-    <nav className="top-0 bg-gradient-to-r from-violet-400 to-indigo-300 ">
+    <nav className="top-0 bg-gradient-to-b from-violet-400 dark:bg-gradient-to-b dark:from-zinc-500">
       <div className="mx-auto px-1 sm:px-2 lg:px-8 ">
         <div className="flex items-center justify-between h-14">
           <div className="flex items-center">
             <Link to="/">
               <img
-                className="flex rounded transform skew-y-12 shadow-md shadow-slate-700 w-10 h-10 ml-1 mr-20"
+                className="flex w-16 h-16 mr-20 mix-blend-multiply "
                 src={Logo}
                 alt="logo"
               />
@@ -56,27 +57,28 @@ function Navbar() {
               <div className="flex lg:block m-2 ml-20 space-x-6 text-lg font-medium font-montserrat">
                 <Link
                   to="/home"
-                  className="hover:bg-gradient-to-br hover:from-violet-500 hover:to-fuchsia-400 text-white px-3 py-2 rounded-md"
+                  className="hover:bg-gradient-to-b hover:from-indigo-400 text-zinc-700 px-3 py-2 rounded-md dark:text-zinc-100"
                 >
                   Dashboard
                 </Link>
                 <Link
                   to="/categories"
-                  className="hover:bg-gradient-to-br hover:from-violet-500 hover:to-fuchsia-400 text-white px-3 py-2 rounded-md"
+                  className="hover:bg-gradient-to-b hover:from-indigo-400 text-zinc-700 px-3 py-2 rounded-md dark:text-zinc-100"
                 >
                   Categories
                 </Link>
               </div>
             </div>
           </div>
-          <div className="flex ml-22">
-            <div className="mr-32 sm:hidden lg:flex md:flex">
+          <div className="flex">
+            <div className="mr-10 sm:hidden lg:flex md:flex">
               <SearchBar />
             </div>
+
             {!user && (
               <Link
                 to="/login"
-                className=" hover:bg-gradient-to-br hover:from-violet-500 hover:to-fuchsia-400 text-white px-3 py-2 rounded-md"
+                className="text-zinc-700 hover:bg-gradient-to-b hover:from-indigo-400 px-3 py-2 rounded-md dark:text-zinc-100"
               >
                 Login
               </Link>
@@ -84,18 +86,20 @@ function Navbar() {
             {!user && (
               <Link
                 to="/register"
-                className=" hover:bg-gradient-to-br hover:from-violet-500 hover:to-fuchsia-400 text-white px-3 py-2 rounded-md"
+                className="text-zinc-700 hover:bg-gradient-to-b hover:from-indigo-400 px-3 py-2 rounded-md dark:text-zinc-100"
               >
                 Register
               </Link>
             )}
+          </div>
+            <div className="flex">
             {notifications ? (
               <button onClick={handleNotification} className="p-1 relative">
                 <BellIcon
                   className={
                     isClicked
-                      ? "h-8 w-8 text-gray-500"
-                      : "h-8 w-8 text-blue-500"
+                      ? "h-9 w-9 text-gray-500"
+                      : "h-9 w-9 text-blue-500"
                   }
                 />
                 {notifications && !isClicked ? (
@@ -115,16 +119,18 @@ function Navbar() {
               </button>
             ) : (
               <button onClick={handleNotification} className="p-1 ">
-                <BellIcon className="h-6 w-6 text-gray-500" />
+                <BellIcon className="h-9 w-9 text-gray-500 dark:text-zinc-100" />
               </button>
             )}
             <img
               className="ml-4 rounded-full bg-black w-10 h-10"
               src={userData?.profileImgUrl || Logo}
               alt={Logo}
-            />
+              />
+              </div>
+          <div className="ml-10">
+            <ThemeSwitcher />
           </div>
-
           <div className="mr-1 ml-2 flex md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -168,13 +174,13 @@ function Navbar() {
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <Link
               to="/home"
-              className="text-white hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400  block px-3 py-2 rounded-md text-base font-medium font-montserrat"
+              className="text-zinc-700 hover:bg-gradient-to-b hover:from-indigo-400 block px-3 py-2 rounded-md text-base font-medium font-montserrat dark:text-zinc-100"
             >
               Dashboard
             </Link>
             <Link
               to="/categories"
-              className="text-white hover:bg-gradient-to-r hover:from-violet-500 hover:to-fuchsia-400  block px-3 py-2 rounded-md text-base font-medium font-montserrat"
+              className="text-zinc-700 hover:bg-gradient-to-b hover:from-indigo-400 block px-3 py-2 rounded-md text-base font-medium font-montserrat dark:text-zinc-100"
             >
               Categories
             </Link>

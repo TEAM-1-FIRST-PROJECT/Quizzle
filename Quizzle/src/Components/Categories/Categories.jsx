@@ -15,12 +15,12 @@ const Categories = () => {
   }, []);
 
   return (
-    <div className="h-screen">
+    <div className="flex flex-col items-center h-screen">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 rounded-lg">
         <div className=" md:pt-10 text-center">
           <div className=" text-center pb-5 md:pb-5">
             <h1
-              className="text-5xl md:text-6xl font-extrabold leading-tighter text-black tracking-tighter mb-4"
+              className="text-5xl md:text-6xl font-extrabold leading-tighter text-black dark:text-zinc-100 tracking-tighter mb-4"
               data-aos="zoom-y-out"
             >
               Quizzle{" "}

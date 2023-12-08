@@ -11,8 +11,8 @@ import Sidebar from "./components/SideBar/SideBar";
 import Loader from "./components/Loader/Loader";
 
 const App = () => {
-  const [user] = useAuthState(auth);
-  const [loading, setLoading] = useState(false);
+  const [user, loading] = useAuthState(auth);
+ 
   const [appState, setAppState] = useState({
     user,
     userData: false,
@@ -40,26 +40,26 @@ const App = () => {
         // snapshot.val() returns the value of the object
         // Google this part when you have lot's of user data Object.keys(snapshot.val())[0]
       });
-      setLoading(true);
+     
     });
   });
 
-  if (!loading) {
+  if (loading) {
     return <Loader />;
   }
 
   return (
     <AuthContext.Provider value={{ ...appState, setUser: setAppState }}>
-      <div className="bg-hero-pattern-3 bg-cover bg-fixed ">
+      <div className="bg-hero-pattern-3 bg-cover bg-fixed dark:bg-hero-pattern-4 dark:bg-fixed dark:bg-cover">
         <Toaster />
         <Navbar />
-        <div className="flex ">
+        <div className="flex">
           <Sidebar />
           <div className="flex-grow overflow-auto">
             <AppRouter />
           </div>
-        </div>
-        <Footer />
+        </div >
+        <Footer/>
       </div>
     </AuthContext.Provider>
   );

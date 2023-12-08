@@ -1,11 +1,12 @@
 const About = () => {
-    return (
-        <div className="h-screen bg-hero-pattern-2 bg-cover flex items-center justify-center">
-      <div className="bg-indigo-300 opacity-80 rounded-lg py-24 sm:py-32">
+  return (
+      <div className="h-screen flex flex-col">
+        <div className="m-10 items-center mt-20 overflow-auto">
+      <div className="bg-indigo-300 opacity-90 rounded-lg py-24 sm:py-32">
     <div className="mx-auto grid max-w-7xl gap-x-8 gap-y-20 px-6 lg:px-8 xl:grid-cols-3">
       <div className="max-w-2xl">
         <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">Meet our team</h2>
-        <p className="mt-6 text-lg leading-8 text-gray-600">Welcome to the heart of our organization, where passion meets expertise and innovation thrives. Get to know the exceptional individuals who form the backbone of our team, each contributing their unique skills and talents to bring our vision to life.</p>
+        <p className="mt- text-lg leading-8 text-gray-600">Welcome to the heart of our organization, where passion meets expertise and innovation thrives. Get to know the exceptional individuals who form the backbone of our team, each contributing their unique skills and talents to bring our vision to life.</p>
       </div>
       <ul role="list" className="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2">
         <li>
@@ -40,7 +41,8 @@ const About = () => {
       </ul>
     </div>
   </div>
-  </div>
+      </div>
+      </div>
     )
   }
   
