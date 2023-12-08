@@ -5,6 +5,7 @@ import { onValue } from "firebase/database";
 import { dateFormat } from "../../common/helpers";
 import { dateNow } from "../../common/constants";
 import { Link } from "react-router-dom";
+import { QUIZ_STATUS } from "../../common/constants";
 //import toast from "react-hot-toast";
 
 const EducatorPanel = () => {
@@ -15,11 +16,13 @@ const EducatorPanel = () => {
 
   useEffect(() => {
     onValue(quizzesRef, (snapshot) => {
-      const data = snapshot.val();
+      const data = snapshot.val()
+      
       const filteredQuizzes = Object.values(data).filter(
         (quiz) =>
           quiz.title.toLowerCase().includes(searchTerm.toLowerCase())
-      );
+      )
+      .filter(quiz => quiz.contestType === QUIZ_STATUS.INVITATIONAL);
       setQuizzes(filteredQuizzes);
     });
   }, [searchTerm]);

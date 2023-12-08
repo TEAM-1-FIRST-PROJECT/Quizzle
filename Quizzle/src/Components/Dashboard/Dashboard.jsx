@@ -7,57 +7,53 @@ import { FaBarsProgress } from "react-icons/fa6";
 import { FaCircleUser } from "react-icons/fa6";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../context/authContext";
+import { QUIZ_STATUS } from "../../common/constants";
 
 const Dashboard = () => {
   const [quizzes, setQuizzes] = useState([{}]);
-  
+
   const { userData } = useContext(AuthContext);
   useEffect(() => {
     getAllQuizzes()
       .then((snapshot) => {
-        setQuizzes(snapshot);
-       
+        const invitationalQuizzes = snapshot.filter(quiz => quiz.contestType === QUIZ_STATUS.INVITATIONAL)
+        setQuizzes(invitationalQuizzes);
       })
       .catch((e) => toast.error(e));
-      
+
   }, []);
-
-
 
   if (userData?.username === "student") {
     const filteredQuizzes =
       quizzes && userData
         ? quizzes.filter(
-            (quiz) =>
-              (!quiz.assignedUsers === false &&
-                Object.keys(quiz.assignedUsers).includes(userData?.username)) ||
-              (!quiz.scoreBoard === false &&
-                Object.keys(quiz?.scoreBoard).includes(userData?.username))
-          )
+          (quiz) =>
+            (!quiz.assignedUsers === false &&
+              Object.keys(quiz.assignedUsers).includes(userData?.username)) ||
+            (!quiz.scoreBoard === false &&
+              Object.keys(quiz?.scoreBoard).includes(userData?.username))
+        )
         : [];
     setQuizzes(filteredQuizzes);
-    console.log(filteredQuizzes);
   }
+
   return (
     <>
       {quizzes && (
         <div className="h-screen flex flex-col items-center">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 mt-14 rounded-lg">
-              <div className=" text-center">
-                <h1
-                  className="text-5xl md:text-6xl font-extrabold leading-tighter tracking-tighter"
-                  data-aos="zoom-y-out"
-                >
-                  Welcome to{" "}
-                  <span className="bg-clip-text p-1 text-transparent bg-gradient-to-r from-blue-600 to-violet-400">
-                    Quizzle
-                  </span>
-                </h1>
-              </div>
-            
+            <div className=" text-center">
+              <h1
+                className="text-5xl md:text-6xl font-extrabold leading-tighter tracking-tighter"
+                data-aos="zoom-y-out"
+              >
+                Welcome to{" "}
+                <span className="bg-clip-text p-1 text-transparent bg-gradient-to-r from-blue-600 to-violet-400">
+                  Quizzle
+                </span>
+              </h1>
+            </div>
           </div>
-
-          {/* Features section */}
           <div className="py-10">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
               <div className="mx-auto max-w-2xl lg:text-center">
@@ -148,23 +144,23 @@ const Dashboard = () => {
               {/* Section with Cards */}
             </div>
           </div>
-              <section className=" lg:pb-10 lg:pt-10">
-                <div className="container">
-                  <div className="grid gap-8 sm:grid-cols-1 lg:grid-cols-3">
-                    {quizzes.map((quiz) => (
-                      <div key={quiz.id}>
-                        <SingleQuizCard
-                          image="https://i.ibb.co/r2zns1m/image-01.jpg"
-                          titleHref="/#"
-                          btnHref="/#"
-                          Button="View Details"
-                          quiz={quiz}
-                        />
-                      </div>
-                    ))}
+          <section className=" lg:pb-10 lg:pt-10">
+            <div className="container">
+              <div className="grid gap-8 sm:grid-cols-1 lg:grid-cols-3">
+                {quizzes.map((quiz) => (
+                  <div key={quiz.id}>
+                    <SingleQuizCard
+                      image="https://i.ibb.co/r2zns1m/image-01.jpg"
+                      titleHref="/#"
+                      btnHref="/#"
+                      Button="View Details"
+                      quiz={quiz}
+                    />
                   </div>
-                </div>
-              </section>
+                ))}
+              </div>
+            </div>
+          </section>
         </div>
       )}
     </>
