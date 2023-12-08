@@ -1,8 +1,11 @@
 import PropTypes from "prop-types";
 import { useState, useEffect } from 'react';
+import { timeLimitInSeconds } from "../../common/helpers";
+
 
 const Timer = ({ onTimerFinish, timeLimit }) => {
-  const [seconds, setSeconds] = useState(timeLimit);
+  
+  const [seconds, setSeconds] = useState(timeLimitInSeconds(timeLimit));
 
   useEffect(() => {
     if (seconds === 0) {

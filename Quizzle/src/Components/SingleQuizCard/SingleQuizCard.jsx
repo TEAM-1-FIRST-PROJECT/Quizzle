@@ -77,7 +77,7 @@ removeAssignmentsFromUser(userData.username, quiz.id)
             {quiz?.description}
           </p>
           <p className="mb-7 text-base leading-relaxed text-body-color dark:text-dark-6">
-            {`In this quiz you have ${quiz?.timeLimit} seconds to resolve ${quiz?.question?.length} questions`}
+            {`In this quiz you have ${quiz?.timeLimit} minutes to resolve ${quiz?.question?.length} questions`}
           </p>
           <div className="flex justify-center space-x-4">
           {!showSummary && <Link
