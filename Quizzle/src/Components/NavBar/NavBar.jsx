@@ -52,6 +52,7 @@ function Navbar() {
                 alt="logo"
               />
             </Link>
+            {user && (
             <div className="hidden md:block">
               <div className="flex lg:block m-2 ml-20 space-x-6 text-lg font-medium font-montserrat">
                 <Link
@@ -68,6 +69,7 @@ function Navbar() {
                 </Link>
               </div>
             </div>
+            )}
           </div>
           <div className="flex ml-22">
             <div className="mr-32 sm:hidden lg:flex md:flex">
@@ -89,7 +91,7 @@ function Navbar() {
                 Register
               </Link>
             )}
-            {notifications ? (
+            {user && notifications ? (
               <button onClick={handleNotification} className="p-1 relative">
                 <BellIcon
                   className={
@@ -114,9 +116,10 @@ function Navbar() {
                 )}
               </button>
             ) : (
-              <button onClick={handleNotification} className="p-1 ">
-                <BellIcon className="h-6 w-6 text-gray-500" />
-              </button>
+              // <button onClick={handleNotification} className="p-1 ">
+              //   <BellIcon className="h-6 w-6 text-gray-500" />
+              // </button>
+              null
             )}
             <img
               className="ml-4 rounded-full bg-black w-10 h-10"
