@@ -5,6 +5,7 @@ import { getAllQuizzes } from "../../services/quiz.services";
 import toast from "react-hot-toast";
 //import Settings from './../../views/Settings/Settings';
 import { dateFormat } from "../../common/helpers";
+import { QUIZ_STATUS } from "../../common/constants";
 
 
 const Public = () => {
@@ -14,12 +15,17 @@ const Public = () => {
   useEffect(() => {
     getAllQuizzes()
       .then(snapshot => {
-        const publicQuizzes = snapshot.filter(quiz => quiz.contestType === 'open')
+        const publicQuizzes = snapshot.filter(quiz => quiz.contestType === QUIZ_STATUS.OPEN)
 
-        setQuizzes(publicQuizzes)
+        const filteredQuizzes = publicQuizzes.filter(
+          (quiz) =>
+            quiz.title.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        setQuizzes(filteredQuizzes);
+        
       })
       .catch(e => toast.error(e));
-  }, []);
+  }, [searchTerm]);
 
   return (
     <>
