@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-import { dateFormat } from "../../common/helpers";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getQuizById } from "../../services/quiz.services";
