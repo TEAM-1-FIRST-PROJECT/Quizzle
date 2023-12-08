@@ -1,13 +1,11 @@
 import { useState, useEffect } from "react";
-import { blockUser, searchUser } from "../../../services/admin.services";
-import { ROLE_CHECK } from "../../../common/constants";
 import { useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 import { getAllQuizzes, updateQuizData } from "../../../services/quiz.services";
 import { dateFormat } from "../../../common/helpers.js";
 
 const GroupQuizzes = () => {
-    const { groupId } = useParams();
+  const { groupId } = useParams();
 
   const [users, setUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -19,6 +17,8 @@ const GroupQuizzes = () => {
   const [quizzes, setQuizzes] = useState([{}]);
   const [selectedQuiz, setSelectedQuiz] = useState(null);
   const [selectedQuestion, setSelectedQuestion] = useState(null);
+  const [filteredQuizzes, setFilteredQuizzes] = useState([]);
+
 
   useEffect(() => {
     getAllQuizzes()
@@ -29,13 +29,16 @@ const GroupQuizzes = () => {
   }, []);
 
   useEffect(() => {
-    searchUser("").then(setUsers);
-  }, [setUsers]);
-  
+    const filtered = quizzes.filter(
+      (quiz) => quiz.title && quiz.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredQuizzes(filtered);
+  }, [searchTerm, quizzes]);
+
   useEffect(() => {
     if (groupMembers.length > 0) {
-      const filteredQuizzes = quizzes.filter(quiz => groupMembers.includes(quiz.createdBy));
-      setQuizzes(filteredQuizzes);
+      const filtered = quizzes.filter(quiz => groupMembers.includes(quiz.createdBy));
+      setFilteredQuizzes(filtered);
     }
   }, [quizzes, groupMembers]);
 
@@ -60,30 +63,23 @@ const GroupQuizzes = () => {
       .then(() => toast.success("Quiz updated successfully"))
       .catch((e) => console.log(e));
   };
-    
-//   const handleRemoveMember = () => {
-//     getGroupDetails(groupId)
-//       .then((snapshot) => {
-//         const group = snapshot.val();
-//         const members = Object.keys(group.members).map((memberId) => {
-//           return memberId;
-//         });
-//         return members;
-//       })
-//       .then((result) => {
-//         console.log(result.toString());
-//         toast.success("Member removed successfully");
-//         // removeEducator(groupId, memberId)
-//       });
-//   };
 
-  const filteredUsers = users.filter(
-    (user) =>
-      user.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.lastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.email.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  //   const handleRemoveMember = () => {
+  //     getGroupDetails(groupId)
+  //       .then((snapshot) => {
+  //         const group = snapshot.val();
+  //         const members = Object.keys(group.members).map((memberId) => {
+  //           return memberId;
+  //         });
+  //         return members;
+  //       })
+  //       .then((result) => {
+  //         console.log(result.toString());
+  //         toast.success("Member removed successfully");
+  //         // removeEducator(groupId, memberId)
+  //       });
+  //   };
+
 
   const indexOfLastUser = currentPage * usersPerPage;
   const indexOfFirstUser = indexOfLastUser - usersPerPage;
@@ -157,46 +153,46 @@ const GroupQuizzes = () => {
           </div>
         </div>
       </div>
-      {selectedQuiz && selectedQuiz.question && (
-        <div className="border-2 rounded mt-5 p-5 shadow-md table-auto w-full bg-gradient-to-r from-indigo-400 to-cyan-400 text-black dark:bg-gradient-to-r dark:from-zinc-800 dark:text-zinc-100">
-          <h1 className="text-lg my-3 font-bold text-gray-700 dark:text-zinc-200">Edit Quiz</h1>
-          <h2 className="my-2 text-lg font-bold p-2 border-b dark:text-zinc-200">
-            Quiz Title - {editedTitle}
-          </h2>
-          <h3 className="my-2 text-lg font-bold rounded p-2 dark:text-zinc-200">
-            Questions
-          </h3>
-          {selectedQuiz.question.map((question, questionIndex) => (
-            <div key={questionIndex} className="my-2">
-              <span className="font-bold text-gray-700 dark:text-zinc-200">
-                {question.question}
-              </span>
-              <div className="text-black">
-                {question.answers.map((answer, index) => (
-                  <input
-                    key={index}
-                    className="border-2 rounded p-2 w-full mt-2 dark:bg-zinc-400"
-                    type="text"
-                    value={answer.text}
-                    onChange={(event) =>
-                      handleAnswerChange(questionIndex, index, event)
-                    }
-                  />
-                ))}
+        {selectedQuiz && selectedQuiz.question && (
+          <div className="border-2 rounded mt-5 p-5 shadow-md table-auto w-full bg-gradient-to-r from-indigo-400 to-cyan-400 text-black dark:bg-gradient-to-r dark:from-zinc-800 dark:text-zinc-100">
+            <h1 className="text-lg my-3 font-bold text-gray-700 dark:text-zinc-200">Edit Quiz</h1>
+            <h2 className="my-2 text-lg font-bold p-2 border-b dark:text-zinc-200">
+              Quiz Title - {editedTitle}
+            </h2>
+            <h3 className="my-2 text-lg font-bold rounded p-2 dark:text-zinc-200">
+              Questions
+            </h3>
+            {selectedQuiz.question.map((question, questionIndex) => (
+              <div key={questionIndex} className="my-2">
+                <span className="font-bold text-gray-700 dark:text-zinc-200">
+                  {question.question}
+                </span>
+                <div className="text-black">
+                  {question.answers.map((answer, index) => (
+                    <input
+                      key={index}
+                      className="border-2 rounded p-2 w-full mt-2 dark:bg-zinc-400"
+                      type="text"
+                      value={answer.text}
+                      onChange={(event) =>
+                        handleAnswerChange(questionIndex, index, event)
+                      }
+                    />
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
-          <button
-            role="alert"
-            className="alert alert-success ml-2 bg-green-600 dark:bg-indigo-600 dark:hover:bg-indigo-700 hover:bg-green-700 text-white dark:text-zinc-200 font-bold py-2 px-4 rounded mt-2"
-            onClick={handleSaveQuestion}
-          >
-            Save changes
-          </button>
-        </div>
-      )}
-      </div>
-      </div>
+            ))}
+            <button
+              role="alert"
+              className="alert alert-success ml-2 bg-green-600 dark:bg-indigo-600 dark:hover:bg-indigo-700 hover:bg-green-700 text-white dark:text-zinc-200 font-bold py-2 px-4 rounded mt-2"
+              onClick={handleSaveQuestion}
+            >
+              Save changes
+            </button>
+          </div>
+            )}
+    </div>
+  </div>
   );
-                  }
-  export default GroupQuizzes;
+}
+export default GroupQuizzes;

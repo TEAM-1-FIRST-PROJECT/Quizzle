@@ -12,3 +12,8 @@ export const ROLE_CHECK = {
 };    
 
 export const dateNow = Date.now();
+
+export const QUIZ_STATUS= {
+    OPEN: 'open',
+    INVITATIONAL: 'invitational'
+}

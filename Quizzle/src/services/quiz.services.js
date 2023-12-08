@@ -157,3 +157,10 @@ export const removeAssignmentsFromUser = (user, id) => {
 
   return remove(ref(database, `/users/${user}/assignedQuizzes/${id}`));
 };
+
+export const updatePublicQuizScoreBoard = (quizId, attempts, score) => {
+  const updateUserScore = {};
+ 
+  updateUserScore[`/quizzes/${quizId}/scoreBoard/${attempts}`] = score 
+  return update(ref(database), updateUserScore);
+};

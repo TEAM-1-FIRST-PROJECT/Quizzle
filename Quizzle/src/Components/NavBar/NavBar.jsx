@@ -53,6 +53,7 @@ function Navbar() {
                 alt="logo"
               />
             </Link>
+            {user && (
             <div className="hidden md:block">
               <div className="flex lg:block m-2 ml-20 space-x-6 text-lg font-medium font-montserrat">
                 <Link
@@ -69,6 +70,7 @@ function Navbar() {
                 </Link>
               </div>
             </div>
+            )}
           </div>
           <div className="flex">
             <div className="mr-10 sm:hidden lg:flex md:flex">

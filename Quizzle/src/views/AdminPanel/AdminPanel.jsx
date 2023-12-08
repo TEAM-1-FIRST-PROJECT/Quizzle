@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { blockUser, searchUser } from "../../services/admin.services";
+import { totalScore } from "../../common/helpers";
 
 const AdminPanel = () => {
   const [users, setUsers] = useState([]);
@@ -58,51 +59,52 @@ const AdminPanel = () => {
 
   const indexOfLastUser = currentPage * usersPerPage;
   const indexOfFirstUser = indexOfLastUser - usersPerPage;
-  const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
+  //const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div className="flex flex-col h-screen overflow-auto">
-      <div className="p-4 m-4 md:m-20 border shadow-md rounded bg-gradient-to-br from-violet-400 to-cyan-400 dark:from-zinc-500">
+    <>
+      {filteredUsers && <div className="p-4 m-2 md:m-10 border shadow-md rounded bg-gradient-to-br from-violet-400 to-cyan-400">
         <input
           type="text"
-          className="border p-2 rounded w-full md:w-auto placeholder-orange-300 dark:placeholder-orange-200 dark:bg-zinc-400 font-bold"
+          className="border p-2 rounded w-full md:w-auto placeholder-orange-300 font-bold"
           placeholder="Search for user..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
         <div className="mt-4 overflow-x-auto">
-          <table className="table-auto rounded w-full text-center bg-gradient-to-r from-indigo-400 to-cyan-400 dark:from-zinc-800 text-white dark:text-zinc-200">
-            <thead className="text-lg border border-rose-200 dark:border-indigo-600">
+          <table className="table-auto rounded w-full text-center bg-gradient-to-r from-indigo-400 to-cyan-400 text-white">
+            <thead className="text-lg border border-rose-200">
               <tr>
                 <th className=" px-4 py-2">Username</th>
                 <th className=" px-4 py-2">Email</th>
                 <th className=" px-4 py-2">Role</th>
-                <th className=" px-4 py-2">Average Points</th>
-                <th className=" px-4 py-2">Max Points</th>
-                <th className=" px-4 py-2">Questions</th>
-                <th className=" px-4 py-2">Last Update</th>
+                <th className=" px-4 py-2">Points</th>
+                <th className=" px-4 py-2">Finished quizzes</th>
                 <th className=" px-4 py-2">Block/Unblock</th>
               </tr>
             </thead>
             <tbody>
               {filteredUsers.map((user) => (
-                <tr key={user.username} className="border border-rose-200 dark:border-indigo-600">
+                <tr key={user.username} className="border border-rose-200">
                   <td className=" px-4 py-2">{user.username}</td>
                   <td className=" px-4 py-2">{user.email}</td>
                   <td className=" px-4 py-2">{user.role}</td>
-                  <td className=" px-4 py-2">{/* Average Points */}</td>
-                  <td className=" px-4 py-2">{/* Max Points */}</td>
-                  <td className=" px-4 py-2">{/* Questions */}</td>
-                  <td className=" px-4 py-2">{/* Last Update */}</td>
+                  <td className=" px-4 py-2">{
+                    user.score
+                      ? totalScore(Object.values(user.score))
+                      : 0}
+                  </td>
+                  <td className=" px-4 py-2">{
+                    user.score
+                      ? Object.values(user.score).length
+                      : 0}
+                  </td>
                   <td className=" px-4 py-2">
                     <button
-                      className={`${
-                        user.isBlocked
-                          ? "bg-green-500 dark:bg-green-600"
-                          : "bg-red-500 dark:bg-red-600"
-                      } text-white dark:text-zinc-200 px-4 py-2 rounded`}
+                      className={`${user.isBlocked ? "bg-green-500" : "bg-red-500"
+                        } text-white px-4 py-2 rounded`}
                       onClick={() =>
                         handleBlockUser(user.username, user.isBlocked)
                       }
@@ -145,8 +147,8 @@ const AdminPanel = () => {
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </div>}
+    </>
   );
 };
 

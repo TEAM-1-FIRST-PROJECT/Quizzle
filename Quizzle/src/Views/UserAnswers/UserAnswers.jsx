@@ -74,11 +74,17 @@ const UserAnswers = () => {
                               : null}
                             </p>
                             <p className="block text-left">your answer:  {
-                              user?.score[quiz?.title].userAnswers
-                                ? user?.score[quiz?.title].userAnswers[i].text
-                                : "..."
+                             user?.score[quiz?.title].userAnswers
+                             ? user?.score[quiz?.title].userAnswers[i]
+                               ? user?.score[quiz?.title].userAnswers[i].text
+                               : '...'
+                             : '...'
                             }</p>
-                            {user?.score[quiz?.title].userAnswers[i].comment && <p className="block text-left">{user?.score[quiz?.title].userAnswers[i].comment}</p>}
+                            {
+                            user?.score[quiz?.title].userAnswers
+                            && user?.score[quiz?.title].userAnswers[i]
+                            && user?.score[quiz?.title].userAnswers[i].comment
+                            && <p className="block text-left">{user?.score[quiz?.title].userAnswers[i].comment}</p>}
                           </div>
                         </th>
                         <th>
@@ -98,10 +104,10 @@ const UserAnswers = () => {
                               value={comment}
                               onChange={(e) => setComment(e.target.value)}
                             />
-                            
-                              <button className="" onClick={() => { setComment(''); setShowInput(false); saveComment(user.username, quiz?.title) }}>Save comment</button>
-                              <button onClick={() => setShowInput(false)}>Cancel</button>
-                        
+
+                            <button className="" onClick={() => { setComment(''); setShowInput(false); saveComment(user.username, quiz?.title) }}>Save comment</button>
+                            <button onClick={() => setShowInput(false)}>Cancel</button>
+
                           </div>
                         </div>
                       )}

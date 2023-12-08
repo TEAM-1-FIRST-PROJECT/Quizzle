@@ -32,9 +32,9 @@ const Sidebar = () => {
           <div className=" bg-gradient-to-t from-violet-400 overflow-y-auto transition-all duration-1000 ease-in-out dark:bg-gradient-to-t dark:from-zinc-500">
             <div className="flex flex-1 h-screen flex-col justify-between pt-2 pb-6">
               <div className="ml-4">
-                <div className="w-max p-2 lg:block hidden">
+                {/* <div className="w-max p-2 lg:block hidden">
                   <img src="" className="w-32" alt="" />
-                </div>
+                </div> */}
                 <ul className="mt-6 space-y-1 tracking-wide">
                   {userData && userData.role === ROLE_CHECK.admin && (
                     <li className="min-w-max">

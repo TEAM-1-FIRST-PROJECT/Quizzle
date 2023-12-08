@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
-import { getQuizById } from "../../services/quiz.services";
+import { getQuizById, updatePublicQuizScoreBoard } from "../../services/quiz.services";
 import Timer from "../../components/Timer/Timer";
 import { AuthContext } from "../../context/authContext";
 import QuizResolved from "../../components/QuizResolved/QuizResolved";
@@ -12,12 +12,13 @@ import {
   removeAssignmentsFromUser,
   removeFromAssignments
 } from "../../services/quiz.services";
+import PublicQuizResolved from "../PublicQuizResolved/PublicQuizResolved";
 
 
 const SingleQuizView = () => {
 
   const { id } = useParams();
-  const { userData } = useContext(AuthContext)
+  const { userData, user } = useContext(AuthContext)
   const [quiz, setQuiz] = useState(null);
   const [userAnswers, setUserAnswers] = useState([]);
   const [score, setScore] = useState(0);
@@ -25,18 +26,22 @@ const SingleQuizView = () => {
   const [isQuizResolved, setIsQuizResolved] = useState(false);
   const activeQuestionIndex = userAnswers.length;
   const [questions, setQuestions] = useState([]);
+  const [attempts, setAttempts] = useState(1);
 
   useEffect(() => {
     getQuizById(id)
       .then((fetchedQuiz) => {
         setQuiz(fetchedQuiz);
         setQuestions(fetchedQuiz.question);
+        if (fetchedQuiz?.scoreBoard) {
+          setAttempts(Object.values(fetchedQuiz?.scoreBoard).length + 1)
+        }
       })
       .catch((error) => {
         toast.error("Error fetching quiz details:", error);
         setQuiz(null);
       });
-  }, [id]);
+  }, [id, quiz?.score]);
 
   useEffect(() => {
     if (userData?.score) {
@@ -72,30 +77,45 @@ const SingleQuizView = () => {
   };
 
   if (isQuizResolved) {
-    const resolvedOn = Object.values(userData?.score).find(el => el.id === id).resolvedOn
-    const scorePoints = Object.values(userData?.score).find(el => el.id === id).score
-    return <QuizResolved id={id} score={scorePoints} title={quiz?.title} category={quiz?.category} userAnswers={userAnswers} resolvedOn={resolvedOn} />
-  }
+    console.log('1')
+    if (user) {
+      console.log('1a')
+      const resolvedOn = Object.values(userData?.score).find(el => el.id === id).resolvedOn
+      const scorePoints = Object.values(userData?.score).find(el => el.id === id).score
 
+      return <QuizResolved id={id} score={scorePoints} title={quiz?.title} category={quiz?.category} userAnswers={userAnswers} resolvedOn={resolvedOn} />
+    }
+  }
   if (quizIsComplete || timerFinished) {
-    const scorePoints = Math.ceil(score / quiz?.question.length * 100)
-    updateUserScore(userData.username, id, quiz?.title, scorePoints, quiz?.category, userAnswers)
-      .then(() => console.log('Quiz result saved successfully'))
-      .catch((e) => toast.error(e));
 
-    removeFromAssignments(userData.username, id)
-      .then(() => console.log('Quiz assignment updated successfully'))
-      .catch((e) => toast.error(e));
+    const scorePoints = Math.ceil(score / quiz?.question.length * quiz?.maxPassingPoints)
 
-    removeAssignmentsFromQuiz(userData.username, id)
-      .then(() => console.log('Quiz assignment updated successfully'))
-      .catch((e) => toast.error(e));
+    if (user) {
 
-    removeAssignmentsFromUser(userData.username, id)
-      .then(() => console.log('Quiz assignment updated successfully'))
-      .catch((e) => toast.error(e));
+      updateUserScore(userData.username, id, quiz?.title, scorePoints, quiz?.category, userAnswers)
+        .then(() => console.log('Quiz result saved successfully'))
+        .catch((e) => toast.error(e));
+
+      removeFromAssignments(userData.username, id)
+        .then(() => console.log('Quiz assignment updated successfully'))
+        .catch((e) => toast.error(e));
+
+      removeAssignmentsFromQuiz(userData.username, id)
+        .then(() => console.log('Quiz assignment updated successfully'))
+        .catch((e) => toast.error(e));
+
+      removeAssignmentsFromUser(userData.username, id)
+        .then(() => console.log('Quiz assignment updated successfully'))
+        .catch((e) => toast.error(e));
+    } else {
+
+      updatePublicQuizScoreBoard(id, attempts, scorePoints)
+        .then(() => console.log('Quiz score updated successfully'))
+        .catch((e) => toast.error(e));
+
+      return <PublicQuizResolved id={id} score={scorePoints} userAnswers={userAnswers}></PublicQuizResolved>
+    }
   }
-
   return (
     <>
       {quiz && <div className="flex flex-col overflow-auto h-screen items-center justify-center">

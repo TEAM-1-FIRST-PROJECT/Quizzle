@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getAllQuizzes } from "../../services/quiz.services";
 import { useNavigate } from 'react-router-dom';
+
 
 const SearchBar = () => {
     const [quizzes, setQuizzes] = useState([]);
@@ -9,8 +10,17 @@ const SearchBar = () => {
     const [selectedQuiz, setSelectedQuiz] = useState(null);
     const navigate = useNavigate();
 
+    const searchInputRef = useRef(null);
+    const resultsDropdownRef = useRef(null);
+
     useEffect(() => {
         getAllQuizzes().then(setQuizzes);
+
+        document.addEventListener('mousedown', handleClickOutside);
+
+        return () => {
+          document.removeEventListener('mousedown', handleClickOutside);
+        };
       }, []);
 
       const handleSearchChange = (event) => {
@@ -32,10 +42,21 @@ const SearchBar = () => {
         navigate(`/singleQuizView/${quiz.id}`);
       };
 
+      const handleClickOutside = (event) => {
+        if (
+          searchInputRef.current && !searchInputRef.current.contains(event.target) &&
+          resultsDropdownRef.current && !resultsDropdownRef.current.contains(event.target)
+        ) {
+          setSelectedQuiz(null);
+          setResults([]);
+        }
+      };
+
       return (
         <div className="flex items-center relative">
           <input
-            className="rounded-full placeholder-orange-300 text-lg font-semibold p-1 border-2 border-indigo-400 focus:outline-none hover:shadow-inner hover:shoadow-sm w-full bg-indigo opacity-80 dark:bg-gray-400 dark:border-none dark:placeholder-orange-200 dark:text-zinc-800"
+            ref={searchInputRef}
+            className="rounded-full placeholder-orange-300 text-lg font-semibold p-1 border-2 border-indigo-700 focus:outline-none hover:shadow-inner hover:shoadow-sm w-full bg-indigo opacity-80"
             type="search"
             placeholder="Search..."
             autoComplete="off"
@@ -44,7 +65,7 @@ const SearchBar = () => {
             required
           />
           {results.length > 0 && (
-            <div className="absolute top-full mt-2 w-full bg-white rounded-lg shadow-lg overflow-hidden z-max">
+            <div ref={resultsDropdownRef}  className="absolute top-full mt-2 w-full bg-white rounded-lg shadow-lg overflow-hidden z-max">
               {results.map((quiz, index) => (
                 <div 
                   key={index} 
