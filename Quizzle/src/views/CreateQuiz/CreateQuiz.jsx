@@ -175,7 +175,7 @@ const CreateQuiz = () => {
           <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
             <label className="block">
               <span className="text-gray-700 text-xl font-extralight">
-                Time Limit:
+                Time Limit (in minutes)
               </span>
               <input
                 type="number"
