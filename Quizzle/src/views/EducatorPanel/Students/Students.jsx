@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { blockUser, searchUser } from "../../../services/admin.services";
 import { ROLE_CHECK } from "../../../common/constants";
 import { AuthContext } from "../../../context/authContext";
+import { totalScore } from "../../../common/helpers";
 
 const Students = () => {
   const [users, setUsers] = useState([]);
@@ -57,23 +58,23 @@ const Students = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div className="h-screen pb-20 overflow-auto">
+    <div className="pb-20 overflow-auto">
       <div className="flex flex-col items-center">
-          <h1 className=" mt-5 text-zinc-700 dark:text-zinc-300 text-4xl font-bold">
-            {" "}
-            Hello,{" "}
-            {text
-              .slice(0, index)
-              .split("")
-              .map((char, i) => (
-                <span
-                  key={i}
-                  className="animate-gradient bg-clip-text text-transparent bg-indigo-400"
-                >
-                  {char}
-                </span>
-              ))}
-          </h1>
+        <h1 className=" mt-5 text-zinc-700 dark:text-zinc-300 text-4xl font-bold">
+          {" "}
+          Hello,{" "}
+          {text
+            .slice(0, index)
+            .split("")
+            .map((char, i) => (
+              <span
+                key={i}
+                className="animate-gradient bg-clip-text text-transparent bg-indigo-400"
+              >
+                {char}
+              </span>
+            ))}
+        </h1>
         <p className="pt-12 text-3xl font-extrabold bg-clip-text p-1 text-transparent bg-gradient-to-r from-zinc-700 to-gray-500 dark:bg-gradient-to-r dark:from-zinc-300 dark:to-gray-500">
           Welcome to the students’ page.
           <p className="mt-2">
@@ -102,45 +103,50 @@ const Students = () => {
               <tr>
                 <th className=" px-4 py-2">Username</th>
                 <th className=" px-4 py-2">Email</th>
-                <th className=" px-4 py-2">Average Points</th>
+                <th className=" px-4 py-2">Points</th>
+                <th className=" px-4 py-2">Finished quizzes</th>
                 <th className=" px-4 py-2">Block</th>
               </tr>
             </thead>
             <tbody>
               {filteredUsers.length > 0 ? (
-              filteredUsers.map(
-                (user) =>
-                  user.role === ROLE_CHECK.student && (
-                    <tr
-                      key={user.username}
-                      className="border dark:bg-gradient-to-br dark:from-zinc-800"
-                    >
-                      <td className=" px-4 py-2">{user.username}</td>
-                      <td className=" px-4 py-2">{user.email}</td>
-                      <td className=" px-4 py-2">{}</td>
-                      <td className=" px-4 py-2">
-                        <button
-                          className={`${
-                            user.isBlocked
-                              ? "bg-green-500 dark:bg-green-700 dark:hover:bg-green-600"
-                              : "bg-red-500 dark:bg-red-700 dark:hover:bg-red-600"
-                          } text-white dark:text-zinc-100 px-4 py-2 rounded transform transition duration-500 ease-in-out hover:scale-105 `}
-                          onClick={() =>
-                            handleBlockUser(user.username, user.isBlocked)
-                          }
-                        >
-                          {user.isBlocked ? "Unblock" : "Block"}
-                        </button>
-                      </td>
-                    </tr>
-                  )
-              )
+                filteredUsers.map(
+                  (user) =>
+                    user.role === ROLE_CHECK.student && (
+                      <tr
+                        key={user.username}
+                        className="border dark:bg-gradient-to-br dark:from-zinc-800"
+                      >
+                        <td className=" px-4 py-2">{user.username}</td>
+                        <td className=" px-4 py-2">{user.email}</td>
+                        <td className=" px-4 py-2">
+                          {user.score ? totalScore(Object.values(user.score)) : 0}
+                        </td>
+                        <td className=" px-4 py-2">
+                          {user.score ? Object.values(user.score).length : 0}
+                        </td>
+                        <td className=" px-4 py-2">
+                          <button
+                            className={`${user.isBlocked
+                                ? "bg-green-500 dark:bg-green-700 dark:hover:bg-green-600"
+                                : "bg-red-500 dark:bg-red-700 dark:hover:bg-red-600"
+                              } text-white dark:text-zinc-100 px-4 py-2 rounded transform transition duration-500 ease-in-out hover:scale-105 `}
+                            onClick={() =>
+                              handleBlockUser(user.username, user.isBlocked)
+                            }
+                          >
+                            {user.isBlocked ? "Unblock" : "Block"}
+                          </button>
+                        </td>
+                      </tr>
+                    )
+                )
               ) : (
                 <tr>
-                <td colSpan="4" className="text-center py-4 text-2xl">No results found</td>
-              </tr>
+                  <td colSpan="4" className="text-center py-4 text-2xl">No results found</td>
+                </tr>
               )
-            }
+              }
             </tbody>
           </table>
           <div className="flex justify-between items-center mt-4 dark:text-zinc-100">
