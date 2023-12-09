@@ -13,7 +13,7 @@ import {
   removeFromAssignments
 } from "../../services/quiz.services";
 import PublicQuizResolved from "../PublicQuizResolved/PublicQuizResolved";
-
+import { QUIZ_STATUS } from "../../common/constants";
 
 const SingleQuizView = () => {
 
@@ -77,15 +77,16 @@ const SingleQuizView = () => {
   };
 
   if (isQuizResolved) {
-    console.log('1')
-    if (user) {
-      console.log('1a')
+
+    if (quiz?.contestType === QUIZ_STATUS.INVITATIONAL) {
+
       const resolvedOn = Object.values(userData?.score).find(el => el.id === id).resolvedOn
       const scorePoints = Object.values(userData?.score).find(el => el.id === id).score
 
       return <QuizResolved id={id} score={scorePoints} title={quiz?.title} category={quiz?.category} userAnswers={userAnswers} resolvedOn={resolvedOn} />
     }
   }
+
   if (quizIsComplete || timerFinished) {
 
     const scorePoints = Math.ceil(score / quiz?.question.length * quiz?.maxPassingPoints)
@@ -107,15 +108,14 @@ const SingleQuizView = () => {
       removeAssignmentsFromUser(userData.username, id)
         .then(() => console.log('Quiz assignment updated successfully'))
         .catch((e) => toast.error(e));
-    } else {
-
-      updatePublicQuizScoreBoard(id, attempts, scorePoints)
-        .then(() => console.log('Quiz score updated successfully'))
-        .catch((e) => toast.error(e));
-
-      return <PublicQuizResolved id={id} score={scorePoints} userAnswers={userAnswers}></PublicQuizResolved>
     }
+    else {
+      updatePublicQuizScoreBoard(id, attempts, scorePoints)
+    }
+
+    return <PublicQuizResolved id={id} score={scorePoints} userAnswers={userAnswers}></PublicQuizResolved>
   }
+
   return (
     <>
       {quiz && <div className="flex flex-col overflow-auto h-screen items-center justify-center">

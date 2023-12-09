@@ -161,6 +161,7 @@ export const removeAssignmentsFromUser = (user, id) => {
 export const updatePublicQuizScoreBoard = (quizId, attempts, score) => {
   const updateUserScore = {};
  
-  updateUserScore[`/quizzes/${quizId}/scoreBoard/${attempts}`] = score 
+  updateUserScore[`/quizzes/${quizId}/scoreBoard/${attempts}`] = { attempts, score } 
   return update(ref(database), updateUserScore);
 };
+
