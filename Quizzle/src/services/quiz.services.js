@@ -123,12 +123,9 @@ export const saveUserScore = (username, postId, score) => {
 export const getAllCategories = () => {
   return get(ref(database, 'categories'))
     .then(snapshot => {
-      if (!snapshot.exists()) {
-        return [];
-      }
-
+ 
       const categoriesDocument = snapshot.val();
-      return Object.keys(categoriesDocument);
+      return categoriesDocument;
     });
 };
 

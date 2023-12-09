@@ -4,12 +4,15 @@ import SingleCategoryCard from "../SingleCategoryCard/SingleCategoryCard";
 import { useEffect, useState } from "react";
 
 const Categories = () => {
-  const [categories, setCategories] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [categoriesNames, setCategoriesNames] = useState([]);
+  const [categories, setCategories] = useState(null);
   useEffect(() => {
     getAllCategories()
       .then((snapshot) => {
-        setCategories(snapshot);
+        const categories = Object.entries(snapshot)
+          .map(([property, nestedOb]) => ({ [property]: Object.keys(nestedOb).length }))
+
+        setCategories(categories);
       })
       .catch((e) => toast.error(e));
   }, []);
@@ -35,14 +38,12 @@ const Categories = () => {
       <section className="flex flex-col bg-gray-2 m-10 dark:bg-dark lg:pb-10 lg:pt-10">
         <div className="container">
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {categories.map((category, index) => (
+            {categories && categories.map((category, index) => (
               <div key={index}>
                 <SingleCategoryCard
                   image="https://i.ibb.co/r2zns1m/image-01.jpg"
-                  titleHref="/#"
-                  btnHref="/#"
-                  Button="View Details"
-                  category={category}
+                  quizzesInCategory={Object.values(category)[0]}
+                  category={Object.keys(category)[0]}
                 />
               </div>
             ))}
