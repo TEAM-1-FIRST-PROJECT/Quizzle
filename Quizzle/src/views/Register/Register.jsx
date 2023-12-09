@@ -87,7 +87,7 @@ const RegisterForm = () => {
             .catch((e) => toast.error(e.message));
         }
       })
-      .catch((e) => toast.log(e));
+      .catch((e) => console.error(e));
   };
   return (
     <>
