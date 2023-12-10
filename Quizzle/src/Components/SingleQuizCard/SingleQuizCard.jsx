@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/authContext";
 import { dateNow } from "../../common/constants";
@@ -11,10 +11,44 @@ import {
   removeAssignmentsFromUser
 } from "../../services/quiz.services";
 import toast from "react-hot-toast";
+import bioImage from '../../assets/bio.jpg';
+import itImage from '../../assets/IT.jpg';
+import mathImage from '../../assets/math.jpg';
+import historyImage from '../../assets/History.jpg';
+import quizImage from '../../assets/quiz.jpg';
+import { CATEGORIES } from "../../common/constants";
 
-const SingleCard = ({ image, quiz }) => {
 
-  const { userData } = useContext(AuthContext);
+const SingleCard = ({ quiz }) => {
+
+  const { userData } = useContext(AuthContext)
+  const [img, setImg] = useState('');
+
+  useEffect(() => {
+    // Use a separate function to set the image source based on quiz category
+    const setImageSrc = () => {
+      switch (quiz?.category) {
+        case CATEGORIES.IT:
+          setImg(itImage);
+          break;
+        case CATEGORIES.BIOLOGY:
+          setImg(bioImage);
+          break;
+        case CATEGORIES.MATHEMATICS:
+          setImg(mathImage);
+          break;
+          case CATEGORIES.HISTORY:
+          setImg(historyImage);
+          break;
+        default:
+
+          setImg(quizImage);
+      }
+    };
+
+    // Call the function to set the image source
+    setImageSrc();
+  }, [quiz?.category]);
 
   const showTimer = userData?.assignedQuizzes ? Object.keys(userData?.assignedQuizzes).includes(quiz?.id) : false;
   let timeLimit = 0;
@@ -52,7 +86,7 @@ removeAssignmentsFromUser(userData.username, quiz.id)
     <>
       {quiz && <div className=" mb-10 overflow-hidden rounded-lg shadow-xl border-indigo-300">
         <div className="relative">
-          <img src={image} alt="" className="h-44 w-full" />
+          <img src={img} alt="" className="h-44 w-full" />
           <div className="absolute top-0 right-0 z-10">
             {showTimer
               ? <RemainingTime
@@ -62,10 +96,10 @@ removeAssignmentsFromUser(userData.username, quiz.id)
                 title={quiz?.title}
                 score={0}
                 category={quiz?.category} />
-              : <div className="text-right mr-4 mt-2 text-lg">You score {score}</div>}
+              : <div className="text-right mr-2 mt-2 text-lg">You score {score}</div>}
           </div>
         </div>
-        <div className="text-center bg-white dark:bg-gradient-to-br dark:from-slate-400 dark:to-zinc-500 dark:text-zinc-100 opacity-90 sm:p-9 md:p-7">
+        <div className="text-center bg-white dark:bg-gradient-to-br dark:from-slate-400 dark:to-zinc-500 dark:text-zinc-100 opacity-90">
           <h3>
             <Link
               to={`/singleQuizView/${quiz?.id}`}

@@ -17,3 +17,10 @@ export const QUIZ_STATUS= {
     OPEN: 'open',
     INVITATIONAL: 'invitational'
 }
+
+export const CATEGORIES= {
+    MATHEMATICS: 'Mathematics',
+    IT: 'IT',
+    BIOLOGY: 'Biology',
+    HISTORY: 'History'
+}

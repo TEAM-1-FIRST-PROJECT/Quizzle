@@ -8,6 +8,7 @@ import { FaCircleUser } from "react-icons/fa6";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../context/authContext";
 import { QUIZ_STATUS } from "../../common/constants";
+import Bio from "../../assets/IT.jpg"
 
 const Dashboard = () => {
   const [quizzes, setQuizzes] = useState([{}]);
@@ -162,7 +163,7 @@ const Dashboard = () => {
                 {quizzes.map((quiz) => (
                   <div key={quiz.id}>
                     <SingleQuizCard
-                      image="https://i.ibb.co/r2zns1m/image-01.jpg"
+                    
                       titleHref="/#"
                       btnHref="/#"
                       Button="View Details"
