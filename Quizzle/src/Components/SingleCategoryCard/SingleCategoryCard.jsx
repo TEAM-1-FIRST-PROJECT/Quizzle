@@ -1,12 +1,46 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import bioImage from '../../assets/bio.jpg';
+import itImage from '../../assets/IT.jpg';
+import mathImage from '../../assets/math.jpg';
+import historyImage from '../../assets/History.jpg';
+import quizImage from '../../assets/quiz.jpg';
+import { CATEGORIES } from "../../common/constants";
+import { useState, useEffect } from "react";
 
 const SingleCategoryCard = ({ image, category, quizzesInCategory }) => {
 
+const [img, setImg] = useState('');
+
+useEffect(() => {
+  // Use a separate function to set the image source based on quiz category
+  const setImageSrc = () => {
+    switch (category) {
+      case CATEGORIES.IT:
+        setImg(itImage);
+        break;
+      case CATEGORIES.BIOLOGY:
+        setImg(bioImage);
+        break;
+      case CATEGORIES.MATHEMATICS:
+        setImg(mathImage);
+        break;
+        case CATEGORIES.HISTORY:
+        setImg(historyImage);
+        break;
+      default:
+
+        setImg(quizImage);
+    }
+  };
+
+  // Call the function to set the image source
+  setImageSrc();
+}, [category]);
     return (
       <>
         <div className="mb-10 overflow-hidden rounded-lg bg-white dark:bg-gradient-to-br dark:from-slate-400 dark:to-zinc-500 shadow-lg duration-300 hover:drop-shadow-lg">
-          <img src={image} alt="" className="w-full h-36" />
+          <img src={img} alt="" className="w-full h-36" />
           <div className="p-8 text-center sm:p-9 md:p-7 xl:p-9">
             <h3>
               <a
