@@ -58,13 +58,13 @@ function Navbar() {
               <div className="flex lg:block m-2 ml-20 space-x-6 text-lg font-medium font-montserrat">
                 <Link
                   to="/home"
-                  className="hover:bg-gradient-to-b hover:from-indigo-400 text-zinc-700 px-3 py-2 rounded-md dark:text-zinc-100"
+                  className="hover:bg-gradient-to-b font-bold hover:from-indigo-400 text-zinc-700 px-3 py-2 rounded-md dark:text-zinc-100"
                 >
                   Dashboard
                 </Link>
                 <Link
                   to="/categories"
-                  className="hover:bg-gradient-to-b hover:from-indigo-400 text-zinc-700 px-3 py-2 rounded-md dark:text-zinc-100"
+                  className="hover:bg-gradient-to-b font-bold hover:from-indigo-400 text-zinc-700 px-3 py-2 rounded-md dark:text-zinc-100"
                 >
                   Categories
                 </Link>
@@ -80,7 +80,7 @@ function Navbar() {
             {!user && (
               <Link
                 to="/login"
-                className="text-zinc-700 hover:bg-gradient-to-b hover:from-indigo-400 px-3 py-2 rounded-md dark:text-zinc-100"
+                className="text-zinc-700 font-bold hover:bg-gradient-to-b hover:from-indigo-400 px-3 py-2 rounded-md dark:text-zinc-100"
               >
                 Login
               </Link>
@@ -88,7 +88,7 @@ function Navbar() {
             {!user && (
               <Link
                 to="/register"
-                className="text-zinc-700 hover:bg-gradient-to-b hover:from-indigo-400 px-3 py-2 rounded-md dark:text-zinc-100"
+                className="text-zinc-700 font-bold hover:bg-gradient-to-b hover:from-indigo-400 px-3 py-2 rounded-md dark:text-zinc-100"
               >
                 Register
               </Link>
@@ -113,7 +113,7 @@ function Navbar() {
                     className="absolute top-0 mt-10 w-64 p-2 bg-white rounded shadow right-0"
                   >
                     <p>You have a new assignment! Please check your profile.</p>
-                    <Link className="hover:text-yellow-300" to="/profile">
+                    <Link className="hover:text-yellow-300 font-bold" to="/profile">
                       View
                     </Link>
                   </div>
@@ -176,13 +176,13 @@ function Navbar() {
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <Link
               to="/home"
-              className="text-zinc-700 hover:bg-gradient-to-b hover:from-indigo-400 block px-3 py-2 rounded-md text-base font-medium font-montserrat dark:text-zinc-100"
+              className="text-zinc-700 font-bold hover:bg-gradient-to-b hover:from-indigo-400 block px-3 py-2 rounded-md font-montserrat dark:text-zinc-100"
             >
               Dashboard
             </Link>
             <Link
               to="/categories"
-              className="text-zinc-700 hover:bg-gradient-to-b hover:from-indigo-400 block px-3 py-2 rounded-md text-base font-medium font-montserrat dark:text-zinc-100"
+              className="text-zinc-700 font-bold hover:bg-gradient-to-b hover:from-indigo-400 block px-3 py-2 rounded-md font-montserrat dark:text-zinc-100"
             >
               Categories
             </Link>

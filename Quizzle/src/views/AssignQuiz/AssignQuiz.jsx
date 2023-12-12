@@ -46,20 +46,20 @@ const AssignQuiz = () => {
     const chosenFinalDate = new Date(finalDate);
     const finalDateInSeconds = chosenFinalDate.getTime();
     if (dateInSeconds === '' || finalDateInSeconds === '') {
-      alert('date and finalDate can\'t be empty');
+      toast.error('date and finalDate can\'t be empty');
       return;
     }
 
     if (!dateInSeconds) {
-      alert('date and finalDate cant\'be empty');
+      toast.error('date and finalDate cant\'be empty');
     }
     if (!finalDateInSeconds) {
-      alert('date and finalDate cant\'be empty');
+      toast.error('date and finalDate cant\'be empty');
     }
 
     quizAssignments(user, id, dateInSeconds, finalDateInSeconds)
       .then(() => {
-        console.log('quiz assigned successfully')
+        toast.success('quiz assigned successfully')
       })
       .catch(e => console.error(e));
   }
@@ -90,37 +90,37 @@ const AssignQuiz = () => {
   return (
     <>
       <div className="h-screen  pb-20 overflow-auto p-5">
-        <div className="mt-20 justify-center items-center border-4 p-10 rounded-lg bg-gradient-to-bl from-indigo-400">
-          <div className="px-4 pt-2 flex flex-col ">
+        <div className="mt-20 justify-center items-center border-4 p-10 rounded-lg bg-gradient-to-bl from-indigo-400 dark:from-zinc-600">
+          <div className=" flex flex-col ">
 
-            <div className="px-4 pt-2 text-sm text-black flex items-center justify-end">
-              <span className="flex-grow text-lg">quiz {quiz?.title}</span>
-              <div className="ml-4">
-                open from <input
-                  className="rounded-sm"
-                  type="date"
+            <div className=" text-sm text-black flex items-center justify-end dark:text-zinc-200">
+              <span className="flex-grow text-xl mb-5"> <span className="text-2xl font-bold">Quiz Title: </span>{quiz?.title}</span>
+              <div className="ml-10 mt-14">
+                Open from <input
+                  className="rounded-sm dark:bg-zinc-400"
+                  type="datetime-local"
                   placeholder="date"
                   onChange={(e) => setDate(e.target.value)}
                 />
               </div>
-              <div className="ml-4">
-                closed on <input
-                  className="rounded-sm"
-                  type="date"
+              <div className="ml-10 mt-14">
+                Closed on <input
+                  className="rounded-sm dark:bg-zinc-400"
+                  type="datetime-local"
                   onChange={(e) => setFinalDate(e.target.value)}
                 />
               </div>
             </div><input
               type="text"
-              className="border p-2 rounded w-full sm:w-3/4 md:w-1/2 lg:w-1/3 xl:w-1/4 placeholder-orange-300 font-bold"
+              className="border p-2 rounded w-full sm:w-3/4 md:w-1/2 lg:w-1/3 xl:w-1/4 placeholder-orange-300 dark:bg-zinc-400 dark:placeholder-orange-200 font-bold"
               placeholder="Search for user..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
           <div className="mt-4 ">
-            <table className="table-auto rounded w-full text-center text-white">
-              <thead className=" text-lg border bg-indigo-400">
+            <table className="table-auto rounded w-full text-center text-white dark:text-zinc-200">
+              <thead className=" text-lg border dark:bg-gradient-to-br dark:from-zinc-600">
                 <tr>
                   <th className=" px-4 py-2">Username</th>
                   <th className=" px-4 py-2">Last Name</th>
@@ -133,7 +133,7 @@ const AssignQuiz = () => {
               <tbody>
                 {filteredUsers.length > 0 ? (
                   filteredUsers.map((user) => (
-                    <tr key={user.uid} className="border bg-indigo-300 ">
+                    <tr key={user.uid} className="border dark:bg-gradient-to-br dark:from-zinc-800">
                       <td className=" px-4 py-2">{user.username}</td>
                       <td className=" px-4 py-2">{user.lastName}</td>
                       <td className=" px-4 py-2"></td>
@@ -165,23 +165,23 @@ const AssignQuiz = () => {
             </table>
           </div>
           <div className="flex justify-between items-center mt-4">
-            <div>
+            <div className="dark:text-zinc-200">
               Showing {indexOfFirstUser + 1}-{indexOfLastUser} of {users.length}
             </div>
             <div>
               <button
-                className="bg-blue-500 text-white px-4 py-2 rounded mr-2 transform transition duration-500 ease-in-out hover:scale-105"
+                className="bg-blue-500 text-white  dark:bg-blue-700 dark:text-zinc-200 dark:hover:bg-blue-600 px-4 py-2 rounded mr-2 transform transition duration-500 ease-in-out hover:scale-105"
                 onClick={() =>
                   paginate(currentPage > 1 ? currentPage - 1 : currentPage)
                 }
               >
                 Previous
               </button>
-              <span>
+              <span className="dark:text-zinc-200">
                 Page {currentPage} of {Math.ceil(users.length / usersPerPage)}
               </span>
               <button
-                className="bg-blue-500 text-white px-4 py-2 rounded ml-2 transform transition duration-500 ease-in-out hover:scale-105"
+                className="bg-blue-500 text-white dark:bg-blue-700 dark:text-zinc-200 dark:hover:bg-blue-600 px-4 py-2 rounded ml-2 transform transition duration-500 ease-in-out hover:scale-105"
                 onClick={() =>
                   paginate(
                     currentPage < Math.ceil(users.length / usersPerPage)
