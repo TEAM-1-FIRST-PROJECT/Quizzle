@@ -13,6 +13,8 @@ import { TiGroup } from "react-icons/ti";
 import { IoCreate } from "react-icons/io5";
 import { PiUserListBold } from "react-icons/pi";
 import { RiListSettingsFill } from "react-icons/ri";
+import { BiCategoryAlt } from "react-icons/bi";
+import { RiHomeHeartLine } from "react-icons/ri";
 
 const Sidebar = () => {
   const { user, setUser, userData } = useContext(AuthContext);
@@ -66,6 +68,33 @@ const Sidebar = () => {
                         </span>
                       </Link>
                     </li>
+                  )}
+
+                  {userData && userData.role === ROLE_CHECK.student && (
+                    <>
+                      <li className="min-w-max">
+                        <Link
+                          to="/home"
+                          className="flex items-center space-x-4 mt-4 rounded-md hover:bg-gradient-to-r hover:from-indigo-400 px-2 py-2 text-zinc-700 dark:text-zinc-100"
+                        >
+                          <RiHomeHeartLine />
+                          <span className="-mr-1 font-medium font-montserrat">
+                            Dashboard
+                          </span>
+                        </Link>
+                      </li>
+                      <li className="min-w-max">
+                        <Link
+                          to="/categories"
+                          className="flex items-center space-x-4 mt-4 rounded-md hover:bg-gradient-to-r hover:from-indigo-400 px-2 py-2 text-zinc-700 dark:text-zinc-100"
+                        >
+                          <BiCategoryAlt />
+                          <span className="group-hover:text-gray-700">
+                            Categories
+                          </span>
+                        </Link>
+                      </li>
+                    </>
                   )}
             
                   {userData && userData.role === ROLE_CHECK.admin && (

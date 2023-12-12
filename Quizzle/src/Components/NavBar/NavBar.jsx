@@ -53,7 +53,7 @@ function Navbar() {
                 alt="logo"
               />
             </Link>
-            {user && (
+            {user && user.role !== 'student' && (
             <div className="hidden md:block">
               <div className="flex lg:block m-2 ml-20 space-x-6 text-lg font-medium font-montserrat">
                 <Link
