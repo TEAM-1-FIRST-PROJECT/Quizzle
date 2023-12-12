@@ -80,9 +80,9 @@ const EducatorPanel = () => {
                       : (quiz.scoreBoard ? Object.keys(quiz.scoreBoard).length : 0)}</Link>
                 </td>
                 <td className=" px-4 py-2">
-                  <a href={`/assign-quiz/${quiz?.id}`}
+                  <Link to={`/assign-quiz/${quiz?.id}`}
                     className=" px-4 py-1  border-indigo-500 bg-indigo-400 dark:bg-indigo-600 dark:hover:bg-indigo-500 rounded text-center font-medium hover:bg-indigo-500 hover:text-white dark:hover:bg-dark-1 dark:hover:text-white-300"
-                    onClick={() => { history.push(`/assign-quiz/${quiz?.id}`) }}>Assign</a>
+                  >Assign</Link>
                 </td>
               </tr>
             ))

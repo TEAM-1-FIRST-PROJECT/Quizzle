@@ -85,62 +85,61 @@ const CreateQuiz = () => {
       });
   };
   return (
-
     <div className=" grid grid-flow-row h-screen">
       <div className="mb-20">
-      <div className=" text-center mt-10 ">
-        <h1 className="text-6xl text-black dark:text-zinc-200 font-extrabold leading-tighter tracking-tighter mb-4 mt-10 pr-2">
-          Create your own{" "}
-          <span className="bg-clip-text p-1 text-transparent bg-gradient-to-r from-blue-600 to-violet-400">
-            Quiz
-          </span>
-        </h1>
-      </div>
-      <div className="max-w-3xl mx-auto">
-        <p className="text-xl text-gray-500 text-center">
-          Our landing page template works on all devices, so you only have to
-          set it up once, and get beautiful results forever.
-        </p>
-      </div>
-      <form
-        onSubmit={handleSubmit}
-        className="z-0 p-10 pb-10 m-32 mt-10  hover:shadow-2xl border-2 bg-indigo-300 dark:bg-zinc-500 space-y-4 rounded-lg "
-      >
-        <div className="flex flex-wrap -mx-3">
-          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label className="block">
-              <span className="text-gray-700 text-xl font-extralight">
-                Title:
-              </span>
-              <input
-                type="text"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                required
-                className="mt-1 block w-full p-2 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 dark:bg-zinc-400 dark:text-zinc-800"
-              />
-            </label>
-          </div>
-          <div className="w-full md:w-1/2 px-3">
-            <label className="block">
-              <span className="text-gray-700 text-xl font-extralight">
-                Description:
-              </span>
-              <input
-                type="text"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                required
-                className="mt-1 block w-full p-2 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 dark:bg-zinc-400 dark:text-zinc-800"
-              />
-            </label>
-          </div>
+        <div className=" text-center mt-10 ">
+          <h1 className="text-6xl text-black dark:text-zinc-200 font-extrabold leading-tighter tracking-tighter mb-4 mt-10 pr-2">
+            Create your own{" "}
+            <span className="bg-clip-text p-1 text-transparent bg-gradient-to-r from-blue-600 to-violet-400">
+              Quiz
+            </span>
+          </h1>
         </div>
-        <div className="flex flex-wrap -mx-3">
+        <div className="max-w-3xl mx-auto">
+          <p className="text-xl text-gray-500 text-center">
+            Our landing page template works on all devices, so you only have to
+            set it up once, and get beautiful results forever.
+          </p>
+        </div>
+        <form
+          onSubmit={handleSubmit}
+          className="z-0 p-10 pb-10 m-32 mt-10  hover:shadow-2xl border-2 bg-indigo-300 dark:bg-zinc-500 space-y-4 rounded-lg "
+        >
+          <div className="flex flex-wrap -mx-3">
             <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
               <label className="block">
                 <span className="text-gray-700 text-xl font-extralight">
-                  Category:
+                  Title:
+                </span>
+                <input
+                  type="text"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  required
+                  className="mt-1 block w-full p-2 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 dark:bg-zinc-400 dark:text-zinc-800"
+                />
+              </label>
+            </div>
+            <div className="w-full md:w-1/2 px-3">
+              <label className="block">
+                <span className="text-gray-700 text-xl font-extralight">
+                  Description:
+                </span>
+                <input
+                  type="text"
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  required
+                  className="mt-1 block w-full p-2 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 dark:bg-zinc-400 dark:text-zinc-800"
+                />
+              </label>
+            </div>
+          </div>
+          <div className="flex flex-wrap -mx-3">
+            <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+              <label className="block">
+                <span className="text-gray-700 text-xl font-extralight">
+                  Select Category:
                 </span>
                 <select
                   value={category}
@@ -154,9 +153,11 @@ const CreateQuiz = () => {
                   ))}
                 </select>
               </label>
+            </div>
+            <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
               <label className="block">
                 <span className="text-gray-700 text-xl font-extralight">
-                  Or create new category:
+                  Create new category:
                 </span>
                 <input
                   type="text"
@@ -166,44 +167,44 @@ const CreateQuiz = () => {
                 />
               </label>
             </div>
-          <div className="w-full md:w-1/2 px-3">
-            <label className="block">
-              <span className="text-gray-700 text-xl font-extralight">
-                Contest Type:
-              </span>
-              <select
-                onChange={(e) => setContestType(e.target.value)}
-                className="w-full px-3 py-2 mb-3 border rounded-md focus:outline-none focus:ring-2 dark:bg-zinc-400 dark:text-zinc-800"
-              >
-                <option value="open">Open Contest</option>
-                <option value="invitational">Invitational Contest</option>
-              </select>
-            </label>
+            <div className="w-full md:w-1/3 px-3">
+              <label className="block">
+                <span className="text-gray-700 text-xl font-extralight">
+                  Contest Type:
+                </span>
+                <select
+                  onChange={(e) => setContestType(e.target.value)}
+                  className="w-full px-3 py-2 mb-3 border rounded-md focus:outline-none focus:ring-2 dark:bg-zinc-400 dark:text-zinc-800"
+                >
+                  <option value="open">Open Contest</option>
+                  <option value="invitational">Invitational Contest</option>
+                </select>
+              </label>
+            </div>
           </div>
-        </div>
-        {contestType === "invitational" && (
-          <input
-            type="text"
-            placeholder="Invited Users"
-            onChange={(e) => setInvitedUsers(e.target.value.split(","))}
-            className="w-full px-3 py-2 mb-3 border rounded-md focus:outline-none focus:ring-2"
-          />
-        )}
-        <div className="flex flex-wrap -mx-3">
-          <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-            <label className="block">
-              <span className="text-gray-700 text-xl font-extralight">
-                Time Limit (in minutes)
-              </span>
-              <input
-                type="number"
-                value={timeLimit}
-                onChange={(e) => setTimeLimit(e.target.value)}
-                required
-                className="mt-1 block w-full p-2 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 dark:bg-zinc-400 dark:text-zinc-800"
-              />
-            </label>
-          </div>
+          {contestType === "invitational" && (
+            <input
+              type="text"
+              placeholder="Invited Users"
+              onChange={(e) => setInvitedUsers(e.target.value.split(","))}
+              className="w-full px-3 py-2 mb-3 border rounded-md focus:outline-none focus:ring-2 dark:bg-zinc-400 dark:placeholder-orange-200"
+            />
+          )}
+          <div className="flex flex-wrap -mx-3">
+            <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+              <label className="block">
+                <span className="text-gray-700 text-xl font-extralight">
+                  Time Limit (in minutes)
+                </span>
+                <input
+                  type="number"
+                  value={timeLimit}
+                  onChange={(e) => setTimeLimit(e.target.value)}
+                  required
+                  className="mt-1 block w-full p-2 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 dark:bg-zinc-400 dark:text-zinc-800"
+                />
+              </label>
+            </div>
 
             <div className="w-full md:w-1/3 px-3">
               <label className="block">
@@ -330,7 +331,6 @@ const CreateQuiz = () => {
         </form>
       </div>
     </div>
-
   );
 };
 
