@@ -99,7 +99,7 @@ removeAssignmentsFromUser(userData.username, quiz.id)
               : <div className="text-right mr-2 mt-2 text-lg">You score {score}</div>}
           </div>
         </div>
-        <div className="text-center bg-white dark:bg-gradient-to-br dark:from-slate-400 dark:to-zinc-500 dark:text-zinc-100 opacity-90">
+        <div className="text-center bg-white dark:bg-gradient-to-br dark:from-slate-400 dark:to-zinc-500 dark:text-zinc-100 opacity-90 pb-8">
           <h3>
             <Link
               to={`/singleQuizView/${quiz?.id}`}
