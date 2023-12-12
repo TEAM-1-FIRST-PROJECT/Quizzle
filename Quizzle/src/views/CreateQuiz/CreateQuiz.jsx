@@ -19,6 +19,7 @@ const CreateQuiz = () => {
     { question: "", answers: [{ text: "", isCorrect: false }] },
   ]);
   const [categories, setCategories] = useState([]);
+  const [newCategory, setNewCategory] = useState("");
 
   const { userData } = useContext(AuthContext);
   const username = userData?.username;
@@ -38,9 +39,11 @@ const CreateQuiz = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    const finalCategory = newCategory ? newCategory : category;
+
     if (
       !/[A-Z][a-z]*$/.test(title.split(" ")[0]) ||
-      !/[A-Z][a-z]*$/.test(category.split(" ")[0])
+      !/[A-Z][a-z]*$/.test(finalCategory.split(" ")[0])
     ) {
       alert(
         "The first word of Title and Category must start with a capital letter followed by lowercase letters!"
@@ -57,7 +60,7 @@ const CreateQuiz = () => {
       contestType,
       invitedUsers,
       timeLimit,
-      category,
+      finalCategory,
       questions,
       miniPassingPoints,
       totalPoints
@@ -134,20 +137,35 @@ const CreateQuiz = () => {
           </div>
         </div>
         <div className="flex flex-wrap -mx-3">
-          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label className="block">
-              <span className="text-gray-700 text-xl font-extralight">
-                Category:
-              </span>
-              <input
-                type="text"
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-                required
-                className="mt-1 block w-full p-2 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 dark:bg-zinc-400 dark:text-zinc-800"
-              />
-            </label>
-          </div>
+            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+              <label className="block">
+                <span className="text-gray-700 text-xl font-extralight">
+                  Category:
+                </span>
+                <select
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                  className="mt-1 block w-full p-2 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 dark:bg-zinc-400 dark:text-zinc-800"
+                >
+                  {categories.map((category, index) => (
+                    <option key={index} value={category}>
+                      {category}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label className="block">
+                <span className="text-gray-700 text-xl font-extralight">
+                  Or create new category:
+                </span>
+                <input
+                  type="text"
+                  value={newCategory}
+                  onChange={(e) => setNewCategory(e.target.value)}
+                  className="mt-1 block w-full p-2 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 dark:bg-zinc-400 dark:text-zinc-800"
+                />
+              </label>
+            </div>
           <div className="w-full md:w-1/2 px-3">
             <label className="block">
               <span className="text-gray-700 text-xl font-extralight">
