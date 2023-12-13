@@ -9,9 +9,11 @@ import Footer from "./components/Footer/Footer";
 import { Toaster } from "react-hot-toast";
 import Sidebar from "./components/SideBar/SideBar";
 import Loader from "./components/Loader/Loader";
+import Snowfall from 'react-snowfall'
 
 const App = () => {
   const [user, loading] = useAuthState(auth);
+  const darkMode = false; 
  
   const [appState, setAppState] = useState({
     user,
@@ -35,12 +37,7 @@ const App = () => {
       setAppState({
         ...appState,
         userData: snapshot.val()[username],
-        // Object.keys(snapshot.val())[0] returns the first key of the object
-        // Object.keys(snapshot.val()) returns an array of the keys of the object
-        // snapshot.val() returns the value of the object
-        // Google this part when you have lot's of user data Object.keys(snapshot.val())[0]
       });
-     
     });
   });
 
@@ -51,6 +48,7 @@ const App = () => {
   return (
     <AuthContext.Provider value={{ ...appState, setUser: setAppState }}>
       <div className="bg-hero-pattern-3 bg-cover bg-fixed dark:bg-hero-pattern-4 dark:bg-fixed dark:bg-cover">
+       <Snowfall />
         <Toaster />
         <Navbar />
         <div className="flex">

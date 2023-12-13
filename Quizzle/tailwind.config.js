@@ -25,11 +25,29 @@ export default {
         'fade-in': 'fadeIn 5s',
         'gradient': 'gradient 5s ease infinite',
         'gradient-x': 'gradient-x 5s ease infinite',
+        'astronaut': 'astronaut 20s infinite linear',
+        'moon-spin': 'moon-spin 20s infinite linear',
+        'moon-glow': 'moon-glow 1s infinite alternate',
       },
       keyframes: { 
         slideInFromRight: {
           '0%': { transform: 'translateX(100%)', opacity: '0' },
           '100%': { transform: 'translateX(0)', opacity: '1' },
+        },
+        astronaut: {
+          '0%': { transform: 'translate(10vw, 20vh)' },
+          '25%': { transform: 'translate(30vw, 20vh)' },
+          '50%': { transform: 'translate(40vw, 35vh)' },
+          '75%': { transform: 'translate(10vw, 50vh)' },
+          '100%': { transform: 'translate(23vw, 0)' }
+        },
+        'moon-spin': {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg)' }
+        },
+        'moon-glow': {
+          '0%': { boxShadow: '0 0 10px #fff' },
+          '100%': { boxShadow: '0 0 20px #fff, 0 0 30px #fff' }
         },
         'gradient-x': {
           '0%': { 'background-position': '0% 50%' },

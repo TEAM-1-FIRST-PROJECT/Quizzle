@@ -1,38 +1,77 @@
+import { useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import img from "../../assets/austronaut.png";
+import moon from "../../assets/moon.png";
 
 const NotFound = () => {
+  const navigate = useNavigate();
+  const canvasRef = useRef(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const context = canvas.getContext("2d");
+    const stars = Array.from({ length: 1000 }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      size: Math.random(),
+      speed: Math.random() * 3,
+    }));
+
+    const animate = () => {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      for (let star of stars) {
+        star.y += star.speed;
+        if (star.y > canvas.height) star.y = 0;
+        context.beginPath();
+        context.arc(star.x, star.y, star.size, 0, 2 * Math.PI);
+        context.fillStyle = "white";
+        context.fill();
+      }
+      requestAnimationFrame(animate);
+    };
+
+    animate();
+  }, []);
+
   return (
-      <div>
-<section className="bg-white dark:bg-gray-900 ">
-    <div className="container min-h-screen px-6 py-12 mx-auto lg:flex lg:items-center lg:gap-12">
-        <div className="wf-ull lg:w-1/2">
-            <p className="text-sm font-medium text-blue-500 dark:text-blue-400">404 error</p>
-            <h1 className="mt-3 text-2xl font-semibold text-gray-800 dark:text-white md:text-3xl">Page not found</h1>
-            <p className="mt-4 text-gray-500 dark:text-gray-400">Sorry, the page you are looking for doesn&#39;t exist.Here are some helpful links:</p>
-
-            <div className="flex items-center mt-6 gap-x-3">
-                <button className="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 transition-colors duration-200 bg-white border rounded-lg gap-x-2 sm:w-auto dark:hover:bg-gray-800 dark:bg-gray-900 hover:bg-gray-100 dark:text-gray-200 dark:border-gray-700">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 rtl:rotate-180">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
-                    </svg>
-
-
-                    <span>Go back</span>
-                </button>
-
-                <button className="w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg shrink-0 sm:w-auto hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600">
-                    Take me home
-                </button>
-            </div>
+    <div className="h-screen overflow-auto  relative">
+      <div className=" h-screen pt-1">
+        <canvas
+          ref={canvasRef}
+          className="absolute top-0 left-0"
+          width={window.innerWidth}
+          height={window.innerHeight}
+        />
+        <div className="flex flex-col text-white dark:text-zinc-300 mt-32 items-center justify-center space-y-8 z-10 relative">
+          <h1 className="text-yellow-200 text-5xl">
+            Houston, we have a problem.
+          </h1>
+          <h2 className="text-red-500 text-2xl pt-10">404</h2>
+          <h3 className="text-5xl">Page not found</h3>
+          <div className="pt-20">
+            <button
+              onClick={() => navigate(-1)}
+              className="hover:bg-gradient-to-l hover:from-blue-400 text-white font-bold py-2 px-4 mr-10 rounded bg-gradient-to-r from-sky-400 dark:from-sky-400"
+            >
+              Go Back
+            </button>
+            <button
+              onClick={() => navigate("/")}
+              className="hover:bg-gradient-to-r hover:from-blue-400 text-white font-bold py-2 px-4 rounded bg-gradient-to-l from-blue-400 dark:from-blue-400"
+            >
+              Go To Home
+            </button>
+          </div>
         </div>
-
-        <div className="relative w-full mt-8 lg:w-1/2 lg:mt-0">
-            <img className=" w-full lg:h-[32rem] h-80 md:h-96 rounded-lg object-cover " src="https://images.unsplash.com/photo-1613310023042-ad79320c00ff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" alt=""/>
+        <div className="absolute top-1/4 left-20 animate-astronaut">
+          <img className="h-32 w-32" src={img} />
         </div>
+        <div className="absolute bottom-1/4 right-1/4 animate-moon-spin">
+          <img className="h-32 w-32" src={moon} />
+        </div>
+      </div>
     </div>
-</section>
-          
-    </div>
-  )
-}
+  );
+};
 
-export default NotFound
+export default NotFound;

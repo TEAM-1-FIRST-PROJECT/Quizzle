@@ -33,11 +33,11 @@ const QuizResolved = ({ id, score, resolvedOn }) => {
               <div className="relative overflow-hidden shadow-md opacity-80 sm:rounded-lg mb-20">
                 <div className="overflow-x-auto">
                   <table className="w-full text-sm text-left text-gray-500">
-                    <thead className="text-lg text-gray-700 dark:text-gray-400">
+                    <thead className="text-lg text-gray-700 dark:text-zinc-200">
                       <tr>
                         <th
                           scope="col"
-                          className="px-4 py-3 bg-indigo-500 text-black"
+                          className="px-4 py-3 bg-indigo-500 text-black dark:bg-indigo-600"
                         >
                           <p className="text-lg text-start">
                             <p className="text-white text-2xl">Title</p>
@@ -53,7 +53,7 @@ const QuizResolved = ({ id, score, resolvedOn }) => {
                     </thead>
                     {quiz.question.map((quest, i) => (
                       <tbody key={i}>
-                        <tr className=" bg-gradient-to-b from-violet-200 to-indigo-300 hover:shadow-2xl hover:shadow-stone-400 transition-all duration-200 ease-in-out hover:scale-95">
+                        <tr className=" bg-gradient-to-b from-violet-200 to-indigo-300 hover:shadow-2xl hover:shadow-stone-400 ">
                           <th className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap ">
                             <p className="block text-lg font-bold">
                               <p className="text-2xl">Question</p>

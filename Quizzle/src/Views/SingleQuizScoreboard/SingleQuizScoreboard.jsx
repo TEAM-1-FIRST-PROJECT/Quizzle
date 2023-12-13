@@ -19,14 +19,14 @@ const SingleQuizScoreBoard = () => {
   
     return (
         <div className="h-screen pb-20 overflow-auto p-5">
-          <div className="ml-20 text-4xl animate-fade-in font-bold bg-clip-text text-transparent bg-gradient-to-r from-black to-zinc-500">
+          <div className="ml-20 text-4xl animate-fade-in font-bold dark:text-zinc-200 ">
             <p className="mt-10">Take a look at the results of all participants.</p>
           </div>
-          {quiz && <div className="mt-20 justify-center items-center border-4 p-10 rounded-lg bg-gradient-to-bl from-indigo-400">
-            <h1 className="mb-5 text-5xl bg-clip-text text-transparent bg-gradient-to-r from-gray-800 to-stone-100">Quiz: {quiz.title}</h1>
-            <table className="table-auto rounded w-full text-center text-white">
-              <thead className="text-lg bg-indigo-400">
-                <tr className="border border-violet-200 ">
+          {quiz && <div className="mt-20 justify-center items-center border-2 p-10 rounded-lg bg-gradient-to-br from-indigo-400 dark:from-zinc-600">
+            <h1 className="mb-5 text-5xl dark:text-zinc-200">Quiz: {quiz.title}</h1>
+            <table className="table-auto rounded w-full text-center text-white dark:text-zinc-200 dark:bg-gradient-to-br to-zinc-700">
+              <thead className="text-lg ">
+                <tr className="border ">
                   <th className="px-4 py-2">User</th>
                   <th className="px-4 py-2">Quiz Title</th>
                   <th className="px-4 py-2">Your score</th>
@@ -38,7 +38,7 @@ const SingleQuizScoreBoard = () => {
                 {Object.values(Object.values(quiz?.scoreBoard))
                   .sort((a, b) => b.score - a.score)
                   .map((user) => (
-                    <tr key={user.username} className="border bg-indigo-300 ">
+                    <tr key={user.username} className="border dark:bg-gradient-to-br dark:from-zinc-800">
                       <td className="px-4 py-2">{user.username}</td>
                       <td className="px-4 py-2">{quiz.title}</td>
                       <td className="px-4 py-2">{user.score}</td>
