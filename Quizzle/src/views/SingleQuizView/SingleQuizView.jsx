@@ -145,8 +145,8 @@ const SingleQuizView = () => {
             </div>
           </div>
           <div id="question" className="text-center mt-10">
-            <h2 className="mb-20 font-medium text-2xl">{questions[activeQuestionIndex]?.question}</h2>
-            <ul id="answers" className="grid grid-cols-1 md:grid-cols-2 gap-4 mx-auto">
+            <h2 className="mb-10 font-medium text-2xl">{questions[activeQuestionIndex]?.question}</h2>
+            <ul id="answers" className="grid grid-cols-1 md:grid-cols-1 gap-4 mx-auto">
               {questions[activeQuestionIndex]?.answers.map((answer) => (
                 <div key={answer.text} className="">
                   <button className="border-2 border-indigo-500 px-4 py-2 rounded-lg w-full text-center bg-gray-200 hover:bg-green-500"
