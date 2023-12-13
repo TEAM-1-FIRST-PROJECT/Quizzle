@@ -22,6 +22,7 @@ import biology1 from '../../assets/biology1.jpg';
 import history1 from '../../assets/history1.jpg';
 import math1 from '../../assets/math1.jpg';
 import base1 from '../../assets/base1.jpg';
+import astronomy1 from '../../assets/astronomy1.jpg';
 
 
 const SingleCard = ({ quiz }) => {
@@ -45,6 +46,9 @@ const SingleCard = ({ quiz }) => {
           case CATEGORIES.HISTORY:
           setImg(history1);
           break;
+          case CATEGORIES.ASTRONOMY:
+            setImg(astronomy1);
+            break;
         default:
 
           setImg(base1);

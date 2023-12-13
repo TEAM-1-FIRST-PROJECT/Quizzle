@@ -34,6 +34,9 @@ useEffect(() => {
         case CATEGORIES.HISTORY:
         setImg(history1);
         break;
+        case CATEGORIES.ASTRONOMY:
+          setImg(astronomy1);
+          break;
       default:
 
         setImg(base1);

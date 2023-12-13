@@ -22,5 +22,6 @@ export const CATEGORIES= {
     MATHEMATICS: 'Mathematics',
     IT: 'IT',
     BIOLOGY: 'Biology',
-    HISTORY: 'History'
+    HISTORY: 'History',
+    ASTRONOMY: 'Astronomy',
 }
