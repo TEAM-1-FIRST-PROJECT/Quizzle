@@ -45,7 +45,7 @@ const CreateQuiz = () => {
       !/[A-Z][a-z]*$/.test(title.split(" ")[0]) ||
       !/[A-Z][a-z]*$/.test(finalCategory.split(" ")[0])
     ) {
-      alert(
+      toast.error(
         "The first word of Title and Category must start with a capital letter followed by lowercase letters!"
       );
       return;
@@ -78,7 +78,7 @@ const CreateQuiz = () => {
         ]);
       })
       .then(() => {
-        alert("Successfully created quiz!");
+        toast.success("Successfully created quiz!");
       })
       .catch((error) => {
         toast.error("Error adding document: ", error);
