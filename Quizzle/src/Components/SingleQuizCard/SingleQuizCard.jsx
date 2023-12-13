@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { useContext, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/authContext";
 import { dateNow } from "../../common/constants";
 import RemainingTime from "../RemainingTime/RemainingTime";
@@ -29,6 +29,7 @@ const SingleCard = ({ quiz }) => {
 
   const { userData } = useContext(AuthContext)
   const [img, setImg] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Use a separate function to set the image source based on quiz category
@@ -43,12 +44,12 @@ const SingleCard = ({ quiz }) => {
         case CATEGORIES.MATHEMATICS:
           setImg(math1);
           break;
-          case CATEGORIES.HISTORY:
+        case CATEGORIES.HISTORY:
           setImg(history1);
           break;
-          case CATEGORIES.ASTRONOMY:
-            setImg(astronomy1);
-            break;
+        case CATEGORIES.ASTRONOMY:
+          setImg(astronomy1);
+          break;
         default:
 
           setImg(base1);
@@ -72,21 +73,24 @@ const SingleCard = ({ quiz }) => {
 
   const rejectQuiz = () => {
 
-updateUserScore(userData.username, quiz.id, quiz.title, score, quiz.category, [])
-.then(() => console.log('Quiz result saved successfully'))
-.catch((e) => toast.error(e));
+    updateUserScore(userData.username, quiz.id, quiz.title, score, quiz.category, [], quiz.maxPassingPoints, quiz.minPassingPoints)
+      .then(() => {
+        navigate(`/singleQuizView/${quiz?.id}`)
+        console.log('Quiz result saved successfully')
+      })
+      .catch((e) => toast.error(e));
 
-removeFromAssignments(userData.username, quiz.id)
-.then(() => console.log('Quiz assignment updated successfully'))
-.catch((e) => toast.error(e));
+    removeFromAssignments(userData.username, quiz.id)
+      .then(() => console.log('Quiz assignment updated successfully'))
+      .catch((e) => toast.error(e));
 
-removeAssignmentsFromQuiz(userData.username, quiz.id)
-.then(() => console.log('Quiz assignment updated successfully'))
-.catch((e) => toast.error(e));
+    removeAssignmentsFromQuiz(userData.username, quiz.id)
+      .then(() => console.log('Quiz assignment updated successfully'))
+      .catch((e) => toast.error(e));
 
-removeAssignmentsFromUser(userData.username, quiz.id)
-.then(() => console.log('Quiz assignment updated successfully'))
-.catch((e) => toast.error(e));
+    removeAssignmentsFromUser(userData.username, quiz.id)
+      .then(() => console.log('Quiz assignment updated successfully'))
+      .catch((e) => toast.error(e));
   }
 
   const showSummary = userData?.score ? Object.keys(userData?.score).includes(quiz?.title) : false
@@ -123,7 +127,7 @@ removeAssignmentsFromUser(userData.username, quiz.id)
             {`In this quiz you have ${quiz?.timeLimit} minutes to answer ${quiz?.question?.length} questions.`}
           </p>
           <div className="flex justify-center space-x-4">
-          {!showSummary && <Link
+            {!showSummary && <Link
               to={`/singleQuizView/${quiz?.id}`}
               className="inline-block mx-1 px-4 py-2 bg-violet-300  rounded-lg text-center font-medium transform transition duration-500 ease-in-out hover:scale-105 hover:bg-violet-500 hover:text-zinc-100 dark:text-black dark:hover:text-zinc-100 dark:bg-indigo-600"
             >
