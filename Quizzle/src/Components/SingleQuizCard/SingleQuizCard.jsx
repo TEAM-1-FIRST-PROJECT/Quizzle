@@ -72,11 +72,12 @@ const SingleCard = ({ quiz }) => {
   }
 
   const rejectQuiz = () => {
-    console.log('reject')
+
     updateUserScore(userData.username, quiz.id, quiz.title, score, quiz.category, [], quiz.maxPassingPoints, quiz.minPassingPoints)
       .then(() => {
         navigate(`/singleQuizView/${quiz?.id}`)
-        console.log('Quiz result saved successfully')})
+        console.log('Quiz result saved successfully')
+      })
       .catch((e) => toast.error(e));
 
     removeFromAssignments(userData.username, quiz.id)
