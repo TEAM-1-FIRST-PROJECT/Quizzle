@@ -39,11 +39,11 @@ const UserProfile = () => {
     (quiz) =>
       quiz.assignedUsers !== undefined && f(quiz.assignedUsers) <= dateNow
   );
-
+ 
   return (
     <div className="flex flex-col items-center">
       <section className="bg-gray-2 pb-10 pt-5 lg:pb-10 lg:pt-10 dark:text-zinc-200">
-        {!ongoingQuizzes && closedQuizzes && (
+        {ongoingQuizzes && (
           <div className="container">
             <h2 className="mt-12 text-3xl md:text-3xl font-extrabold leading-tighter tracking-tighter mb-4">
               Ongoing Quizzes
@@ -51,29 +51,7 @@ const UserProfile = () => {
             <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
               {ongoingQuizzes.map((quiz) => (
                 <div key={quiz.id}>
-                  <SingleCard
-                    image="https://i.ibb.co/r2zns1m/image-01.jpg"
-                    titleHref="/#"
-                    btnHref="/#"
-                    Button="View Details"
-                    quiz={quiz}
-                  />
-                </div>
-              ))}
-            </div>
-            <h2 className="mt-12 text-3xl md:text-3xl font-extrabold leading-tighter tracking-tighter mb-4">
-              Closed Quizzes
-            </h2>
-            <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              {closedQuizzes.map((quiz) => (
-                <div key={quiz.id}>
-                  <SingleCard
-                    image="https://i.ibb.co/r2zns1m/image-01.jpg"
-                    titleHref="/#"
-                    btnHref="/#"
-                    Button="View Details"
-                    quiz={quiz}
-                  />
+                  <SingleCard quiz={quiz} />
                 </div>
               ))}
             </div>
