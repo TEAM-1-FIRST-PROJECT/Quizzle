@@ -224,7 +224,7 @@ const CreateQuiz = () => {
             <div className="w-full md:w-1/3 px-3">
               <label className="block">
                 <span className="text-gray-700 text-xl font-extralight">
-                  Minimum Passing Score:
+                  Min Pass Score:
                 </span>
                 <input
                   type="number"
@@ -296,12 +296,15 @@ const CreateQuiz = () => {
                 type="button"
                 onClick={() => {
                   setQuestions((prevQuestions) => {
-                    const newQuestions = [...prevQuestions];
-                    newQuestions[index].answers.push({
-                      text: "",
-                      isCorrect: false,
+                    return prevQuestions.map((q, qIndex) => {
+                      if (qIndex !== index) {
+                        return q;
+                      }
+                      return {
+                        ...q,
+                        answers: [...q.answers, { text: "", isCorrect: false }],
+                      };
                     });
-                    return newQuestions;
                   });
                 }}
                 className="mt-2 px-4 py-2 text-sm font-medium text-white bg-violet-500 dark:bg-violet-600 dark:hover:bg-violet-500 rounded-md hover:bg-violet-700 transform transition duration-500 ease-in-out hover:scale-105"
