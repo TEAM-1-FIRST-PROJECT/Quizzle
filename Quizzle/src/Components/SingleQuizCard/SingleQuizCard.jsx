@@ -17,6 +17,11 @@ import mathImage from '../../assets/math.jpg';
 import historyImage from '../../assets/History.jpg';
 import quizImage from '../../assets/quiz.jpg';
 import { CATEGORIES } from "../../common/constants";
+import it1 from '../../assets/it1.jpg';
+import biology1 from '../../assets/biology1.jpg';
+import history1 from '../../assets/history1.jpg';
+import math1 from '../../assets/math1.jpg';
+import base1 from '../../assets/base1.jpg';
 
 
 const SingleCard = ({ quiz }) => {
@@ -29,20 +34,20 @@ const SingleCard = ({ quiz }) => {
     const setImageSrc = () => {
       switch (quiz?.category) {
         case CATEGORIES.IT:
-          setImg(itImage);
+          setImg(it1);
           break;
         case CATEGORIES.BIOLOGY:
-          setImg(bioImage);
+          setImg(biology1);
           break;
         case CATEGORIES.MATHEMATICS:
-          setImg(mathImage);
+          setImg(math1);
           break;
           case CATEGORIES.HISTORY:
-          setImg(historyImage);
+          setImg(history1);
           break;
         default:
 
-          setImg(quizImage);
+          setImg(base1);
       }
     };
 
@@ -86,7 +91,7 @@ removeAssignmentsFromUser(userData.username, quiz.id)
     <>
       {quiz && <div className=" mb-10 overflow-hidden rounded-lg shadow-xl border-indigo-300">
         <div className="relative">
-          <img src={img} alt="" className="h-44 w-full" />
+          <img src={img} alt="" className="h-80 w-full" />
           <div className="absolute top-0 right-0 z-10">
             {showTimer
               ? <RemainingTime

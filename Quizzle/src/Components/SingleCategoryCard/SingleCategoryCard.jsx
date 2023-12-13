@@ -7,6 +7,12 @@ import historyImage from '../../assets/History.jpg';
 import quizImage from '../../assets/quiz.jpg';
 import { CATEGORIES } from "../../common/constants";
 import { useState, useEffect } from "react";
+import it1 from '../../assets/it1.jpg';
+import biology1 from '../../assets/biology1.jpg';
+import history1 from '../../assets/history1.jpg';
+import math1 from '../../assets/math1.jpg';
+import base1 from '../../assets/base1.jpg';
+import astronomy1 from '../../assets/astronomy1.jpg';
 
 const SingleCategoryCard = ({ image, category, quizzesInCategory }) => {
 
@@ -17,20 +23,20 @@ useEffect(() => {
   const setImageSrc = () => {
     switch (category) {
       case CATEGORIES.IT:
-        setImg(itImage);
+        setImg(it1);
         break;
       case CATEGORIES.BIOLOGY:
-        setImg(bioImage);
+        setImg(biology1);
         break;
       case CATEGORIES.MATHEMATICS:
-        setImg(mathImage);
+        setImg(math1);
         break;
         case CATEGORIES.HISTORY:
-        setImg(historyImage);
+        setImg(history1);
         break;
       default:
 
-        setImg(quizImage);
+        setImg(base1);
     }
   };
 
@@ -40,7 +46,7 @@ useEffect(() => {
     return (
       <>
         <div className="mb-10 overflow-hidden rounded-lg bg-white dark:bg-gradient-to-br dark:from-slate-400 dark:to-zinc-500 shadow-lg duration-300 hover:drop-shadow-lg">
-          <img src={img} alt="" className="w-full h-36" />
+          <img src={img} alt="" className="w-full h-72" />
           <div className="p-8 text-center sm:p-9 md:p-7 xl:p-9">
             <h3>
               <a
