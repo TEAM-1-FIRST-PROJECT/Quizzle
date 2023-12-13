@@ -88,7 +88,7 @@ const UserAnswers = () => {
                           </div>
                         </th>
                         <th>
-                          <button className="border"
+                          <button className="border px-2 hover:bg-indigo-300"
                             onClick={() => addCommentHandler(i)}>
                             add comment
                           </button>
