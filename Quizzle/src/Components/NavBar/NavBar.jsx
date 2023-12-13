@@ -5,6 +5,7 @@ import Logo from "../../assets/logo.png";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import { BellIcon } from "@heroicons/react/outline";
 import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher";
+import { ROLE_CHECK } from "../../common/constants";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -53,23 +54,23 @@ function Navbar() {
                 alt="logo"
               />
             </Link>
-            {user && user.role !== 'student' && (
-            <div className="hidden md:block">
-              <div className="flex lg:block m-2 ml-20 space-x-6 text-lg font-medium font-montserrat">
-                <Link
-                  to="/home"
-                  className="hover:bg-gradient-to-b font-bold hover:from-indigo-400 text-zinc-700 px-3 py-2 rounded-md dark:text-zinc-100"
-                >
-                  Dashboard
-                </Link>
-                <Link
-                  to="/categories"
-                  className="hover:bg-gradient-to-b font-bold hover:from-indigo-400 text-zinc-700 px-3 py-2 rounded-md dark:text-zinc-100"
-                >
-                  Categories
-                </Link>
+            {userData && userData.role !== ROLE_CHECK.student && (
+              <div className="hidden md:block">
+                <div className="flex lg:block m-2 ml-20 space-x-6 text-lg font-medium font-montserrat">
+                  <Link
+                    to="/home"
+                    className="hover:bg-gradient-to-b font-bold hover:from-indigo-400 text-zinc-700 px-3 py-2 rounded-md dark:text-zinc-100"
+                  >
+                    Dashboard
+                  </Link>
+                  <Link
+                    to="/categories"
+                    className="hover:bg-gradient-to-b font-bold hover:from-indigo-400 text-zinc-700 px-3 py-2 rounded-md dark:text-zinc-100"
+                  >
+                    Categories
+                  </Link>
+                </div>
               </div>
-            </div>
             )}
           </div>
           <div className="flex">
@@ -94,7 +95,7 @@ function Navbar() {
               </Link>
             )}
           </div>
-            <div className="flex">
+          <div className="flex">
             {notifications ? (
               <button onClick={handleNotification} className="p-1 relative">
                 <BellIcon
@@ -128,8 +129,8 @@ function Navbar() {
               className="ml-4 rounded-full bg-black w-10 h-10"
               src={userData?.profileImgUrl || Logo}
               alt={Logo}
-              />
-              </div>
+            />
+          </div>
           <div className="ml-10">
             <ThemeSwitcher />
           </div>
