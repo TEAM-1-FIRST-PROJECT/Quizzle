@@ -49,76 +49,82 @@ const UserAnswers = () => {
   return (
     <>
       {quiz && <div className="ml-4 mt-4">
-        <section className="bg-white dark:bg-white py-3 sm:py-5">
-          <div className="px-4  max-w-screen-2xl lg:px-12">
-            <div className="relative overflow-hidden bg-white shadow-md dark:bg-indigo-100 opacity-80 sm:rounded-lg mb-20">
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                  <thead className="text-lg text-gray-700  bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                    <tr>
-                      <th scope="col" className="px-4 py-3 bg-indigo-500 text-white">
-                        <p className="text-lg">{quiz?.title}</p>
-                        <p className="text-lg">{quiz?.category}</p>
-                      </th>
-                      <th scope="col" className="px-4 py-3 bg-indigo-500 text-white"></th>
-                    </tr>
-                  </thead>
-                  {quiz.question.map((quest, i) => (
-                    <tbody key={i}>
-                      <tr className="border-b dark:border-indigo-600 hover:bg-indigo-100 dark:hover:bg-indigo-200">
-                        <th className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                          <p className="block text-lg">{quest.question}</p>
-                          <div className="relative p-2">
-                            <p className="block text-left">correct answer: {quest.answers.find(item => item.isCorrect === true)
-                              ? quest.answers.find(item => item.isCorrect === true).text
-                              : null}
-                            </p>
-                            <p className="block text-left">your answer:  {
-                             user?.score[quiz?.title].userAnswers
-                             ? user?.score[quiz?.title].userAnswers[i]
-                               ? user?.score[quiz?.title].userAnswers[i].text
-                               : '...'
-                             : '...'
-                            }</p>
-                            {
+        <div className="pb-20 overflow-auto">
+          <div className="flex flex-col items-center">
+            <p className="pt-12 text-3xl font-extrabold bg-clip-text p-1 text-transparent bg-gradient-to-r from-zinc-700 to-gray-500 dark:bg-gradient-to-r dark:from-zinc-300 dark:to-gray-500">
+              Welcome to the quiz scoreboard.
+            </p>
+          </div>
+
+          <div className="flex flex-col p-5 ml-10 mr-10 mt-20 border shadow-md rounded bg-gradient-to-br from-indigo-500 dark:bg-gradient-to-br dark:from-zinc-600">
+            <div className="mt-4 ">
+              <table className="table-auto rounded w-full text-center text-white dark:text-zinc-100">
+                <thead className=" text-lg border dark:bg-gradient-to-br dark:from-zinc-600">
+                  <tr>
+                    <th scope="col" className="px-4 py-3 bg-indigo-500 text-white">
+                      <p className="text-lg">{quiz?.title}</p>
+                      <p className="text-lg">{quiz?.category}</p>
+                    </th>
+                    <th scope="col" className="px-4 py-3 bg-indigo-500 text-white"></th>
+                  </tr>
+                </thead>
+                {quiz.question.map((quest, i) => (
+                  <tbody key={i}>
+                    <tr className="border-b dark:border-indigo-600">
+                      <th className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        <p className="block text-lg">{quest.question}</p>
+                        <div className="relative p-2">
+                          <p className="block text-left">Correct answer: {quest.answers.find(item => item.isCorrect === true)
+                            ? quest.answers.find(item => item.isCorrect === true).text
+                            : null}
+                          </p>
+                          <p className="block text-left">Your answer:  {
+                            user?.score[quiz?.title].userAnswers
+                              ? user?.score[quiz?.title].userAnswers[i]
+                                ? user?.score[quiz?.title].userAnswers[i].text
+                                : '...'
+                              : '...'
+                          }</p>
+                          {
                             user?.score[quiz?.title].userAnswers
                             && user?.score[quiz?.title].userAnswers[i]
                             && user?.score[quiz?.title].userAnswers[i].comment
-                            && <p className="block text-left">{user?.score[quiz?.title].userAnswers[i].comment}</p>}
-                          </div>
-                        </th>
-                        <th>
-                          <button className="border px-2 hover:bg-indigo-300"
-                            onClick={() => addCommentHandler(i)}>
-                            add comment
-                          </button>
-                        </th>
-                      </tr>
-                      {showInput && (
-                        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-30">
-                          <div className="bg-white p-4 items-center justify-end rounded ">
-                            <textarea
-                              rows="8"
-                              className="rounded-lg w-full p-1 bg-white mt-2 -py focus-within:border-blue-500 focus:outline-none"
-                              type="password"
-                              value={comment}
-                              onChange={(e) => setComment(e.target.value)}
-                            />
-
-                            <button className="" onClick={() => { setComment(''); setShowInput(false); saveComment(user.username, quiz?.title) }}>Save comment</button>
-                            <button onClick={() => setShowInput(false)}>Cancel</button>
-
+                            && <p className="block text-left"> Comment: {user?.score[quiz?.title].userAnswers[i].comment}</p>}
+                        </div>
+                      </th>
+                      <th>
+                        <button className="border py-2 px-2 bg-indigo-300 hover:bg-indigo-200 text-black dark:text-black dark:bg-indigo-300 dark:hover:bg-indigo-200 rounded"
+                          onClick={() => addCommentHandler(i)}>
+                          Add comment
+                        </button>
+                      </th>
+                    </tr>
+                    {showInput && (
+                      <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-30">
+                        <div className="bg-indigo-100 py-6 px-32 items-center justify-end rounded text-black">
+                          <textarea
+                            placeholder="Add comment here..."
+                            rows="8"
+                            className="rounded-lg w-full py-6 px-6 bg-indigo-100 mt-2 -py focus-within:border-blue-500 focus:outline-none"
+                            type="password"
+                            value={comment}
+                            onChange={(e) => setComment(e.target.value)}
+                          />
+                          <div className="space-x-4">
+                            <button className="text-indigo-700" onClick={() => { setComment(''); setShowInput(false); saveComment(user.username, quiz?.title) }}>Save comment</button>
+                            <button className="text-indigo-700" onClick={() => setShowInput(false)}>Cancel</button>
                           </div>
                         </div>
-                      )}
-                    </tbody>
-                  ))}
-                </table>
-              </div>
+                      </div>
+                    )}
+                  </tbody>
+                ))}
+              </table>
             </div>
           </div>
-        </section>
-      </div>}
+        </div>
+      </div>
+      }
     </>
   )
 }
