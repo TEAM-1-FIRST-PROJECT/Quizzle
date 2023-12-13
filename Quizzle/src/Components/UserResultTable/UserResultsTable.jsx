@@ -15,7 +15,7 @@ const UserResultsTable = () => {
     const toggleRanking = () => {
       setRanking((prevRanking) => !prevRanking);
     };
-
+//console.log(userResults)
     return (
       <div className="h-screen pb-20 overflow-auto p-5">
         <div className="ml-20 text-4xl animate-fade-in font-bold dark:text-zinc-200">

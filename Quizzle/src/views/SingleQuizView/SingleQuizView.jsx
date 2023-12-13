@@ -93,7 +93,15 @@ const SingleQuizView = () => {
 
     if (user) {
 
-      updateUserScore(userData.username, id, quiz?.title, scorePoints, quiz?.category, userAnswers)
+      updateUserScore(
+        userData.username,
+        id,
+        quiz?.title,
+        scorePoints,
+        quiz?.category,
+        userAnswers,
+        quiz?.maxPassingPoints,
+        quiz?.minPassingPoints)
         .then(() => console.log('Quiz result saved successfully'))
         .catch((e) => toast.error(e));
 
