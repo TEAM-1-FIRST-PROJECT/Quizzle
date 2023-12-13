@@ -68,8 +68,8 @@ const GroupsDetails = () => {
           Group Details
         </h1>
         {group && (
-          <div className="flex flex-col items-center rounded-xl space-y-4 bg-gradient-to-bl from-indigo-400 dark:bg-gradient-to-tl dark:from-zinc-600">
-            <div className="p-4 rounded-xl w-80 shadow-2xl transform transition-transform bg-gradient-to-br from-indigo-400">
+          <div className="flex flex-col items-center w-1/3 rounded-xl space-y-4 bg-gradient-to-bl from-indigo-400 dark:bg-gradient-to-tl dark:from-zinc-600">
+            <div className="p-4 rounded-xl  shadow-2xl transform transition-transform bg-gradient-to-br from-indigo-400">
               <p className="text-black">
                 Group name{" "}
                 <h2 className="text-2xl font-bold mb-4 text-white dark:text-zinc-300">

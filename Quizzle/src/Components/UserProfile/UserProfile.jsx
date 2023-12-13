@@ -33,7 +33,7 @@ const UserProfile = () => {
   const dateNow = Date.now();
   const ongoingQuizzes = quizzes.filter(
     (quiz) =>
-      quiz.assignedUsers !== undefined && f(quiz.assignedUsers) > dateNow
+      quiz.assignedUsers !== undefined && f(quiz.assignedUsers) > dateNow && userQuizzes.includes(quiz.id)
   );
   const closedQuizzes = quizzes.filter(
     (quiz) =>
