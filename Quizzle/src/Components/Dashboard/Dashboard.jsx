@@ -16,7 +16,7 @@ const Dashboard = () => {
   useEffect(() => {
     getAllQuizzes()
       .then((snapshot) => {
-        const invitationalQuizzes = snapshot.filter(quiz => quiz.contestType === QUIZ_STATUS.INVITATIONAL)
+        const invitationalQuizzes = snapshot.filter(quiz => quiz.contestType === QUIZ_STATUS.OPEN)
         setQuizzes(invitationalQuizzes);
       })
       .catch((e) => toast.error(e));

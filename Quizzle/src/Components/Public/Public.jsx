@@ -27,7 +27,6 @@ const Public = () => {
       .catch(e => toast.error(e));
   }, [searchTerm]);
 
-  //quizzes?console.log(quizzes): console.log('Yok')
   return (
     <>
       {quizzes && <div className=" flex flex-col items-center">
@@ -111,10 +110,10 @@ const Public = () => {
                   {dateFormat(quiz.createdOn)}
                 </td>
                 <td className="px-4 py-2">
-                  {quiz.scoreBoard ? quiz.scoreBoard.length - 1 : 0}
+                  {quiz.scoreBoard ? Object.values(quiz.scoreBoard).length : 0}
                 </td>
                 <td className=" px-4 py-2">
-                  {quiz.scoreBoard ? quiz.scoreBoard.filter(el => el.score === 100).length : 0}
+                  {quiz.scoreBoard ? Object.values(quiz.scoreBoard).filter(el => el.score === 100).length : 0}
                 </td>
               </tr>
             ))}
