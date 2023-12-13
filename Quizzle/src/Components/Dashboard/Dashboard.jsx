@@ -145,9 +145,9 @@ const Dashboard = () => {
               {/* Section with Cards */}
             </div>
           </div>
-          <section className=" lg:pb-10 lg:pt-10">
+          <section className=" lg:pb-10 lg:pt-10 ml-40">
             <div className="container">
-              <div className="grid gap-8 sm:grid-cols-1 lg:grid-cols-3">
+              <div className="grid gap-8 sm:grid-cols-1 lg:grid-cols-3 items-center ">
                 {quizzes.map((quiz) => (
                   <div key={quiz.id}>
                     <SingleQuizCard

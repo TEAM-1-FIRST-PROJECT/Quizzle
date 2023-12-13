@@ -49,7 +49,7 @@ function Navbar() {
           <div className="flex items-center">
             <Link to="/">
               <img
-                className="flex w-16 h-16 mr-20 mix-blend-multiply "
+                className="flex w-16 h-16 mr-20 "
                 src={Logo}
                 alt="logo"
               />
