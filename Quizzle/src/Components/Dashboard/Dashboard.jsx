@@ -8,7 +8,6 @@ import { FaCircleUser } from "react-icons/fa6";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../context/authContext";
 import { QUIZ_STATUS } from "../../common/constants";
-import Bio from "../../assets/IT.jpg"
 
 const Dashboard = () => {
   const [quizzes, setQuizzes] = useState([{}]);
@@ -41,7 +40,7 @@ const Dashboard = () => {
   return (
     <>
       {quizzes && (
-        <div className="h-screen flex flex-col items-center">
+        <div className="lex flex-col items-center">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 mt-14 rounded-lg">
               <div className=" text-center">
                 <h1
