@@ -131,14 +131,14 @@ const SingleCard = ({ quiz }) => {
               to={`/singleQuizView/${quiz?.id}`}
               className="inline-block mx-1 px-4 py-2 bg-violet-300  rounded-lg text-center font-medium transform transition duration-500 ease-in-out hover:scale-105 hover:bg-violet-500 hover:text-zinc-100 dark:text-black dark:hover:text-zinc-100 dark:bg-indigo-600"
             >
-              Enroll quiz
+              Enroll
             </Link>}
 
             {showTimer && <button
               className="inline-block mx-1 px-4 py-2 bg-violet-300 rounded-lg text-center font-medium transform transition duration-500 ease-in-out hover:scale-105 hover:bg-violet-500 hover:text-white dark:text-black dark:hover:text-zinc-100 dark:bg-indigo-600"
               onClick={rejectQuiz}
             >
-              Reject Quiz
+              Reject
             </button>}
             {showSummary && <Link
               to={`/singleQuizView/${quiz?.id}`}
@@ -150,7 +150,7 @@ const SingleCard = ({ quiz }) => {
               to={`/singleQuizScoreboard/${quiz?.id}`}
               className="inline-block mx-1 px-4 py-2 bg-violet-300 rounded-lg text-center font-medium transform transition duration-500 ease-in-out hover:scale-105 hover:bg-violet-500 hover:text-white dark:text-black dark:hover:text-zinc-100 dark:bg-indigo-600"
             >
-              View scoreboard
+              Scoreboard
             </Link>
           </div>
         </div>

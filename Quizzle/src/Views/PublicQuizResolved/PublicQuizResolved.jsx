@@ -35,14 +35,14 @@ const PublicQuizResolved = ({ id, score, userAnswers }) => {
                           scope="col"
                           className="px-4 py-3 bg-indigo-500 text-black"
                         >
-                          <p className="text-lg text-start">
+                          <div className="text-lg text-start">
                             <p className="text-white text-2xl">Title</p>
                             {quiz?.title}
-                          </p>
-                          <p className="text-lg text-end">
+                          </div>
+                          <div className="text-lg text-end">
                             <p className="text-white text-2xl">Category</p>
                             {quiz?.category}
-                          </p>
+                          </div>
                           <p className="text-lg"> <p className="text-white text-2xl">Results</p>You score {score} on date</p>
                         </th>
                       </tr>
@@ -99,9 +99,7 @@ const PublicQuizResolved = ({ id, score, userAnswers }) => {
 
 PublicQuizResolved.propTypes = {
   score: PropTypes.number.isRequired,
-  resolvedOn: PropTypes.number.isRequired,
   id: PropTypes.string.isRequired,
-  category: PropTypes.string.isRequired,
   userAnswers: PropTypes.array.isRequired,
 }
 export default PublicQuizResolved
