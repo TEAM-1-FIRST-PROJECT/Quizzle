@@ -74,7 +74,7 @@ const Sidebar = () => {
                           className="flex items-center space-x-4 mt-4 rounded-md hover:bg-gradient-to-r hover:from-indigo-400 px-2 py-2 text-zinc-700 dark:text-zinc-100"
                         >
                           <RiHomeHeartLine />
-                          <span className="-mr-1 font-medium font-montserrat">
+                          <span className="-mr-1 font-bold font-montserrat">
                             Dashboard
                           </span>
                         </Link>
@@ -85,7 +85,7 @@ const Sidebar = () => {
                           className="flex items-center space-x-4 mt-4 rounded-md hover:bg-gradient-to-r hover:from-indigo-400 px-2 py-2 text-zinc-700 dark:text-zinc-100"
                         >
                           <BiCategoryAlt />
-                          <span className="group-hover:text-gray-700">
+                          <span className="group-hover:text-gray-700 font-bold">
                             Categories
                           </span>
                         </Link>
