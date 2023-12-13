@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { getQuizById } from "../../services/quiz.services";
 import toast from "react-hot-toast";
 import { addCommentInUserResults, getUserByHandle } from "../../services/users.services";
+import { onValue, ref } from "firebase/database";
+import { database } from "../../config/firebase-config";
 
 
 const UserAnswers = () => {
@@ -26,14 +28,17 @@ const UserAnswers = () => {
         setQuiz(null);
       });
 
-    getUserByHandle(username)
-      .then((user) => {
-        setUser(user.val());
-      })
-      .catch((error) => {
-        toast.error("Error fetching quiz details:", error);
-        setUser(null);
+      const dbRef = ref(database, `users/${username}`);
+      const unsubscribe = onValue(dbRef, (snapshot) => {
+        const data = snapshot.val();
+        if (data) {
+          setUser(data);
+        }
       });
+    
+      return () => {
+        unsubscribe();
+      };
   }, [quizId, username]);
 
   const addCommentHandler = (answers) => {
@@ -43,7 +48,7 @@ const UserAnswers = () => {
 
   const saveComment = (user, quiz) => {
     addCommentInUserResults(user, quiz, answers, comment)
-    navigate(0)
+    // navigate(0)
   }
 
   return (
