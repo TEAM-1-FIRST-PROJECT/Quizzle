@@ -47,13 +47,13 @@ const App = () => {
 
   return (
     <AuthContext.Provider value={{ ...appState, setUser: setAppState }}>
-      <div className="bg-hero-pattern-3 bg-cover bg-fixed dark:bg-hero-pattern-4 dark:bg-fixed dark:bg-cover">
       <Snowfall />
+      <div className="bg-hero-pattern-3 bg-cover bg-fixed dark:bg-hero-pattern-4 dark:bg-fixed dark:bg-cover">
         <Toaster />
         <Navbar />
         <div className="flex">
           <Sidebar />
-          <div className="flex flex-col h-screen overflow-auto">
+          <div className="flex-grow h-screen overflow-auto">
             <AppRouter />
           </div>
         </div >

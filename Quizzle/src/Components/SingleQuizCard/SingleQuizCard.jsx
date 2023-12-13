@@ -97,9 +97,9 @@ const SingleCard = ({ quiz }) => {
 
   return (
     <>
-      {quiz && <div className=" mb-10 overflow-hidden rounded-lg shadow-xl border-indigo-300">
+      {quiz && <div className="mb-10 overflow-hidden rounded-lg shadow-xl border-indigo-300">
         <div className="relative">
-          <img src={img} alt="" className="h-80 w-full" />
+          <img src={img} alt="" className="h-60 w-full" />
           <div className="absolute top-0 right-0 z-10">
             {showTimer
               ? <RemainingTime
