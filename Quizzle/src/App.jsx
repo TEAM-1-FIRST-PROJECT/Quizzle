@@ -13,8 +13,8 @@ import Snowfall from 'react-snowfall'
 
 const App = () => {
   const [user, loading] = useAuthState(auth);
-  const darkMode = false; 
- 
+  const darkMode = false;
+
   const [appState, setAppState] = useState({
     user,
     userData: false,
@@ -39,7 +39,7 @@ const App = () => {
         userData: snapshot.val()[username],
       });
     });
-  });
+  }, []);
 
   if (loading) {
     return <Loader />;
@@ -57,7 +57,7 @@ const App = () => {
             <AppRouter />
           </div>
         </div >
-        <Footer/>
+        <Footer />
       </div>
     </AuthContext.Provider>
   );
